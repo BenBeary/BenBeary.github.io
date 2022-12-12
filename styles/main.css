@@ -28,11 +28,11 @@
 }
 
 .project_image {
-  max-width: 700px;
-  height: 50vh;
+  max-height: 500px;
+  width: auto;
 }
 
 .image_source {
-  max-width: 400px;
-  height: auto;
+  max-height: 300px;
+  width: auto;
 }
