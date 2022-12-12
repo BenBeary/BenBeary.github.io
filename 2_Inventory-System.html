@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's Portfolio</title>
+    <link rel="stylesheet" href="styles/simple-grid.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row nav_bar">
+            <div class="col-4">
+                <a href="index.html">Ben Beary</a>
+            </div>
+
+            <div class="col-4">
+                <a href="Contact-Info.html">Contact&#8594;
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row project_page_description">
+            <div class="col-4">
+                <h3>Inventory System</h3>
+                <p class="project_tools">Unity</p>
+                <p class="project_tools">C#</p>
+
+            </div>
+            <div class="col-6">
+                <p><strong>Description:</strong></p>
+            </div>
+            <div class="col-8"
+            <p>I created this to allow for a dynamic inventory system that could
+              allow new items with descriptions and abilities be added dynamically
+              using Unity’s scriptable objects. When a new item was added to the
+              inventory, the game would create a new prefab that would take the
+              item’s information and display it in the inventory UI panel.</p>
+          </div>
+      </div>
+        <div class="row">
+            <div class="col-12">
+                <img class="project_image" src="assets\images\Inventory System\Inventory Layout.jpg"/>
+                <p><em>Once items were added to the inventory, they would be
+                  displayed in a UI container that the player could scroll through</em></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-11">
+                <img class="image_source" src="assets\images\Inventory System\ItemCreator.jpg"/>
+                <p><em>Items were scriptable objects that had stats that could be filled out</em></p>
+                <img class="image_source" src="assets\images\Inventory System\Item Prefab.jpg"/>
+                <p><em>Once the item was added to the inventory array,
+                  it would instantiate this prefab and insert the item’s data into the correct areas</em></p>
+                <img class="image_source" src="assets\images\Inventory System\Item Being Displayed.jpg"/>
+                <p><em>Once the potion was added to the inventory, any other calls to
+                  instantiate the potion would change to adding that amount to the prefab instead.</em></p>
+            </div>
+        </div>
+
+        <div class="row">
+              <div class="col-11">
+                  <h3><em>Inventory Code:</em></h3>
+                  <p><pre><code>
+                    public class Inventory : MonoBehaviour
+                    {
+
+                        public GameObject itemPrefab;
+
+                        public List<ItemCreator> items = new List<ItemCreator>();
+
+                        #region Singleton
+
+                        public static Inventory instance;
+
+                        private void Awake()
+                        {
+                            if (instance != null)
+                            {
+
+                                Debug.LogWarning("More than one instance of Inventory Found!");
+                                return;
+                            }
+                            instance = this;
+
+
+
+                        }
+
+                        #endregion
+
+
+                        public void Add (ItemCreator item)
+                        {
+                            for (int i = 0; i < items.Count; i++) // check to see if item is already in inventory list
+                            {
+                                if (items[i].name.Contains(item.name))
+                                {
+                                    Debug.Log("Adding 1 to " + item.name);
+                                    item.amount++;
+                                    return;
+                                }
+                            }
+                            Debug.Log("Item " + item + " added to inventory");
+                            items.Add(item);
+
+                            item.amount = 1; // Resets amount to 1 on spawn                                                 << (Temporary or Permanent)
+                            GameObject temp = Instantiate(itemPrefab, transform.parent); // creates new item ui
+
+                            temp.GetComponent<ItemDisplay>().item = item; // sets new item to display selected itemDisplay
+                            temp.transform.SetParent(gameObject.transform);
+
+                        }
+
+
+                        public void Remove (ItemCreator item)
+                        {
+                            for (int i = 0; i < items.Count; i++) // check to see if item is already in inventory list      << (Temporary or Permanent)
+                            {
+                                if (items[i].name.Contains(item.name) && item.amount > 1) // only minus if there is more than 1 in the inventory
+                                {
+                                    Debug.Log("Removing 1 to " + item.name);
+                                    item.amount--;
+                                    return;
+                                }
+                            }
+                            item.amount--;
+                            Debug.Log("Removing " + item.name + " from the list");
+                            items.Remove(item);
+                        }
+                    }
+                  </code><pre></p>
+              </div>
+        </div>
+
+        </div>
+    </body>
+</html>
