@@ -56,8 +56,8 @@ nav a:hover {
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 95vh;
-  padding: 3rem calc((100vw - 1300px) / 2);
+  height: auto;
+  padding: 3rem calc((100vw - 1000px) / 2);
 }
 
 .column-left {
