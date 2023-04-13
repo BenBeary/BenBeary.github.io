@@ -58,7 +58,7 @@ nav a:hover {
   grid-template-columns: 1fr 1fr;
   height: auto;
   padding: 3rem calc((100vw - 1000px) / 2);
-  min-height: 65vh;
+  min-height: 20vh;
 }
 
 .column-left {
