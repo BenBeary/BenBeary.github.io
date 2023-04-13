@@ -146,7 +146,7 @@ button:hover {
 .hero-image {
   width: 100%;
   height: auto;
-  border-radius: 200px;
+  border-radius: 50%;
 }
 
 .best-image {
