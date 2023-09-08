@@ -163,7 +163,7 @@ button:hover {
 .BestWork-container {
   display: grid;
   grid-template-columns: auto auto;
-  align-items: center;
+  align-items:flex-start;
   justify-content: center;
   padding: 3rem calc((100vw - 1300px) / 2);
 }
@@ -191,7 +191,7 @@ button:hover {
   background: #2F4F4F;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .hero-container {
     grid-template-columns: 1fr;
   }

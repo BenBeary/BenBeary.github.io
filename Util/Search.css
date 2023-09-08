@@ -2,12 +2,14 @@
   background-image: url('SearchIcon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
+  background-size: 20px;
   width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
     max-width: 1000px;
+    margin: auto;
 }
 
 #myUL {
@@ -15,6 +17,7 @@
   list-style-type: none;
   padding: 5;
   margin: 10;
+  /* padding-bottom: 20px; */
 
 }
 
@@ -39,13 +42,16 @@
   grid-template-columns: auto;
   background-color: #547373;
   padding: 5vw;
+  margin:  auto;
 }
 
 .grid_item {
-  background-color: white;
+  background-color:#669999;
   font-size: 30px;
   text-align: center;
   max-width: 1000px;
+  margin: auto;
+  padding: 10px;
 }
 .grid_item h1 { /* header text */
   text-align: left;
@@ -57,12 +63,14 @@
 }
 
 .grid_item p {
+  background-color: white;
   padding: 5px;
   text-align: left;
   font-size: 20px;
 }
 
 .grid_item .grid {
+  
   display: grid;
   grid-template-columns: auto auto;
 }
