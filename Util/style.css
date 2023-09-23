@@ -191,7 +191,7 @@ button:hover {
   background: #2F4F4F;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
   .hero-container {
     grid-template-columns: 1fr;
   }
