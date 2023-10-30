@@ -6,7 +6,16 @@
     <title>Ben Beary - Home</title>
     <link rel="stylesheet" href="Util/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="Util/SlideShow.css">
+    
     <script src="Util/Scroller.js" defer></script>
+
+    <style>
+      * {box-sizing: border-box}
+      .mySlides1, .mySlides2, .mySlides3 {display: none}
+      img {vertical-align: middle;}
+    </style>
+
   </head>
   <body>
 
@@ -14,6 +23,7 @@
       <div class="logo">Ben Beary</div>
       <div class="nav-items">
           <a href="index.html">Home</a>
+          <a href="Main/4_Catalogue.html">Catalogue</a>
           <a href="Main/3_BlogPage.html">Blog</a>
           <a href="Main/1_AboutPage.html">About</a>
           <a href="Main/2_ContactPage.html">Contact</a>
@@ -34,82 +44,208 @@
           </div>
       </div>
     </section>
-    <section class= "BestWork">
-      <div class="column-center" style="padding-top: 30px;"><h1>Best Work</h1></div>
-      <div class="BestWork-container">
-          <div class="column-center">
-            
-            <h1></h1>
-            <a href="Art_Pages\3_pixel_art_project.html">
-              <img src="Art_Pages\Images\Whoop Man Project\CaveEntrance.png" alt="NoCap" class="best-image">
-            </a>
-            <p>Pixel Art Project</p>
-            </div>
-          <div class="column-center">
-            <a href="Art_Pages\4_port_lochne.html">
-              <img src="Art_Pages\Images\Port Lochne Map\GameViewport.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Port Lochne</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\7_redwoods.html">
-              <img src="Art_Pages\Images\Misc\ART24-Collage_1.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Redwoods</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\9_book_cover.html">
-              <img src="Art_Pages\Images\ART74\Book_Cover.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Book Cover</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\11_movie_poster.html">
-              <img src="Art_Pages\Images\ART74\Movie_Poster.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Movie Poster</p>
-          </div>
-            <div class="column-center">
-            <a href="Art_Pages\5_line_generator.html">
-              <img src="Art_Pages\Images\Line Generator\Level_LineGen.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Line Generator</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\6_inventory_system.html">
-              <img src="Art_Pages\Images\Inventory System\Inventory Layout.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Inventory System</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\8_portrait_animation.html">
-              <img src="Art_Pages\Images\ART74\Portrait_Anim_Photo.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Portrait Animation</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\10_glitch_art.html">
-              <img src="Art_Pages\Images\ART74\Glitch_Art1.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Glitch Art</p>
-          </div>
-          <div class="column-center">
-            <a href="Art_Pages\12_value_study.html">
-              <img src="Art_Pages\Images\Misc\Art12_ValueStudy_BW.jpg" alt="NoCap" class="best-image">
-            </a>
-            <p>Value Study</p>
-          </div>
+    
+    
+
+
+    
+    
+    <div class="triangle-up" style="background: #5F9EA0;"></div>
+    <section class="slideshow-container">
+        <h1>Art Work</h1>
+        <div class="mySlides1" style="grid-template-columns: auto auto;">
+          <a href="Art_Pages\7_redwoods.html">
+            <img src="Art_Pages\Images\Misc\ART24-Collage_1.jpg">
+            <h2> Redwoods</h2>
+            <p>
+                I participate in a Game Developement Club in which I made levels with pixel art style drawings
+                in the Unity Software.
+            </p>
+          </a>
         </div>
-      </div>
+
+        <div class="mySlides1">
+          <a href="Art_Pages\9_book_cover.html">
+            <img src="Art_Pages\Images\ART74\Book_Cover.jpg">
+            <h2> Book Cover</h2>
+          <p>
+               I participate in a Game Developement Club in which I made levels with pixel art style drawings
+               in the Unity Software.
+          </p>
+          </a>  
+        </div>
+
+        <div class="mySlides1">
+          <a href="Art_Pages\11_movie_poster.html">
+            <img src="Art_Pages\Images\ART74\Movie_Poster.jpg">
+          <h2> Movie Poster</h2>
+          <p>
+               I participate in a Game Developement Club in which I made levels with pixel art style drawings
+               in the Unity Software.
+          </p>
+          </a>  
+        </div>
+
+        <div class="mySlides1">
+        <a href="Art_Pages\8_portrait_animation.html">
+          <img src="Art_Pages\Images\ART74\Portrait_Anim_Photo.jpg">
+  
+          <h2> Portrait Animation</h2>
+          <p>
+              I participate in a Game Developement Club in which I made levels with pixel art style drawings
+              in the Unity Software.
+          </p>
+        </a>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
     </section>
-    <section class= "OtherWork">
+    <div class="triangle"style="background: #5F9EA0;" ></div>
+    
+
+
+
+
+    <section class="slideshow-container" style="background: #5F9EA0;">
+      <h1>Code Work</h1>
+      <div class="mySlides2" style="grid-template-columns: auto auto;">
+        <a href="Art_Pages\3_pixel_art_project.html">
+          <img src="Art_Pages\Images\Whoop Man Project\CaveEntrance.png">
+          <h2> Game Developement Project: Whoop Man!</h2>
+          <p>
+              I participate in a Game Developement Club in which I made levels with pixel art style drawings
+              in the Unity Software.
+          </p>
+        </a>
+      </div>
+
+      <div class="mySlides2">
+        <img src="Art_Pages\Images\Port Lochne Map\GameViewport.jpg">
+        <h2> Game Developement Project: Whoop Man!</h2>
+        <p>
+            I participate in a Game Developement Club in which I made levels with pixel art style drawings
+            in the Unity Software.
+        </p>
+      </div>
+
+      <div class="mySlides2">
+        <img src="Art_Pages\Images\Misc\ART24-Collage_1.jpg">
+
+        <h2> Game Developement Project: Whoop Man!</h2>
+        <p>
+            I participate in a Game Developement Club in which I made levels with pixel art style drawings
+            in the Unity Software.
+        </p>
+      </a>
+      </div>
+
+
+
+      <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+    </section>
+    <div class="triangle" style="	border-top: 10vw solid #5F9EA0; background:  #2F4F4F;" ></div>
+    
+
+
+
+
+    <section class="slideshow-container" style="background: #2F4F4F;">
+      <h1>Personal Work</h1>
+      
+      <div class="mySlides3" style="grid-template-columns: auto auto;">
+        <a href="Art_Pages\3_pixel_art_project.html">
+          <img src="Art_Pages\Images\Whoop Man Project\CaveEntrance.png">
+          
+
+          <h2> Game Developement Project: Whoop Man!</h2>
+          <p>
+              I participate in a Game Developement Club in which I made levels with pixel art style drawings
+              in the Unity Software.
+          </p>
+        </a>
+      </div>
+      <div class="mySlides3">
+        <img src="Art_Pages\Images\Port Lochne Map\GameViewport.jpg">
+        <h2> Map Creation</h2>
+        <p>
+            I participate in a Game Developement Club in which I made levels with pixel art style drawings
+            in the Unity Software.
+        </p>
+      </div>
+      <div class="mySlides3">
+        <a href="Art_Pages\5_line_generator.html">
+          <img src="Art_Pages\Images\Line Generator\Level_LineGen.jpg">
+
+        <h2>Line Generator</h2>
+        <p>
+            I participate in a Game Developement Club in which I made levels with pixel art style drawings
+            in the Unity Software.
+        </p>
+        </a>
+      </div>
+
+    </div>
+    <div class="mySlides3">
+      <a href="Art_Pages\6_inventory_system.html">
+        <img src="Art_Pages\Images\Inventory System\Inventory Layout.jpg">
+
+      <h2>Inventory System</h2>
+      <p>
+          I participate in a Game Developement Club in which I made levels with pixel art style drawings
+          in the Unity Software.
+      </p>
+      </a>
+    </div>
+
+      <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+    </section>
+
+
+
+    
+    <script>
+      let slideIndex = [1,1,1];
+      let slideId = ["mySlides1", "mySlides2", "mySlides3"]
+      showSlides(1, 0);
+      showSlides(1, 1);
+      showSlides(1, 2);
+      
+
+      function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+      }
+      
+      function showSlides(n, no) {
+        let i;
+        let x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) {slideIndex[no] = 1}    
+        if (n < 1) {slideIndex[no] = x.length}
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";  
+        }
+        x[slideIndex[no]-1].style.display = "block";  
+      }
+      </script>
+  
+    
+    
+    
+    <section class="BestWork"style="background: #2F4F4F; padding: 80px"> </section>
+    
+    <div class="triangle"style="background: #5F9EA0;" ></div>
+    <section class= "OtherWork" style="background: #5F9EA0;">
         <div class="Work-container">
           <div class="column-center">
             <h1>More Work</h1>
             <div class="WrapperBody">
               <div class="wrapper">
                 <i id= "left" class="fa-solid fa-angle-left"></i>
-                <div class="carousel">
+                <div class="carousel"style="background: #2F4F4F;">
+                  <a href="Art_Pages/10_glitch_art.html">
+                    <img src="Art_Pages\Images\ART74\Glitch_Art1.jpg" alt="img"></a>
                     <a href="Art_Pages\13_contrast.html">
                       <img src="Art_Pages\Images\Misc\ART12_Contrast.jpg" alt="img"></a>
                     <a href="Art_Pages\14_line_work.html">
@@ -125,10 +261,4 @@
     </section>
 
   </body>
-  <footer>
-    <div class="nav-items">
-        <a href="1_AboutPage.html">About</a>
-        <a href="2_ContactPage.html">Contact</a>
-    </div>
-  </footer>
 </html>
