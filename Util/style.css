@@ -166,6 +166,7 @@ button:hover {
   align-items:flex-start;
   justify-content: center;
   padding: 3rem calc((100vw - 1300px) / 2);
+  min-height: 100%;
 }
 .Work-container {
   display: grid;

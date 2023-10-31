@@ -43,6 +43,7 @@
   background-color: #547373;
   padding: 5vw;
   margin:  auto;
+  min-height: 100%;
 }
 
 .grid_item {
