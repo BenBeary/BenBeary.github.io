@@ -1,0 +1,130 @@
+{
+    "WaveDat": [
+        
+        {
+            "count": [4,8,10,12,20,30,10,15,30,15],
+            "delay": 1,
+            "curTime": 0
+        },
+        {
+            "count": [0,3,5,6,7,10,25,25,30,40],
+            "delay": 2,
+            "curTime": 0
+        },
+        {
+            "count": [0,0,0,1,3,5,15, 20, 25, 30],
+            "delay": 4,
+            "curTime": 0
+        },
+        {
+            "count": [0,0,0,0,1,2,2,3,4,6],
+            "delay": 8,
+            "curTime": 0
+        }
+        
+    ],
+
+    "Enemies": [
+        
+        { 
+            "name": "Not Used",
+            "hp": 4,
+            "speed": 15,
+            "objCol": [ 250, 120, 100],
+            "flavorTxt": "Not Used"
+        },
+        { 
+            "name": "Not Used",
+            "hp": 3,
+            "speed": 20,
+            "objCol": [ 250, 50, 50],
+            "flavorTxt": "Not Used"
+        },
+        { 
+            "name": "Not Used",
+            "hp": 6,
+            "speed": 10,
+            "objCol": [ 230, 190, 70],
+            "flavorTxt": "Not Used"
+        },
+        { 
+            "name": "Not Used",
+            "hp": 15,
+            "speed": 5,
+            "objCol": [ 250, 100, 250],
+            "flavorTxt": "Not Used"
+        }
+    
+    
+    ],
+
+
+    "Towers": [
+
+        {
+            "name": "Fire Wall",
+            "damage": 2,
+            "range": 3,
+            "shootSpeed": 1,
+            "cost": 2,
+            "bulletText": "\"Hello\"",
+            "objCol": [ 200, 200, 100 ],
+            "bulCol": [ 250, 190, 100 ]
+        },
+        {
+            "name": "VPN",
+            "damage": 3,
+            "range": 5,
+            "shootSpeed": 2,
+            "cost": 3,
+            "bulletText": "False",
+            "objCol": [ 200, 100, 200 ],
+            "bulCol": [ 200, 10, 100 ]
+        },
+        {
+            "name": "Login Alert",
+            "damage": 1,
+            "range": 5,
+            "shootSpeed": 0.5,
+            "cost": 5,
+            "bulletText": "let i",
+            "objCol": [ 200, 50, 200 ],
+            "bulCol": [ 120, 120, 230 ]
+        },
+        {
+            "name": "2 Factor Auth",
+            "damage": 5,
+            "range": 9,
+            "shootSpeed": 3,
+            "cost": 10,
+            "bulletText": "()=>Err",
+            "objCol": [ 120, 200, 250 ],
+            "bulCol": [ 200, 200, 150 ]
+        }
+
+    ],
+    "NewGameTowers": [
+
+        {
+            "name": "Cat",
+            "damage": 3,
+            "range": 4,
+            "shootSpeed": 1,
+            "cost": 3,
+            "bulletText": "mew",
+            "objCol": [ 100, 255, 100 ],
+            "bulCol": [ 250, 100, 250 ]
+        },
+        {
+            "name": "Dog",
+            "damage": 2,
+            "range": 6,
+            "shootSpeed": 0.5,
+            "cost": 4,
+            "bulletText": "woof",
+            "objCol": [ 255, 255, 100 ],
+            "bulCol": [ 180, 180, 250 ]
+        }
+    ]
+
+}

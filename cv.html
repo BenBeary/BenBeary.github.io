@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ben Beary - CV</title>
+</head>
+<body class="cv">
+    <nav>
+        <ul class="sidebar">
+          <li onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></li>
+          <li><a href="index.html"><strong>Homepage</strong></a></li>
+          <li><a href="projects.html"><strong>Projects</strong></a></li>
+          <li><a href="cv.html"><strong>CV</strong></a></li>
+          <li><a href="about.html"><strong>About</strong></a></li>
+  
+        </ul>
+        <ul>
+          <li class="hideOnMobile"><a href="index.html"><strong>Homepage</strong></a></li>
+          <li class="hideOnMobile"><a href="projects.html"><strong>Projects</strong></a></li>
+          <li class="hideOnMobile"><a href="cv.html"><strong>CV</strong></a></li>
+          <li class="hideOnMobile"><a href="about.html"><strong>About</strong></a></li>
+          <li class="hideOnComputer" onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></li>
+        </ul>
+      </nav>
+      <script>
+        let opened = false;
+        function showSidebar(){
+          const sidebar = document.querySelector('.sidebar');
+          opened = !opened;
+  
+          if(opened){
+            sidebar.style.display = 'flex';
+          }
+          else {
+            sidebar.style.display = 'none';
+          }
+        }
+      </script>
+
+      
+    <a class="btn download-link" href="PDFs/Ben Beary - CV.pdf" target="_blank">Download PDF</a>
+
+    <div class="content-wrapper">
+        <div class="content-bg">
+            <!-- //  INTRO  // -->
+            <header>
+            <div class="content-wrapper">
+                <h1>Ben Beary</h1>
+                <h2>Level Designer / Technical Artist</h2>
+            </div>
+            </header>
+
+            <!-- //  WORK EXPERIENCE  // -->
+    <section class="resume-section">
+        <!-- Start content edits below this line.  -->
+        <h2>Work Experience</h2>
+  
+        <!-- To add more items, copy this whole <section></section> block -->
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Retail</h3>
+            <p>Oliver's Market</p>
+            <p>2018 - 2020</p>
+          </div>
+  
+          <div class="work-summary">
+            <p>Customer Support and front-end maintenance</p>
+          </div>
+  
+        </section>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Accounting Intern</h3>
+            <p>Brayton Percell</p>
+            <p>2021 - Current</p>
+          </div>
+          <div class="work-summary">
+            <p>Data Entry and account deposits</p>
+          </div>
+        </section>
+  
+        <!-- End content edits here. -->
+      </section>
+
+      <section class="resume-section">
+        <!-- Start content edits below this line. -->
+        <h2>Tools</h2>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Unity</h3>
+          </div>
+  
+          <div class="work-summary">
+            <p> 4 Years Experience</p>
+          </div>
+  
+        </section>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Blender</h3>
+          </div>
+  
+          <div class="work-summary">
+            <p> 3 Years Experience</p>
+          </div>
+  
+        </section>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Adobe Photoshop and Illustrator</h3>
+          </div>
+  
+          <div class="work-summary">
+            <p> 5 Years Experience</p>
+          </div>
+  
+        </section>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>Aseprite</h3>
+          </div>
+  
+          <div class="work-summary">
+            <p> 4 Years Experience</p>
+          </div>
+  
+        </section>
+        <section class="work-item">
+          <div class="work-details">
+            <h3>C# and JavaScript</h3>
+          </div>
+  
+          <div class="work-summary">
+            <p> 4 Years Experience</p>
+          </div>
+  
+        </section>
+        <!-- End content edits here. -->
+      </section>
+<!-- //  EDUCATION & CERTIFICATIONS  // -->
+    <section class="resume-section">
+      <!-- Start content edits below this line.  -->
+      <h2>Education</h2>
+
+      <!-- To add more items, copy this whole <section></section> block -->
+      <section class="education-item">
+        <h3>Santa Rosa Community College - Santa Rosa, California</h3>
+        <p>General Education, 2020-2022</p>
+      </section>
+      <section class="education-item">
+        <h3>San Jose State University - San Jose, California</h3>
+        <p>BFA in Digital Media Arts, 2022-2025</p>
+      </section>
+      <!-- End content edits here. -->
+    </section>
+    <section class="resume-section">
+        <!-- Start content edits below this line. -->
+        <h2>Work</h2>
+        <section class="education-item">
+            <details open>
+                <summary><strong>2022</strong></summary>
+                <ul>Created Map Mod | Port Lochne: Gmod Map for gamemode Trouble in Terrorist Town</ul>          
+            </details>
+                
+        </section>
+        <section class="education-item">
+              <details open>
+                  <summary><strong>2023</strong></summary>
+                  <ul>Video Game | Class Group Project: Dodge Karts: Auto scroller Arcade Game</ul>          
+                  <ul>Video Game | Class Group Project: Devils Acre: Bullet Hell</ul>          
+                  <ul>Unity Workshop | Taught people how to use Unity in Game Design Club</ul>          
+                  <ul>Video Game | Whoop Man!: Puzzle Platformer</ul>          
+                  <ul>        Video Game | All Out Riot!: Top Down Dungeon Crawler</ul>          
+              </details>
+                  
+          </section>
+          <section class="education-item">
+              <details open>
+                  <summary><strong>2024</strong></summary>
+                  <ul>Unity Workshop (Spring) | Taught class how to use Unity and make games</ul>          
+                  <ul>Video Game (Game Jam) | Death Tides: Top Down Survival Shooter </ul>
+                  <ul>Video Game | Game Board: Platformer demo </ul>
+                  <ul>Video Game | Untitled Tower Defence Game: Dynamic Tower Defence </ul>  
+                  <ul>Unity Workshop (Fall) | Taught class how to use Unity and make games </ul>       
+              </details>
+                  
+          </section>
+    </section>
+        </div>
+    </div>
+
+
+        <!-- //  FOOTER INFO, SOCIAL MEDIA  // -->
+    <footer>
+        <!-- Start content edits below this line. -->
+        <p>© 2024 Ben Beary | <a href="mailto:BenjaminBeary@gmail.com">BenjaminBeary@gmail.com</a></p>
+    
+        <!-- Add or remove any networks. -->
+        <ul class="socials">
+            <li>
+            <a href="https://www.linkedin.com/in/ben-beary-856b75304" target="_blank"><img src="starter-files/placeholder-images/icon-logo-linkedin.png" alt="LinkedIn Page"></a>
+            </li>
+            <li>
+            <a href="https://benbeary.itch.io" target="_blank"><img src="images/Itch-io-icon.png" alt="Itch.io Page"></a>
+            </li>
+        </ul>
+        <!-- End content edits here. -->
+    </footer>
+</body>
+</html>

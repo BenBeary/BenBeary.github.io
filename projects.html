@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lilita+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js"></script>
+  <title>Ben Beary - Projects</title>
+</head>
+
+<body class="resume">
+  <nav>
+    <ul class="sidebar">
+      <li onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></li>
+      <li><a href="index.html"><strong>Homepage</strong></a></li>
+      <li><a href="projects.html"><strong>Projects</strong></a></li>
+      <li><a href="cv.html"><strong>CV</strong></a></li>
+      <li><a href="about.html"><strong>About</strong></a></li>
+
+    </ul>
+    <ul>
+      <li class="hideOnMobile"><a href="index.html"><strong>Homepage</strong></a></li>
+      <li class="hideOnMobile"><a href="projects.html"><strong>Projects</strong></a></li>
+      <li class="hideOnMobile"><a href="cv.html"><strong>CV</strong></a></li>
+      <li class="hideOnMobile"><a href="about.html"><strong>About</strong></a></li>
+      <li class="hideOnComputer" onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></li>
+    </ul>
+  </nav>
+  <script>
+    let opened = false;
+    function showSidebar(){
+      const sidebar = document.querySelector('.sidebar');
+      opened = !opened;
+
+      if(opened){
+        sidebar.style.display = 'flex';
+      }
+      else {
+        sidebar.style.display = 'none';
+      }
+    }
+  </script>
+  
+  <a class="btn download-link" href="PDFs/BenBeary Resume.pdf" target="_blank">Download Resume</a>
+  <!-- //  INTRO  // -->
+  <header>
+    <div class="content-wrapper">
+      <h1>Ben Beary</h1>
+      <h2>Level Designer / Technical Artist</h2>
+    </div>
+  </header>
+
+
+  <main class="content-wrapper">
+    <!-- //  PROFILE  // -->
+    <section>
+
+      <!-- Start content edits below this line. -->
+      <ul class="socials" style="justify-content: center;">
+        <li>
+          <a href="https://www.linkedin.com/in/ben-beary-856b75304" target="_blank"><img src="starter-files/placeholder-images/icon-logo-linkedin.png"
+              alt="LinkedIn Page"></a>
+        </li>
+        <li>
+          <a href="https://benbeary.itch.io" target="_blank"><img src="images/Itch-io-icon.png" alt="Itch.io Page"></a>
+        </li>
+      </ul>
+      <p></p>
+
+
+      <!-- End content edits here. -->
+    </section>
+   <!-- //  TOOLS  // -->
+    <section class="resume-section">
+      <!-- Start content edits below this line. -->
+      <!-- <h2>Tools</h2>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>Unity</h3>
+        </div>
+
+        <div class="work-summary">
+          <p> 4 Years Experience</p>
+        </div>
+
+      </section>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>Blender</h3>
+        </div>
+
+        <div class="work-summary">
+          <p> 3 Years Experience</p>
+        </div>
+
+      </section>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>Adobe Photoshop and Illustrator</h3>
+        </div>
+
+        <div class="work-summary">
+          <p> 5 Years Experience</p>
+        </div>
+
+      </section>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>Aseprite</h3>
+        </div>
+
+        <div class="work-summary">
+          <p> 4 Years Experience</p>
+        </div>
+
+      </section>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>C# and JavaScript</h3>
+        </div>
+
+        <div class="work-summary">
+          <p> 4 Years Experience</p>
+        </div> -->
+
+      </section>
+      <!-- End content edits here. -->
+    </section>
+
+    <!-- //  PROJECTS  // -->
+    <section class="resume-section">
+      <!-- Start content edits below this line. -->
+      <h2>SOLO PROJECTS</h2>
+      <p>These are some of the latest projects I've been working on during my time in college</p>
+
+      <div class="project-wrapper">
+        <!-- To add more items, copy this whole <section></section> block-->
+        <section class="project-item-right">
+          <img src="images/game-board_500px.png" srcset="images/game-board_1000px.png 2x" alt="Game Board" width="80%"
+            height="auto">
+          <h3>Game Board</h3>
+          <p><strong>9/10/2024</strong> | this game was created in 5 days to help show off what is possible to make
+            within a short amount of time. A simplified demo of this was created for a lesson to help a beginner class
+            get
+            started in game design. </p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/game-board-demo" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+          <a class="btn" href="https://benbeary.itch.io" target="_blank">itch profile</a>
+          <p></p>
+        </section>
+        <section class="project-item-left">
+          <img src="images/tower-defence-game_500px.png" srcset="images/tower-defence-game_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>Untitled Tower Defence Game (Work in Progress)</h3>
+          <p><strong>9/10/2024</strong> | I am currently still developing this game so the name is only temporary. The
+            idea
+            behind this game was you need to manage multiple dungeons at once while hordes of enemies pour in to try and
+            defeat you.
+            the only way to stop them is by using traps and impeding the enemy's progress to the end of the dungeon.
+          </p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/untitled-defence-game" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+          <a class="btn" href="https://benbeary.itch.io" target="_blank">itch profile</a>
+        </section>
+        <section class="project-item-right">
+          <img src="images/PortLochne_500px.png" srcset="images/PortLochne_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>Port Lochne (Modded Map)</h3>
+          <p><strong>4/22/2022</strong> | This map was created in the hammer editor used for the source engine of the game Garry's Mod. 
+             The map is used for the game mode "Trouble In Terrorist Town." The map design is of a city cargo station made entirely from 
+            scratch. I did not make any of the textures or complex props. </p>
+          <!-- link to project -->
+          <a class="btn" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2798393616" target="_blank">Steam
+            Page</a>
+        </section>
+      </div>
+      <!-- End content edits here. -->
+    </section>
+
+    <!-- //  GROUP PROJECTS  // -->
+    <section class="resume-section">
+      <!-- Start content edits below this line. -->
+      <h2>GROUP PROJECTS</h2>
+      <div class="project-wrapper">
+        <!-- To add more items, copy this whole <section></section> block-->
+        <section class="project-item-right">
+          <img src="images/DeathTides_500px.png" srcset="images/DeathTides_1000px.png 2x" alt="Game Board" width="80%"
+            height="auto">
+          <h3>Death Tides</h3>
+          <p><strong>7/27/2024</strong> | This game was part of a week long game jam. I was the lead artist, coder, and game designer. 
+          I worked with one other person who helped with some art assets and programming. My main role in this was creating the enemy AI 
+          and the world design which used a chunk loading system to increase overall performance.</p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/death-tides" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+          <p></p>
+        </section>
+        <section class="project-item-left">
+          <img src="images/DevilsAcre_Title_500px.png" srcset="images/DevilsAcre_Title_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>Devil's Acre</h3>
+          <p><strong>12/15/2023</strong> | This was a class group project in which I mainly focused on the enviroment art. 
+          I also pitched in on the code and created the final boss's AI and attack moves. The overall project time was around 
+          2 months in total. </p>
+          <!-- link to project -->
+          <a class="btn" href="https://zorzini.itch.io/devils-acre" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+        </section>
+        <section class="project-item-right">
+          <img src="images/DodgeKarts_500px.png" srcset="images/DodgeKarts_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>Dodge Karts</h3>
+          <p><strong>10/27/2023</strong> | This was a class partner assignment where I took on the artist roll. I used unity's 
+          shadergraph mechanic to change the car colors so I could save time and reduce the required amount of tilesheets.</p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/dodge-kart" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+        </section>
+        <section class="project-item-left">
+          <img src="images/AllOutRiot_500px.png" srcset="images/AllOutRiot_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>All Out Riot!</h3>
+          <p><strong>11/23/2023</strong> | This was the second project I lead. I mainly focused on the art of the game but also did 
+          some coding. The main coding aspects I did was the dungeon generation and the player's gun mechanics. The game was never finished 
+          due to most of the group leaving the project during mid terms.</p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/all-out-riot" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+        </section>
+        <section class="project-item-right">
+          <img src="images/WhoopMan_500px.png" srcset="images/WhoopMan_1000px.png 2x"
+            alt="Picture of a tower defence game still being worked on" width="80%" height="auto">
+          <h3>Whoop Man!</h3>
+          <p><strong>5/3/2023</strong> | I was the artist and level designer for this project. I focused mostly on creating 
+          tilesets and basic puzzle levels. I did small amounts of code to make the puzzles in levels work. This was my first 
+          attempt on leading a team. One of the major issues we ran into and something I learned from was that we did not use 
+          github or any software to keep everyone's project up to date.</p>
+          <!-- link to project -->
+          <a class="btn" href="https://benbeary.itch.io/whoop-man-v04" target="_blank">Game Page</a>
+          <!-- additional links, e.g. newsletter -->
+        </section>
+      </div>
+      <!-- End content edits here. -->
+    </section>
+
+    <!-- //  WORK EXPERIENCE  // -->
+    <!-- <section class="resume-section"> -->
+      <!-- Start content edits below this line.  -->
+      <!-- <h2>Work Experience</h2> -->
+
+      <!-- To add more items, copy this whole <section></section> block -->
+      <!-- <section class="work-item">
+        <div class="work-details">
+          <h3>Retail</h3>
+          <p>Oliver's Market</p>
+          <p>2018 - 2020</p>
+        </div>
+
+        <div class="work-summary">
+          <p>Customer Support and front-end maintenance</p>
+        </div>
+
+      </section>
+      <section class="work-item">
+        <div class="work-details">
+          <h3>Accounting Intern</h3>
+          <p>Brayton Percell</p>
+          <p>2021 - Current</p>
+        </div>
+        <div class="work-summary">
+          <p>Data Entry and account deposits</p>
+        </div>
+      </section> -->
+
+      <!-- End content edits here. -->
+    <!-- </section> -->
+
+    <!-- //  EDUCATION & CERTIFICATIONS  // -->
+    <!-- <section class="resume-section"> -->
+      <!-- Start content edits below this line.  -->
+      <!-- <h2>Education</h2> -->
+
+      <!-- To add more items, copy this whole <section></section> block -->
+      <!-- <section class="education-item">
+        <h3>Santa Rosa Community College - Santa Rosa, California</h3>
+        <p>General Education, 2020-2022</p>
+      </section>
+      <section class="education-item">
+        <h3>San Jose State University - San Jose, California</h3>
+        <p>BFA in Digital Media Arts, 2022-2025</p>
+      </section> -->
+      <!-- End content edits here. -->
+    <!-- </section> -->
+  </main>
+
+  <!-- //  FOOTER INFO, SOCIAL MEDIA  // -->
+  <footer>
+    <!-- Start content edits below this line. -->
+    <p>© 2024 Ben Beary | <a href="mailto:BenjaminBeary@gmail.com">BenjaminBeary@gmail.com</a></p>
+
+    <!-- Add or remove any networks. -->
+    <ul class="socials">
+      <li>
+        <a href="https://www.linkedin.com/in/ben-beary-856b75304" target="_blank"><img src="starter-files/placeholder-images/icon-logo-linkedin.png"
+            alt="LinkedIn Page"></a>
+      </li>
+      <li>
+        <a href="https://benbeary.itch.io" target="_blank"><img src="images/Itch-io-icon.png" alt="Itch.io Page"></a>
+      </li>
+    </ul>
+
+    <!-- End content edits here. -->
+  </footer>
+</body>
+
+</html>
