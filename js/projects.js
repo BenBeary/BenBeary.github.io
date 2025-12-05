@@ -102,7 +102,7 @@ const projects = {
 
         images: [
             "images/IdolofAshes/IdolOfAshes.png",
-            "images/IdolofAshes/Img_1.png",
+            "images/IdolofAshes/Img_4.png",
             "images/IdolofAshes/Img_2.png",
             "images/IdolofAshes/Img_3.png",
             "images/IdolofAshes/Img_5.png",
