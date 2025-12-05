@@ -46,7 +46,7 @@ const projects = {
         title: "GROUP PROJECT | Game: [Docking Bay]",
         playLink: "https://zorzini.itch.io/dockingbay",
         
-        background: "",
+        background: "images/DockingBay/Blurred.png",
 
         rankings: {
             programming: 2,
