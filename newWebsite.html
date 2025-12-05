@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <link rel="stylesheet" href="css/newWebStyle.css" />
+</head>
+<body>
+
+    <div class="project-nav">
+
+        <!-- LEFT ARROW -->
+        <div id="prevProject" class="arrow left">❮</div>
+
+        <!-- MAIN WRAPPER (background changes via JS) -->
+        <div class="wrapper">
+
+            <!-- HEADER (kept your inline style) -->
+            <div class="header">
+                <h1 id="Title">Project Title</h1>
+                <button id="PlayButton">Click To Play The Game</button>
+            </div>
+
+            <!-- CONTENT SECTION -->
+            <div class="content">
+
+                <!-- LEFT COLUMN (kept your inline style) -->
+                <div class="col1">
+                    <div class="slideshow">
+
+                        <!-- Main Image -->
+                        <div class="main-image">
+                            <img id="mainSlide" src="">
+                        </div>
+
+                        <!-- Thumbnail Strip -->
+                        <div class="thumb-strip"></div>
+
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN (kept your inline style) -->
+                <div class="col2">
+
+                    <!-- TAGS -->
+                    <div class="tag-area">
+                        <h1>My Contributions to the Project:</h1>
+                        <hr>
+                        <div id="tags"></div>
+                    </div>
+
+                    <!-- BULLETS -->
+                    <div class="bullet-points">
+                        <h1>Key Points:</h1>
+                        <hr>
+                        <ul id="bullets"></ul>
+                    </div>
+
+                    <!-- SUMMARY -->
+                    <div class="summary">
+                        <h1>Summary:</h1>
+                        <hr>
+                        <p id="Summary"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT ARROW -->
+        <div id="nextProject" class="arrow right">❯</div>
+
+    </div>
+
+    <!-- PROJECT DOTS (always full-width centered) -->
+    <div class="project-dots" id="projectDots"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/projects.js"></script>
+    <script src="js/newWebMain.js"></script>
+
+</body>
+</html>
