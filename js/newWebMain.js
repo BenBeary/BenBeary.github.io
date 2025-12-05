@@ -76,7 +76,35 @@ function setSlide(imgElement, indexOverride = null) {
     thumbs.forEach(t => t.classList.remove("active"));
     thumb.classList.add("active");
 
-    thumb.scrollIntoView({ behavior: "smooth", inline: "center" })
+    scrollThumbIntoView(thumb);
+}
+
+function scrollThumbIntoView(thumb) {
+    const strip = document.querySelector(".thumb-strip");
+    if (!strip) return;
+
+    const stripRect = strip.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+
+    // How far the thumb is relative to the strip
+    const leftOffset = thumbRect.left - stripRect.left;
+    const rightOffset = thumbRect.right - stripRect.right;
+
+    // Scroll left if needed
+    if (leftOffset < 0) {
+        strip.scrollBy({
+            left: leftOffset - 20, // extra margin
+            behavior: "smooth"
+        });
+    }
+
+    // Scroll right if needed
+    if (rightOffset > 0) {
+        strip.scrollBy({
+            left: rightOffset + 20, // extra margin
+            behavior: "smooth"
+        });
+    }
 }
 
 // Auto-sliding

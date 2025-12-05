@@ -6,78 +6,123 @@
     <title>Portfolio</title>
 
     <link rel="stylesheet" href="css/newWebStyle.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
 </head>
+
+<nav class="top-nav">
+    <div class="nav-left">
+        <h1 class="site-name">Ben Beary</h1>
+    </div>
+
+    <div class="nav-center">
+        <button onclick="sortProjectsBy('programming')">Programming</button>
+        <button onclick="sortProjectsBy('level_design')">Level Design</button>
+        <button onclick="sortProjectsBy('sound_design')">Sound</button>
+    </div>
+
+    <div class="nav-right">
+        <a href="#project-nav">Projects</a>
+        <a href="#Catalogue">Catalogue</a>
+        <a href="#about-section">About</a>
+    </div>
+</nav>
 <body>
 
-    <div class="project-nav">
 
-        <!-- LEFT ARROW -->
-        <div id="prevProject" class="arrow left">❮</div>
+        <div class="project-nav">
 
-        <!-- MAIN WRAPPER (background changes via JS) -->
-        <div class="wrapper">
+            <!-- LEFT ARROW -->
+            <div id="prevProject" class="arrow left">❮</div>
 
-            <!-- HEADER (kept your inline style) -->
-            <div class="header">
-                <h1 id="Title">Project Title</h1>
-                <button id="PlayButton">Click To Play The Game</button>
-            </div>
+            <!-- MAIN WRAPPER (background changes via JS) -->
+            <div class="wrapper">
 
-            <!-- CONTENT SECTION -->
-            <div class="content">
+                <!-- HEADER (kept your inline style) -->
+                <div class="header">
+                    <h1 id="Title">Project Title</h1>
+                    <button id="PlayButton">Click To Play The Game</button>
+                </div>
 
-                <!-- LEFT COLUMN (kept your inline style) -->
-                <div class="col1">
-                    <div class="slideshow">
+                <!-- CONTENT SECTION -->
+                <div class="content">
 
-                        <!-- Main Image -->
-                        <div class="main-image">
-                            <img id="mainSlide" src="">
+                    <!-- LEFT COLUMN (kept your inline style) -->
+                    <div class="col1">
+                        <div class="slideshow">
+
+                            <!-- Main Image -->
+                            <div class="main-image">
+                                <img id="mainSlide" src="">
+                            </div>
+
+                            <!-- Thumbnail Strip -->
+                            <div class="thumb-strip"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (kept your inline style) -->
+                    <div class="col2">
+
+                        <!-- TAGS -->
+                        <div class="tag-area">
+                            <h1>My Contributions to the Project:</h1>
+                            <hr>
+                            <div id="tags"></div>
                         </div>
 
-                        <!-- Thumbnail Strip -->
-                        <div class="thumb-strip"></div>
+                        <!-- BULLETS -->
+                        <div class="bullet-points">
+                            <h1>Key Points:</h1>
+                            <hr>
+                            <ul id="bullets"></ul>
+                        </div>
 
-                    </div>
-                </div>
+                        <!-- SUMMARY -->
+                        <div class="summary">
+                            <h1>Summary:</h1>
+                            <hr>
+                            <p id="Summary"></p>
+                        </div>
 
-                <!-- RIGHT COLUMN (kept your inline style) -->
-                <div class="col2">
-
-                    <!-- TAGS -->
-                    <div class="tag-area">
-                        <h1>My Contributions to the Project:</h1>
-                        <hr>
-                        <div id="tags"></div>
-                    </div>
-
-                    <!-- BULLETS -->
-                    <div class="bullet-points">
-                        <h1>Key Points:</h1>
-                        <hr>
-                        <ul id="bullets"></ul>
-                    </div>
-
-                    <!-- SUMMARY -->
-                    <div class="summary">
-                        <h1>Summary:</h1>
-                        <hr>
-                        <p id="Summary"></p>
                     </div>
 
                 </div>
 
             </div>
+
+            <!-- RIGHT ARROW -->
+            <div id="nextProject" class="arrow right">❯</div>
 
         </div>
 
-        <!-- RIGHT ARROW -->
-        <div id="nextProject" class="arrow right">❯</div>
+        <!-- PROJECT DOTS (always full-width centered) -->
+        <div class="project-dots" id="projectDots"></div>
 
+
+    <section id="about-section" class="about-section">
+    <div class="about-inner">
+        <h1>About Me</h1>
+        <hr>
+        <p>
+            Hi! I'm Ben Beary — a developer and designer focused on gameplay, 
+            programming, UI/UX, and worldbuilding. I love creating polished 
+            player experiences and solving problems with clean, efficient code.
+        </p>
+
+        <p>
+            My background includes designing levels, scripting mechanics, 
+            creating audio, 3D modeling, and managing full production pipelines 
+            for multi-scene projects.
+        </p>
+
+        <p>
+            Outside of development, I enjoy building tools that improve 
+            workflows and experimenting with new game systems.
+        </p>
     </div>
+    </section>
 
-    <!-- PROJECT DOTS (always full-width centered) -->
-    <div class="project-dots" id="projectDots"></div>
 
     <!-- SCRIPTS -->
     <script src="js/projects.js"></script>
