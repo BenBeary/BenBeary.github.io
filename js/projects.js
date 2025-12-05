@@ -94,7 +94,7 @@ const projects = {
         background: "images/IdolofAshes/Blurred.png",
 
         rankings: {
-            programming: 3,
+            programming: 4,
             level_design: 3,
             sound_design: 3,
             modeling: 3,
@@ -117,6 +117,46 @@ const projects = {
             "Programming",
             "UI / UX",
             "Sound Design"
+        ],
+
+        bullets: [
+            "point 1 lalal asdfasdf",
+            "Lorem ipsum dolor sit amet...",
+            "Filler text to get point across",
+            "Another point",
+            "More example text"
+        ],
+
+        summary: "This is a short summary of the Idol of Ashes game..."
+    },    
+
+    SpiritOutbreak: {
+        title: "Game: Spirit Outbreak",
+        playLink: "https://benbeary.itch.io/spirit-outbreak",
+        
+        background: "images/SpiritOutbreak/Blurred.jpg",
+
+        rankings: {
+            programming: 2,
+            level_design: 2,
+            sound_design: 10,
+            modeling: 4,
+            pixel_art: 1,
+        },
+
+        images: [
+            "images/SpiritOutbreak/FrontImage.jpg",
+            "images/SpiritOutbreak/img1.png",
+            "images/SpiritOutbreak/img2.png",
+            "images/SpiritOutbreak/img3.png",
+            "images/SpiritOutbreak/img4.png",
+        ],
+
+        tags: [
+            "Programming",
+            "Level Design",
+            "UI / UX",
+            "Pixel Art"
         ],
 
         bullets: [
