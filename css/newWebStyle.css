@@ -7,17 +7,10 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
     min-height: 100vh;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    background: #2b2b36;
+    background: linear-gradient(190deg, #0b0e19, #353844, #131314);
+    background-attachment: fixed;
     color: #ddd;
     font-size: 1.25rem;
-    flex-direction: column;
-
-    background: linear-gradient(190deg, #0b0e19, #353844, #131314);
-    background-attachment: fixed; /* optional */
-    margin: 0;
 }
 
 li {
@@ -250,7 +243,7 @@ button:active {
     justify-content: center;
     width: 100%;
     height: 90%;
-    margin-top: 210vh;
+    padding-top: 30px;
 }
 
 .arrow {
@@ -301,53 +294,435 @@ button:active {
     transform: scale(1.3);
 }
 
+.mobile-arrow {
+    display: none;
+}
 
 
-/* ##### About Section #### */
+/* =======================
+   ABOUT SECTION LAYOUT
+   ======================= */
 
 .about-section {
     width: 100%;
-    min-height: 100vh;    /* full screen height */
-    padding: 80px 12%;
-    box-sizing: border-box;
-
+    min-height: 100vh;
+    padding: 80px 10%;
     background: rgba(0,0,0,0.55);
     backdrop-filter: blur(10px);
-    margin-top: 5vh;      /* spacing from your last section */
-
     display: flex;
+    justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
-.about-inner {
-    max-width: 900px;
+.about-container {
+    position: relative; /* required so we can anchor inside it */
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    align-items: flex-start;
+}
+
+/* RIGHT SIDE (Photo) */
+.about-photo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.about-photo img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    /* REMOVED border */
+    /* border: 3px solid rgba(255,255,255,0.3); */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    object-fit: cover;
+}
+
+/* LEFT SIDE (Text) */
+.about-content {
+    flex: 2;
     color: white;
 }
 
-.about-inner h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-decoration: underline;
+/* Header: keep buttons on right */
+.about-header {
+    display: flex;
+    justify-content: space-between;   /* <-- Buttons stay right */
+    align-items: center;
 }
 
-.about-inner p {
-    font-size: 1.4rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
+/* Buttons: stay aligned right */
+.download-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.download-btn {
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #4e73df, #3251b3);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s ease;
+    display: inline-block;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #678bf5, #3f61d6);
+    transform: translateY(-2px);
+}
+
+.download-btn:active {
+    transform: translateY(0px);
     opacity: 0.9;
 }
+.about-socials-bar {
+    position: fixed;
+    bottom: 20px;            /* distance from bottom of screen */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    padding: 10px 15px;
 
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
 
+    z-index: 999;
+    pointer-events: auto;
+}
 
-@media (max-width: 900px){
-    .wrapper {
-        flex-direction: column;
-        height: auto;
+.about-socials-bar .social-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.about-socials-bar img {
+    width: 100%;
+    height: 100%;
+    transition: transform .2s ease, opacity .2s ease;
+    cursor: pointer;
+}
+
+.about-socials-bar img:hover {
+    transform: scale(1.2);
+    opacity: 0.85;
+}
+
+/* ==============================
+   CATALOGUE SECTION
+   ============================== */
+
+.catalogue-section {
+    width: 100%;
+    display: block; /* overrides center alignment from body */
+    height: auto;   /* allow content to expand naturally */
+    min-height: 100vh; /* still fills at least one screen */
+    padding: 120px 8%;
+    background: rgba(0,0,0,0.55);
+
+    box-sizing: border-box;
+}
+
+.catalogue-title {
+    text-align: center;
+    font-size: 3rem;
+    color: rgb(255, 187, 0);
+    margin-bottom: 50px;
+}
+
+/* GRID */
+.catalogue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+/* CARD */
+.catalogue-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.catalogue-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.4);
+}
+
+/* IMAGE */
+.catalogue-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: black;
+}
+
+/* TAGS */
+.catalogue-tags {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.catalogue-tags .tag {
+    font-size: 0.9rem;
+    margin-right: 6px;
+}
+
+/* SUMMARY */
+.catalogue-summary {
+    font-size: 1.1rem;
+    color: #eee;
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+/* TITLE */
+.catalogue-card-title {
+    font-size: 1.4rem;
+    color: rgb(255, 187, 0);
+    margin-bottom: 10px;
+}
+
+/* ================================
+   MOBILE FIXES FOR PROJECT SECTION
+   ================================ */
+
+@media (max-width: 900px), (orientation: portrait) {
+
+    .about-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
     }
 
-    .col1, .col2 {
-        flex: none;
-        width: 90%;
-        height: 90%;
+    .about-photo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .about-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Buttons centered on mobile only */
+    .download-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .about-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Allow the whole area to grow naturally */
+    .project-nav {
+        height: auto !important;
+        margin-top: 80px; /* creates space under navbar */
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        background: none !important;
+        border: none !important;
+    }
+
+    /* Allow wrapper to auto-resize with content */
+    .wrapper {
+        height: auto !important;
+        width: 100%;
+    }
+
+    /* CONTENT collapses vertically */
+    .content {
+        flex-direction: column;
+        height: auto !important;
+        width: 100%;
+    }
+
+    .header {
+        flex-direction: column;         /* Stack Title + Button vertically */
+        justify-content: center;
+        align-items: center;
+        gap: 10px;                      /* Small space between Title and Button */
+        height: auto;                   /* Allow natural height */
+        padding: 20px;
+        text-align: center;
+
+
+    }
+
+    button {
+        font-size: 1rem;
+    }
+    .col1,
+    .col2 {
+        width: 100%;
+        height: auto !important;
+    }
+
+        /* FORCE columns to take full width */
+    .col1,
+    .col2 {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Prevent any internal content from overflowing */
+    .content,
+    .wrapper,
+    .project-nav {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Prevent horizontal scroll from tags, bullets, headers */
+    #tags,
+    #bullets,
+    .summary,
+    .tag-area,
+    .bullet-points {
+        max-width: 100% !important;
+        overflow-wrap: break-word;
+    }
+
+
+    /* Total slideshow height = image (200) + thumbnails (80) */
+    .slideshow {
+        height: 280px !important;
+        max-height: 280px !important;
+        overflow: visible !important;
+    }
+
+    /* Main image fixed height */
+    .main-image {
+        height: 200px !important;
+        max-height: 200px !important;
+    }
+
+    /* Thumbnails below image */
+    .thumb-strip {
+        height: 80px !important;
+        max-height: 80px !important;
+        flex: 0 0 80px !important;
+    }
+    /* TEXT SIZE REDUCTIONS */
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+    }
+
+    .tag {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    /* Bullets spacing tighter */
+    li {
+        margin-bottom: 6px;
+    }
+
+    /* Hide desktop arrows */
+    #prevProject,
+    #nextProject {
+        display: none;
+    }
+
+    /* Show mobile arrows */
+    .mobile-arrow {
+        display: block;
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .mobile-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2.2rem;
+        color: white;
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    .mobile-arrow.left {
+        left: 10px;
+    }
+
+    .mobile-arrow.right {
+        right: 10px;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2.4rem;
+        z-index: 30;
+        cursor: pointer;
+
+        /* FIX: arrow no longer shifts downward */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1 !important;
+        padding: 0;
+    }
+
+    .arrow.left  { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    /* Remove hover scaling on mobile */
+    .arrow:hover {
+        transform: translateY(-50%) !important;
+    }
+
+    /* Press = scale only */
+    .arrow:active {
+        transform: translateY(-50%) scale(1.25) !important;
+    }
+
+        .about-socials-bar .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .about-socials-bar {
+        bottom: 10px;
+        padding: 6px 12px;
+    }
+    
+    .catalogue-card {
+        padding: 15px;
+    }
+
+    .catalogue-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -73,3 +73,111 @@
     opacity: 0.7;
 }
 
+
+.mobile-menu, .nav-hamburger {
+    display: none;
+}
+
+/* ===============================
+   MOBILE NAVIGATION
+   =============================== */
+@media (max-width: 900px), (orientation: portrait) {
+
+    /* Make navbar taller slightly */
+    .top-nav {
+        padding: 0 20px;
+        height: 60px;
+    }
+
+    /* Hide center and right sections on mobile */
+    .nav-center,
+    .nav-right {
+        display: none;
+    }
+
+    /* Hamburger button */
+    .nav-hamburger {
+        display: block;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 1200;
+        user-select: none;
+    }
+
+    /* Stack items inside dropdown */
+    .mobile-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity .25s ease, transform .25s ease;
+        z-index: 999;
+    }
+
+    .mobile-menu.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    /* Mobile menu buttons */
+    .mobile-menu button,
+    .mobile-menu a {
+        font-size: 1.4rem;
+        color: white;
+        text-decoration: none;
+        background: rgba(255,255,255,0.1);
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.3);
+        width: 80%;
+        text-align: center;
+    }
+
+    .mobile-menu button:hover,
+    .mobile-menu a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    
+}
+
+/* Portrait-mode large screens (tablets, vertical monitors, etc.) */
+@media (orientation: portrait) and (min-height: 700px) {
+
+    /* Increase slideshow container */
+    .slideshow {
+        height: 500px !important;   /* adjust if needed */
+        max-height: 500px !important;
+    }
+
+    /* Increase main image height */
+    .main-image {
+        height: 420px !important;
+        max-height: 420px !important;
+    }
+
+    /* Thumbnail strip stays below */
+    .thumb-strip {
+        height: 80px !important;
+        max-height: 80px !important;
+    }
+
+    /* Larger spacing for portrait screens */
+    .col1,
+    .col2 {
+        width: 100% !important;
+    }
+}

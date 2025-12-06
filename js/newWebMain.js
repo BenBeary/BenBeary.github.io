@@ -18,11 +18,11 @@ let autoProjectTimeout = null;
 // #######################################
 
 window.onload = () => {
-    sortProjectsBy("level_design");
+    buildCatalogue();          // Create card elements
+    sortProjectsByNewest();    // Sort newest → oldest
     buildProjectDots();
     loadProject(projectNames[currentProjectIndex]);
     startAutoSlide();
-
 };
 
 
@@ -317,6 +317,8 @@ function sortProjectsBy(category) {
     buildProjectDots();
     currentProjectIndex = 0;
     loadProject(projectNames[currentProjectIndex]);
+
+    reorderCatalogue();
 }
 
 
@@ -366,4 +368,116 @@ document.getElementById("nextProject").onclick = () => {
     loadProject(projectNames[currentProjectIndex]);
 };
 
+// Mobile arrows
 
+document.getElementById("prevProjectMobile").onclick = () => {
+    currentProjectIndex =
+        (currentProjectIndex - 1 + projectNames.length) % projectNames.length;
+    loadProject(projectNames[currentProjectIndex]);
+};
+document.getElementById("nextProjectMobile").onclick = () => {
+    currentProjectIndex =
+        (currentProjectIndex + 1) % projectNames.length;
+    loadProject(projectNames[currentProjectIndex]);
+};
+
+// ===================================
+// BUILD CATALOGUE SECTION
+// ===================================
+
+// Store card elements so we don't rebuild them
+let catalogueCards = {};
+
+function buildCatalogue() {
+    const grid = document.getElementById("catalogueGrid");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+    catalogueCards = {};
+
+    // Create each card ONCE
+    Object.entries(projects).forEach(([key, p]) => {
+        const card = document.createElement("div");
+        card.className = "catalogue-card";
+
+        card.onclick = () => {
+            currentProjectIndex = projectNames.indexOf(key);
+            document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+            loadProject(key);
+        };
+
+        // FIRST IMAGE
+        const img = document.createElement("img");
+        img.className = "catalogue-image";
+        img.src = p.images[0];
+
+        // TITLE
+        const title = document.createElement("h3");
+        title.className = "catalogue-card-title";
+        title.textContent = p.title;
+
+        // TAGS
+        const tagWrap = document.createElement("div");
+        tagWrap.className = "catalogue-tags";
+        p.tags.forEach(t => {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = t;
+            tagWrap.appendChild(tag);
+        });
+
+        // SUMMARY
+        const summary = document.createElement("p");
+        summary.className = "catalogue-summary";
+        summary.textContent = p.summary;
+
+        // Assemble
+        card.appendChild(img);
+        card.appendChild(title);
+        card.appendChild(tagWrap);
+        card.appendChild(summary);
+
+        // Save for reuse
+        catalogueCards[key] = card;
+    });
+
+    // Initial order placement
+    reorderCatalogue();
+}
+
+function reorderCatalogue() {
+    const grid = document.getElementById("catalogueGrid");
+    grid.innerHTML = "";
+
+    // Reappend cards IN THE ORDER OF projectNames
+    projectNames.forEach(key => {
+        grid.appendChild(catalogueCards[key]);
+    });
+}
+
+function sortProjectsByNewest() {
+    projectNames = Object.keys(projects).sort((a, b) => {
+        const dateA = new Date(projects[a].date);
+        const dateB = new Date(projects[b].date);
+        return dateB - dateA; // newest first
+    });
+
+    reorderCatalogue();
+}
+
+
+// -------------------------------------------
+// NAV BAR UPDATING
+// -------------------------------------------
+
+const hamburger = document.getElementById("navHamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("show");
+});
+document.querySelectorAll(".mobile-menu button").forEach(button => {
+    button.addEventListener("click", () => {
+        mobileMenu.classList.remove("show");
+    });
+});

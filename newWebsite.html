@@ -25,7 +25,19 @@
         <a href="#about-section">About</a>
         <a href="#Catalogue">Catalogue</a>
     </div>
+
+    <div class="nav-hamburger" id="navHamburger">☰</div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <h1>Sort By:</h1>
+    <button onclick="sortProjectsBy('programming')">Programming</button>
+    <button onclick="sortProjectsBy('level_design')">Level Design</button>
+    <button onclick="sortProjectsBy('sound_design')">Sound</button>
+
+</div>
+
+
 <body>
 
         <div class="project-nav" id="projects">
@@ -38,8 +50,12 @@
 
                 <!-- HEADER (kept your inline style) -->
                 <div class="header">
+                    <div id="prevProjectMobile" class="arrow mobile-arrow left">❮</div>
+
                     <h1 id="Title">Project Title</h1>
                     <button id="PlayButton">Click To Play The Game</button>
+
+                    <div id="nextProjectMobile" class="arrow mobile-arrow right">❯</div>
                 </div>
 
                 <!-- CONTENT SECTION -->
@@ -103,38 +119,68 @@
         <div class="project-dots" id="projectDots"></div>
 
 
-    <section id="about-section" class="about-section">
-    <div class="about-inner">
-        <h1>About Me</h1>
-        <hr>
-        <p>
-            Hi! I'm Ben Beary — a developer and designer focused on gameplay, 
-            programming, UI/UX, and worldbuilding. I love creating polished 
-            player experiences and solving problems with clean, efficient code.
-        </p>
+<section id="about-section" class="about-section">
+    <div class="about-container">
 
-        <p>
-            My background includes designing levels, scripting mechanics, 
-            creating audio, 3D modeling, and managing full production pipelines 
-            for multi-scene projects.
-        </p>
+        <!-- LEFT: Text -->
+        <div class="about-content">
+            <div class="about-header">
+                <h1>About Me</h1>
 
-        <p>
-            Outside of development, I enjoy building tools that improve 
-            workflows and experimenting with new game systems.
-        </p>
+                <div class="download-buttons">
+                    <a class="download-btn" href="https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1GnKzQPBdqFZk4f9FIy36vi-D9S4EB0NL18sh54QDQoQ/export?format=pdf">
+                        Download Resume ⤓
+                    </a>
+                    <a class="download-btn" href="https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf">
+                        Download CV ⤓
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+
+            <p>
+                Hi! I'm Ben Beary — a developer and designer focused on gameplay, 
+                programming, UI/UX, and worldbuilding. I love creating polished 
+                player experiences and solving problems with clean, efficient code.
+            </p>
+
+            <p>
+                My background includes designing levels, scripting mechanics, 
+                creating audio, 3D modeling, and managing full production pipelines 
+                for multi-scene projects.
+            </p>
+
+            <p>
+                Outside of development, I enjoy building tools that improve workflows 
+                and experimenting with new game systems.
+            </p>
+
+        </div>
+
+        <!-- RIGHT: Portrait -->
+        <div class="about-photo">
+            <img src="images/SelfImage.jpg" alt="Ben Beary Portrait">
+        </div>
+
+        <!-- Social Media Links -->
+
+        <div class="about-socials-bar">
+            <a href="https://benbeary.itch.io/" target="_blank" class="social-icon">
+                <img src="images/Itch-io-icon.png">
+            </a>
+
+            <a href="https://www.linkedin.com/in/ben-beary-856b75304/" target="_blank" class="social-icon">
+                <img src="images/icon-logo-linkedin.png">
+            </a>
+        </div>
     </div>
-    </section>
+</section>
 
-    <section class="about-section" id="Catalogue" style="justify-content: center; align-items: center; gap: 20px;">
-        <div style="display: flex; flex-direction: column; width: 100%; height: 100%; align-items: center;">
-            <h1>Resume</h1>
-            <iframe style="width: 100%; height: 80%;align-items: center;" src="https://docs.google.com/document/d/e/2PACX-1vS8Ic81ieU05LLOSpCOBdDKvPOvTy0fibHmzcrArvvj3W2LomNZ-3O-bWrxS9fuZ8OOvgb9z6Hz04VQ/pub?embedded=true">Loading...</iframe>
-        </div>
-        <div style="display: flex; flex-direction: column; width: 100%; height: 100%;align-items: center;">
-            <h1>CV</h1>
-            <iframe style="width: 100%; height: 80%; align-items: center;" src="https://docs.google.com/document/d/e/2PACX-1vRomCIBCJjGHZ9dLiCLBI4Y6gAWGcKP1H84VdzEYf02qnYUS-Q5VmbYJpCySlrVJRLebSWkDChDFX5U/pub?embedded=true">Loading...</iframe>
-        </div>
+    <section id="Catalogue" class="catalogue-section">
+        <h1 class="catalogue-title">Project Catalogue</h1>
+
+        <div id="catalogueGrid" class="catalogue-grid"></div>
     </section>
 
 
