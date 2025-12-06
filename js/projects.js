@@ -1,9 +1,11 @@
 const projects = {
     cleanupCrew: {
-        title: "GROUP PROJECT | Game: Clean Up Crew",
+        title: "TEAM PROJECT | Game: Clean Up Crew",
         playLink: "https://benbeary.itch.io/cleanup-crew",
         
         background: "images/CleanUpCrew/Blurred.jpg",
+
+        date: "July 29, 2025",
 
         rankings: {
             programming: 1,
@@ -29,24 +31,27 @@ const projects = {
             "UI / UX",
             "Level Design",
             "3D Modeling",
+            "3D Animation",
         ],
 
         bullets: [
-            "point 1 lalal asdfasdf",
-            "Lorem ipsum dolor sit amet...",
-            "Filler text to get point across",
-            "Another point",
-            "More example text"
+            "Created the map layout",
+            "Created a first person modular gun system that could work with multiple gun types",
+            "Created all the UI including the leaderboard system",
+            "Created A spawner system that would spawn items on top of terrain geometry",
+            "Worked on Particle systems and animations for 3D Assets"
         ],
 
-        summary: "This is a short summary of the Clean Up Crew game..."
+        summary: "We took parts from different games like Risk of Rain 2 and the old school Doom games. We wanted to create a large world the player could move around through while keeping the game low poly to save performance due to it being a web-based game."
     },
 
     dockingBay: {
-        title: "GROUP PROJECT | Game: [Docking Bay]",
+        title: "TEAM PROJECT | Game: [Docking Bay]",
         playLink: "https://zorzini.itch.io/dockingbay",
         
         background: "images/DockingBay/Blurred.png",
+
+        date: "October 17, 2025",
 
         rankings: {
             programming: 2,
@@ -77,25 +82,27 @@ const projects = {
         ],
 
         bullets: [
-            "point 1 lalal asdfasdf",
-            "Lorem ipsum dolor sit amet...",
-            "Filler text to get point across",
-            "Another point",
-            "More example text"
+            "Created the room layout and Exterior scene",
+            "Created a sound system to efficiently play audio",
+            "Made all 3D animations and particle effects",
+            "Created Menu Screen and pause menu UI",
+            "Created a Dialogue system that could match Voice Acting audio"
         ],
 
-        summary: "This is a short summary of the [Docking Bay] game..."
+        summary: "We created a game similar to Paper's Please. We wanted there to be more interactivity by having the player swivel in a chair to each different station. We wanted to create an atmosphere that was eerie and made the player constantly second guess their actions."
     },
     
     IdolOfAshes: {
-        title: "GROUP PROJECT | Game: Idol of Ashes",
+        title: "TEAM PROJECT | Game: Idol of Ashes",
         playLink: "https://zorzini.itch.io/idol-of-ashes",
         
         background: "images/IdolofAshes/Blurred.png",
 
+        date: "June 9, 2025",
+
         rankings: {
             programming: 4,
-            level_design: 3,
+            level_design: 10,
             sound_design: 3,
             modeling: 3,
         },
@@ -120,14 +127,13 @@ const projects = {
         ],
 
         bullets: [
-            "point 1 lalal asdfasdf",
-            "Lorem ipsum dolor sit amet...",
-            "Filler text to get point across",
-            "Another point",
-            "More example text"
+            "Created All of the UI for the Game",
+            "Created a Quest system",
+            "Created a dialogue system from scratch",
+            "Created a toon shader with an outline",
         ],
 
-        summary: "This is a short summary of the Idol of Ashes game..."
+        summary: "I was mainly the back end for this project and worked heavily on the UI and other systems. Some of the main systems I created was a dialogue, quest, and manual system within a week long time span for the game jam."
     },    
 
     SpiritOutbreak: {
@@ -135,6 +141,8 @@ const projects = {
         playLink: "https://benbeary.itch.io/spirit-outbreak",
         
         background: "images/SpiritOutbreak/Blurred.jpg",
+
+        date: "April 19, 2025",
 
         rankings: {
             programming: 2,
@@ -160,13 +168,102 @@ const projects = {
         ],
 
         bullets: [
-            "point 1 lalal asdfasdf",
-            "Lorem ipsum dolor sit amet...",
-            "Filler text to get point across",
-            "Another point",
-            "More example text"
+            "Created a Custom UI Line Renderer for a custom made graph",
+            "Created a custom A* pathfinder that worked for Isometric grids",
+            "Created multiple enemy types that would all behave differently",
+            "Created an Upgrade system that would add effects or change how a trap worked",
+            "Created a map system that could change the overall layout of the map as the game progressed"
         ],
 
-        summary: "This is a short summary of the Idol of Ashes game..."
+        summary: "I made this game within a year and created a map making system that allowed for the quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time."
     },
+        
+    diceClimber: {
+        title: "Game: Dice Climbers: Shelf of Chaos",
+        playLink: "https://benbeary.itch.io/dice-climber-shelf-of-chaos",
+        
+        background: "images/DiceClimber/Blurred.jpg",
+
+        date: "May 20, 2025",
+
+        rankings: {
+            programming: 4,
+            level_design: 3,
+            sound_design: 9,
+            modeling: 3,
+            pixel_art: 2,
+        },
+
+        images: [
+            "images/DiceClimber/Title Poster.jpg",
+            "images/DiceClimber/Menu.png",
+            "images/DiceClimber/img1.png",
+            "images/DiceClimber/img2.png",
+            "images/DiceClimber/img3.png",
+            "images/DiceClimber/img4.png",
+            "images/DiceClimber/img5.png",
+            "images/DiceClimber/img6.png",
+            "images/DiceClimber/img7.png",
+            "images/DiceClimber/img8.png",
+            "images/DiceClimber/img9.png",
+            "images/DiceClimber/img10.png",
+            
+        ],
+
+        tags: [
+            "Programming",
+            "Level Design",
+            "UI / UX",
+            "Pixel Art"
+        ],
+
+        bullets: [
+            "Created Modular puzzle pieces for reuse",
+            "Created a dialogue system from scratch",
+            "Created visual editor guides to help map creation",
+            "Created multiple mechanics that the player learns over time",
+            "Created a cutscene system",
+        ],
+
+        summary: "This was my first attempt at creating a platformer. I created all the assets and code that runs in the game. I created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
+    }, 
+            
+    PortLochne: {
+        title: "Modded Map: Port Lochne",
+        playLink: "",
+        
+        background: "images/PortLochne/Blurred.png",
+
+        date: "April 22, 2022",
+
+        rankings: {
+            programming: 10,
+            level_design: 4,
+            sound_design: 10,
+            modeling: 2,
+        },
+
+        images: [
+            "images/PortLochne/PortLochne_1000px.png",
+            "images/PortLochne/img1.jpg",
+            "images/PortLochne/img2.jpg",
+            "images/PortLochne/img3.jpg",
+            "images/PortLochne/img4.jpg",
+            "images/PortLochne/img5.jpg",
+
+            
+        ],
+
+        tags: [
+            "Level Design",
+            "3D Modeling"
+        ],
+
+        bullets: [
+            "Created a map for a mod on Garry's Mod",
+            "Areas were created to make certain spots more popular and group people together",
+        ],
+
+        summary: "This map was created in the hammer editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch. I did not make any of the textures or complex props.",
+    }, 
 };

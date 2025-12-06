@@ -35,7 +35,14 @@ function changeBackground(path) {
     bg.style.opacity = 0;
 
     setTimeout(() => {
-        bg.style.backgroundImage = `url('${path}')`;
+
+        if(!path || path.trim() === ""){
+            bg.style.backgroundImage = "none";
+        }
+        else {
+            bg.style.backgroundImage = `url('${path}')`;
+        }
+
         bg.style.opacity = 1;
     }, 200);
 }
@@ -57,11 +64,18 @@ function setSlide(imgElement, indexOverride = null) {
     // Skip if already active
     if (slideIndex === index && imgElement.classList.contains("active")) return;
 
-    slideIndex = index;
+    const oldSlide = !slideIndex ? 0 : slideIndex;
 
+    slideIndex = index;
+    
+    
     stopAutoSlide();
     startAutoSlide();
     scheduleProjectAutoSwitch();
+
+    if(slideIndex === thumbs.length - 1){
+        stopAutoSlide();
+    }
 
     const main = document.getElementById("mainSlide");
     const thumb = thumbs[slideIndex];
@@ -76,7 +90,17 @@ function setSlide(imgElement, indexOverride = null) {
     thumbs.forEach(t => t.classList.remove("active"));
     thumb.classList.add("active");
 
-    scrollThumbIntoView(thumb);
+    // make it so it shows the next thumb as well as the selected
+    let viewThumb = thumb[slideIndex];
+
+    if(oldSlide <= slideIndex){
+        viewThumb = slideIndex + 1 < thumbs.length ? thumbs[slideIndex + 1] : thumbs[slideIndex];
+    }
+    else {
+        viewThumb = slideIndex - 1 < 0 ? thumbs[slideIndex] : thumbs[slideIndex - 1];
+    }
+
+    scrollThumbIntoView(viewThumb);
 }
 
 function scrollThumbIntoView(thumb) {
@@ -171,14 +195,24 @@ function loadProject(projectName) {
             currentProjectIndex = projectNames.indexOf(projectName);
 
             // Background
-            if (p.background) changeBackground(p.background);
+            changeBackground(p.background);
 
             // Title
             document.getElementById("Title").textContent = p.title;
 
             // Button
             const playButton = document.querySelector(".header button");
-            playButton.onclick = () => window.open(p.playLink, "_blank");
+            
+            if(!p.playLink || p.playLink.trim() === ""){
+                playButton.style.display = "none";
+            }
+            else{
+                playButton.style.display = "inline-block";
+                playButton.onclick = () => window.open(p.playLink, "_blank");
+            }
+
+            // Date
+            document.getElementById("dateEntry").textContent = p.date;
 
             // Summary
             document.getElementById("Summary").textContent = p.summary;

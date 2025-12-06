@@ -48,21 +48,6 @@ h1 {
     transition: opacity 0.45s ease-in-out;
 }
 
-/* Header takes ~10% height */
-.header {
-    height: 10%;
-    background-color: rgba(20, 20, 22, 0.801);
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    font-size: 1.5rem;
-    box-sizing: border-box;
-    border-bottom: 4px solid white;
-
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 button {
     background: #ffffffdd;
@@ -97,6 +82,22 @@ button:active {
     height: 90%; /* takes the rest */
     display: flex;
     box-sizing: border-box;
+}
+
+/* Header takes ~10% height */
+.header {
+    height: 10%;
+    background-color: rgba(20, 20, 22, 0.801);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    border-bottom: 4px solid white;
+
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .col1, .col2 {
@@ -249,7 +250,7 @@ button:active {
     justify-content: center;
     width: 100%;
     height: 90%;
-    margin-top: 105vh;
+    margin-top: 210vh;
 }
 
 .arrow {
@@ -334,4 +335,19 @@ button:active {
     line-height: 1.7;
     margin-bottom: 20px;
     opacity: 0.9;
+}
+
+
+
+@media (max-width: 900px){
+    .wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .col1, .col2 {
+        flex: none;
+        width: 90%;
+        height: 90%;
+    }
 }
