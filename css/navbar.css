@@ -78,6 +78,14 @@
     display: none;
 }
 
+.nav-center {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
 /* ===============================
    MOBILE NAVIGATION
    =============================== */
@@ -89,11 +97,26 @@
         height: 60px;
     }
 
-    /* Hide center and right sections on mobile */
-    .nav-center,
+    .nav-center button {
+        font-size: 1.8rem;
+    }
+    .nav-center {
+        gap: 20px;
+        /* justify-content:  space-between; */
+    }
+
+    /* Hide and right sections on mobile */
     .nav-right {
         display: none;
     }
+
+    .nav-left p {
+        font-size: 1rem;
+    }
+    .nav-left h1 {
+        font-size:  1.5rem;
+    }
+    
 
     /* Hamburger button */
     .nav-hamburger {
@@ -151,7 +174,9 @@
         background: rgba(255,255,255,0.25);
     }
 
-    
+    .site-name {
+        font-size: smaller;
+    }
 }
 
 /* Portrait-mode large screens (tablets, vertical monitors, etc.) */

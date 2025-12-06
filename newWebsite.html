@@ -15,14 +15,6 @@
         <p style="color: rgb(255, 187, 0);">Level Designer / Technical Artist / Gameplay Programmer</p>
     </div>
 
-    <div class="nav-center">
-        <button onclick="sortProjectsBy('programming')">Programming</button>
-        <button onclick="sortProjectsBy('level_design')">Level Design</button>
-        <button onclick="sortProjectsBy('pixel_art')">UI / UX</button>
-        <button onclick="sortProjectsBy('pixel_art')">Pixel Art</button>
-        <button onclick="sortProjectsBy('sound_design')">Sound</button>
-    </div>
-
     <div class="nav-right">
         <a href="#projects">Projects</a>
         <a href="#about-section">About</a>
@@ -33,13 +25,9 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <h1>Sort By:</h1>
-    <button onclick="sortProjectsBy('programming')">Programming</button>
-    <button onclick="sortProjectsBy('level_design')">Level Design</button>
-    <button onclick="sortProjectsBy('pixel_art')">UI / UX</button>
-    <button onclick="sortProjectsBy('pixel_art')">Pixel Art</button>
-    <button onclick="sortProjectsBy('sound_design')">Sound</button>
-
+        <a href="#projects">Projects</a>
+        <a href="#about-section">About</a>
+        <a href="#Catalogue">Catalogue</a>
 </div>
 
 
@@ -185,7 +173,15 @@
 
     <section id="Catalogue" class="catalogue-section">
         <h1 class="catalogue-title">Project Catalogue</h1>
-
+        <h2 style="align-items: center; justify-content: center; text-align: center;"> Sort By:</h2>
+        <div class="nav-center">
+            <button onclick="sortProjectsByNewest()">Newest</button>
+            <button onclick="sortProjectsBy('programming')">Programming</button>
+            <button onclick="sortProjectsBy('ui_ux')">UI / UX</button>
+            <button onclick="sortProjectsBy('level_design')">Level Design</button>
+            <button onclick="sortProjectsBy('pixel_art')">Pixel Art</button>
+            <button onclick="sortProjectsBy('sound_design')">Sound</button>
+        </div>
         <div id="catalogueGrid" class="catalogue-grid"></div>
     </section>
 

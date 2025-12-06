@@ -531,7 +531,6 @@ button:active {
 @media (max-width: 900px), (orientation: portrait) {
 
 
-
     .about-container {
         flex-direction: column-reverse;
         align-items: center;
@@ -603,15 +602,10 @@ button:active {
         width: 100%;
         height: auto !important;
         text-align: center;
-    }
-
-        /* FORCE columns to take full width */
-    .col1,
-    .col2 {
-        width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
     }
+
 
     /* Prevent any internal content from overflowing */
     .content,
@@ -654,15 +648,15 @@ button:active {
     }
     /* TEXT SIZE REDUCTIONS */
     h1 {
-        font-size: 1.6rem;
+        font-size: 2rem;
     }
 
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
     }
 
     p, li {
-        font-size: 1rem;
+        font-size: 1.6rem;
     }
 
     .tag {
@@ -749,12 +743,23 @@ button:active {
         padding: 6px 12px;
     }
     
+    .catalogue-section h2{
+        font-size: 2.5rem;
+    }
+
     .catalogue-card {
         padding: 15px;
     }
 
     .catalogue-grid {
         grid-template-columns: 1fr;
+    }
+    .catalogue-grid p {
+        font-size: 1.5rem;
+    }
+
+    .tag {
+        font-size: 1.5rem;
     }
 
     .catalogue-card{
@@ -779,12 +784,20 @@ button:active {
         width: 64px;
         height:  64px;
     }
+
+    .catalogue-tags {
+        justify-content:  left;
+    }
+    
 }
 
 /* Small screens (like 1280 × 720 or smaller) */
 @media (max-width: 1280px) and (max-height: 720px) {
     html {
         font-size: xx-small;
+    }
+    .tag {
+        font-size: 1.5rem;
     }
 }
 
