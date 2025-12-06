@@ -19,7 +19,8 @@ let autoProjectTimeout = null;
 
 window.onload = () => {
     buildCatalogue();          // Create card elements
-    sortProjectsByNewest();    // Sort newest → oldest
+    // sortProjectsByNewest();    // Sort newest → oldest
+    sortProjectsBy("programming");
     buildProjectDots();
     loadProject(projectNames[currentProjectIndex]);
     startAutoSlide();
@@ -416,6 +417,10 @@ function buildCatalogue() {
         title.className = "catalogue-card-title";
         title.textContent = p.title;
 
+        const date = document.createElement("h4");
+        date.className = "catalogue-summary";
+        date.textContent = p.date;
+
         // TAGS
         const tagWrap = document.createElement("div");
         tagWrap.className = "catalogue-tags";
@@ -434,6 +439,7 @@ function buildCatalogue() {
         // Assemble
         card.appendChild(img);
         card.appendChild(title);
+        card.appendChild(date);
         card.appendChild(tagWrap);
         card.appendChild(summary);
 

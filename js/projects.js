@@ -9,6 +9,7 @@ const projects = {
 
         rankings: {
             programming: 1,
+            ui_ux: 1,
             level_design: 2,
             sound_design: 2,
             modeling: 2,
@@ -55,6 +56,7 @@ const projects = {
 
         rankings: {
             programming: 2,
+            ui_ux: 2,
             level_design: 1,
             sound_design: 1,
             modeling: 1,
@@ -102,6 +104,7 @@ const projects = {
 
         rankings: {
             programming: 4,
+            ui_ux: 3,
             level_design: 10,
             sound_design: 3,
             modeling: 3,
@@ -146,6 +149,7 @@ const projects = {
 
         rankings: {
             programming: 2,
+            ui_ux: 2,
             level_design: 2,
             sound_design: 10,
             modeling: 4,
@@ -188,6 +192,7 @@ const projects = {
 
         rankings: {
             programming: 4,
+            ui_ux: 7,
             level_design: 3,
             sound_design: 9,
             modeling: 3,
@@ -228,6 +233,122 @@ const projects = {
         summary: "This was my first attempt at creating a platformer. I created all the assets and code that runs in the game. I created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
     }, 
             
+    DeathTides: {
+        title: "Game: Death Tides",
+        playLink: "https://benbeary.itch.io/death-tides",
+        
+        background: "images/DeathTides/Blurred.png",
+
+        date: "July 27, 2024",
+
+        rankings: {
+            programming: 5,
+            level_design: 5,
+            ui_ux: 6,
+            pixel_art: 3,
+        },
+
+        images: [
+            "images/DeathTides/DeathTides_1000px.png",
+            // "images/PortLochne/img1.jpg",
+            // "images/PortLochne/img2.jpg",
+            // "images/PortLochne/img3.jpg",
+            // "images/PortLochne/img4.jpg",
+            // "images/PortLochne/img5.jpg",
+
+            
+        ],
+
+        tags: [
+            "Programming",
+            "Level Design",
+            "UI / UX",
+            "Pixel Art"
+        ],
+
+        bullets: [
+            "No Entry",
+        ],
+
+        summary: "This game was part of a week long game jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with some art assets and programming. My main role in this was creating the enemy AI and the world design which used a chunk loading system to increase overall performance.",
+    }, 
+                
+    DodgeKarts: {
+        title: "Game: Dodge Kart",
+        playLink: "https://benbeary.itch.io/dodge-kart",
+        
+        background: "images/DodgeKarts/Blurred.png",
+
+        date: "October 27, 2023",
+
+        rankings: {
+            programming: 6,
+            level_design: 8,
+            pixel_art: 6,
+        },
+
+        images: [
+            "images/DodgeKarts/DodgeKarts_1000px.png",
+            // "images/PortLochne/img1.jpg",
+            // "images/PortLochne/img2.jpg",
+            // "images/PortLochne/img3.jpg",
+            // "images/PortLochne/img4.jpg",
+            // "images/PortLochne/img5.jpg",
+
+            
+        ],
+
+        tags: [
+            "Programming",
+            "Level Design",
+            "UI / UX",
+            "Pixel Art"
+        ],
+
+        bullets: [
+            "No Entry",
+        ],
+
+        summary: "This was a class partner assignment where I took on the artist roll. I used unity's shadergraph mechanic to change the car colors so I could save time and reduce the required amount of tilesheets.",
+    }, 
+                
+    DevilsAcre: {
+        title: "Game: Devil's Acre",
+        playLink: "https://zorzini.itch.io/devils-acre",
+        
+        background: "images/DevilsAcre/Blurred.png",
+
+        date: "April 22, 2022",
+
+        rankings: {
+            programming: 5,
+            pixel_art: 5,
+        },
+
+        images: [
+            "images/DevilsAcre/DevilsAcre_Title_1000px.png",
+            // "images/PortLochne/img1.jpg",
+            // "images/PortLochne/img2.jpg",
+            // "images/PortLochne/img3.jpg",
+            // "images/PortLochne/img4.jpg",
+            // "images/PortLochne/img5.jpg",
+
+            
+        ],
+
+        tags: [
+            "Programming",
+            "Pixel Art"
+        ],
+
+        bullets: [
+            "No Entry",    
+        
+        ],
+
+        summary: "This was a class group project in which I mainly focused on the enviroment art. I also pitched in on the code and created the final boss's AI and attack moves. The overall project time was around 2 months in total.",
+    }, 
+                
     PortLochne: {
         title: "Modded Map: Port Lochne",
         playLink: "",
@@ -237,9 +358,7 @@ const projects = {
         date: "April 22, 2022",
 
         rankings: {
-            programming: 10,
             level_design: 4,
-            sound_design: 10,
             modeling: 2,
         },
 
@@ -265,5 +384,44 @@ const projects = {
         ],
 
         summary: "This map was created in the hammer editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch. I did not make any of the textures or complex props.",
+    }, 
+    
+    Meoware: {
+        title: "TEAM PROJECT | Game: Meoware Defender",
+        playLink: "https://withcyber.itch.io/meoware-defender",
+        
+        background: "images/MeowareDefender/Blurred.png",
+
+        date: "September 2, 2025",
+
+        rankings: {
+            programming: 6,
+            ui_ux: 4,
+            level_design: 8,
+        },
+
+        images: [
+            "images/MeowareDefender/Menu.png",
+            "images/MeowareDefender/img1.png",
+            "images/MeowareDefender/img2.png",
+            "images/MeowareDefender/img3.png",
+            "images/MeowareDefender/img4.png",
+            // "images/MeowareDefender/img5.png",
+
+            
+        ],
+
+        tags: [
+            "Programming",
+            "Level Design",
+            "UI / UX",
+        ],
+
+        bullets: [
+            "No Entry",
+       
+        ],
+
+        summary: "No Entry",
     }, 
 };
