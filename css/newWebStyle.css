@@ -115,6 +115,10 @@ button:active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
 }
 .tag {
     color: #2b2b36;
@@ -129,7 +133,22 @@ button:active {
     font-weight: 700;
 }
 
+.col2::-webkit-scrollbar {
+    width: 6px;  /* slim scrollbar */
+}
 
+.col2::-webkit-scrollbar-track {
+    background: transparent !important;   /* remove track background */
+}
+
+.col2::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);  /* the bar */
+    border-radius: 10px;
+}
+
+.col2::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
 
 
 /* ######### Slideshow ######### */
@@ -307,16 +326,18 @@ button:active {
     width: 100%;
     min-height: 100vh;
     padding: 80px 10%;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.55);   /* kept dark background */
+    /* REMOVED blur */
+    /* backdrop-filter: blur(10px); */
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    position: relative;
 }
 
 .about-container {
-    position: relative; /* required so we can anchor inside it */
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 40px;
@@ -336,8 +357,6 @@ button:active {
     width: 100%;
     max-width: 350px;
     border-radius: 20px;
-    /* REMOVED border */
-    /* border: 3px solid rgba(255,255,255,0.3); */
     box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     object-fit: cover;
 }
@@ -351,11 +370,11 @@ button:active {
 /* Header: keep buttons on right */
 .about-header {
     display: flex;
-    justify-content: space-between;   /* <-- Buttons stay right */
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Buttons: stay aligned right */
+/* Buttons on right */
 .download-buttons {
     display: flex;
     flex-direction: row;
@@ -383,22 +402,25 @@ button:active {
     transform: translateY(0px);
     opacity: 0.9;
 }
+
+/* ======================
+   SOCIAL BAR (NO BLUR)
+   ====================== */
+
 .about-socials-bar {
-    position: fixed;
-    bottom: 20px;            /* distance from bottom of screen */
+    position: absolute;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 25px;
     padding: 10px 15px;
 
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.55);
     border-radius: 12px;
-
-    z-index: 999;
-    pointer-events: auto;
+    z-index: 20;
 }
+
 
 .about-socials-bar .social-icon {
     width: 64px;
@@ -416,6 +438,7 @@ button:active {
     transform: scale(1.2);
     opacity: 0.85;
 }
+
 
 /* ==============================
    CATALOGUE SECTION
@@ -724,5 +747,16 @@ button:active {
 
     .catalogue-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (orientation: portrait) and (min-height: 700px) {
+    .slideshow {
+        height: 500px !important;
+        max-height: 500px !important;
+    }
+    .main-image {
+        height: 420px !important;
+        max-height: 420px !important;
     }
 }
