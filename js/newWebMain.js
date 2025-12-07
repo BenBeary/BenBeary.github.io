@@ -24,7 +24,18 @@ window.onload = () => {
     buildProjectDots();
     loadProject(projectNames[currentProjectIndex]);
     startAutoSlide();
+    loop();
 };
+
+
+function loop() {
+
+    // setTimeout(() => {
+
+    //     console.log(isHovering);
+    //     loop()
+    // }, 500);
+}
 
 
 // #######################################
@@ -268,6 +279,19 @@ function loadProject(projectName) {
     });
 }
 
+let isHovering = false;
+const affectArea = document.querySelector(".wrapper");
+
+// Track hover state
+affectArea.addEventListener("mouseenter", () => {
+    isHovering = true;
+});
+affectArea.addEventListener("mouseleave", () => {
+    isHovering = false;
+    clearInterval(autoProjectInterval);
+});
+
+// Updated auto-switch function
 function scheduleProjectAutoSwitch() {
     clearTimeout(autoProjectTimeout);
 
@@ -277,23 +301,19 @@ function scheduleProjectAutoSwitch() {
     const isLastImageActive = (slideIndex === thumbs.length - 1);
     if (!isLastImageActive) return;
 
-    // Wait 5 seconds AFTER reaching last slide
+    // Wait 5 seconds AFTER reaching last slide, but only if not hovering
     autoProjectTimeout = setTimeout(() => {
-        currentProjectIndex = (currentProjectIndex + 1) % projectNames.length;
-        loadProject(projectNames[currentProjectIndex]);
+        if (!isHovering) {
+            currentProjectIndex = (currentProjectIndex + 1) % projectNames.length;
+            loadProject(projectNames[currentProjectIndex]);
+        } else {
+            // If hovering, retry after 500ms
+            scheduleProjectAutoSwitch();
+        }
     }, 5000);
 }
 
 
-// pause on hovering
-
-document.querySelector(".wrapper").addEventListener("mouseenter", () => {
-    clearInterval(scheduleProjectAutoSwitch);
-});
-
-document.querySelector(".wrapper").addEventListener("mouseleave", () => {
-    scheduleProjectAutoSwitch();
-});
 
 // #######################################
 // ###### PROJECT RANKING SORT ###########
@@ -326,6 +346,8 @@ function sortProjectsBy(category) {
 // #######################################
 // ######## PROJECT DOT NAVIGATION #######
 // #######################################
+
+
 
 function buildProjectDots() {
     const container = document.getElementById("projectDots");

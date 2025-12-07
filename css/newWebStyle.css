@@ -365,6 +365,7 @@ button:active {
 .about-content {
     flex: 2;
     color: white;
+    line-height: 140%;
 }
 
 /* Header: keep buttons on right */
@@ -402,6 +403,17 @@ button:active {
     transform: translateY(0px);
     opacity: 0.9;
 }
+
+.information {
+    color: rgb(255, 187, 0); 
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 
 /* ======================
    SOCIAL BAR (NO BLUR)
@@ -529,6 +541,15 @@ button:active {
    ================================ */
 
 @media (max-width: 900px), (orientation: portrait) {
+
+
+    .information {
+        margin-top: 20px;
+        flex-direction: row;       
+        justify-content: center;      
+        align-items: center;          
+        text-align: center;                           
+    }
 
 
     .about-container {
