@@ -234,7 +234,7 @@ const projects = {
     }, 
             
     DeathTides: {
-        title: "Game: Death Tides",
+        title: "TEAM PROJECT | Game: Death Tides",
         playLink: "https://benbeary.itch.io/death-tides",
         
         background: "images/DeathTides/Blurred.png",
@@ -250,12 +250,11 @@ const projects = {
 
         images: [
             "images/DeathTides/DeathTides_1000px.png",
-            // "images/PortLochne/img1.jpg",
-            // "images/PortLochne/img2.jpg",
-            // "images/PortLochne/img3.jpg",
-            // "images/PortLochne/img4.jpg",
-            // "images/PortLochne/img5.jpg",
-
+            "images/DeathTides/img1.png",
+            "images/DeathTides/img2.png",
+            "images/DeathTides/img3.png",
+            "images/DeathTides/img4.png",
+            "images/DeathTides/img5.png",
             
         ],
 
@@ -267,7 +266,11 @@ const projects = {
         ],
 
         bullets: [
-            "No Entry",
+            "Created all the pixel art in a module design for reuse",
+            "AI uses a faction system allowing different ai to fight each other",
+            "AI uses a field of view so you can sneak up behind them",
+            "Created a modular wave system for quick and easy to make objectives",
+            "Created a system of loading map in chunks for performance",
         ],
 
         summary: "This game was part of a week long game jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with some art assets and programming. My main role in this was creating the enemy AI and the world design which used a chunk loading system to increase overall performance.",
@@ -327,13 +330,14 @@ const projects = {
 
         images: [
             "images/DevilsAcre/DevilsAcre_Title_1000px.png",
-            // "images/PortLochne/img1.jpg",
-            // "images/PortLochne/img2.jpg",
-            // "images/PortLochne/img3.jpg",
-            // "images/PortLochne/img4.jpg",
-            // "images/PortLochne/img5.jpg",
+            "images/DevilsAcre/img1.gif",
+            "images/DevilsAcre/img2.gif",
+            "images/DevilsAcre/img3.png",
+            "images/DevilsAcre/img4.png",
+            "images/DevilsAcre/img5.png",
+            "images/DevilsAcre/img6.png",
+            "images/DevilsAcre/img7.png",
 
-            
         ],
 
         tags: [
@@ -344,6 +348,7 @@ const projects = {
         bullets: [
             "Created environmental art for the game",    
             "Worked on the boss AI",        
+            "Created Pause Menu UI",        
         
         ],
 
