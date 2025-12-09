@@ -313,7 +313,7 @@ const projects = {
     }, 
                 
     DevilsAcre: {
-        title: "Game: Devil's Acre",
+        title: "TEAM PROJECT | Game: Devil's Acre",
         playLink: "https://zorzini.itch.io/devils-acre",
         
         background: "images/DevilsAcre/Blurred.png",
@@ -342,7 +342,8 @@ const projects = {
         ],
 
         bullets: [
-            "No Entry",    
+            "Created environmental art for the game",    
+            "Worked on the boss AI",        
         
         ],
 
