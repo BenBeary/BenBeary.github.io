@@ -22,7 +22,7 @@ li {
 }
 
 
-h1 {
+h1, strong {
     color: rgb(255, 187, 0);
 }
 /* Wrapper = 80% width, centered */
