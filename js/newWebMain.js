@@ -13,6 +13,12 @@ let autoProjectInterval = null;
 let autoProjectTimeout = null;
 
 
+let userUnlockedAudio = false;
+
+let modalOpen = false;
+let modalIndex = 0; // Track which slide the modal is on
+
+
 // #######################################
 // ########### WINDOW ONLOAD ##############
 // #######################################
@@ -37,6 +43,17 @@ function loop() {
     // }, 500);
 }
 
+
+// Video Check
+
+function isVideo(path) {
+    if (!path || typeof path !== "string") return false;
+    return path.toLowerCase().endsWith(".mp4");
+}
+function isGif(path) {
+    if (!path || typeof path !== "string") return false;
+    return path.toLowerCase().endsWith(".gif");
+}
 
 // #######################################
 // ########### BACKGROUND SWAP ###########
@@ -74,47 +91,146 @@ function setSlide(imgElement, indexOverride = null) {
     if (index < 0 || index >= thumbs.length) return;
 
     // Skip if already active
-    if (slideIndex === index && imgElement.classList.contains("active")) return;
+    if (slideIndex === index && imgElement && imgElement.classList.contains("active")) return;
 
     const oldSlide = !slideIndex ? 0 : slideIndex;
 
     slideIndex = index;
-    
-    
+
     stopAutoSlide();
     startAutoSlide();
     scheduleProjectAutoSwitch();
 
-    if(slideIndex === thumbs.length - 1){
+    if (slideIndex === thumbs.length - 1) {
         stopAutoSlide();
     }
 
-    const main = document.getElementById("mainSlide");
     const thumb = thumbs[slideIndex];
 
-    // Set image
-    main.classList.remove("fade");
-    void main.offsetWidth; // Force reflow
-    main.classList.add("fade");
-    main.src = thumb.dataset.full || thumb.src;
+    // Get the source once and reuse it
+    const src = thumb && thumb.dataset ? thumb.dataset.full : null;
+    if (!src || typeof src !== "string") {
+        console.warn("setSlide: invalid src for thumb", thumb);
+        return;
+    }
+
+    // Get container
+    const displayArea = document.getElementById("mainSlideContainer");
+    if (!displayArea) return;
+    displayArea.innerHTML = ""; // clear previous
+
+
+    if (isVideo(src)) {
+        const vid = document.createElement("video");
+
+        vid.src = src;
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.loop = false;
+        vid.classList.add("fade-video");
+
+        // open modal with the correct src when clicked
+        vid.addEventListener("click", (e) => {
+            e.preventDefault();      // stop browser toggling play/pause
+            e.stopPropagation();     // prevents bubbling that might restart video
+            openModalWithSlide(src); // open modal cleanly
+        });
+
+        // 🔥 If user has never unmuted a video, force mute
+        vid.muted = !userUnlockedAudio;
+
+        // When the user clicks the mute/unmute control
+        vid.onvolumechange = () => {
+            if (!vid.muted) {
+                userUnlockedAudio = true;
+            }
+        };
+
+        displayArea.appendChild(vid);
+
+        stopAutoSlide();
+        vid.onended = () => {
+            startAutoSlide();
+            showNextSlide();
+        };
+    } else if (isGif(src)) {
+        const img = document.createElement("img");
+        img.src = src;
+        img.classList.add("fade");
+
+        // open modal with the correct src when clicked
+        img.onclick = () => openModalWithSlide(src);
+
+        displayArea.appendChild(img);
+
+        // Stop auto-slide while GIF plays
+        stopAutoSlide();
+
+        // Measure how long the GIF takes to loop once
+        measureGifDuration(src, (loopDuration) => {
+            const totalDuration = loopDuration * 2; // loop twice
+
+            // After 2 loops, resume auto-slide and move forward
+            setTimeout(() => {
+                startAutoSlide();
+                // showNextSlide();
+            }, totalDuration);
+        });
+    } else {
+        const img = document.createElement("img");
+        img.src = src;
+        img.classList.add("fade");
+
+        // open modal with the correct src when clicked
+        img.onclick = () => openModalWithSlide(src);
+
+        displayArea.appendChild(img);
+    }
 
     // Update active highlight
     thumbs.forEach(t => t.classList.remove("active"));
     thumb.classList.add("active");
 
     // make it so it shows the next thumb as well as the selected
-    let viewThumb = thumb[slideIndex];
+    let viewThumb;
 
-    if(oldSlide <= slideIndex){
-        viewThumb = slideIndex + 1 < thumbs.length ? thumbs[slideIndex + 1] : thumbs[slideIndex];
-    }
-    else {
-        viewThumb = slideIndex - 1 < 0 ? thumbs[slideIndex] : thumbs[slideIndex - 1];
+    if (oldSlide <= slideIndex) {
+        // moving forward → view the next thumb if exists
+        viewThumb = thumbs[Math.min(slideIndex + 1, thumbs.length - 1)];
+    } else {
+        // moving backward → view the previous thumb if exists
+        viewThumb = thumbs[Math.max(slideIndex - 1, 0)];
     }
 
     scrollThumbIntoView(viewThumb);
 }
 
+
+function measureGifDuration(src, callback) {
+    const img = document.createElement("img");
+    img.src = src;
+
+    img.onload = () => {
+        try {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            let frames = 0;
+            let duration = 0;
+
+            const gif = new Image();
+            gif.src = src;
+
+            callback(3000); // fallback: 3 seconds
+        } catch (e) {
+            callback(3000); // fallback
+        }
+    };
+
+    img.onerror = () => callback(3000); // fallback
+}
 function scrollThumbIntoView(thumb) {
     const strip = document.querySelector(".thumb-strip");
     if (!strip) return;
@@ -143,15 +259,27 @@ function scrollThumbIntoView(thumb) {
     }
 }
 
-// Auto-sliding
+
+// Start autoslide (idempotent)
 function startAutoSlide() {
+    // If modal is open, don't start
+    if (typeof modalOpen !== "undefined" && modalOpen) return;
+
+    // already running -> do nothing
+    if (autoSlideInterval) return;
+
     autoSlideInterval = setInterval(() => {
-        if (!isHoveringCol1) showNextSlide();
+        if (!isHoveringCol1 && !modalOpen) {
+            showNextSlide();
+        }
     }, 4000);
 }
 
+// Stop autoslide (idempotent)
 function stopAutoSlide() {
+    if (!autoSlideInterval) return;
     clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
 }
 
 function showNextSlide() {
@@ -172,23 +300,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 // #######################################
 // ########### LOAD PROJECT ##############
 // #######################################
 
-function preloadImages(imageArray) {
+function preloadMedia(fileArray) {
     return Promise.all(
-        imageArray.map(
-            src =>
-                new Promise(resolve => {
-                    const img = new Image();
-                    img.onload = resolve;
-                    img.onerror = resolve;
-                    img.src = src;
-                })
+        fileArray.map(src => 
+            new Promise(resolve => {
+
+                // Skip preloading for videos
+                if (isVideo(src)) {
+                    resolve();
+                    return;
+                }
+
+                // Image preload
+                const img = new Image();
+                img.onload = resolve;
+                img.onerror = resolve;
+                img.src = src;
+            })
         )
     );
 }
+
 
 function loadProject(projectName) {
     const wrapper = document.querySelector(".wrapper");
@@ -199,7 +337,7 @@ function loadProject(projectName) {
     wrapper.style.opacity = 0;
 
     // STEP 2: preload all images for the new project
-    preloadImages(p.images).then(() => {
+    preloadMedia(p.images).then(() => {
 
         // STEP 3: once loaded, continue updating everything
         setTimeout(() => {
@@ -253,14 +391,54 @@ function loadProject(projectName) {
             thumbStrip.innerHTML = "";
 
             p.images.forEach((path, index) => {
-                const thumb = document.createElement("img");
-                thumb.className = "thumb";
-                thumb.src = path;
+                let thumb = null;
+
+                // VIDEO
+                if (isVideo(path)) {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "thumb video-thumb-wrapper";
+
+                    const img = document.createElement("img");
+                    img.className = "video-thumb-img";
+                    img.src = "images/Default_VideoThumbnail.jpg"; // fallback image
+
+                    const playIcon = document.createElement("div");
+                    playIcon.className = "video-thumb-play";
+                    playIcon.innerHTML = "▶";
+
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(playIcon);
+
+                    // Generate halfway thumbnail
+                    createVideoFrameThumbnail(path)
+                        .then(dataUrl => {
+                            img.src = dataUrl;   // Replace fallback with actual thumbnail
+                        })
+                        .catch(() => {
+                            img.src = "images/Default_VideoThumbnail.jpg"; // Keep fallback
+                        });
+
+                    thumb = wrapper;
+                }
+
+
+                // IMAGE / GIF / FALLBACK
+                else {
+                    thumb = document.createElement("img"); 
+                    thumb.className = "thumb";
+                    thumb.src = path;
+                }
+
+                // ❗ ALWAYS assigned
                 thumb.dataset.full = path;
 
+                // ❗ ALWAYS clickable
                 thumb.onclick = () => setSlide(thumb, index);
+
+                // add to strip
                 thumbStrip.appendChild(thumb);
             });
+
 
             // Reset slideshow
             slideIndex = 0;
@@ -312,6 +490,93 @@ function scheduleProjectAutoSwitch() {
         }
     }, 5000);
 }
+
+
+// create a thumbnail dataURL from a video file (tries to be lightweight)
+function createVideoFrameThumbnail(url, timeoutMs = 2500) {
+    return new Promise((resolve, reject) => {
+        try {
+            const video = document.createElement("video");
+            video.preload = "metadata";
+            video.muted = true;
+            video.playsInline = true;
+            video.crossOrigin = "anonymous"; 
+            video.src = url;
+
+            let settled = false;
+
+            const cleanup = () => {
+                video.pause();
+                video.removeAttribute("src");
+                video.load();
+            };
+
+            const fail = (err) => {
+                if (settled) return;
+                settled = true;
+                cleanup();
+                reject(err || new Error("thumbnail-failed"));
+            };
+
+            const succeed = (dataUrl) => {
+                if (settled) return;
+                settled = true;
+                cleanup();
+                resolve(dataUrl);
+            };
+
+            const timeout = setTimeout(() => fail("timeout"), timeoutMs);
+
+            // We only need metadata to determine duration.
+            video.addEventListener("loadedmetadata", () => {
+                if (!video.duration || video.duration === Infinity) {
+                    fail("no-duration");
+                    return;
+                }
+
+                // Seek to halfway point
+                const mid = video.duration / 2;
+
+                const onSeeked = () => {
+                    try {
+                        const w = video.videoWidth || 320;
+                        const h = video.videoHeight || 180;
+                        const canvas = document.createElement("canvas");
+                        canvas.width = w;
+                        canvas.height = h;
+
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(video, 0, 0, w, h);
+
+                        const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+                        clearTimeout(timeout);
+                        video.removeEventListener("seeked", onSeeked);
+                        succeed(dataUrl);
+                    } catch (e) {
+                        clearTimeout(timeout);
+                        video.removeEventListener("seeked", onSeeked);
+                        fail(e);
+                    }
+                };
+
+                video.addEventListener("seeked", onSeeked, { once: true });
+
+                // Trigger the seek
+                try { 
+                    video.currentTime = mid; 
+                } catch (e) { 
+                    fail(e); 
+                }
+            }, { once: true });
+
+            video.addEventListener("error", () => fail("video-error"), { once: true });
+
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 
 
 
@@ -510,3 +775,101 @@ mobileLinks.forEach(link => {
         mobileMenu.classList.remove('show');
     });
 });
+
+
+
+// -------------------------------------------
+// MODAL WINDOW
+// -------------------------------------------
+
+const modal = document.getElementById("slideModal");
+const modalInner = document.getElementById("modalInner");
+const modalClose = document.getElementById("modalClose");
+
+
+modalClose.onclick = closeModal;
+document.getElementById("modalNext").onclick = modalNext;
+document.getElementById("modalPrev").onclick = modalPrev;
+
+
+// Open modal with current slide
+function openModalWithSlide(src) {
+    pauseCurrentSlideVideo();
+
+    stopAutoSlide();
+    modalOpen = true;
+
+    // Find which slide index this source belongs to
+    const thumbs = Array.from(document.querySelectorAll(".thumb-strip .thumb"));
+    modalIndex = thumbs.findIndex(t => t.dataset.full === src);
+
+    modalInner.innerHTML = "";
+    loadModalContent(src);
+
+    modal.style.display = "flex";
+}
+
+function loadModalContent(src) {
+    modalInner.innerHTML = "";
+
+    if (isVideo(src)) {
+        const vid = document.createElement("video");
+        vid.src = src;
+        vid.controls = true;
+        vid.autoplay = true;
+        
+        vid.muted = !userUnlockedAudio;
+
+        vid.onvolumechange = () => {
+            if (!vid.muted) {
+                userUnlockedAudio = true;
+            }
+        };
+
+        modalInner.appendChild(vid);
+
+    } else {
+        const img = document.createElement("img");
+        img.src = src;
+        modalInner.appendChild(img);
+    }
+}
+
+function pauseCurrentSlideVideo() {
+    const displayArea = document.getElementById("mainSlideContainer");
+    if (!displayArea) return;
+
+    // find if a video is currently inside the slideshow display
+    const vid = displayArea.querySelector("video");
+    if (vid) {
+        vid.pause();
+    }
+}
+
+// Close modal
+function closeModal() {
+    modal.style.display = "none";
+    modalOpen = false;
+    modalInner.innerHTML = "";
+    startAutoSlide();      // ✨ Resume autoslide
+}
+
+function modalNext() {
+    const thumbs = Array.from(document.querySelectorAll(".thumb-strip .thumb"));
+    modalIndex = (modalIndex + 1) % thumbs.length;
+    loadModalContent(thumbs[modalIndex].dataset.full);
+}
+
+function modalPrev() {
+    const thumbs = Array.from(document.querySelectorAll(".thumb-strip .thumb"));
+    modalIndex = (modalIndex - 1 + thumbs.length) % thumbs.length;
+    loadModalContent(thumbs[modalIndex].dataset.full);
+}
+
+// Close on button click
+modalClose.onclick = closeModal;
+
+// Close on clicking outside modal content
+modal.onclick = (e) => {
+    if (e.target === modal) closeModal();
+};

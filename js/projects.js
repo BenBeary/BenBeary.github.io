@@ -17,6 +17,7 @@ const projects = {
 
         images: [
             "images/CleanUpCrew/16_9 shot.png",
+            "images/CleanUpCrew/MenuLoadIn.mp4",
             "images/CleanUpCrew/Homescreen.png",
             "images/CleanUpCrew/Gameplay1.png",
             "images/CleanUpCrew/UI.png",
@@ -64,6 +65,7 @@ const projects = {
 
         images: [
             "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+            "images/DockingBay/MenuAnimation.mp4",
             "images/DockingBay/HomeScreen.png",
             "images/DockingBay/Monitor4.png",
             "images/DockingBay/Monitor.png",
@@ -72,6 +74,7 @@ const projects = {
             "images/DockingBay/sideView.png",
             "images/DockingBay/Camera.png",
             "images/DockingBay/layout.png",
+            "images/DockingBay/DialogueTest.gif",
             "images/DockingBay/DockingBay Front Panel Timeline_Condensed.png"
         ],
 
@@ -158,6 +161,9 @@ const projects = {
 
         images: [
             "images/SpiritOutbreak/FrontImage.jpg",
+            "images/SpiritOutbreak/video1.mp4",
+            "images/SpiritOutbreak/video2.mp4",
+            "images/SpiritOutbreak/video3.mp4",
             "images/SpiritOutbreak/img1.png",
             "images/SpiritOutbreak/img2.png",
             "images/SpiritOutbreak/img3.png",
@@ -424,10 +430,13 @@ const projects = {
         ],
 
         bullets: [
-            "No Entry",
+            "Created a player customizer system",
+            "Created a system that allowed for Mobile compatibility",
+            "Made a save system that allowed the player to customize the living room",
+            "Made the password creator mini game",
        
         ],
 
-        summary: "No Entry",
+        summary: "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to pursue a cybersecurity career path. I primarily focused on programming and UI design, and helped integrate the entire team's contributions into the final game.",
     }, 
 };
