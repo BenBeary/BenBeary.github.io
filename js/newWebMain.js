@@ -14,6 +14,8 @@ let autoProjectTimeout = null;
 
 
 let userUnlockedAudio = false;
+let userSetVolume = 1;
+
 
 let modalOpen = false;
 let modalIndex = 0; // Track which slide the modal is on
@@ -128,22 +130,15 @@ function setSlide(imgElement, indexOverride = null) {
         vid.autoplay = true;
         vid.loop = false;
         vid.classList.add("fade-video");
+        
 
-        // open modal with the correct src when clicked
-        vid.addEventListener("click", (e) => {
-            e.preventDefault();      // stop browser toggling play/pause
-            e.stopPropagation();     // prevents bubbling that might restart video
-            openModalWithSlide(src); // open modal cleanly
-        });
-
-        // 🔥 If user has never unmuted a video, force mute
+        vid.volume = userSetVolume;
         vid.muted = !userUnlockedAudio;
 
         // When the user clicks the mute/unmute control
         vid.onvolumechange = () => {
-            if (!vid.muted) {
-                userUnlockedAudio = true;
-            }
+            userUnlockedAudio = !vid.muted;
+            userSetVolume = vid.volume;
         };
 
         displayArea.appendChild(vid);
@@ -818,12 +813,12 @@ function loadModalContent(src) {
         vid.controls = true;
         vid.autoplay = true;
         
+        vid.volume = userSetVolume;
         vid.muted = !userUnlockedAudio;
 
         vid.onvolumechange = () => {
-            if (!vid.muted) {
-                userUnlockedAudio = true;
-            }
+            userUnlockedAudio = !vid.muted;
+            userSetVolume = vid.volume;
         };
 
         modalInner.appendChild(vid);

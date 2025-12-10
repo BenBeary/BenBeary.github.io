@@ -298,9 +298,9 @@ const projects = {
 
         images: [
             "images/DodgeKarts/DodgeKarts_1000px.png",
-            // "images/PortLochne/img1.jpg",
-            // "images/PortLochne/img2.jpg",
-            // "images/PortLochne/img3.jpg",
+            "images/DodgeKarts/img1.png",
+            "images/DodgeKarts/img2.png",
+            "images/DodgeKarts/img3.png",
             // "images/PortLochne/img4.jpg",
             // "images/PortLochne/img5.jpg",
 
@@ -315,7 +315,8 @@ const projects = {
         ],
 
         bullets: [
-            "No Entry",
+            "Created a shader to randomize car colors",
+            "Made a spawner that progressively made harder challenges over time",
         ],
 
         summary: "This was a class partner assignment where I took on the artist roll. I used unity's shadergraph mechanic to change the car colors so I could save time and reduce the required amount of tilesheets.",
@@ -430,6 +431,7 @@ const projects = {
         ],
 
         bullets: [
+            "State funded team project",
             "Created a player customizer system",
             "Created a system that allowed for Mobile compatibility",
             "Made a save system that allowed the player to customize the living room",
