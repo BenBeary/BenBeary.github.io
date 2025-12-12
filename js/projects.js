@@ -21,10 +21,13 @@ const projects = {
             "images/CleanUpCrew/Homescreen.png",
             "images/CleanUpCrew/Gameplay1.png",
             "images/CleanUpCrew/UI.png",
+            "images/CleanUpCrew/ControlUI.png",
             "images/CleanUpCrew/map_layout.png",
+            "images/CleanUpCrew/map_layout4.png",
             "images/CleanUpCrew/map_layout2.png",
             "images/CleanUpCrew/map_layout3.png",
             "images/CleanUpCrew/3DModel.png",
+            "images/CleanUpCrew/spawnObjects.png",
             "images/CleanUpCrew/fpsGunSpread.png"
         ],
 
