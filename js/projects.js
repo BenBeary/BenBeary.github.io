@@ -443,5 +443,66 @@ const projects = {
         ],
 
         summary: "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to pursue a cybersecurity career path. I primarily focused on programming and UI design, and helped integrate the entire team's contributions into the final game.",
+    },
+
+    SignalLink: {
+        title: "TEAM PROJECT | Game: Signal-Link",
+        playLink: "https://benbeary.itch.io/signal-link",
+        
+        background: "images/Signal-Link/Blurred.jpg",
+
+        date: "January 4, 2026",
+
+        rankings: {
+            programming: 0,
+            ui_ux: 1,
+            level_design: 1,
+            modeling: 1,
+            sound_design: 5,
+        },
+
+        images: [
+            "images/Signal-Link/singla_link_poster.png",
+            "images/Signal-Link/Menu Setup.mp4",
+            "images/Signal-Link/MainMenu_Blender.png",
+            "images/Signal-Link/MainMenu_Unity.png",
+            "images/Signal-Link/MainMenu_GameView.png",
+            "images/Signal-Link/Level_1.png",
+            "images/Signal-Link/Game_1.png",
+            "images/Signal-Link/ExtraImage_2.png",
+            "images/Signal-Link/ExtraImage_1.png",
+            "images/Signal-Link/ExtraImage_3.png",
+            "images/Signal-Link/ExtraImage_4.png",
+            "images/Signal-Link/Modeling_Layout.png",
+            "images/Signal-Link/Modeling_Layout_2.png",
+            "images/Signal-Link/Level2_Progress_1.png",
+            "images/Signal-Link/Level2_Progress_2.png",
+            "images/Signal-Link/Level2_Progress_3.png",
+            "images/Signal-Link/Level2_Progress_4.png",
+            "images/Signal-Link/Level_2.png",
+
+            // "images/MeowareDefender/img5.png",
+
+            
+        ],
+
+        tags: [
+            "Level Design",
+            "Programming",
+            "UI / UX",
+            "3D Modeling",
+            "Sound Design"
+        ],
+
+        bullets: [
+            "2 Week long Game Jam",
+            "Created Scenary for 2 Worlds and The Main Menu Scene",
+            "Main Menu Scene integrates UI and the 3D world into 1 space",
+            "Created Multiple puzzles that are built into the world",
+            "Created multiple 3D assets and 2D UI tools to make the Interface come alive",
+       
+        ],
+
+        summary: "This was a 2 week long game jam where I worked with my team to create a game with the game theme being connections. My main part in the project was Level Design and Environment Art. I created both worlds and also created the entire menu scene on my own. I also helped program the puzzle mechanics for the game and created some of my own puzzles with them aswell.",
     }, 
 };
