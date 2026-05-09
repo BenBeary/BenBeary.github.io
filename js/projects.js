@@ -2,7 +2,7 @@ const projects = {
     cleanupCrew: {
         title: "TEAM PROJECT | Game: Clean Up Crew",
         playLink: "https://benbeary.itch.io/cleanup-crew",
-        
+       
         background: "images/CleanUpCrew/Blurred.jpg",
 
         date: "July 29, 2025",
@@ -40,20 +40,20 @@ const projects = {
         ],
 
         bullets: [
-            "Created the map layout",
-            "Created a first person modular gun system that could work with multiple gun types",
-            "Created all the UI including the leaderboard system",
-            "Created A spawner system that would spawn items on top of terrain geometry",
-            "Worked on Particle systems and animations for 3D Assets"
+            "Designed the map layout",
+            "Engineered a first-person modular gun system that worked with multiple gun types",
+            "Created the UI, to include the leaderboard system",
+            "Developed a spawner system that would spawn items on top of terrain geometry",
+            "Worked on particle systems and animations for 3D assets."
         ],
 
-        summary: "We took parts from different games like Risk of Rain 2 and the old school Doom games. We wanted to create a large world the player could move around through while keeping the game low poly to save performance due to it being a web-based game."
+        summary: "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move around through while keeping the game low-poly to save performance due to it being a web-based game."
     },
 
     dockingBay: {
         title: "TEAM PROJECT | Game: [Docking Bay]",
         playLink: "https://zorzini.itch.io/dockingbay",
-        
+       
         background: "images/DockingBay/Blurred.png",
 
         date: "October 17, 2025",
@@ -90,20 +90,20 @@ const projects = {
         ],
 
         bullets: [
-            "Created the room layout and Exterior scene",
+            "Created room layout and exterior scenes",
             "Created a sound system to efficiently play audio",
             "Made all 3D animations and particle effects",
-            "Created Menu Screen and pause menu UI",
-            "Created a Dialogue system that could match Voice Acting audio"
+            "Created the menu screen and pause menu UI",
+            "Created a dialogue system that could match voice acting audio"
         ],
 
-        summary: "We created a game similar to Paper's Please. We wanted there to be more interactivity by having the player swivel in a chair to each different station. We wanted to create an atmosphere that was eerie and made the player constantly second guess their actions."
+        summary: "We created a game similar to \“Papers, Please\”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We wanted to create an atmosphere that was eerie and made the player constantly second-guess their choices."
     },
-    
+   
     IdolOfAshes: {
         title: "TEAM PROJECT | Game: Idol of Ashes",
         playLink: "https://zorzini.itch.io/idol-of-ashes",
-        
+       
         background: "images/IdolofAshes/Blurred.png",
 
         date: "June 9, 2025",
@@ -136,19 +136,19 @@ const projects = {
         ],
 
         bullets: [
-            "Created All of the UI for the Game",
-            "Created a Quest system",
-            "Created a dialogue system from scratch",
+            "Created all of the UI for the game",
+            "Created a quest system",
+            "Developed an in-house dialogue system",
             "Created a toon shader with an outline",
         ],
 
-        summary: "I was mainly the back end for this project and worked heavily on the UI and other systems. Some of the main systems I created was a dialogue, quest, and manual system within a week long time span for the game jam."
+        summary: "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest, and manual system within a week-long time span for the Game Jam."
     },    
 
     SpiritOutbreak: {
         title: "Game: Spirit Outbreak",
         playLink: "https://benbeary.itch.io/spirit-outbreak",
-        
+       
         background: "images/SpiritOutbreak/Blurred.jpg",
 
         date: "April 19, 2025",
@@ -181,20 +181,20 @@ const projects = {
         ],
 
         bullets: [
-            "Created a Custom UI Line Renderer for a custom made graph",
-            "Created a custom A* pathfinder that worked for Isometric grids",
+            "Created a custom UI Line Renderer for a custom made graph",
+            "Created a custom A* pathfinder that worked for isometric grids",
             "Created multiple enemy types that would all behave differently",
-            "Created an Upgrade system that would add effects or change how a trap worked",
+            "Created an upgrade system that would add effects or change how traps worked",
             "Created a map system that could change the overall layout of the map as the game progressed"
         ],
 
-        summary: "I made this game within a year and created a map making system that allowed for the quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time."
+        summary: "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time."
     },
-        
+       
     diceClimber: {
         title: "Game: Dice Climbers: Shelf of Chaos",
         playLink: "https://benbeary.itch.io/dice-climber-shelf-of-chaos",
-        
+       
         background: "images/DiceClimber/Blurred.jpg",
 
         date: "May 20, 2025",
@@ -221,7 +221,7 @@ const projects = {
             "images/DiceClimber/img8.png",
             "images/DiceClimber/img9.png",
             "images/DiceClimber/img10.png",
-            
+           
         ],
 
         tags: [
@@ -232,20 +232,20 @@ const projects = {
         ],
 
         bullets: [
-            "Created Modular puzzle pieces for reuse",
+            "Created modular puzzle pieces for reuse",
             "Created a dialogue system from scratch",
-            "Created visual editor guides to help map creation",
+            "Created a visual editor guide to help with map creation",
             "Created multiple mechanics that the player learns over time",
             "Created a cutscene system",
         ],
 
-        summary: "This was my first attempt at creating a platformer. I created all the assets and code that runs in the game. I created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
-    }, 
-            
+        summary: "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
+    },
+           
     DeathTides: {
         title: "TEAM PROJECT | Game: Death Tides",
         playLink: "https://benbeary.itch.io/death-tides",
-        
+       
         background: "images/DeathTides/Blurred.png",
 
         date: "July 27, 2024",
@@ -264,7 +264,7 @@ const projects = {
             "images/DeathTides/img3.png",
             "images/DeathTides/img4.png",
             "images/DeathTides/img5.png",
-            
+           
         ],
 
         tags: [
@@ -278,17 +278,17 @@ const projects = {
             "Created all the pixel art in a module design for reuse",
             "AI uses a faction system allowing different ai to fight each other",
             "AI uses a field of view so you can sneak up behind them",
-            "Created a modular wave system for quick and easy to make objectives",
-            "Created a system of loading map in chunks for performance",
+            "Engineered a modular wave system for quick and easy to make objectives",
+            "Created a system for chunk map-loading optimizing performance",
         ],
 
-        summary: "This game was part of a week long game jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with some art assets and programming. My main role in this was creating the enemy AI and the world design which used a chunk loading system to increase overall performance.",
-    }, 
-                
+        summary: "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets and limited programming. My main role was creating enemy AI and world design which used a chunk loading system to increase overall performance.",
+    },
+               
     DodgeKarts: {
         title: "Game: Dodge Kart",
         playLink: "https://benbeary.itch.io/dodge-kart",
-        
+       
         background: "images/DodgeKarts/Blurred.png",
 
         date: "October 27, 2023",
@@ -307,7 +307,7 @@ const projects = {
             // "images/PortLochne/img4.jpg",
             // "images/PortLochne/img5.jpg",
 
-            
+           
         ],
 
         tags: [
@@ -319,16 +319,16 @@ const projects = {
 
         bullets: [
             "Created a shader to randomize car colors",
-            "Made a spawner that progressively made harder challenges over time",
+            "Developed a spawner that progressively created harder challenges over time",
         ],
 
-        summary: "This was a class partner assignment where I took on the artist roll. I used unity's shadergraph mechanic to change the car colors so I could save time and reduce the required amount of tilesheets.",
-    }, 
-                
+        summary: "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time and reduce the required amount of tilesheets.",
+    },
+               
     DevilsAcre: {
         title: "TEAM PROJECT | Game: Devil's Acre",
         playLink: "https://zorzini.itch.io/devils-acre",
-        
+       
         background: "images/DevilsAcre/Blurred.png",
 
         date: "April 22, 2022",
@@ -358,17 +358,17 @@ const projects = {
         bullets: [
             "Created environmental art for the game",    
             "Worked on the boss AI",        
-            "Created Pause Menu UI",        
-        
+            "Created pause menu UI",        
+       
         ],
 
-        summary: "This was a class group project in which I mainly focused on the enviroment art. I also pitched in on the code and created the final boss's AI and attack moves. The overall project time was around 2 months in total.",
-    }, 
-                
+        summary: "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves. The overall project time was around 2 months in total.",
+    },
+               
     PortLochne: {
         title: "Modded Map: Port Lochne",
         playLink: "",
-        
+       
         background: "images/PortLochne/Blurred.png",
 
         date: "April 22, 2022",
@@ -386,7 +386,7 @@ const projects = {
             "images/PortLochne/img4.jpg",
             "images/PortLochne/img5.jpg",
 
-            
+           
         ],
 
         tags: [
@@ -395,17 +395,17 @@ const projects = {
         ],
 
         bullets: [
-            "Created a map for a mod on Garry's Mod",
-            "Areas were created to make certain spots more popular and group people together",
+            "Created a publicly available map for the game Garry's Mod",
+            "Areas were created to take advantage of player characteristics and tendencies, driving them to certain spots to group people together",
         ],
 
-        summary: "This map was created in the hammer editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch. I did not make any of the textures or complex props.",
-    }, 
-    
+        summary: "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch.",
+    },
+   
     Meoware: {
         title: "TEAM PROJECT | Game: Meoware Defender",
         playLink: "https://withcyber.itch.io/meoware-defender",
-        
+       
         background: "images/MeowareDefender/Blurred.png",
 
         date: "September 2, 2025",
@@ -424,7 +424,7 @@ const projects = {
             "images/MeowareDefender/img4.png",
             // "images/MeowareDefender/img5.png",
 
-            
+           
         ],
 
         tags: [
@@ -434,10 +434,10 @@ const projects = {
         ],
 
         bullets: [
-            "State funded team project",
+            "San Jose State University funded team project",
             "Created a player customizer system",
-            "Created a system that allowed for Mobile compatibility",
-            "Made a save system that allowed the player to customize the living room",
+            "Created a system that allowed for mobile compatibility",
+            "Made a save system that allowed the player to customize the irliving room",
             "Made the password creator mini game",
        
         ],
@@ -448,7 +448,7 @@ const projects = {
     SignalLink: {
         title: "TEAM PROJECT | Game: Signal-Link",
         playLink: "https://benbeary.itch.io/signal-link",
-        
+       
         background: "images/Signal-Link/Blurred.jpg",
 
         date: "January 4, 2026",
@@ -483,7 +483,7 @@ const projects = {
 
             // "images/MeowareDefender/img5.png",
 
-            
+           
         ],
 
         tags: [
@@ -495,14 +495,16 @@ const projects = {
         ],
 
         bullets: [
-            "2 Week long Game Jam",
-            "Created Scenary for 2 Worlds and The Main Menu Scene",
+            "2-week-long Game Jam",
+            "Created scenery for 2 worlds and The Main Menu Scene",
             "Main Menu Scene integrates UI and the 3D world into 1 space",
-            "Created Multiple puzzles that are built into the world",
-            "Created multiple 3D assets and 2D UI tools to make the Interface come alive",
+            "Created multiple puzzles that are integrated in the world",
+            "Created multiple 3D assets and 2D UI tools to make the interface come alive",
        
         ],
 
-        summary: "This was a 2 week long game jam where I worked with my team to create a game with the game theme being connections. My main part in the project was Level Design and Environment Art. I created both worlds and also created the entire menu scene on my own. I also helped program the puzzle mechanics for the game and created some of my own puzzles with them aswell.",
-    }, 
+        summary: "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of \“connections\”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.",
+    },
 };
+
+
