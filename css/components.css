@@ -1,0 +1,94 @@
+/* components.css — reusable UI primitives shared across pages.
+   Reads only tokens.css variables. Loaded after base.css.
+
+   Present now (M1): buttons, chips/tags, cards, panels, section headings.
+   Added later: .shelf (M6 home), .lightbox (M4), block styles for post bodies
+   (M4, mirrored by js/site/blocks.js). Keep those additions in this file. */
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+}
+.btn:active { transform: translateY(1px) scale(0.99); }
+
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-strong); color: var(--on-accent); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+
+.btn-secondary { background: var(--secondary); color: var(--on-secondary); }
+.btn-secondary:hover { background: var(--secondary-hover); color: var(--on-secondary); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+
+.btn-ghost { background: var(--surface-1); color: var(--text); border-color: var(--border-strong); }
+.btn-ghost:hover { background: var(--surface-2); color: var(--accent); border-color: var(--accent); }
+
+/* --- Chips / tags (legacy .tag look: light fill, dark ink, uppercase) --- */
+.chip {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.chip-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+/* Accent-outline chip variant (for skill categories on cards, filters, etc.) */
+.chip-accent {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* --- Panel: a translucent section block (about/catalogue backdrops) --- */
+.panel {
+    background: var(--surface-0);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+/* --- Card: the base for project/blog cards and shelf tiles --- */
+.card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--border-strong);
+    background: var(--surface-2);
+}
+.card__media { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; background: #000; }
+.card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); }
+.card__title { font-size: 1.25rem; color: var(--accent); }
+.card__text { color: var(--text); opacity: 0.85; font-size: 0.98rem; }
+
+/* --- Section heading (centered accent title used atop page sections) --- */
+.section-title { text-align: center; color: var(--accent); margin-bottom: var(--space-6); }
+
+/* --- Social icon row (reused by footer and about page) --- */
+.social-row { display: flex; gap: var(--space-5); align-items: center; }
+.social-row a { display: block; transition: transform var(--ease), opacity var(--ease); }
+.social-row a:hover { transform: scale(1.15); opacity: 0.85; }
+.social-row img { object-fit: contain; }

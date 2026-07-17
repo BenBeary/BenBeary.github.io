@@ -1,0 +1,97 @@
+/* tokens.css — the single source of every design value for the redesigned site.
+   Everything else (base.css, components.css, pages.css) reads these variables and
+   sets no raw colors of its own. Values are the current dark + amber identity,
+   extracted from the legacy css/newWebStyle.css so the look carries over.
+
+   A future light theme is a one-file change: add a `:root[data-theme="light"]`
+   block below that re-declares the same names. Nothing else needs to change. */
+
+:root {
+    /* --- Background ramp (the legacy 190deg body gradient's stops) --- */
+    --bg-0: #0b0e19;   /* darkest, top of the gradient */
+    --bg-1: #131314;   /* deep neutral, bottom */
+    --bg-2: #353844;   /* lifted slate, middle */
+    --bg-gradient: linear-gradient(190deg, var(--bg-0), var(--bg-2), var(--bg-1));
+
+    /* --- Surfaces layered over the gradient --- */
+    --surface-0: rgba(0, 0, 0, 0.55);        /* section panels (about/catalogue bg) */
+    --surface-1: rgba(255, 255, 255, 0.05);  /* cards at rest */
+    --surface-2: rgba(255, 255, 255, 0.09);  /* card hover / raised */
+    --surface-solid: #191b27;                /* opaque menus, dropdowns, lightbox chrome */
+
+    /* --- Text --- */
+    --text: #dddddd;
+    --text-strong: #ffffff;
+    --text-muted: #9aa0b3;
+
+    /* --- Accent: the amber identity (rgb(255,187,0)) --- */
+    --accent: #ffbb00;
+    --accent-strong: #ffce4d;
+    --accent-dim: rgba(255, 187, 0, 0.15);
+    --on-accent: #1a1400;                    /* readable text on an amber fill */
+
+    /* --- Secondary action (blue, from the legacy resume/CV buttons) --- */
+    --secondary: #4e73df;
+    --secondary-hover: #678bf5;
+    --on-secondary: #ffffff;
+
+    /* --- Chips / tags (legacy .tag: light fill, dark ink) --- */
+    --chip-bg: #dddddd;
+    --chip-text: #2b2b36;
+
+    /* --- Lines --- */
+    --border: rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.22);
+
+    /* --- Feedback --- */
+    --danger: #e05252;
+    --success: #3ecf6e;
+
+    /* --- Typography --- */
+    /* System stack (no web font request — matches the legacy site and the
+       performance goal). Gill Sans on Apple, Segoe/Calibri fallbacks elsewhere. */
+    --font-sans: 'Gill Sans', 'Gill Sans MT', 'Segoe UI', Calibri, 'Trebuchet MS', system-ui, sans-serif;
+    --font-mono: 'Courier New', ui-monospace, monospace;
+
+    /* Fluid type scale (clamp: min, preferred, max) */
+    --fs-100: 0.85rem;
+    --fs-200: 1rem;
+    --fs-300: 1.125rem;
+    --fs-400: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);   /* lead body */
+    --fs-500: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);    /* h3 */
+    --fs-600: clamp(1.9rem, 1.4rem + 2vw, 2.8rem);      /* h2 */
+    --fs-700: clamp(2.4rem, 1.7rem + 3vw, 3.6rem);      /* h1 / hero */
+
+    --lh-tight: 1.2;
+    --lh-normal: 1.6;
+
+    /* --- Spacing scale --- */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4.5rem;
+
+    /* --- Radius --- */
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+
+    /* --- Shadows --- */
+    --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 12px 26px rgba(0, 0, 0, 0.42);
+    --shadow-pop: 0 12px 30px rgba(0, 0, 0, 0.5);
+
+    /* --- Layout --- */
+    --header-h: 64px;
+    --content-max: 1200px;
+    --content-pad: clamp(1rem, 4vw, 3rem);
+
+    /* --- Motion --- */
+    --ease: 0.2s ease;
+    --ease-slow: 0.35s ease;
+}

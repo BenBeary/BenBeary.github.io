@@ -1,0 +1,60 @@
+/* pages.css — per-page layout, scoped by body[data-page] or a page-root class.
+   Reads only tokens.css variables + component classes. Loaded last.
+
+   Started in M1 with the About page. Later milestones append the projects
+   catalogue, project hub, post, role, and home-shelf layouts here. */
+
+/* =========================================================================
+   ABOUT  (about.html, body[data-page="about"])
+   ========================================================================= */
+.about-page { display: flex; flex-direction: column; gap: var(--space-6); }
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+.about-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+.about-body p { font-size: var(--fs-400); }
+
+.about-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+}
+
+.about-portrait {
+    width: 100%;
+    max-width: 340px;
+    justify-self: end;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-pop);
+    object-fit: cover;
+}
+
+.about-socials {
+    justify-content: center;
+    padding: var(--space-5) 0 var(--space-2);
+}
+.about-socials img { width: 52px; height: 52px; }
+
+@media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-portrait { justify-self: center; max-width: 280px; order: -1; }
+    .about-header { flex-direction: column; align-items: flex-start; }
+    .about-page { text-align: center; }
+    .about-header, .about-actions, .about-contact { justify-content: center; align-items: center; }
+    .about-body { text-align: left; }
+}

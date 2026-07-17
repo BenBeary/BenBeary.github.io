@@ -35,13 +35,17 @@
 - [x] `docs/reference-cadre/` — the reusable CADRE editor source (auth.js, github-api.js,
       post-gen-richtext.js) copied in so future sessions don't need the original chat transcript
 
-### M1 — Foundation: tokens + partials + about page
-- [ ] `css/tokens.css` — all custom properties; dark+amber identity extracted from `css/newWebStyle.css`
-- [ ] `css/base.css` — reset, typography, header/footer
-- [ ] `css/components.css` — cards, shelves, chips, buttons, lightbox, block styles
-- [ ] `js/site/partials.js` — injected header/footer, `{{root}}` via `body[data-root]`
-- [ ] `about.html` — proving page; port bio/resume/social from old index
-- [ ] Verify: about.html renders with injected header/footer on local server
+### M1 — Foundation: tokens + partials + about page  ✅ complete (commit after this)
+- [x] `css/tokens.css` — all custom properties; dark+amber identity extracted from `css/newWebStyle.css`
+- [x] `css/base.css` — reset, typography, header/footer chrome
+- [x] `css/components.css` — buttons, chips, cards, panels, social row (shelves/lightbox/block
+      styles deferred to their milestones — M6/M4 — but they belong in this file)
+- [x] `css/pages.css` — started here with the About-page layout (M4 appends the other pages)
+- [x] `js/site/partials.js` — injected header/footer, `{{root}}` via `body[data-root]`, mobile
+      toggle, active-nav marking, progressively-enhanced Projects dropdown (plain link until M3)
+- [x] `about.html` — proving page; bio/resume/CV/contact/socials ported from old index
+- [x] Verify: headless Edge render confirms header+footer injected, slots consumed, About nav
+      marked active, Projects dropdown degrades gracefully (projects.json fetch fails silently)
 
 ### M2 — Media pipeline
 - [ ] Install Node.js LTS (NOT yet installed on this machine as of M0):
@@ -97,3 +101,6 @@
 - M0: Initial plan committed. Content model, schemas, module APIs frozen in ARCHITECTURE.md.
 - M0 audit: corrected environment docs — this machine has no Python and no Node; local server is
   VS Code Live Server; Node LTS install added as the first M2 checkbox.
+- M1: `css/pages.css` was created in M1 (holds the About-page layout); M4 extends it rather than
+  creating it. Headless Edge (`msedge --headless=new --dump-dom` over a `file://` URL) is a usable
+  render-verification path on this machine when the page's JS doesn't depend on `fetch` succeeding.

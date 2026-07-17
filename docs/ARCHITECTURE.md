@@ -259,4 +259,10 @@ Editor CSS is independent of the site (`Editor/editor.css`, can start from CADRE
   extension (installed: `ritwickdey.liveserver`); it injects a dev-only reload script into served
   HTML. Node LTS must be installed at the start of M2 (`winget install OpenJS.NodeJS.LTS`) for the
   `tools/` scripts; after that `npx serve` is an alternative server.
-- Shell is Windows PowerShell 5.1 — see the environment's PowerShell rules (no `&&`, etc.).
+- Shell is Windows PowerShell 5.1 — see the environment's PowerShell rules (no `&&`, no inline
+  `if()` expressions, backtick is the escape char so count literal backticks via `[char]96`).
+- Headless render check (no Node/Python needed): Edge at
+  `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` supports
+  `--headless=new --disable-gpu --virtual-time-budget=2500 --dump-dom <file:// URL>`, which runs the
+  page's JS and prints the resulting DOM. Valid whenever the page doesn't require `fetch` to succeed
+  (partials injection qualifies; data-driven pages from M4 need a real server — use Live Server).

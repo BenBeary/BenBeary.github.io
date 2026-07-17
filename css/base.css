@@ -1,0 +1,198 @@
+/* base.css — reset, global typography, and the universal header/footer chrome
+   injected by js/site/partials.js. Reads only tokens.css variables.
+   Loaded after tokens.css, before components.css and pages.css. */
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;              /* header · main (flex-grows) · footer */
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--fs-300);
+    line-height: var(--lh-normal);
+    -webkit-font-smoothing: antialiased;
+}
+
+main { flex: 1 0 auto; }
+
+img, video { max-width: 100%; display: block; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-strong); }
+
+/* --- Headings --- */
+h1, h2, h3, h4 { line-height: var(--lh-tight); color: var(--text-strong); font-weight: 800; }
+h1 { font-size: var(--fs-700); }
+h2 { font-size: var(--fs-600); }
+h3 { font-size: var(--fs-500); }
+h4 { font-size: var(--fs-400); }
+p { margin: 0 0 var(--space-4); }
+strong { color: var(--accent); }
+hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
+
+/* Accessible skip target + focus visibility */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Shared page content column */
+.page {
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--space-7) var(--content-pad);
+}
+
+/* =========================================================================
+   SITE HEADER  (markup injected by partials.js into #site-header)
+   ========================================================================= */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background: var(--surface-0);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+.site-header__inner {
+    max-width: var(--content-max);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--content-pad);
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+/* Brand (name + role tagline) */
+.site-brand { display: flex; align-items: baseline; gap: var(--space-3); color: var(--text-strong); }
+.site-brand:hover { color: var(--text-strong); }
+.site-brand__name { font-size: 1.4rem; font-weight: 800; letter-spacing: 0.5px; }
+.site-brand__role { font-size: 0.85rem; color: var(--accent); font-weight: 600; white-space: nowrap; }
+
+/* Nav */
+.site-nav { margin-left: auto; display: flex; align-items: center; gap: var(--space-5); }
+.site-nav a { color: var(--text); font-weight: 600; font-size: 1.05rem; transition: color var(--ease); }
+.site-nav a:hover { color: var(--accent); }
+.site-nav .is-active > a,
+.site-nav a.is-active { color: var(--accent); }
+
+/* Projects dropdown (progressively enhanced by partials.js when projects.json
+   exists; until then the trigger is just a plain link to projects.html). */
+.nav-projects { position: relative; }
+.nav-projects__menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 210px;
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-pop);
+    padding: var(--space-2);
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+}
+.nav-projects:hover .nav-projects__menu,
+.nav-projects:focus-within .nav-projects__menu { display: flex; }
+.nav-projects__group {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: var(--space-3) var(--space-3) var(--space-1);
+}
+.nav-projects__menu a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+}
+.nav-projects__menu a:hover { background: var(--surface-2); color: var(--accent); }
+
+/* Hamburger — hidden on desktop */
+.nav-toggle {
+    display: none;
+    margin-left: auto;
+    background: none;
+    border: 0;
+    color: var(--text-strong);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* =========================================================================
+   SITE FOOTER  (markup injected by partials.js into #site-footer)
+   ========================================================================= */
+.site-footer {
+    flex-shrink: 0;
+    background: var(--surface-0);
+    border-top: 1px solid var(--border);
+    padding: var(--space-6) var(--content-pad);
+}
+.site-footer__inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+.site-footer__brand { font-weight: 800; font-size: 1.2rem; color: var(--text-strong); }
+.site-footer__socials { display: flex; gap: var(--space-4); align-items: center; }
+.site-footer__socials a { width: 34px; height: 34px; display: block; transition: transform var(--ease), opacity var(--ease); }
+.site-footer__socials a:hover { transform: scale(1.15); opacity: 0.85; }
+.site-footer__socials img { width: 100%; height: 100%; object-fit: contain; }
+.site-footer__copy { color: var(--text-muted); font-size: 0.9rem; }
+
+/* =========================================================================
+   MOBILE NAV
+   ========================================================================= */
+@media (max-width: 760px) {
+    .site-brand__role { display: none; }
+    .nav-toggle { display: block; }
+    .site-nav {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--surface-solid);
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3);
+        transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--ease), transform var(--ease);
+    }
+    .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .site-nav > a,
+    .nav-projects > a {
+        display: block;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-sm);
+    }
+    .site-nav > a:hover,
+    .nav-projects > a:hover { background: var(--surface-2); }
+    /* On mobile the dropdown just expands inline under the trigger. */
+    .nav-projects__menu {
+        position: static;
+        display: flex;
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+        padding-left: var(--space-4);
+    }
+}
