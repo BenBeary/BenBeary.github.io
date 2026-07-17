@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-only media optimization + content migration scripts for the portfolio redesign. NOT part of the deployed static site; never referenced by any page.",
+  "scripts": {
+    "optimize": "node optimize-media.mjs",
+    "migrate": "node migrate-projects.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "sharp": "^0.34.2"
+  }
+}

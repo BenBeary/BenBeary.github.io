@@ -47,13 +47,17 @@
 - [x] Verify: headless Edge render confirms header+footer injected, slots consumed, About nav
       marked active, Projects dropdown degrades gracefully (projects.json fetch fails silently)
 
-### M2 — Media pipeline
-- [ ] Install Node.js LTS (NOT yet installed on this machine as of M0):
-      `winget install OpenJS.NodeJS.LTS`, then restart the shell so `node`/`npm` resolve
-- [ ] `tools/package.json` (sharp, ffmpeg-static)
-- [ ] `tools/optimize-media.mjs` — idempotent; thumb/md webp + video poster + opt.mp4 (see ARCHITECTURE)
-- [ ] Run it; commit `media/`
-- [ ] Verify: summary table prints; thumb ~30 KB, poster + one .opt.mp4 exist; ~15–25 MB added
+### M2 — Media pipeline  ✅ complete
+- [x] Installed Node.js LTS (v24.18.0, npm 11.16) via winget. NOTE: not on PATH — invoke as
+      `C:\Program Files\nodejs\node.exe` or prepend `$env:Path = "C:\Program Files\nodejs;" + $env:Path`
+- [x] `tools/package.json` (sharp 0.34.5, ffmpeg-static 5.3 → ffmpeg 6.1.1) + `tools/.gitignore`
+      (node_modules, package-lock). npm 11 warns install scripts are gated but sharp/ffmpeg binaries
+      installed fine; verify with the sharp import + `ffmpeg -version` checks if re-installing.
+- [x] `tools/optimize-media.mjs` — idempotent (skip when output newer than source); collision guard;
+      thumb(480/q70) + md(1280/q78) webp, poster.webp @1s, opt.mp4 for sources > 20 MB
+- [x] Ran it; committing `media/` (249 derivatives, 16.8 MB)
+- [x] Verify: 120 thumb + 120 md + 6 poster + 3 opt, 0 errors; 13.3 MB PNG → 19 KB thumb;
+      54 MB mp4 → 4.9 MB opt; re-run skipped all 249 (idempotent)
 
 ### M3 — Migration
 - [ ] `tools/migrate-projects.mjs` — parse `js/projects.js`, emit `content/projects.json` +
