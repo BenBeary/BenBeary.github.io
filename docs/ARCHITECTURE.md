@@ -255,4 +255,8 @@ Editor CSS is independent of the site (`Editor/editor.css`, can start from CADRE
 - `git` is NOT on PATH. Use the GitHub Desktop bundled copy, e.g.
   `C:\Users\Ben\AppData\Local\GitHubDesktop\app-<latest>\resources\app\git\cmd\git.exe`
   (pick the newest `app-*` folder).
+- **No Python and (as of M0) no Node.js on this machine.** Local server = VS Code Live Server
+  extension (installed: `ritwickdey.liveserver`); it injects a dev-only reload script into served
+  HTML. Node LTS must be installed at the start of M2 (`winget install OpenJS.NodeJS.LTS`) for the
+  `tools/` scripts; after that `npx serve` is an alternative server.
 - Shell is Windows PowerShell 5.1 — see the environment's PowerShell rules (no `&&`, etc.).

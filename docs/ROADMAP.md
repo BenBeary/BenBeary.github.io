@@ -8,8 +8,11 @@
 
 1. Read this file + `docs/ARCHITECTURE.md` (the contracts — schemas, module APIs, rules).
 2. `git log --oneline -10` to see where things stand (commits are prefixed `Redesign M<N>:`).
-3. Start a local server (`python -m http.server`) and click through the pages built so far.
-   `fetch` of JSON fails on `file://`, so a local server is mandatory for testing.
+3. Start a local server and click through the pages built so far. `fetch` of JSON fails on
+   `file://`, so a local server is mandatory. **This machine has no Python and (as of M0) no
+   Node** — use VS Code's Live Server extension (installed: `ritwickdey.liveserver` — right-click
+   an HTML file → "Open with Live Server"). Note it injects a small reload script into served
+   HTML (dev-only, harmless). Once Node is installed (M2), `npx serve` also works.
 4. Continue at the **first unchecked box**. Finish a milestone → verify → commit → tick the box.
 
 ## Ground rules (full list in ARCHITECTURE.md)
@@ -41,6 +44,8 @@
 - [ ] Verify: about.html renders with injected header/footer on local server
 
 ### M2 — Media pipeline
+- [ ] Install Node.js LTS (NOT yet installed on this machine as of M0):
+      `winget install OpenJS.NodeJS.LTS`, then restart the shell so `node`/`npm` resolve
 - [ ] `tools/package.json` (sharp, ffmpeg-static)
 - [ ] `tools/optimize-media.mjs` — idempotent; thumb/md webp + video poster + opt.mp4 (see ARCHITECTURE)
 - [ ] Run it; commit `media/`
@@ -90,3 +95,5 @@
 ## Changelog (schema/API/decision changes — append, newest last)
 
 - M0: Initial plan committed. Content model, schemas, module APIs frozen in ARCHITECTURE.md.
+- M0 audit: corrected environment docs — this machine has no Python and no Node; local server is
+  VS Code Live Server; Node LTS install added as the first M2 checkbox.
