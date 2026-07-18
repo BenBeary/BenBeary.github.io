@@ -110,6 +110,94 @@
         else if (navigator.clipboard) { navigator.clipboard.writeText(path).then(function () { toastMsg('Copied path: ' + path); }).catch(function () {}); }
     }
 
+    // --- write actions (CADRE-style: upload into folder, new folder) ---------
+    function requireAuth() {
+        if (typeof isAuthenticated === 'function' && isAuthenticated()) return true;
+        if (typeof openAuthModal === 'function') openAuthModal();
+        return false;
+    }
+
+    async function uploadFiles(folderPath, files) {
+        if (!requireAuth() || !window.EditorUpload) return;
+        var ok = 0;
+        for (var i = 0; i < files.length; i++) {
+            try {
+                await window.EditorUpload.uploadImage(folderPath, files[i]);
+                ok++;
+            } catch (err) {
+                if (err && err.message !== 'cancelled') alert('Upload failed for ' + files[i].name + ': ' + (err.message || err));
+            }
+        }
+        if (ok) {
+            toastMsg('Uploaded ' + ok + ' file(s) to ' + folderPath);
+            expanded.add(folderPath);
+            loaded = false; load();
+        }
+    }
+
+    function uploadInto(folderPath) {
+        if (!requireAuth()) return;
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.multiple = true;
+        input.accept = 'image/png,image/jpeg,image/gif,image/webp';
+        input.addEventListener('change', function () { if (input.files.length) uploadFiles(folderPath, Array.from(input.files)); });
+        input.click();
+    }
+
+    async function newFolder(parentPath) {
+        if (!requireAuth()) return;
+        var name = prompt('Folder name:');
+        if (!name) return;
+        var slug = name.trim().replace(/[^a-zA-Z0-9 _-]+/g, '-').replace(/^-+|-+$/g, '');
+        if (!slug) { alert('Invalid folder name.'); return; }
+        var path = parentPath + '/' + slug + '/.gitkeep';
+        try {
+            await ghFetch('PUT', '/contents/' + encodeURI(path), { message: 'Editor: new folder ' + parentPath + '/' + slug, content: '', branch: 'main' });
+            toastMsg('Created ' + parentPath + '/' + slug);
+            expanded.add(parentPath); expanded.add(parentPath + '/' + slug);
+            loaded = false; load();
+        } catch (err) { alert('Could not create folder: ' + (err.message || err)); }
+    }
+
+    // --- context menu (right-click folders/images, CADRE pattern) ------------
+    var menuEl = null;
+    function hideMenu() { if (menuEl) { menuEl.remove(); menuEl = null; } }
+    function showMenu(e, node) {
+        e.preventDefault();
+        hideMenu();
+        var items = node.type === 'image'
+            ? [{ label: 'Copy path', fn: function () { if (navigator.clipboard) navigator.clipboard.writeText(node.path).then(function () { toastMsg('Copied path'); }).catch(function () {}); } }]
+            : [{ label: '⬆ Add images…', fn: function () { uploadInto(node.path); } },
+               { label: '📁 New folder…', fn: function () { newFolder(node.path); } }];
+        menuEl = document.createElement('div');
+        menuEl.className = 'imgb-menu';
+        items.forEach(function (it) {
+            var d = document.createElement('div');
+            d.className = 'imgb-menu__item';
+            d.textContent = it.label;
+            d.addEventListener('click', function () { hideMenu(); it.fn(); });
+            menuEl.appendChild(d);
+        });
+        menuEl.style.left = e.clientX + 'px';
+        menuEl.style.top = e.clientY + 'px';
+        document.body.appendChild(menuEl);
+        var r = menuEl.getBoundingClientRect();
+        if (r.right > window.innerWidth) menuEl.style.left = (window.innerWidth - r.width - 4) + 'px';
+        if (r.bottom > window.innerHeight) menuEl.style.top = (window.innerHeight - r.height - 4) + 'px';
+    }
+
+    function findNode(node, path) {
+        if (!node) return null;
+        if (node.path === path) return node;
+        if (node.type !== 'folder') return null;
+        for (var i = 0; i < node.children.length; i++) {
+            var f = findNode(node.children[i], path);
+            if (f) return f;
+        }
+        return null;
+    }
+
     // --- modal ---
     function showModal() { var o = byId('imgbrowse-overlay'); if (o) { o.style.display = 'flex'; o.classList.toggle('imgb-pick', pickMode); } }
     function hideModal() { var o = byId('imgbrowse-overlay'); if (o) o.style.display = 'none'; }
@@ -118,7 +206,8 @@
         pickMode = !!(opts && opts.pick);
         onPick = opts && opts.onPick;
         var hint = byId('imgbrowse-hint');
-        if (hint) hint.textContent = pickMode ? 'Click an image to use it in this field.' : 'Click an image to copy its path.';
+        if (hint) hint.textContent = (pickMode ? 'Click an image to use it in this field. ' : 'Click an image to copy its path. ') +
+            'Right-click a folder to add images / create a folder, or drag files onto it.';
         showModal();
         if (!loaded) load(); else renderTree();
     }
@@ -126,16 +215,49 @@
 
     function init() {
         var body = byId('imgbrowse-body');
-        if (body) body.addEventListener('click', function (e) {
-            var imgRow = e.target.closest('.imgb-image');
-            if (imgRow) { choose(imgRow.dataset.path); return; }
-            var folder = e.target.closest('.imgb-folder');
-            if (folder) toggle(folder.dataset.path);
-        });
+        if (body) {
+            body.addEventListener('click', function (e) {
+                var imgRow = e.target.closest('.imgb-image');
+                if (imgRow) { choose(imgRow.dataset.path); return; }
+                var folder = e.target.closest('.imgb-folder');
+                if (folder) toggle(folder.dataset.path);
+            });
+            body.addEventListener('contextmenu', function (e) {
+                var row = e.target.closest('.imgb-row');
+                if (!row || !row.dataset.path || !tree) return;
+                var node = findNode(tree, row.dataset.path);
+                if (node) showMenu(e, node);
+            });
+            // OS-file drag onto a folder row uploads there (CADRE behavior).
+            body.addEventListener('dragover', function (e) {
+                var row = e.target.closest('.imgb-folder');
+                if (!row || !e.dataTransfer.types || Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') < 0) return;
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'copy';
+                row.classList.add('imgb-drop-hover');
+            });
+            body.addEventListener('dragleave', function (e) {
+                var row = e.target.closest('.imgb-folder');
+                if (row) row.classList.remove('imgb-drop-hover');
+            });
+            body.addEventListener('drop', function (e) {
+                var row = e.target.closest('.imgb-folder');
+                if (!row || !e.dataTransfer.files || !e.dataTransfer.files.length) return;
+                e.preventDefault();
+                row.classList.remove('imgb-drop-hover');
+                uploadFiles(row.dataset.path, Array.from(e.dataTransfer.files));
+            });
+        }
         var closeBtn = byId('imgbrowse-close'); if (closeBtn) closeBtn.addEventListener('click', close);
         var reload = byId('imgbrowse-reload'); if (reload) reload.addEventListener('click', function () { loaded = false; load(); });
         var overlay = byId('imgbrowse-overlay'); if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var o = byId('imgbrowse-overlay'); if (o && o.style.display === 'flex') close(); } });
+        document.addEventListener('click', function (e) { if (menuEl && !menuEl.contains(e.target)) hideMenu(); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            hideMenu();
+            var o = byId('imgbrowse-overlay');
+            if (o && o.style.display === 'flex') close();
+        });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

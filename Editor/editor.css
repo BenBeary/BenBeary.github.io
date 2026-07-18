@@ -289,6 +289,16 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .imgb-icon { flex-shrink: 0; }
 .imgb-thumb { width: 26px; height: 26px; object-fit: cover; border-radius: 3px; background: var(--surface-1); flex-shrink: 0; }
 .imgb-name { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.imgb-folder.imgb-drop-hover { background: var(--accent); color: var(--on-accent); }
+
+/* Right-click context menu (folders: add images / new folder) */
+.imgb-menu {
+    position: fixed; z-index: 700; min-width: 170px;
+    background: var(--surface-solid); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); box-shadow: var(--shadow-pop); padding: 4px 0;
+}
+.imgb-menu__item { padding: 7px 14px; font-size: 0.9rem; color: var(--text); cursor: pointer; white-space: nowrap; }
+.imgb-menu__item:hover { background: var(--accent); color: var(--on-accent); }
 
 /* Toast */
 .ed-toast {

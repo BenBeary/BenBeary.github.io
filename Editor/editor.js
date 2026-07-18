@@ -52,7 +52,7 @@
             '<div class="ed-field"><label>Date</label><input class="ed-input" type="date" id="m-date" value="' + esc(state.date) + '"></div>' +
             '<div class="ed-field ed-field--wide"><label>Title</label><input class="ed-input" id="m-title" value="' + esc(state.title) + '" placeholder="Post title"></div>' +
             '<div class="ed-field"><label>Slug (URL)</label><input class="ed-input mono" id="m-slug" value="' + esc(state.slug) + '" placeholder="post-slug"></div>' +
-            '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-browse title="Browse repo images">🔍</button><button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button></div></div>' +
+            '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-browse title="Pick from the image folders (right-click inside to upload)">📁</button></div></div>' +
             '<div class="ed-field ed-field--wide"><label>Excerpt</label><textarea class="ed-input" id="m-excerpt" rows="2" placeholder="Short summary for listings">' + esc(state.excerpt) + '</textarea></div>' +
             '</div>';
     }

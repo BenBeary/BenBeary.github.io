@@ -37,7 +37,7 @@
             return '<div class="ed-gallery-row">' +
                 '<div class="ed-src-row">' +
                 '<input class="ed-input" data-gf="src" data-i="' + i + '" value="' + esc(it.src) + '" placeholder="' + accept + '">' +
-                browseBtn() + uploadBtn() +
+                browseBtn() +
                 '</div>' +
                 '<input class="ed-input" data-gf="alt" data-i="' + i + '" value="' + esc(it.alt) + '" placeholder="Alt text">' +
                 '<button type="button" class="btn btn-ghost btn-sm" data-gallery-remove="' + i + '" title="Remove">✕</button>' +
@@ -56,10 +56,10 @@
         b.items = items.filter(Boolean);
     }
 
-    function uploadBtn() { return '<button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button>'; }
-    function browseBtn() { return '<button type="button" class="ed-upload-btn" data-browse title="Browse repo images">🔍</button>'; }
-    // A path input paired with inline browse (pick existing) + upload (new) buttons.
-    function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + browseBtn() + uploadBtn() + '</div>'; }
+    // One 📁 button per image field — opens the Blog Images browser in pick
+    // mode (which also handles uploads/new folders via right-click, CADRE-style).
+    function browseBtn() { return '<button type="button" class="ed-upload-btn" data-browse title="Pick from the image folders (right-click inside to upload)">📁</button>'; }
+    function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + browseBtn() + '</div>'; }
 
     var REG = {
         heading: {
