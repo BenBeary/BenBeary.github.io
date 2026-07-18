@@ -101,6 +101,7 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
                    { "slug": "misc", "label": "Miscellaneous" } ],
   "projects": [{
     "slug": "clean-up-crew", "title": "Clean Up Crew", "kicker": "Team Project",
+    "status": "Actively Developing",   // OPTIONAL free-text tag shown top-right of the hub hero; "" or absent = none
     "date": "2025-07-29", "playLink": "…", "summary": "…", "tags": ["…"],
     "categories": ["programming", "ui-ux"],
     "collection": "main",

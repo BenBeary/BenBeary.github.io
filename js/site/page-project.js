@@ -55,6 +55,14 @@
         bg.alt = '';
         hero.appendChild(bg);
 
+        // Optional status tag, top-right of the hero (e.g. "Actively Developing").
+        if (project.status) {
+            var status = document.createElement('div');
+            status.className = 'hub-status';
+            status.textContent = project.status;
+            hero.appendChild(status);
+        }
+
         var overlay = document.createElement('div');
         overlay.className = 'hub-hero__inner';
         var html = '';
@@ -114,12 +122,6 @@
             more.textContent = 'Load more posts';
             more.addEventListener('click', function () { shownBlogs += BLOG_PAGE; render(); });
             section.appendChild(more);
-        }
-        if (!blogs.length) {
-            var note = document.createElement('p');
-            note.className = 'loading-note';
-            note.textContent = 'More devlog posts coming soon.';
-            section.appendChild(note);
         }
         hub.appendChild(section);
     }

@@ -44,12 +44,6 @@
     object-fit: cover;
 }
 
-.about-socials {
-    justify-content: center;
-    padding: var(--space-5) 0 var(--space-2);
-}
-.about-socials img { width: 52px; height: 52px; }
-
 @media (max-width: 760px) {
     .about-grid { grid-template-columns: 1fr; }
     .about-portrait { justify-self: center; max-width: 280px; order: -1; }
@@ -123,6 +117,22 @@
 .hub-hero__bg {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; z-index: 0;
+}
+/* Status tag pinned to the top-right of the hero card (e.g. "Actively Developing"). */
+.hub-status {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    z-index: 2;
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: var(--radius-pill);
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-card);
 }
 .hub-hero__inner {
     position: relative; z-index: 1; width: 100%;

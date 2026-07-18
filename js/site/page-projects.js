@@ -97,7 +97,7 @@
         // Skill category row
         var catRow = document.createElement('div');
         catRow.className = 'filter-row';
-        catRow.appendChild(chip('All Skills', !st.cat, function () { go({ cat: '', collection: st.collection }); }));
+        catRow.appendChild(chip('Most Recent', !st.cat, function () { go({ cat: '', collection: st.collection }); }));
         (data.categories || []).forEach(function (c) {
             catRow.appendChild(chip(c.label, st.cat === c.slug, function () { go({ cat: c.slug, collection: st.collection }); }));
         });

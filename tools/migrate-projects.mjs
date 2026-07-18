@@ -166,7 +166,7 @@ for (const key of keys) {
     outPosts.push({ slug, json: post });
 
     outProjects.push({
-        slug, title, kicker, date: iso, playLink: p.playLink || '', summary: p.summary,
+        slug, title, kicker, status: '', date: iso, playLink: p.playLink || '', summary: p.summary,
         tags: (p.tags || []).slice(), categories, collection: 'main', order,
         cover, background,
         posts: [{ slug: 'showcase', type: 'showcase', title: postTitle, date: iso, excerpt: post.excerpt, cover: hero }],
