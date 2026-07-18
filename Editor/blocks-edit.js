@@ -14,8 +14,9 @@
     function field(label, inner) { return '<div class="ed-field"><label>' + label + '</label>' + inner + '</div>'; }
     function textInput(f, v, ph) { return '<input class="ed-input" data-f="' + f + '" value="' + esc(v) + '" placeholder="' + esc(ph || '') + '">'; }
     function uploadBtn() { return '<button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button>'; }
-    // A path input paired with an inline upload button (upload.js fills the input).
-    function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + uploadBtn() + '</div>'; }
+    function browseBtn() { return '<button type="button" class="ed-upload-btn" data-browse title="Browse repo images">🔍</button>'; }
+    // A path input paired with inline browse (pick existing) + upload (new) buttons.
+    function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + browseBtn() + uploadBtn() + '</div>'; }
 
     var REG = {
         heading: {
@@ -77,8 +78,8 @@
                 var rows = (b.items || []).map(function (it, i) {
                     return '<div class="ed-gallery-row">' +
                         '<div class="ed-src-row">' +
-                        '<input class="ed-input" data-gf="src" data-i="' + i + '" value="' + esc(it.src) + '" placeholder="images/Project/file.png">' +
-                        uploadBtn() +
+                        '<input class="ed-input" data-gf="src" data-i="' + i + '" value="' + esc(it.src) + '" placeholder="images/Blog Images/Project/file.png">' +
+                        browseBtn() + uploadBtn() +
                         '</div>' +
                         '<input class="ed-input" data-gf="alt" data-i="' + i + '" value="' + esc(it.alt) + '" placeholder="Alt text">' +
                         '<button type="button" class="btn btn-ghost btn-sm" data-gallery-remove="' + i + '" title="Remove">✕</button>' +

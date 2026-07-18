@@ -159,6 +159,13 @@ Broken into sub-milestones — each a committable, verifiable unit.
 - Post-M2 (user request): derivatives moved from a top-level `media/` folder into `images/_derived/`
   so everything stays in one `images/` folder. `media.js` transform (M4, not yet written) inserts
   `_derived/` after `images/`. Pipeline OUT_ROOT + SKIP_DIRS updated; ARCHITECTURE contract updated.
+- M5 feedback pass (user): editor redesigned — centered block form + right tool rail, live preview
+  replaced by an on-demand Preview modal (shared renderer). Project images consolidated under
+  `images/Blog Images/<Project>/` (site chrome stays at images/ root); all content paths rewritten
+  (tools/rewrite-blog-images.mjs), derivatives regenerated. New `Editor/image-browser.js` — a
+  GitHub-Trees-API image window scoped to `images/Blog Images/`, opened from the tool rail (copy
+  path) or per-field 🔍 (pick into field). Sign-in key emoji → lock. **The browser reads GitHub
+  `main`, so it reflects only what's been pushed — the redesign is still unpushed (local commits).**
 - M3: legacy data has **11** projects, not 12. Slugs are an explicit hand-map (see SLUGS in
   migrate-projects.mjs) — `dice-climber`, `dodge-kart`, `meoware-defender`, `idol-of-ashes`, etc.
   Migrated alt text is placeholder ("<title> key art" / "screenshot N") — refine in the editor.

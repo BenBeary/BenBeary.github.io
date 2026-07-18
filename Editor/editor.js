@@ -44,7 +44,7 @@
             '<div class="ed-field"><label>Date</label><input class="ed-input" type="date" id="m-date" value="' + esc(state.date) + '"></div>' +
             '<div class="ed-field ed-field--wide"><label>Title</label><input class="ed-input" id="m-title" value="' + esc(state.title) + '" placeholder="Post title"></div>' +
             '<div class="ed-field"><label>Slug (URL)</label><input class="ed-input mono" id="m-slug" value="' + esc(state.slug) + '" placeholder="post-slug"></div>' +
-            '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Project/cover.png"><button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button></div></div>' +
+            '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-browse title="Browse repo images">🔍</button><button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button></div></div>' +
             '<div class="ed-field ed-field--wide"><label>Excerpt</label><textarea class="ed-input" id="m-excerpt" rows="2" placeholder="Short summary for listings">' + esc(state.excerpt) + '</textarea></div>' +
             '</div>';
     }
@@ -210,7 +210,10 @@
             scheduleUpdate();
         });
         els.meta.addEventListener('change', scheduleUpdate);
-        els.meta.addEventListener('click', function (e) { var up = e.target.closest('[data-upload]'); if (up) uploadFromButton(up); });
+        els.meta.addEventListener('click', function (e) {
+            var up = e.target.closest('[data-upload]'); if (up) { uploadFromButton(up); return; }
+            var br = e.target.closest('[data-browse]'); if (br) browseFromButton(br);
+        });
 
         // Block list: input + change → preview.
         els.blocks.addEventListener('input', scheduleUpdate);
@@ -243,6 +246,8 @@
             var t = e.target;
             var up = t.closest('[data-upload]');
             if (up) { uploadFromButton(up); return; }
+            var br = t.closest('[data-browse]');
+            if (br) { browseFromButton(br); return; }
             var rt = t.closest('.rt-btn');
             if (rt) { handleRichText(rt); return; }
 
@@ -276,6 +281,7 @@
         els.byId('ed-save-draft').addEventListener('click', function () { flush(); saveDraftLocal(true); });
         els.byId('ed-publish').addEventListener('click', publish);
         els.byId('ed-tool-preview').addEventListener('click', openPreview);
+        els.byId('ed-tool-images').addEventListener('click', function () { if (window.ImageBrowser) window.ImageBrowser.open({ pick: false }); });
         els.byId('ed-preview-close').addEventListener('click', closePreview);
         els.previewOverlay.addEventListener('click', function (e) { if (e.target === els.previewOverlay) closePreview(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && els.previewOverlay.style.display === 'flex') closePreview(); });
@@ -287,16 +293,30 @@
         var c = m.cover || m.background || ('images/' + state.project + '/_');
         return c.replace(/\/[^/]+$/, '') || ('images/' + state.project);
     }
-    function uploadFromButton(btn) {
-        if (!window.EditorUpload) { alert('Upload is unavailable.'); return; }
+    function inputForButton(btn) {
         var input = btn.previousElementSibling;
         while (input && input.tagName !== 'INPUT') input = input.previousElementSibling;
+        return input;
+    }
+    function uploadFromButton(btn) {
+        if (!window.EditorUpload) { alert('Upload is unavailable.'); return; }
+        var input = inputForButton(btn);
         if (!input) return;
         window.EditorUpload.pickAndUpload(folderFromMeta(), function (path) {
             input.value = path;
             input.dispatchEvent(new Event('input', { bubbles: true }));
             toast('Uploaded ' + path);
         });
+    }
+    function browseFromButton(btn) {
+        if (!window.ImageBrowser) { alert('Image browser is unavailable.'); return; }
+        var input = inputForButton(btn);
+        if (!input) return;
+        window.ImageBrowser.open({ pick: true, onPick: function (path) {
+            input.value = path;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            toast('Selected ' + path);
+        } });
     }
 
     function handleRichText(btn) {

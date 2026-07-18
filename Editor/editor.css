@@ -242,6 +242,31 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .ed-gallery-row [data-gf="src"] { flex: 2; }
 .ed-gallery-row [data-gf="alt"] { flex: 1; }
 
+/* Image browser modal (image-browser.js) */
+.imgb-overlay { z-index: 560; }
+.imgb-box {
+    width: 100%; max-width: 560px; height: 82vh;
+    background: var(--surface-solid); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-pop);
+    display: flex; flex-direction: column; overflow: hidden;
+}
+.imgb-bar { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.imgb-bar__title { flex: 1; font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.imgb-tool { background: var(--surface-1); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text); cursor: pointer; padding: 2px 8px; font-size: 0.95rem; }
+.imgb-tool:hover { border-color: var(--accent); color: var(--accent); }
+.imgb-hint { padding: var(--space-2) var(--space-4); font-size: 0.82rem; color: var(--text-muted); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.imgb-body { flex: 1; overflow-y: auto; padding: var(--space-2) 0; }
+.imgb-empty { padding: var(--space-4); color: var(--text-muted); font-style: italic; text-align: center; }
+.imgb-tree { display: flex; flex-direction: column; }
+.imgb-row { display: flex; align-items: center; gap: var(--space-2); padding: 4px 8px; font-size: 0.9rem; color: var(--text); white-space: nowrap; overflow: hidden; }
+.imgb-folder { cursor: pointer; }
+.imgb-folder:hover, .imgb-image:hover { background: var(--surface-2); }
+.imgb-image { cursor: pointer; }
+.imgb-overlay.imgb-pick .imgb-image:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.imgb-icon { flex-shrink: 0; }
+.imgb-thumb { width: 26px; height: 26px; object-fit: cover; border-radius: 3px; background: var(--surface-1); flex-shrink: 0; }
+.imgb-name { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+
 /* Toast */
 .ed-toast {
     position: fixed; bottom: var(--space-5); left: 50%; transform: translateX(-50%);

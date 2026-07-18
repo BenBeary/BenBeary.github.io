@@ -33,7 +33,21 @@
         <aside class="ed-toolbar">
             <div class="ed-toolbar__title">Tools</div>
             <button class="ed-tool-btn" id="ed-tool-preview" title="Preview this post"><span class="ed-tool-icon">👁</span><span>Preview</span></button>
+            <button class="ed-tool-btn" id="ed-tool-images" title="Browse images in the repo"><span class="ed-tool-icon">🖼</span><span>Images</span></button>
         </aside>
+    </div>
+
+    <!-- Image browser modal (scoped to images/Blog Images/) -->
+    <div class="modal-overlay imgb-overlay" id="imgbrowse-overlay">
+        <div class="imgb-box">
+            <div class="imgb-bar">
+                <span class="imgb-bar__title">Images — Blog Images/</span>
+                <button class="imgb-tool" id="imgbrowse-reload" title="Reload from GitHub">↻</button>
+                <button class="ed-preview-close" id="imgbrowse-close" aria-label="Close">✕</button>
+            </div>
+            <div class="imgb-hint" id="imgbrowse-hint">Click an image to copy its path.</div>
+            <div class="imgb-body" id="imgbrowse-body"><div class="imgb-empty">Loading…</div></div>
+        </div>
     </div>
 
     <!-- Preview modal (rendered by the shared site renderer) -->
@@ -91,6 +105,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     <script src="upload.js"></script>
+    <script src="image-browser.js"></script>
     <script src="blocks-edit.js"></script>
     <script src="editor.js"></script>
 </body>
