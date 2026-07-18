@@ -28,16 +28,11 @@
             </div>
         </section>
 
-        <!-- Featured: one poster shelf (page-home.js) -->
+        <!-- Featured: alternating showcase rows; ranking chosen by ?featured=<skill> -->
         <section class="home-featured">
-            <div class="shelf__head">
-                <h2 class="shelf__title"><a class="shelf__title-link" href="projects.html">Featured</a></h2>
-                <div class="shelf__nav">
-                    <button type="button" class="shelf__arrow" id="feat-prev" aria-label="Scroll featured left">❮</button>
-                    <button type="button" class="shelf__arrow" id="feat-next" aria-label="Scroll featured right">❯</button>
-                </div>
-            </div>
-            <div id="home-featured"><p class="loading-note">Loading projects…</p></div>
+            <h2 class="section-title" id="featured-heading">Featured Projects</h2>
+            <div class="filter-row featured-chips" id="featured-chips"></div>
+            <div id="featured-list" class="featured-list"><p class="loading-note">Loading projects…</p></div>
         </section>
 
         <!-- Collections: large blurred banner tiles (page-home.js) -->

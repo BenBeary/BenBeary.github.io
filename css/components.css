@@ -87,55 +87,6 @@
 /* --- Section heading (centered accent title used atop page sections) --- */
 .section-title { text-align: center; color: var(--accent); margin-bottom: var(--space-6); }
 
-/* --- Shelf: a horizontal scroll-snap row of cards (home page, M6) --- */
-.shelf { margin-bottom: var(--space-7); }
-.shelf__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
-.shelf__title { margin: 0; font-size: 1.5rem; }
-.shelf__title-link { color: var(--text-strong); }
-.shelf__title-link:hover { color: var(--accent); }
-.shelf__nav { display: flex; gap: var(--space-2); }
-.shelf__arrow {
-    background: var(--surface-1); border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
-    color: var(--text); cursor: pointer; font-size: 1rem; font-weight: 900; line-height: 1;
-    padding: var(--space-2) var(--space-3); transition: color var(--ease), border-color var(--ease), background var(--ease);
-}
-.shelf__arrow:hover { color: var(--accent); border-color: var(--accent); background: var(--surface-2); }
-.shelf__track {
-    display: flex; gap: var(--space-5);
-    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-    padding: var(--space-1) var(--space-1) var(--space-3);
-    scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
-}
-.shelf__track::-webkit-scrollbar { height: 8px; }
-.shelf__track::-webkit-scrollbar-track { background: transparent; }
-.shelf__track::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
-.shelf__track::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-/* Poster card: cover art with the text laid over it (original-site feel) */
-.poster-card {
-    position: relative;
-    flex: 0 0 clamp(280px, 80vw, 420px);
-    scroll-snap-align: start;
-    aspect-ratio: 16 / 10;
-    display: block;
-    color: var(--text);
-}
-.poster-card:hover { color: var(--text); }
-.poster-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; transition: transform var(--ease); }
-.poster-card:hover .poster-card__img { transform: scale(1.06); }
-.poster-card__overlay {
-    position: absolute; inset: auto 0 0 0; z-index: 2;
-    padding: var(--space-6) var(--space-5) var(--space-4);
-    background: linear-gradient(to top, rgba(11, 14, 25, 0.96) 12%, rgba(11, 14, 25, 0.72) 55%, rgba(11, 14, 25, 0));
-}
-.poster-card__kicker { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 2px; }
-.poster-card__title { font-size: 1.45rem; font-weight: 800; color: var(--accent); line-height: 1.15; }
-.poster-card__status {
-    position: absolute; top: var(--space-3); right: var(--space-3); z-index: 3;
-    font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--on-accent); background: var(--accent);
-    border-radius: var(--radius-pill); padding: 3px 11px; box-shadow: var(--shadow-card);
-}
-
 /* --- Collection tile: big blurred banner + fanned deck of covers (home) --- */
 .collection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--space-5); }
 .collection-tile {

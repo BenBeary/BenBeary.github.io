@@ -17,6 +17,7 @@
     var STATUS_OPTIONS = ['In Development', 'Prototype', 'Concept', 'On Hold', 'Finished', 'Released', 'Archived'];
 
     var data = null;              // working projects.json (committed + queue overlay)
+    var baseline = null;          // snapshot of projects.json as loaded (data-loss guard)
     var deletedPostPaths = [];    // content/posts/... files to delete on save
     var onlyProject = new URLSearchParams(location.search).get('project') || '';
     var root, toastEl;
@@ -256,9 +257,29 @@
         });
     }
 
+    // Safety net: saving from a stale copy of projects.json (e.g. one fetched
+    // before the redesign was pushed) used to silently blank every project's
+    // media[]/bullets[]. Compare against the snapshot taken at load and make the
+    // user confirm any wholesale clearing before it can be staged.
+    function confirmDataLoss() {
+        if (!baseline) return true;
+        var lost = [];
+        (baseline.projects || []).forEach(function (b) {
+            var p = (data.projects || []).find(function (x) { return x.slug === b.slug; });
+            if (!p) return;   // deleting a project is an explicit, separately-confirmed action
+            if ((b.media || []).length && !(p.media || []).length) lost.push(b.slug + ' — ' + b.media.length + ' media item(s)');
+            if ((b.bullets || []).length && !(p.bullets || []).length) lost.push(b.slug + ' — ' + b.bullets.length + ' bullet(s)');
+        });
+        if (!lost.length) return true;
+        return confirm('This will CLEAR existing content:\n\n' + lost.join('\n') +
+            '\n\nThat usually means this page loaded an older copy of projects.json. ' +
+            'Continue only if you really meant to empty these.');
+    }
+
     // Stage projects.json (+ queued post-file deletions) into the change queue.
     function stage() {
         collect();
+        if (!confirmDataLoss()) { toast('Nothing staged — your content was left alone.'); return; }
         window.EditorQueue.stageProjects(data, 'Project metadata');
         deletedPostPaths.forEach(function (path) { window.EditorQueue.stageDelete(path, 'Delete post file ' + path.split('/').slice(-2).join('/')); });
         deletedPostPaths = [];
@@ -268,6 +289,7 @@
     function load() {
         window.EditorQueue.loadProjects().then(function (json) {
             data = json;
+            baseline = JSON.parse(JSON.stringify(json));   // for confirmDataLoss()
             deletedPostPaths = [];
             render();
         }).catch(function (err) {

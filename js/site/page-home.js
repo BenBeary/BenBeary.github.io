@@ -1,97 +1,192 @@
 /* page-home.js — the home page.
 
-   Two sections, deliberately different in shape (no repeated sliders):
-     1. Featured — ONE horizontal scroll-snap shelf of poster cards (cover art
-        with the title/kicker/status laid over it, like the original site's
-        big blurred project art) for projects with an `order.home`.
-     2. Collections — large banner tiles, one per collection: a blurred
-        background pulled from the collection's newest project, a fanned deck of
-        its project thumbnails, the label, and a count. Links into the filtered
-        catalogue (projects.html?collection=<slug>).
+   Two sections, deliberately different in shape:
 
-   Hidden projects are excluded everywhere. The intro and about teaser are
-   static in home.html. */
+   1. FEATURED — a vertical stack of big showcase rows, one per project, that
+      alternate sides (art left / info right, then flipped). Each row is about a
+      third of the viewport tall, sits on the project's own blurred artwork, and
+      carries the same information as the project hub: kicker, title, date,
+      status, tags, summary, highlight bullets, and a play link. The art side is
+      the project's media slideshow (original-site style) when it has media,
+      otherwise its cover.
+
+      Which projects appear is driven by the URL:
+         home.html                      -> ranked by order.home  ("Featured")
+         home.html?featured=programming -> ranked by order.programming
+      Any skill category in projects.json works. Chips above the list switch
+      between them (pushState, so back/forward and sharing work).
+
+   2. COLLECTIONS — large blurred banner tiles, one per collection, with a fanned
+      deck of covers; links into the filtered catalogue.
+
+   Hidden projects are excluded everywhere. */
 
 (function () {
     'use strict';
 
-    var featuredEl, collectionsEl;
+    var data = null;
+    var featWrap, featChips, featList, collectionsEl;
 
     function visible(p) { return !p.hidden; }
     function newestFirst(a, b) { return String(b.date || '').localeCompare(String(a.date || '')); }
+    function fmtDate(iso) {
+        var d = new Date(iso + 'T00:00:00');
+        return isNaN(d) ? (iso || '') : d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
 
-    // ---- Featured: poster card (art with the text laid over it) -------------
-    function posterCard(p) {
-        var a = document.createElement('a');
-        a.className = 'card poster-card';
-        a.href = 'project.html?slug=' + encodeURIComponent(p.slug);
+    // ---- which ranking is showing -------------------------------------------
+    function currentKey() { return new URLSearchParams(location.search).get('featured') || 'home'; }
+    function keyLabel(key) {
+        if (key === 'home') return 'Featured';
+        var c = (data.categories || []).find(function (x) { return x.slug === key; });
+        return c ? c.label : key;
+    }
+    function rankedFor(key) {
+        return (data.projects || []).filter(visible)
+            .filter(function (p) { return p.order && p.order[key] != null; })
+            .sort(function (a, b) { return a.order[key] - b.order[key] || newestFirst(a, b); });
+    }
 
-        var img = document.createElement('img');
-        img.className = 'poster-card__img';
-        window.setImg(img, p.cover, 'md');
-        img.alt = p.title;
-        a.appendChild(img);
+    function go(key) {
+        var url = 'home.html' + (key === 'home' ? '' : '?featured=' + encodeURIComponent(key));
+        history.pushState(null, '', url);
+        renderFeatured();
+    }
 
-        var ov = document.createElement('div');
-        ov.className = 'poster-card__overlay';
-        if (p.kicker) {
-            var k = document.createElement('div');
-            k.className = 'poster-card__kicker';
-            k.textContent = p.kicker;
-            ov.appendChild(k);
+    // ---- one showcase row ----------------------------------------------------
+    function featuredRow(p, index) {
+        var row = document.createElement('article');
+        row.className = 'featured-row' + (index % 2 ? ' is-flipped' : '');
+
+        var bg = document.createElement('img');
+        bg.className = 'featured-row__bg';
+        window.setImg(bg, p.background || p.cover, 'md');
+        bg.alt = '';
+        row.appendChild(bg);
+
+        var shade = document.createElement('div');
+        shade.className = 'featured-row__shade';
+        row.appendChild(shade);
+
+        var grid = document.createElement('div');
+        grid.className = 'featured-row__grid';
+
+        // --- art side: the project's slideshow, else its cover ---
+        var art = document.createElement('div');
+        art.className = 'featured-row__art';
+        if (p.media && p.media.length) {
+            window.makeSlideshow(art, p.media);
+        } else {
+            var img = document.createElement('img');
+            img.className = 'featured-row__cover';
+            window.setImg(img, p.cover, 'md');
+            img.alt = p.title;
+            art.appendChild(img);
         }
-        var t = document.createElement('div');
-        t.className = 'poster-card__title';
-        t.textContent = p.title;
-        ov.appendChild(t);
-        a.appendChild(ov);
+        grid.appendChild(art);
+
+        // --- info side: the same details as the project hub ---
+        var info = document.createElement('div');
+        info.className = 'featured-row__info';
+
+        var head = '';
+        if (p.kicker) head += '<div class="featured-row__kicker">' + esc(p.kicker) + '</div>';
+        head += '<h3 class="featured-row__title">' + esc(p.title) + '</h3>';
+        head += '<div class="featured-row__date">' + esc(fmtDate(p.date)) + '</div>';
+        info.innerHTML = head;
 
         if (p.status) {
-            var s = document.createElement('span');
-            s.className = 'poster-card__status';
-            s.textContent = p.status;
-            a.appendChild(s);
+            var st = document.createElement('span');
+            st.className = 'featured-row__status';
+            st.textContent = p.status;
+            row.appendChild(st);
         }
-        return a;
+
+        if (p.tags && p.tags.length) {
+            var tl = document.createElement('div');
+            tl.className = 'chip-list featured-row__tags';
+            p.tags.forEach(function (tag) {
+                var c = document.createElement('span'); c.className = 'chip chip-accent'; c.textContent = tag; tl.appendChild(c);
+            });
+            info.appendChild(tl);
+        }
+        if (p.summary) {
+            var sum = document.createElement('p');
+            sum.className = 'featured-row__summary';
+            sum.textContent = p.summary;
+            info.appendChild(sum);
+        }
+        if (p.bullets && p.bullets.length) {
+            var ul = document.createElement('ul');
+            ul.className = 'featured-row__bullets';
+            p.bullets.slice(0, 4).forEach(function (b) {
+                var li = document.createElement('li'); li.textContent = b; ul.appendChild(li);
+            });
+            info.appendChild(ul);
+        }
+
+        var actions = document.createElement('div');
+        actions.className = 'featured-row__actions';
+        var view = document.createElement('a');
+        view.className = 'btn btn-primary';
+        view.href = 'project.html?slug=' + encodeURIComponent(p.slug);
+        view.textContent = 'View Project →';
+        actions.appendChild(view);
+        if (p.playLink) {
+            var play = document.createElement('a');
+            play.className = 'btn btn-secondary';
+            play.href = p.playLink; play.target = '_blank'; play.rel = 'noopener';
+            play.textContent = '▶ Play the Game';
+            actions.appendChild(play);
+        }
+        info.appendChild(actions);
+
+        grid.appendChild(info);
+        row.appendChild(grid);
+        return row;
     }
 
-    function renderFeatured(projects) {
-        var featured = projects.filter(function (p) { return p.order && p.order.home != null; })
-            .sort(function (a, b) { return a.order.home - b.order.home || newestFirst(a, b); });
-        if (!featured.length) { featuredEl.closest('.home-featured').style.display = 'none'; return; }
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-        var track = document.createElement('div');
-        track.className = 'shelf__track';
-        featured.forEach(function (p) { track.appendChild(posterCard(p)); });
-
-        featuredEl.innerHTML = '';
-        featuredEl.appendChild(track);
-
-        var prev = document.getElementById('feat-prev');
-        var next = document.getElementById('feat-next');
-        function step(dir) {
-            var first = track.querySelector('.poster-card');
-            var w = first ? (first.getBoundingClientRect().width + 20) : 380;
-            track.scrollBy({ left: dir * w, behavior: 'smooth' });
-        }
-        prev.addEventListener('click', function () { step(-1); });
-        next.addEventListener('click', function () { step(1); });
-        function syncNav() {
-            var over = track.scrollWidth > track.clientWidth + 4;
-            prev.style.visibility = next.style.visibility = over ? '' : 'hidden';
-        }
-        window.addEventListener('resize', syncNav);
-        requestAnimationFrame(syncNav);
+    // ---- featured section ----------------------------------------------------
+    function renderChips() {
+        var key = currentKey();
+        var keys = ['home'].concat((data.categories || []).map(function (c) { return c.slug; }));
+        featChips.innerHTML = '';
+        keys.forEach(function (k) {
+            // Only offer a ranking that actually has projects in it.
+            if (!rankedFor(k).length) return;
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'filter-chip' + (k === key ? ' is-active' : '');
+            b.textContent = keyLabel(k);
+            b.addEventListener('click', function () { go(k); });
+            featChips.appendChild(b);
+        });
     }
 
-    // ---- Collections: big blurred banner tiles ------------------------------
+    function renderFeatured() {
+        var key = currentKey();
+        renderChips();
+        var list = rankedFor(key);
+        featList.innerHTML = '';
+        var title = document.getElementById('featured-heading');
+        if (title) title.textContent = key === 'home' ? 'Featured Projects' : 'Top ' + keyLabel(key) + ' Work';
+
+        if (!list.length) {
+            featList.innerHTML = '<p class="loading-note">Nothing ranked for this skill yet — set an Order value for it in the editor.</p>';
+            return;
+        }
+        list.forEach(function (p, i) { featList.appendChild(featuredRow(p, i)); });
+    }
+
+    // ---- collections ---------------------------------------------------------
     function collectionTile(col, inCol) {
         var lead = inCol[0];
         var a = document.createElement('a');
         a.className = 'collection-tile';
         a.href = 'projects.html?collection=' + encodeURIComponent(col.slug);
 
-        // Blurred backdrop from the newest project's background art.
         var bg = document.createElement('img');
         bg.className = 'collection-tile__bg';
         window.setImg(bg, lead.background || lead.cover, 'md');
@@ -102,7 +197,6 @@
         shade.className = 'collection-tile__shade';
         a.appendChild(shade);
 
-        // Fanned deck of up to three covers.
         var deck = document.createElement('div');
         deck.className = 'collection-tile__deck';
         inCol.slice(0, 3).forEach(function (p) {
@@ -125,7 +219,8 @@
         return a;
     }
 
-    function renderCollections(data, projects) {
+    function renderCollections() {
+        var projects = (data.projects || []).filter(visible);
         var grid = document.createElement('div');
         grid.className = 'collection-grid';
         var any = false;
@@ -140,16 +235,18 @@
         collectionsEl.appendChild(grid);
     }
 
-    function render(data) {
-        var projects = (data.projects || []).filter(visible);
-        renderFeatured(projects);
-        renderCollections(data, projects);
-    }
-
     function init() {
-        featuredEl = document.getElementById('home-featured');
+        featWrap = document.querySelector('.home-featured');
+        featChips = document.getElementById('featured-chips');
+        featList = document.getElementById('featured-list');
         collectionsEl = document.getElementById('home-collections');
-        window.getProjects().then(render).catch(function (err) { window.renderDataError(featuredEl, err); });
+
+        window.getProjects().then(function (d) {
+            data = d;
+            renderFeatured();
+            renderCollections();
+            window.addEventListener('popstate', renderFeatured);
+        }).catch(function (err) { window.renderDataError(featList, err); });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
