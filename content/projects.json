@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 4,
+  "contentVersion": 5,
   "categories": [
     {
       "slug": "programming",
@@ -65,12 +65,12 @@
       ],
       "collection": "main",
       "order": {
+        "home": 4,
         "programming": 1,
         "ui-ux": 1,
         "level-design": 2,
         "sound-design": 2,
-        "modeling": 2,
-        "home": 4
+        "modeling": 2
       },
       "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png",
       "background": "images/Blog Images/CleanUpCrew/Blurred.jpg",
@@ -84,68 +84,9 @@
           "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/CleanUpCrew/16_9 shot.png",
-          "alt": "Clean Up Crew key art"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/Homescreen.png",
-          "alt": "Clean Up Crew screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/Gameplay1.png",
-          "alt": "Clean Up Crew screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/UI.png",
-          "alt": "Clean Up Crew screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/ControlUI.png",
-          "alt": "Clean Up Crew screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout.png",
-          "alt": "Clean Up Crew screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout4.png",
-          "alt": "Clean Up Crew screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout2.png",
-          "alt": "Clean Up Crew screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout3.png",
-          "alt": "Clean Up Crew screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/3DModel.png",
-          "alt": "Clean Up Crew screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/spawnObjects.png",
-          "alt": "Clean Up Crew screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/fpsGunSpread.png",
-          "alt": "Clean Up Crew screenshot 11"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
-          "alt": ""
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Designed the map layout",
-        "Engineered a first-person modular gun system that worked with multiple gun types",
-        "Created the UI, to include the leaderboard system",
-        "Developed a spawner system that would spawn items on top of terrain geometry",
-        "Worked on particle systems and animations for 3D assets."
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "docking-bay",
@@ -170,12 +111,12 @@
       ],
       "collection": "main",
       "order": {
+        "home": 2,
         "programming": 2,
         "ui-ux": 2,
         "level-design": 1,
         "sound-design": 1,
-        "modeling": 1,
-        "home": 2
+        "modeling": 1
       },
       "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
       "background": "images/Blog Images/DockingBay/Blurred.png",
@@ -189,64 +130,9 @@
           "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
-          "alt": "Docking Bay key art"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/HomeScreen.png",
-          "alt": "Docking Bay screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/Monitor4.png",
-          "alt": "Docking Bay screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/Monitor.png",
-          "alt": "Docking Bay screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/Monitor2.png",
-          "alt": "Docking Bay screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/Monitor3.png",
-          "alt": "Docking Bay screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/sideView.png",
-          "alt": "Docking Bay screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/Camera.png",
-          "alt": "Docking Bay screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/layout.png",
-          "alt": "Docking Bay screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/DialogueTest.gif",
-          "alt": "Docking Bay screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
-          "alt": "Docking Bay screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/MenuAnimation.mp4",
-          "alt": ""
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created room layout and exterior scenes",
-        "Created a sound system to efficiently play audio",
-        "Made all 3D animations and particle effects",
-        "Created the menu screen and pause menu UI",
-        "Created a dialogue system that could match voice acting audio"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "idol-of-ashes",
@@ -268,11 +154,11 @@
       ],
       "collection": "main",
       "order": {
+        "home": 5,
         "programming": 4,
         "ui-ux": 3,
         "sound-design": 3,
-        "modeling": 3,
-        "home": 5
+        "modeling": 3
       },
       "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
       "background": "images/Blog Images/IdolofAshes/Blurred.png",
@@ -286,51 +172,9 @@
           "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
-          "alt": "Idol of Ashes key art"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Img_4.png",
-          "alt": "Idol of Ashes screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Img_2.png",
-          "alt": "Idol of Ashes screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Img_3.png",
-          "alt": "Idol of Ashes screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Img_5.png",
-          "alt": "Idol of Ashes screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Outline.png",
-          "alt": "Idol of Ashes screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/Shader.png",
-          "alt": "Idol of Ashes screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/UI.png",
-          "alt": "Idol of Ashes screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/IdolofAshes/UI2.png",
-          "alt": "Idol of Ashes screenshot 8"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created all of the UI for the game",
-        "Created a quest system",
-        "Developed an in-house dialogue system",
-        "Created a toon shader with an outline"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "spirit-outbreak",
@@ -372,48 +216,9 @@
           "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
-          "alt": "Spirit Outbreak key art"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img1.png",
-          "alt": "Spirit Outbreak screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img2.png",
-          "alt": "Spirit Outbreak screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img3.png",
-          "alt": "Spirit Outbreak screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img4.png",
-          "alt": "Spirit Outbreak screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
-          "alt": ""
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
-          "alt": ""
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
-          "alt": ""
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created a custom UI Line Renderer for a custom made graph",
-        "Created a custom A* pathfinder that worked for isometric grids",
-        "Created multiple enemy types that would all behave differently",
-        "Created an upgrade system that would add effects or change how traps worked",
-        "Created a map system that could change the overall layout of the map as the game progressed"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "dice-climber",
@@ -438,13 +243,13 @@
       ],
       "collection": "main",
       "order": {
+        "home": 6,
         "programming": 4,
         "ui-ux": 7,
         "level-design": 3,
         "sound-design": 9,
         "modeling": 3,
-        "pixel-art": 2,
-        "home": 6
+        "pixel-art": 2
       },
       "cover": "images/Blog Images/DiceClimber/Title Poster.jpg",
       "background": "images/Blog Images/DiceClimber/Blurred.jpg",
@@ -458,64 +263,9 @@
           "cover": "images/Blog Images/DiceClimber/Title Poster.jpg"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/DiceClimber/Title Poster.jpg",
-          "alt": "Dice Climbers: Shelf of Chaos key art"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/Menu.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img1.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img2.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img3.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img4.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img5.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img6.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img7.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img8.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img9.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img10.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 11"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created modular puzzle pieces for reuse",
-        "Created a dialogue system from scratch",
-        "Created a visual editor guide to help with map creation",
-        "Created multiple mechanics that the player learns over time",
-        "Created a cutscene system"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "death-tides",
@@ -526,69 +276,30 @@
       "summary": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets and limited programming. My main role was creating enemy AI and world design which used a chunk loading system to increase overall performance.",
       "tags": [
         "Programming",
-        "Level Design",
         "UI / UX",
+        "Level Design",
         "Pixel Art"
       ],
       "categories": [
         "programming",
-        "level-design",
         "ui-ux",
+        "level-design",
         "pixel-art"
       ],
       "collection": "main",
       "order": {
         "programming": 5,
-        "level-design": 5,
         "ui-ux": 6,
+        "level-design": 5,
         "pixel-art": 3
       },
       "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png",
       "background": "images/Blog Images/DeathTides/Blurred.png",
-      "posts": [
-        {
-          "slug": "showcase",
-          "type": "showcase",
-          "title": "Death Tides — Showcase",
-          "date": "2024-07-27",
-          "excerpt": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets…",
-          "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png"
-        }
-      ],
-      "media": [
-        {
-          "src": "images/Blog Images/DeathTides/DeathTides_1000px.png",
-          "alt": "Death Tides key art"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img1.png",
-          "alt": "Death Tides screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img2.png",
-          "alt": "Death Tides screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img3.png",
-          "alt": "Death Tides screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img4.png",
-          "alt": "Death Tides screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img5.png",
-          "alt": "Death Tides screenshot 5"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created all the pixel art in a module design for reuse",
-        "AI uses a faction system allowing different ai to fight each other",
-        "AI uses a field of view so you can sneak up behind them",
-        "Engineered a modular wave system for quick and easy to make objectives",
-        "Created a system for chunk map-loading optimizing performance"
-      ]
+      "posts": [],
+      "status": "In Development",
+      "bullets": [],
+      "media": [],
+      "hidden": true
     },
     {
       "slug": "dodge-kart",
@@ -600,7 +311,6 @@
       "tags": [
         "Programming",
         "Level Design",
-        "UI / UX",
         "Pixel Art"
       ],
       "categories": [
@@ -616,39 +326,11 @@
       },
       "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
       "background": "images/Blog Images/DodgeKarts/Blurred.png",
-      "posts": [
-        {
-          "slug": "showcase",
-          "type": "showcase",
-          "title": "Dodge Kart — Showcase",
-          "date": "2023-10-27",
-          "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
-          "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png"
-        }
-      ],
-      "media": [
-        {
-          "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
-          "alt": "Dodge Kart key art"
-        },
-        {
-          "src": "images/Blog Images/DodgeKarts/img1.png",
-          "alt": "Dodge Kart screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DodgeKarts/img2.png",
-          "alt": "Dodge Kart screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DodgeKarts/img3.png",
-          "alt": "Dodge Kart screenshot 3"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created a shader to randomize car colors",
-        "Developed a spawner that progressively created harder challenges over time"
-      ]
+      "posts": [],
+      "status": "In Development",
+      "bullets": [],
+      "media": [],
+      "hidden": true
     },
     {
       "slug": "devils-acre",
@@ -682,46 +364,9 @@
           "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
-          "alt": "Devil's Acre key art"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img1.gif",
-          "alt": "Devil's Acre screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img2.gif",
-          "alt": "Devil's Acre screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img3.png",
-          "alt": "Devil's Acre screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img4.png",
-          "alt": "Devil's Acre screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img5.png",
-          "alt": "Devil's Acre screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img6.png",
-          "alt": "Devil's Acre screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img7.png",
-          "alt": "Devil's Acre screenshot 7"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created environmental art for the game",
-        "Worked on the boss AI",
-        "Created pause menu UI"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "port-lochne",
@@ -745,47 +390,11 @@
       },
       "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png",
       "background": "images/Blog Images/PortLochne/Blurred.png",
-      "posts": [
-        {
-          "slug": "showcase",
-          "type": "showcase",
-          "title": "Port Lochne — Showcase",
-          "date": "2022-04-22",
-          "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
-          "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"
-        }
-      ],
-      "media": [
-        {
-          "src": "images/Blog Images/PortLochne/PortLochne_1000px.png",
-          "alt": "Port Lochne key art"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img1.jpg",
-          "alt": "Port Lochne screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img2.jpg",
-          "alt": "Port Lochne screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img3.jpg",
-          "alt": "Port Lochne screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img4.jpg",
-          "alt": "Port Lochne screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img5.jpg",
-          "alt": "Port Lochne screenshot 5"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "Created a publicly available map for the game Garry's Mod",
-        "Areas were created to take advantage of player characteristics and tendencies, driving them to certain spots to group people together"
-      ]
+      "posts": [],
+      "status": "In Development",
+      "bullets": [],
+      "media": [],
+      "hidden": true
     },
     {
       "slug": "meoware-defender",
@@ -806,10 +415,10 @@
       ],
       "collection": "main",
       "order": {
+        "home": 3,
         "programming": 6,
         "ui-ux": 4,
-        "level-design": 8,
-        "home": 3
+        "level-design": 8
       },
       "cover": "images/Blog Images/MeowareDefender/Menu.png",
       "background": "images/Blog Images/MeowareDefender/Blurred.png",
@@ -823,42 +432,15 @@
           "cover": "images/Blog Images/MeowareDefender/Menu.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/MeowareDefender/Menu.png",
-          "alt": "Meoware Defender key art"
-        },
-        {
-          "src": "images/Blog Images/MeowareDefender/img1.png",
-          "alt": "Meoware Defender screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/MeowareDefender/img2.png",
-          "alt": "Meoware Defender screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/MeowareDefender/img3.png",
-          "alt": "Meoware Defender screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/MeowareDefender/img4.png",
-          "alt": "Meoware Defender screenshot 4"
-        }
-      ],
-      "status": "Finished",
-      "bullets": [
-        "San Jose State University funded team project",
-        "Created a player customizer system",
-        "Created a system that allowed for mobile compatibility",
-        "Made a save system that allowed the player to customize the irliving room",
-        "Made the password creator mini game"
-      ]
+      "status": "In Development",
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "signal-link",
       "title": "Signal-Link",
       "kicker": "Team Project",
-      "status": "In Development",
+      "status": "Actively Developing",
       "date": "2026-01-04",
       "playLink": "https://benbeary.itch.io/signal-link",
       "summary": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.",
@@ -873,17 +455,17 @@
         "programming",
         "ui-ux",
         "level-design",
-        "modeling",
-        "sound-design"
+        "sound-design",
+        "modeling"
       ],
       "collection": "main",
       "order": {
+        "home": 1,
         "programming": 0,
         "ui-ux": 1,
         "level-design": 1,
-        "modeling": 1,
         "sound-design": 5,
-        "home": 1
+        "modeling": 1
       },
       "cover": "images/Blog Images/Signal-Link/singla_link_poster.png",
       "background": "images/Blog Images/Signal-Link/Blurred.jpg",
@@ -897,105 +479,52 @@
           "cover": "images/Blog Images/Signal-Link/singla_link_poster.png"
         }
       ],
-      "media": [
-        {
-          "src": "images/Blog Images/Signal-Link/singla_link_poster.png",
-          "alt": "Signal-Link key art"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
-          "alt": "Signal-Link screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/MainMenu_Unity.png",
-          "alt": "Signal-Link screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/MainMenu_GameView.png",
-          "alt": "Signal-Link screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level_1.png",
-          "alt": "Signal-Link screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Game_1.png",
-          "alt": "Signal-Link screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/ExtraImage_2.png",
-          "alt": "Signal-Link screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/ExtraImage_1.png",
-          "alt": "Signal-Link screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/ExtraImage_3.png",
-          "alt": "Signal-Link screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/ExtraImage_4.png",
-          "alt": "Signal-Link screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Modeling_Layout.png",
-          "alt": "Signal-Link screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Modeling_Layout_2.png",
-          "alt": "Signal-Link screenshot 11"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level2_Progress_1.png",
-          "alt": "Signal-Link screenshot 12"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level2_Progress_2.png",
-          "alt": "Signal-Link screenshot 13"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level2_Progress_3.png",
-          "alt": "Signal-Link screenshot 14"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level2_Progress_4.png",
-          "alt": "Signal-Link screenshot 15"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Level_2.png",
-          "alt": "Signal-Link screenshot 16"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
-          "alt": ""
-        }
-      ],
-      "bullets": [
-        "2-week-long Game Jam",
-        "Created scenery for 2 worlds and The Main Menu Scene",
-        "Main Menu Scene integrates UI and the 3D world into 1 space",
-        "Created multiple puzzles that are integrated in the world",
-        "Created multiple 3D assets and 2D UI tools to make the interface come alive"
-      ]
+      "bullets": [],
+      "media": []
     },
     {
       "slug": "old-work",
       "title": "Old Work",
-      "kicker": "Old Projects",
-      "status": "Archived",
-      "date": "2026-07-17",
+      "kicker": "",
+      "status": "In Development",
+      "date": "2026-07-18",
       "playLink": "",
-      "summary": "This is a List of all the old projects I've done that don't have a lot on them, but are here to archive the work I've done.",
+      "summary": "",
       "tags": [],
       "categories": [],
       "collection": "misc",
       "order": {},
-      "cover": "",
-      "background": "",
-      "posts": [],
-      "media": [],
-      "bullets": []
+      "media": [
+        {
+          "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/PortLochne/PortLochne_1000px.png",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
+          "alt": ""
+        }
+      ],
+      "bullets": [],
+      "cover": "images/Blog Images/PortLochne/img3.jpg",
+      "background": "images/Blog Images/PortLochne/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Port Lochne — Showcase",
+          "date": "2022-04-22",
+          "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
+          "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"
+        }
+      ]
     }
   ]
 }
