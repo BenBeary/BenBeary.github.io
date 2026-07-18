@@ -28,10 +28,23 @@
             </div>
         </section>
 
-        <!-- Shelves (Featured + per-collection), built by page-home.js -->
-        <div id="home-shelves" class="home-shelves">
-            <p class="loading-note">Loading projects…</p>
-        </div>
+        <!-- Featured: one poster shelf (page-home.js) -->
+        <section class="home-featured">
+            <div class="shelf__head">
+                <h2 class="shelf__title"><a class="shelf__title-link" href="projects.html">Featured</a></h2>
+                <div class="shelf__nav">
+                    <button type="button" class="shelf__arrow" id="feat-prev" aria-label="Scroll featured left">❮</button>
+                    <button type="button" class="shelf__arrow" id="feat-next" aria-label="Scroll featured right">❯</button>
+                </div>
+            </div>
+            <div id="home-featured"><p class="loading-note">Loading projects…</p></div>
+        </section>
+
+        <!-- Collections: large blurred banner tiles (page-home.js) -->
+        <section class="home-collections">
+            <h2 class="section-title">Collections</h2>
+            <div id="home-collections"></div>
+        </section>
 
         <!-- About teaser -->
         <section class="home-about panel">

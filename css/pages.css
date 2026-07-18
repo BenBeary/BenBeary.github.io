@@ -70,7 +70,12 @@
 /* =========================================================================
    HOME  (home.html, body[data-page="home"])
    ========================================================================= */
-.home-page { display: flex; flex-direction: column; gap: var(--space-7); }
+.home-page { display: flex; flex-direction: column; gap: var(--space-8); }
+
+/* Collections get the most room on the page — full width, generous spacing. */
+.home-collections { padding: var(--space-4) 0 var(--space-2); }
+.home-collections .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: var(--space-6); }
+.home-featured .shelf__title { font-size: clamp(1.4rem, 3vw, 1.8rem); }
 
 .home-hero {
     text-align: center;
