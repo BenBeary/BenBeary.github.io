@@ -14,7 +14,11 @@
     var DRAFT_PREFIX = 'pf.editor.draft.';
     var DRAFT_INDEX = 'pf.editor.drafts';
 
-    var state = { project: '', projectMeta: null, slug: '', type: 'blog', title: '', date: '', excerpt: '', cover: '', blocks: [] };
+    var state = { project: '', projectMeta: null, allProjects: [], slug: '', type: 'blog', title: '', date: '', excerpt: '', cover: '', blocks: [] };
+    // Set when editing an existing published post; publish relocates (delete +
+    // re-add) when the project or slug changed. Enables moving posts between
+    // projects (e.g. consolidating small games into one collection project).
+    var loadedPath = '', origProject = '', origSlug = '';
     var slugTouched = false;
     var els = {};
     var previewTimer = null, saveTimer = null;
@@ -34,8 +38,12 @@
     // ---- meta form ----
     function renderMeta() {
         var m = state.projectMeta || {};
+        var projOpts = (state.allProjects || []).map(function (p) {
+            return '<option value="' + esc(p.slug) + '"' + (p.slug === state.project ? ' selected' : '') + '>' + esc(p.title || p.slug) + '</option>';
+        }).join('');
         els.meta.innerHTML =
-            '<div class="ed-meta-project">Project: <strong>' + esc(m.title || state.project) + '</strong>' +
+            '<div class="ed-meta-project"><label class="ed-meta-project__label">Project</label>' +
+            '<select class="ed-input ed-meta-project__select" id="m-project" title="Move this post to another project">' + projOpts + '</select>' +
             '<span class="ed-collection-badge">' + esc(m.collection || 'main') + '</span></div>' +
             '<div class="ed-meta-grid">' +
             '<div class="ed-field"><label>Type</label><select class="ed-input" id="m-type">' +
@@ -50,6 +58,11 @@
     }
 
     function syncMeta() {
+        var proj = els.byId('m-project');
+        if (proj && proj.value !== state.project) {
+            state.project = proj.value;
+            state.projectMeta = (state.allProjects || []).find(function (p) { return p.slug === state.project; }) || state.projectMeta;
+        }
         state.type = els.byId('m-type').value;
         state.date = els.byId('m-date').value;
         state.title = els.byId('m-title').value;
@@ -223,6 +236,20 @@
             var proj = (projectsJson.projects || []).find(function (p) { return p.slug === state.project; });
             if (!proj) throw new Error('Project "' + state.project + '" not found in projects.json.');
 
+            var changes = [
+                { op: 'put', path: postPath, content: JSON.stringify(buildPost(), null, 2) + '\n' }
+            ];
+
+            // Relocation: post loaded from elsewhere (moved project or renamed
+            // slug) — delete the old file and drop the old index entry.
+            if (loadedPath && loadedPath !== postPath) {
+                changes.push({ op: 'delete', path: loadedPath });
+                var oldProj = (projectsJson.projects || []).find(function (p) { return p.slug === origProject; });
+                if (oldProj && oldProj.posts) {
+                    oldProj.posts = oldProj.posts.filter(function (p) { return p.slug !== origSlug; });
+                }
+            }
+
             var entry = { slug: state.slug, type: state.type, title: state.title, date: state.date, excerpt: state.excerpt, cover: state.cover };
             if (state.type === 'showcase') {
                 proj.posts = (proj.posts || []).filter(function (p) { return p.type !== 'showcase' || p.slug === state.slug; });
@@ -232,14 +259,15 @@
             if (i >= 0) proj.posts[i] = entry; else proj.posts.push(entry);
             projectsJson.contentVersion = (projectsJson.contentVersion || 0) + 1;
 
+            changes.push({ op: 'put', path: 'content/projects.json', content: JSON.stringify(projectsJson, null, 2) + '\n' });
+
             var result = await ghBatchCommit({
-                message: 'Editor: publish ' + state.project + '/' + state.slug,
-                changes: [
-                    { op: 'put', path: postPath, content: JSON.stringify(buildPost(), null, 2) + '\n' },
-                    { op: 'put', path: 'content/projects.json', content: JSON.stringify(projectsJson, null, 2) + '\n' }
-                ]
+                message: 'Editor: publish ' + state.project + '/' + state.slug +
+                    (loadedPath && loadedPath !== postPath ? ' (moved from ' + origProject + '/' + origSlug + ')' : ''),
+                changes: changes
             });
             clearLocalDraft();
+            loadedPath = postPath; origProject = state.project; origSlug = state.slug;
             toast('Published! Live in ~10 min.');
             if (result && result.commitUrl) console.log('Commit:', result.commitUrl);
         } catch (err) {
@@ -522,7 +550,14 @@
         var post = rec.post || {};
         window.getProjects().then(function (data) {
             state.project = post.project || '';
+            state.allProjects = data.projects || [];
             state.projectMeta = (data.projects || []).find(function (p) { return p.slug === state.project; }) || null;
+            // A draft of an already-published post relocates on publish too.
+            var published = state.projectMeta && (state.projectMeta.posts || []).some(function (x) { return x.slug === post.slug; });
+            if (published) {
+                loadedPath = 'content/posts/' + state.project + '/' + post.slug + '.json';
+                origProject = state.project; origSlug = post.slug;
+            }
             state.slug = post.slug || ''; state.type = post.type || 'blog';
             state.title = post.title || ''; state.date = post.date || todayIso();
             state.excerpt = post.excerpt || ''; state.cover = rec.cover || '';
@@ -555,6 +590,7 @@
             if (!meta) { showError('Unknown project "' + projectSlug + '"'); return; }
             state.project = projectSlug;
             state.projectMeta = meta;
+            state.allProjects = data.projects || [];
 
             if (postSlug) {
                 return window.getPost(projectSlug, postSlug).then(function (post) {
@@ -564,6 +600,8 @@
                     var entry = (meta.posts || []).find(function (p) { return p.slug === postSlug; });
                     state.cover = entry && entry.cover ? entry.cover : '';
                     slugTouched = true;
+                    loadedPath = 'content/posts/' + projectSlug + '/' + postSlug + '.json';
+                    origProject = projectSlug; origSlug = postSlug;
                     finishLoad();
                 });
             }

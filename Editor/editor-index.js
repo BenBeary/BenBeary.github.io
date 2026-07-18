@@ -47,6 +47,7 @@
             '<div class="ed-project__meta">' +
             '<span class="ed-collection-badge">' + esc(p.collection || 'main') + '</span>' +
             '<a class="btn btn-ghost btn-sm" href="edit.html?project=' + encodeURIComponent(p.slug) + '&type=blog">+ New post</a>' +
+            '<a class="btn btn-ghost btn-sm" href="manage.html?project=' + encodeURIComponent(p.slug) + '" title="Edit this project\'s metadata">⚙ Edit</a>' +
             '</div>' +
             '</div>' +
             '<ul class="ed-posts">' + posts.map(function (post) { return postRow(p.slug, post); }).join('') + '</ul>' +
@@ -70,8 +71,9 @@
 
     function renderSignedIn(data) {
         var html = '<div class="ed-landing">' +
-            '<div class="ed-toolbar"><h1>Content</h1>' +
-            '<a class="btn btn-ghost" href="manage.html">🎛 Manage projects &amp; roles</a></div>' +
+            '<div class="ed-toolbar-row"><h1>Content</h1>' +
+            '<button class="btn btn-ghost" id="ed-history-btn">📜 History</button>' +
+            '<a class="btn btn-ghost" href="manage.html">🎛 Manage projects</a></div>' +
             (data.projects || []).map(projectBlock).join('') +
             draftsSection() +
             '</div>';
@@ -96,7 +98,8 @@
         // Draft delete (delegated; root element persists across re-renders).
         root.addEventListener('click', function (e) {
             var del = e.target.closest('[data-draft-del]');
-            if (del && typeof deleteDraft === 'function') { deleteDraft(del.dataset.draftDel); render(); }
+            if (del && typeof deleteDraft === 'function') { deleteDraft(del.dataset.draftDel); render(); return; }
+            if (e.target.closest('#ed-history-btn') && window.EditorHistory) window.EditorHistory.open();
         });
         render();   // paint immediately (auth:ready re-renders after token warm-up)
     }
