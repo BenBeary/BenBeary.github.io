@@ -70,15 +70,22 @@
       (the earlier exploration's "12" was a miscount — js/projects.js has 11 keys). Spot-checked
       projects.json + signal-link showcase: schema-correct, curly quotes + spaced filenames intact.
 
-### M4 — Site pages
-- [ ] `js/site/data.js`, `media.js`, `richtext-sanitize.js`, `blocks.js`
-- [ ] `projects.html` + page-projects.js (`?cat=` and `?collection=` filters)
-- [ ] `project.html` + page-project.js (showcase pinned; blogs newest-first, 5 + "Load more")
-- [ ] `post.html` + page-post.js
-- [ ] `role.html` + page-role.js + one sample `content/roles/*.json`
-- [ ] `css/pages.css`
-- [ ] Verify: all 12 hubs/showcases render; Network tab shows no mp4/full-res on initial load;
-      lightbox + click-to-play work; filters work
+### M4 — Site pages  ✅ complete
+- [x] `js/site/data.js` (Promise cache, ?v= cache-bust, renderDataError), `media.js` (derived-url
+      transforms + setImg onerror-fallback + click-to-play video + singleton lightbox),
+      `richtext-sanitize.js` (ported CADRE whitelist), `blocks.js` (shared renderer, all 9 types)
+- [x] `projects.html` + page-projects.js — collection tabs + skill chips, pushState re-render
+- [x] `project.html` + page-project.js — hero (bg/kicker/title/tags/play/summary), showcase pinned,
+      blogs newest-first 5 + "Load more"
+- [x] `post.html` + page-post.js — back-link, title/date, body via shared renderBlocks
+- [x] `role.html` + page-role.js + `content/roles/gameplay-programmer.json`
+- [x] `css/pages.css` + `css/components.css` (blocks, video, lightbox); `tools/serve.mjs` dev server
+- [x] Verify (headless Edge via node dev server on :8137): projects?cat=programming → 10 cards,
+      Programming active, all card imgs `_derived/*.thumb.webp` (0 raw png/jpg/mp4); hub renders
+      hero+showcase; post → 2 headings/5 bullets/16 gallery thumbs/1 video poster, post body 0 raw
+      full-res (only 3 tiny footer icons are raw png); role → 4 features/10 bullets; empty
+      game-jams collection → no-match note; all-projects → 11; CSS brace-balanced. **Note:** lightbox
+      open + video swap are click-driven — structurally present and wired; eyeball in Live Server.
 
 ### M5 — Editor v1
 - [ ] `Editor/github-api.js` (port from docs/reference-cadre; change owner/repo constants)

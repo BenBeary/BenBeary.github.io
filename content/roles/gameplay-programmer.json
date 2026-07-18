@@ -1,0 +1,38 @@
+{
+  "slug": "gameplay-programmer",
+  "headline": "Gameplay Programmer",
+  "intro": "I build modular, reusable gameplay systems — AI, pathfinding, tools, and UI frameworks — that stay flexible as a game grows. Here are the projects where the programming did the heavy lifting.",
+  "resumeLink": "https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf",
+  "featured": [
+    {
+      "project": "spirit-outbreak",
+      "bullets": [
+        "Wrote a custom A* pathfinder that worked on isometric grids",
+        "Built enemies that adapt in real time to traps and walls the player places",
+        "Created a map generator enabling 6 evolving map designs and 14+ traps"
+      ]
+    },
+    {
+      "project": "signal-link",
+      "bullets": [
+        "Programmed puzzle mechanics integrated directly into a 3D world",
+        "Wired UI and the 3D menu scene into a single interactive space"
+      ]
+    },
+    {
+      "project": "clean-up-crew",
+      "bullets": [
+        "Engineered a modular first-person gun system supporting multiple weapon types",
+        "Built a spawner that places items correctly on top of terrain geometry",
+        "Implemented the UI and leaderboard system"
+      ]
+    },
+    {
+      "project": "idol-of-ashes",
+      "bullets": [
+        "Built in-house dialogue, quest, and manual systems within a one-week jam",
+        "Authored a toon shader with an outline pass"
+      ]
+    }
+  ]
+}

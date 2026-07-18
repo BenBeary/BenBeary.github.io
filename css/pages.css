@@ -58,3 +58,118 @@
     .about-header, .about-actions, .about-contact { justify-content: center; align-items: center; }
     .about-body { text-align: left; }
 }
+
+/* =========================================================================
+   Shared page bits
+   ========================================================================= */
+.loading-note { color: var(--text-muted); text-align: center; padding: var(--space-6); }
+.data-error {
+    background: var(--surface-0);
+    border: 1px solid var(--danger);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--text);
+}
+.data-error h2 { color: var(--danger); margin-bottom: var(--space-3); }
+
+/* =========================================================================
+   PROJECTS catalogue  (projects.html)
+   ========================================================================= */
+.filter-bar { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }
+.filter-row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.filter-chip {
+    background: var(--surface-1);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+    transition: background var(--ease), border-color var(--ease), color var(--ease);
+}
+.filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+.filter-chip.is-active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-5);
+}
+.project-card { color: var(--text); }
+.project-card:hover { color: var(--text); }
+.project-card__kicker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+/* =========================================================================
+   PROJECT HUB  (project.html)
+   ========================================================================= */
+.hub-hero {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+    min-height: 320px;
+    display: flex;
+    align-items: flex-end;
+}
+.hub-hero__bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
+}
+.hub-hero__inner {
+    position: relative; z-index: 1; width: 100%;
+    padding: var(--space-7) var(--space-6) var(--space-6);
+    background: linear-gradient(to top, rgba(11, 14, 25, 0.95) 15%, rgba(11, 14, 25, 0.55) 60%, rgba(11, 14, 25, 0.1));
+}
+.hub-hero__kicker { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--space-2); }
+.hub-hero__title { margin: 0; }
+.hub-hero__date { color: var(--text-muted); margin-top: var(--space-2); }
+.hub-hero__tags { margin-top: var(--space-4); }
+.hub-hero__play { margin-top: var(--space-5); }
+
+.hub-summary { font-size: var(--fs-400); max-width: 800px; margin: 0 auto var(--space-7); text-align: center; color: var(--text); }
+
+.hub-posts__title { margin-bottom: var(--space-5); }
+.post-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-5); }
+.post-card { color: var(--text); }
+.post-card:hover { color: var(--text); }
+.post-card__badge {
+    display: inline-block; align-self: flex-start;
+    background: var(--accent-dim); color: var(--accent);
+    border: 1px solid var(--accent); border-radius: var(--radius-pill);
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 2px 10px;
+}
+.post-card__date { color: var(--text-muted); font-size: 0.88rem; }
+.load-more { display: block; margin: var(--space-6) auto 0; }
+
+/* =========================================================================
+   POST PAGE  (post.html)
+   ========================================================================= */
+.post-page { max-width: 860px; }
+.post-header { max-width: 800px; margin: 0 auto var(--space-6); }
+.post-back { display: inline-block; margin-bottom: var(--space-4); font-weight: 600; }
+.post-title { margin: 0 0 var(--space-2); }
+.post-meta { color: var(--text-muted); }
+
+/* =========================================================================
+   ROLE landing page  (role.html)
+   ========================================================================= */
+.role-header { text-align: center; max-width: 760px; margin: 0 auto var(--space-7); }
+.role-headline { color: var(--accent); margin-bottom: var(--space-4); }
+.role-intro { font-size: var(--fs-400); color: var(--text); margin-bottom: var(--space-5); }
+.role-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-5); }
+.role-feature { display: flex; flex-direction: column; }
+.role-feature:hover { transform: none; box-shadow: var(--shadow-card); border-color: var(--border); background: var(--surface-1); }
+.role-feature__link { display: block; }
+.role-feature__title { display: inline-block; margin-bottom: var(--space-2); }
+.role-feature__bullets { margin: 0 0 0 var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+.role-feature__bullets li { font-size: 0.98rem; color: var(--text); }
