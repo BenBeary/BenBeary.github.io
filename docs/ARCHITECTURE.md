@@ -141,6 +141,7 @@ bust the GitHub Pages CDN (~10 min cache).
     { "type": "bullets", "items": ["…"] },
     { "type": "image", "src": "images/…", "alt": "…", "caption": "…" },
     { "type": "gallery", "items": [ { "src": "…", "alt": "…" } ] },
+    { "type": "slideshow", "items": [ { "src": "…png|jpg|gif|mp4", "alt": "…" } ] },
     { "type": "video", "src": "images/….mp4", "caption": "…" },
     { "type": "embed", "provider": "youtube", "url": "…" },
     { "type": "quote", "text": "…", "cite": "…" },
@@ -152,7 +153,17 @@ bust the GitHub Pages CDN (~10 min cache).
 (`js/site/richtext-sanitize.js`, a port of CADRE `richSanitize` — see `docs/reference-cadre/post-gen-richtext.js`).
 Allowed: `p, strong, em, u, a[href: http(s)/mailto/relative], ul, ol, li, br`, plus `text-align`. Never
 trust stored HTML blindly. `video` has no poster field — the poster is derived by convention (below).
-`gallery` is images-only.
+`gallery` is images-only. `slideshow` is MIXED media (Steam-style stage + thumb strip): mp4 items get
+their thumb from the derived `.poster.webp`, and both hub media and post slideshows use the one
+`makeSlideshow(container, items)` in media.js. `bullets` is DEPRECATED for authoring (paragraph lists
+replaced it, M5.5) but stays render-supported for migrated content.
+
+**Project-level media (M5.5):** each project may carry `"media": [ { "src", "alt" } ]` — the hub renders
+it as the top slideshow (original-site style) above summary + posts. Showcase posts are OPTIONAL: they
+hold the write-up (About/Contributions); their old hero/gallery/video blocks were hoisted into
+project.media by `tools/hoist-showcase-media.mjs`. `"status"` is authored via a dropdown:
+In Development (default) | Prototype | Concept | On Hold | Finished | Released | Archived
+(free text still renders — the enum is an editor convention, not a schema constraint).
 
 ### `content/roles/<role>.json`
 

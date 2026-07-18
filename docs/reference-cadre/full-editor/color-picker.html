@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../images/Home%20Page/CADRE-AO-Favicon.svg">
+    <title>CADRE — Theme Colors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/postGen-style.css">
+    <link rel="stylesheet" href="AuthManager/auth.css">
+    <link rel="stylesheet" href="AdminTools/color-picker/color-picker.css">
+    <script>
+        /* Apply the saved editor color theme before first paint (no flash).
+           Mirrors DEFAULT_SETTINGS.editorTheme in editor-settings.js; falls back
+           to 'default' (the original scheme) for first-time visitors / errors. */
+        (function () {
+            var t = 'default';
+            try {
+                var s = JSON.parse(localStorage.getItem('cadre.postgen.settings.v1') || '{}');
+                if (s && s.editorTheme) t = s.editorTheme;
+            } catch (e) {}
+            document.documentElement.setAttribute('data-editor-theme', t);
+        })();
+    </script>
+</head>
+<!-- No data-page-role: this page is NOT part of the basic/admin redirect gate.
+     It's usable signed-out (browse + preview + export); sign-in is the top-right
+     navbar chip, and committing prompts it. -->
+<body>
+
+<header class="site-header">
+    <button class="btn-settings" id="btn-open-settings" title="Settings" aria-label="Open settings"><span class="btn-settings-icon">⚙</span></button>
+    <div class="logo"><span>CADRE</span> Alumni</div>
+    <div class="subtitle">— Theme Colors</div>
+    <div class="header-actions">
+        <a class="btn-header-action" href="index.html" title="Back to the editor home">🏠 Editor Home</a>
+        <button class="btn-header-action" id="cp-save" title="Download this palette as a file">⬇ Save to Computer</button>
+        <button class="btn-header-action" id="cp-load" title="Load a palette from a file">📂 Load</button>
+        <input type="file" id="cp-load-input" accept="application/json,.json" hidden>
+    </div>
+    <div class="cp-navbar-notice">Anything sent to GitHub will take some time before it updates.</div>
+    <div id="auth-chip" class="cp-auth-right"></div>
+</header>
+
+<!-- Shared modals (sign-in, settings, …) are injected here by post-gen-modals.js
+     BEFORE auth.js runs (auth.js queries auth-modal-* IDs at load). -->
+<div id="post-gen-shared-modals-slot"></div>
+
+<div class="cp-page">
+
+    <!-- Editor + live preview. The page is usable without signing in; sign-in
+         is the top-right navbar chip, and committing prompts it. -->
+    <div class="cp-app" id="cp-app">
+        <div class="cp-editor-col">
+            <div class="cp-toolbar">
+                <div class="cp-toolbar-title">🎨 Theme Colors</div>
+                <button class="cp-btn cp-theme-toggle" id="cp-theme-toggle" title="Switch which theme you're editing">🌙 Dark</button>
+                <button class="cp-btn cp-btn-wide" id="cp-convert" title="Convert all color codes between RGB and Hex">⇄ Hex</button>
+            </div>
+            <div class="cp-editor" id="cp-editor">
+                <div class="cp-placeholder">Loading…</div>
+            </div>
+            <div class="cp-commit-bar">
+                <span class="cp-commit-status" id="cp-commit-status"></span>
+                <button class="cp-btn cp-btn-icon" id="cp-undo"   title="Undo (Ctrl+Z)" disabled>↶</button>
+                <button class="cp-btn cp-btn-icon" id="cp-reset"  title="Reset to committed values">⟲</button>
+                <button class="cp-btn cp-btn-icon" id="cp-export" title="Copy CSS for these colors">⧉</button>
+                <button class="cp-btn cp-btn-icon" id="cp-reload" title="Re-fetch css/style.css">↻</button>
+                <button class="cp-commit-btn" id="cp-commit" disabled>💾 Commit</button>
+            </div>
+        </div>
+        <div class="cp-preview-col">
+            <div class="cp-preview-bar">
+                <button class="cp-btn" id="cp-show-original" title="Compare against the committed colors">👁 Show original</button>
+                <span>Live preview</span>
+            </div>
+            <iframe class="cp-preview-iframe" id="cp-preview-iframe" title="Theme preview"></iframe>
+        </div>
+
+        <!-- Templates sidebar. Top-level tools/color-templates/*.json are the base
+             templates; each subfolder is a collapsible category, built into
+             #cp-categories. Right-click for new category / delete. -->
+        <aside class="cp-templates-sidebar" id="cp-templates">
+            <div class="cp-templates-head">
+                <div class="cp-templates-title">Templates</div>
+                <button class="cp-btn cp-btn-icon" id="cp-template-reload" title="Reload the template list">↻</button>
+                <button class="cp-btn" id="cp-template-save" title="Save current colors as a template">💾 Save</button>
+            </div>
+            <div class="cp-templates-hint">Right-click for new category / delete.</div>
+            <!-- <div class="cp-templates-divider"></div> -->
+            <div class="cp-templates-list" id="cp-templates-list">
+                <span class="cp-templates-empty">Loading…</span>
+            </div>
+            <div class="cp-categories" id="cp-categories"></div>
+
+            <!-- Shown while a GitHub API call for templates is in flight. -->
+            <div class="cp-loading-overlay" id="cp-loading-overlay" style="display:none">
+                <div class="cp-loading-box">
+                    <div class="cp-loading-spinner" aria-hidden="true"></div>
+                    <div class="cp-loading-text">Reloading…</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+</div><!-- end cp-page -->
+
+<!-- Commit-to-GitHub confirmation modal -->
+<div class="modal-overlay" id="cp-commit-modal-overlay" style="display:none">
+    <div class="modal-box">
+        <div class="modal-title">Commit <span id="cp-commit-count"></span>?</div>
+        <div class="modal-body">
+            <div class="cp-commit-danger">
+                <span class="cp-commit-danger-icon">⚠️</span>
+                <div>
+                    <strong>This changes the color scheme for the ENTIRE website.</strong>
+                    Every page and every visitor will see these colors as soon as you commit.
+                </div>
+            </div>
+            <p>This commits <code>css/style.css</code> directly to <code>main</code> in a single commit.</p>
+            <label class="cp-commit-label" for="cp-commit-name">Commit name <span class="cp-commit-label-hint">(optional)</span></label>
+            <input type="text" id="cp-commit-name" class="cp-commit-name" autocomplete="off" spellcheck="false">
+            <p class="cp-commit-help">Leave blank to use the default (shown as placeholder). The final message is prefixed with <code>Browser:</code> automatically.</p>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-modal-cancel" id="cp-commit-cancel">Cancel</button>
+            <button class="btn-modal-confirm" id="cp-commit-confirm">Commit</button>
+        </div>
+    </div>
+</div>
+
+<!-- Save current colors as a template (name + category) -->
+<div class="modal-overlay" id="cp-save-modal-overlay" style="display:none">
+    <div class="modal-box">
+        <div class="modal-title">Save as template</div>
+        <div class="modal-body">
+            <label class="cp-commit-label" for="cp-save-name">Template name</label>
+            <input type="text" id="cp-save-name" class="cp-commit-name" autocomplete="off" spellcheck="false" placeholder="e.g. Ocean Breeze">
+            <label class="cp-commit-label" for="cp-save-category">Category</label>
+            <select id="cp-save-category" class="cp-commit-name"></select>
+            <p class="cp-commit-help">Saves the current colors as a JSON file under <code>tools/color-templates/</code> and commits it to <code>main</code>.</p>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-modal-cancel" id="cp-save-cancel">Cancel</button>
+            <button class="btn-modal-confirm" id="cp-save-confirm">Save template</button>
+        </div>
+    </div>
+</div>
+
+<!-- Template load: confirm discarding uncommitted changes -->
+<div class="modal-overlay" id="cp-template-modal-overlay" style="display:none">
+    <div class="modal-box">
+        <div class="modal-title">Discard current changes?</div>
+        <div class="modal-body">
+            <p>You have unsaved color changes. Loading the <strong id="cp-template-name"></strong> template will replace them.</p>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-modal-cancel" id="cp-template-cancel">Cancel</button>
+            <button class="btn-modal-confirm" id="cp-template-confirm">Load template</button>
+        </div>
+    </div>
+</div>
+
+<!-- Export / copy-CSS modal -->
+<div class="modal-overlay" id="cp-export-modal-overlay" style="display:none">
+    <div class="modal-box cp-modal-wide">
+        <div class="modal-title">Theme colors CSS</div>
+        <div class="modal-body">
+            <p class="cp-export-hint">Paste these blocks over the matching ones in <code>css/style.css</code>.</p>
+            <textarea class="output-textarea" id="cp-export-textarea" readonly rows="16" spellcheck="false"></textarea>
+            <div class="cp-export-actions">
+                <button class="btn-copy" id="cp-export-copy">Copy</button>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-modal-cancel" id="cp-export-close">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- post-gen-modals.js MUST load before auth.js — auth.js queries auth-modal-*
+     element IDs at top-level execution time, and they only exist after the
+     modal slot has been replaced. -->
+<script src="js/post-gen-modals.js"></script>
+<script src="AuthManager/auth.js"></script>
+<script src="AuthManager/github-api.js"></script>
+<script src="js/admin-utils.js"></script>
+<script src="js/editor-settings.js"></script>
+<script src="AdminTools/color-picker/color-picker.js"></script>
+</body>
+</html>

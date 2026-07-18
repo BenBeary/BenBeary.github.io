@@ -1,0 +1,491 @@
+/* Color Picker / Theme Editor — standalone page (tools/color-picker.html).
+   Loaded alongside tools/css/postGen-style.css, which provides the page chrome
+   (.site-header, modals, buttons) and the admin design tokens used here
+   (--surface, --surface2, --border, --text, --text-muted, --accent, --radius…).
+   This file styles the editor/preview layout and the per-token rows — NONE of
+   it uses the public site's --color-* tokens, so the chrome is unaffected by
+   whatever colors are being edited. */
+
+/* Fill the viewport below the sticky 61px header so the editor scrolls
+   internally and the preview iframe gets real height. body is NOT a flex
+   column here (postGen-style.css only sets min-height), so we size explicitly
+   — mirroring the .template-sidebar pattern in postGen-style.css. */
+.cp-page {
+    height: calc(100vh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Navbar: centered "GitHub takes time to update" notice + sign-in pinned right.
+   .site-header is position:sticky (a positioning context), so the notice can be
+   absolutely centered independent of the left/right item widths. The auth chip
+   gets margin-left:auto to sit in the far-right corner. */
+.cp-navbar-notice {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: var(--text);
+    white-space: nowrap;
+    pointer-events: none;
+}
+.cp-auth-right { margin-left: auto; }
+
+/* App shell: editor column + preview column */
+.cp-app {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.cp-editor-col {
+    width: 480px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    min-height: 0;
+}
+
+.cp-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+.cp-toolbar-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+}
+
+/* Templates sidebar (right column) — base list + collapsible category groups */
+.cp-templates-sidebar {
+    position: relative;          /* positioning context for the loading overlay */
+    width: 220px;
+    flex-shrink: 0;
+    border-left: 1px solid var(--border);
+    background: var(--surface);
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+}
+.cp-templates-head { display: flex; align-items: center; gap: 6px; }
+.cp-templates-title {
+    flex: 1;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.cp-categories { display: flex; flex-direction: column; gap: 10px; }
+.cp-templates-hint { font-size: 11px; font-weight: 700; color: var(--text-muted); line-height: 1.4; }
+.cp-templates-divider { height: 1px; margin: 10px 0; background: var(--border); }
+.cp-templates-list { display: flex; flex-direction: column; gap: 6px; }
+.cp-templates-empty { font-size: 12px; color: var(--text-muted); }
+.cp-template-btn {
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 11px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cp-template-btn:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+/* AI-Generated collapsible group */
+.cp-templates-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+}
+.cp-templates-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-align: left;
+}
+.cp-templates-toggle:hover { color: var(--text); }
+.cp-templates-caret { display: inline-block; transition: transform 0.15s ease; }
+.cp-templates-toggle-open .cp-templates-caret { transform: rotate(90deg); }
+
+/* "Waiting for GitHub" overlay — covers the templates sidebar only */
+.cp-loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 6, 18, 0.82);
+    backdrop-filter: blur(2px);
+}
+.cp-loading-box { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cp-loading-text { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.02em; }
+.cp-loading-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: cp-spin 0.8s linear infinite;
+}
+@keyframes cp-spin { to { transform: rotate(360deg); } }
+
+/* Right-click context menu (new category / delete) */
+.cp-context-menu {
+    position: fixed;
+    z-index: 1000;
+    min-width: 160px;
+    padding: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.cp-context-menu-item {
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+}
+.cp-context-menu-item:hover { background: var(--accent-dim); }
+
+/* Save-template modal: the category <select> reuses .cp-commit-name's box */
+select.cp-commit-name { cursor: pointer; }
+
+.cp-editor {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 14px;
+    min-height: 0;
+}
+
+.cp-placeholder {
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.5;
+}
+.cp-error { color: var(--danger); }
+
+/* Color group + divider (Main colors, Text & borders, …, Shadows) */
+.cp-group { margin-bottom: 14px; }
+.cp-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 6px 2px 5px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: -10px;
+    background: var(--surface);
+    z-index: 1;
+}
+
+/* One editable token: swatch | label | color | alpha | text */
+.cp-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 32px 52px 140px;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 2px;
+}
+/* Shadow rows have no color box / slider — empty spacers fill columns 3-4 so
+   their text fields stay aligned with the color rows (uniform 5-column grid). */
+.cp-color-spacer, .cp-alpha-spacer { display: block; }
+
+/* Link toggle drawn between a source row (primary / complimentary) and its
+   logo row. The connector mirrors the row's 5-column grid so the button lands
+   in column 3 — centered between the two "pick a color" boxes it ties together.
+   Off by default; .is-linked swaps in the locked icon. */
+.cp-link-connector {
+    display: grid;
+    grid-template-columns: 24px 1fr 32px 52px 140px;
+    gap: 8px;
+    padding: 0 2px;
+    margin: -4px 0;
+}
+.cp-link-toggle {
+    grid-column: 3;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 18px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+}
+.cp-link-toggle:hover,
+.cp-link-toggle.is-linked { opacity: 1; }
+.cp-link-icon { width: 16px; height: 16px; display: block; pointer-events: none; }
+
+/* A linked logo row mirrors its source and is read-only. */
+.cp-row-linked .cp-swatch,
+.cp-row-linked .cp-label { opacity: 0.55; }
+.cp-row-linked .cp-color,
+.cp-row-linked .cp-alpha,
+.cp-row-linked .cp-text {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Opacity slider */
+.cp-alpha {
+    width: 100%;
+    height: 4px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--accent);
+}
+
+.cp-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid var(--border-light);
+    /* checkerboard shows translucency through rgba()/shadow values */
+    background-image:
+        linear-gradient(45deg, #555 25%, transparent 25%),
+        linear-gradient(-45deg, #555 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #555 75%),
+        linear-gradient(-45deg, transparent 75%, #555 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.cp-label {
+    font-size: 13px;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cp-label code {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+}
+
+.cp-color {
+    width: 32px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+}
+.cp-color::-webkit-color-swatch-wrapper { padding: 2px; }
+.cp-color::-webkit-color-swatch { border: none; border-radius: 3px; }
+
+.cp-text {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    padding: 5px 7px;
+}
+.cp-text:focus { outline: none; border-color: var(--accent); }
+
+/* Commit bar at the bottom of the editor column */
+.cp-commit-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+}
+.cp-commit-status {
+    flex: 1;
+    font-size: 12px;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cp-commit-status-error { color: var(--danger); }
+
+/* Preview column */
+.cp-preview-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg);
+}
+.cp-preview-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.cp-preview-bar span { flex: 1; }
+.cp-preview-iframe {
+    flex: 1;
+    width: auto;                 /* stretch to fill the column minus the margin */
+    margin: 12px;                /* padding between the preview and the tool UI */
+    border: 2px solid #fff;      /* white frame around the live preview */
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    min-height: 0;
+}
+
+/* Generic buttons (toolbar + gate). The commit button reuses .commit-btn from
+   postGen-style.css; the secondary actions use .cp-btn. */
+.cp-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;       /* don't inherit the preview bar's uppercase */
+    letter-spacing: 0;
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.cp-btn:hover:not(:disabled) { background: var(--accent-dim); border-color: var(--accent); }
+.cp-btn:disabled { opacity: 0.4; cursor: default; }
+.cp-btn-icon { padding: 7px 10px; }
+/* Fixed-width toolbar toggles so the changing label doesn't shift the row. */
+.cp-theme-toggle, .cp-btn-wide { min-width: 92px; text-align: center; }
+/* Active/toggled state (e.g. "Showing original"). */
+.cp-btn-active, .cp-btn-active:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.cp-commit-btn {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+.cp-commit-btn:hover:not(:disabled) { background: var(--accent-hover); }
+.cp-commit-btn:disabled { opacity: 0.5; cursor: default; }
+
+/* Restricted (signed-out) view: write controls (commit, save-as-template) show
+   as locked but stay clickable so the click can open the sign-in modal. The
+   accent fill is dropped so they read as unavailable, not primary actions. */
+.cp-btn.cp-locked,
+.cp-commit-btn.cp-locked {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    opacity: 1;
+    cursor: pointer;
+}
+.cp-btn.cp-locked:hover,
+.cp-commit-btn.cp-locked:hover {
+    background: var(--surface2);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+/* Big "this changes the whole site" warning in the commit modal */
+.cp-commit-danger {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    background: rgba(224, 82, 82, 0.12);
+    border: 1px solid var(--danger);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.45;
+}
+.cp-commit-danger-icon { font-size: 24px; line-height: 1; flex-shrink: 0; }
+.cp-commit-danger strong { color: var(--danger); }
+
+.cp-export-actions { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+.cp-export-hint { color: var(--text-muted); font-size: 12px; margin: 0 0 8px; }
+
+/* Commit modal name input (show-changes.css isn't loaded on this page). */
+.cp-modal-wide { max-width: 560px; }
+.cp-commit-label { display: block; font-size: 12px; font-weight: 600; color: var(--text); margin: 10px 0 4px; }
+.cp-commit-label-hint { color: var(--text-muted); font-weight: 400; }
+.cp-commit-name {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 7px 9px;
+}
+.cp-commit-name:focus { outline: none; border-color: var(--accent); }
+.cp-commit-help { color: var(--text-muted); font-size: 12px; margin: 8px 0 0; }
+
+/* Stack columns on narrow viewports */
+@media (max-width: 900px) {
+    .cp-app { flex-direction: column; }
+    .cp-editor-col { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .cp-preview-col { min-height: 420px; }
+    .cp-templates-sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); }
+}
+
+/* postGen-style.css applies body { zoom: 0.64 } on short viewports, so a child
+   sized at 100vh paints over-sized — compensate by 1/0.64 (same as the admin
+   sidebar/template-sidebar rules). */
+@media (max-height: 800px) {
+    .cp-page { height: calc(100vh / 0.64 - var(--header-h)); }
+}

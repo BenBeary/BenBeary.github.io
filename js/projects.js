@@ -3,7 +3,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Clean Up Crew",
         playLink: "https://benbeary.itch.io/cleanup-crew",
        
-        background: "images/CleanUpCrew/Blurred.jpg",
+        background: "images/Blog Images/CleanUpCrew/Blurred.jpg",
 
         date: "July 29, 2025",
 
@@ -16,19 +16,19 @@ const projects = {
         },
 
         images: [
-            "images/CleanUpCrew/16_9 shot.png",
-            "images/CleanUpCrew/MenuLoadIn.mp4",
-            "images/CleanUpCrew/Homescreen.png",
-            "images/CleanUpCrew/Gameplay1.png",
-            "images/CleanUpCrew/UI.png",
-            "images/CleanUpCrew/ControlUI.png",
-            "images/CleanUpCrew/map_layout.png",
-            "images/CleanUpCrew/map_layout4.png",
-            "images/CleanUpCrew/map_layout2.png",
-            "images/CleanUpCrew/map_layout3.png",
-            "images/CleanUpCrew/3DModel.png",
-            "images/CleanUpCrew/spawnObjects.png",
-            "images/CleanUpCrew/fpsGunSpread.png"
+            "images/Blog Images/CleanUpCrew/16_9 shot.png",
+            "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
+            "images/Blog Images/CleanUpCrew/Homescreen.png",
+            "images/Blog Images/CleanUpCrew/Gameplay1.png",
+            "images/Blog Images/CleanUpCrew/UI.png",
+            "images/Blog Images/CleanUpCrew/ControlUI.png",
+            "images/Blog Images/CleanUpCrew/map_layout.png",
+            "images/Blog Images/CleanUpCrew/map_layout4.png",
+            "images/Blog Images/CleanUpCrew/map_layout2.png",
+            "images/Blog Images/CleanUpCrew/map_layout3.png",
+            "images/Blog Images/CleanUpCrew/3DModel.png",
+            "images/Blog Images/CleanUpCrew/spawnObjects.png",
+            "images/Blog Images/CleanUpCrew/fpsGunSpread.png"
         ],
 
         tags: [
@@ -54,7 +54,7 @@ const projects = {
         title: "TEAM PROJECT | Game: [Docking Bay]",
         playLink: "https://zorzini.itch.io/dockingbay",
        
-        background: "images/DockingBay/Blurred.png",
+        background: "images/Blog Images/DockingBay/Blurred.png",
 
         date: "October 17, 2025",
 
@@ -67,18 +67,18 @@ const projects = {
         },
 
         images: [
-            "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
-            "images/DockingBay/MenuAnimation.mp4",
-            "images/DockingBay/HomeScreen.png",
-            "images/DockingBay/Monitor4.png",
-            "images/DockingBay/Monitor.png",
-            "images/DockingBay/Monitor2.png",
-            "images/DockingBay/Monitor3.png",
-            "images/DockingBay/sideView.png",
-            "images/DockingBay/Camera.png",
-            "images/DockingBay/layout.png",
-            "images/DockingBay/DialogueTest.gif",
-            "images/DockingBay/DockingBay Front Panel Timeline_Condensed.png"
+            "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+            "images/Blog Images/DockingBay/MenuAnimation.mp4",
+            "images/Blog Images/DockingBay/HomeScreen.png",
+            "images/Blog Images/DockingBay/Monitor4.png",
+            "images/Blog Images/DockingBay/Monitor.png",
+            "images/Blog Images/DockingBay/Monitor2.png",
+            "images/Blog Images/DockingBay/Monitor3.png",
+            "images/Blog Images/DockingBay/sideView.png",
+            "images/Blog Images/DockingBay/Camera.png",
+            "images/Blog Images/DockingBay/layout.png",
+            "images/Blog Images/DockingBay/DialogueTest.gif",
+            "images/Blog Images/DockingBay/DockingBay Front Panel Timeline_Condensed.png"
         ],
 
         tags: [
@@ -104,7 +104,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Idol of Ashes",
         playLink: "https://zorzini.itch.io/idol-of-ashes",
        
-        background: "images/IdolofAshes/Blurred.png",
+        background: "images/Blog Images/IdolofAshes/Blurred.png",
 
         date: "June 9, 2025",
 
@@ -117,15 +117,15 @@ const projects = {
         },
 
         images: [
-            "images/IdolofAshes/IdolOfAshes.png",
-            "images/IdolofAshes/Img_4.png",
-            "images/IdolofAshes/Img_2.png",
-            "images/IdolofAshes/Img_3.png",
-            "images/IdolofAshes/Img_5.png",
-            "images/IdolofAshes/Outline.png",
-            "images/IdolofAshes/Shader.png",
-            "images/IdolofAshes/UI.png",
-            "images/IdolofAshes/UI2.png",
+            "images/Blog Images/IdolofAshes/IdolOfAshes.png",
+            "images/Blog Images/IdolofAshes/Img_4.png",
+            "images/Blog Images/IdolofAshes/Img_2.png",
+            "images/Blog Images/IdolofAshes/Img_3.png",
+            "images/Blog Images/IdolofAshes/Img_5.png",
+            "images/Blog Images/IdolofAshes/Outline.png",
+            "images/Blog Images/IdolofAshes/Shader.png",
+            "images/Blog Images/IdolofAshes/UI.png",
+            "images/Blog Images/IdolofAshes/UI2.png",
 
         ],
 
@@ -149,7 +149,7 @@ const projects = {
         title: "Game: Spirit Outbreak",
         playLink: "https://benbeary.itch.io/spirit-outbreak",
        
-        background: "images/SpiritOutbreak/Blurred.jpg",
+        background: "images/Blog Images/SpiritOutbreak/Blurred.jpg",
 
         date: "April 19, 2025",
 
@@ -163,14 +163,14 @@ const projects = {
         },
 
         images: [
-            "images/SpiritOutbreak/FrontImage.jpg",
-            "images/SpiritOutbreak/video1.mp4",
-            "images/SpiritOutbreak/video2.mp4",
-            "images/SpiritOutbreak/video3.mp4",
-            "images/SpiritOutbreak/img1.png",
-            "images/SpiritOutbreak/img2.png",
-            "images/SpiritOutbreak/img3.png",
-            "images/SpiritOutbreak/img4.png",
+            "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
+            "images/Blog Images/SpiritOutbreak/video1.mp4",
+            "images/Blog Images/SpiritOutbreak/video2.mp4",
+            "images/Blog Images/SpiritOutbreak/video3.mp4",
+            "images/Blog Images/SpiritOutbreak/img1.png",
+            "images/Blog Images/SpiritOutbreak/img2.png",
+            "images/Blog Images/SpiritOutbreak/img3.png",
+            "images/Blog Images/SpiritOutbreak/img4.png",
         ],
 
         tags: [
@@ -195,7 +195,7 @@ const projects = {
         title: "Game: Dice Climbers: Shelf of Chaos",
         playLink: "https://benbeary.itch.io/dice-climber-shelf-of-chaos",
        
-        background: "images/DiceClimber/Blurred.jpg",
+        background: "images/Blog Images/DiceClimber/Blurred.jpg",
 
         date: "May 20, 2025",
 
@@ -209,18 +209,18 @@ const projects = {
         },
 
         images: [
-            "images/DiceClimber/Title Poster.jpg",
-            "images/DiceClimber/Menu.png",
-            "images/DiceClimber/img1.png",
-            "images/DiceClimber/img2.png",
-            "images/DiceClimber/img3.png",
-            "images/DiceClimber/img4.png",
-            "images/DiceClimber/img5.png",
-            "images/DiceClimber/img6.png",
-            "images/DiceClimber/img7.png",
-            "images/DiceClimber/img8.png",
-            "images/DiceClimber/img9.png",
-            "images/DiceClimber/img10.png",
+            "images/Blog Images/DiceClimber/Title Poster.jpg",
+            "images/Blog Images/DiceClimber/Menu.png",
+            "images/Blog Images/DiceClimber/img1.png",
+            "images/Blog Images/DiceClimber/img2.png",
+            "images/Blog Images/DiceClimber/img3.png",
+            "images/Blog Images/DiceClimber/img4.png",
+            "images/Blog Images/DiceClimber/img5.png",
+            "images/Blog Images/DiceClimber/img6.png",
+            "images/Blog Images/DiceClimber/img7.png",
+            "images/Blog Images/DiceClimber/img8.png",
+            "images/Blog Images/DiceClimber/img9.png",
+            "images/Blog Images/DiceClimber/img10.png",
            
         ],
 
@@ -246,7 +246,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Death Tides",
         playLink: "https://benbeary.itch.io/death-tides",
        
-        background: "images/DeathTides/Blurred.png",
+        background: "images/Blog Images/DeathTides/Blurred.png",
 
         date: "July 27, 2024",
 
@@ -258,12 +258,12 @@ const projects = {
         },
 
         images: [
-            "images/DeathTides/DeathTides_1000px.png",
-            "images/DeathTides/img1.png",
-            "images/DeathTides/img2.png",
-            "images/DeathTides/img3.png",
-            "images/DeathTides/img4.png",
-            "images/DeathTides/img5.png",
+            "images/Blog Images/DeathTides/DeathTides_1000px.png",
+            "images/Blog Images/DeathTides/img1.png",
+            "images/Blog Images/DeathTides/img2.png",
+            "images/Blog Images/DeathTides/img3.png",
+            "images/Blog Images/DeathTides/img4.png",
+            "images/Blog Images/DeathTides/img5.png",
            
         ],
 
@@ -289,7 +289,7 @@ const projects = {
         title: "Game: Dodge Kart",
         playLink: "https://benbeary.itch.io/dodge-kart",
        
-        background: "images/DodgeKarts/Blurred.png",
+        background: "images/Blog Images/DodgeKarts/Blurred.png",
 
         date: "October 27, 2023",
 
@@ -300,12 +300,12 @@ const projects = {
         },
 
         images: [
-            "images/DodgeKarts/DodgeKarts_1000px.png",
-            "images/DodgeKarts/img1.png",
-            "images/DodgeKarts/img2.png",
-            "images/DodgeKarts/img3.png",
-            // "images/PortLochne/img4.jpg",
-            // "images/PortLochne/img5.jpg",
+            "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
+            "images/Blog Images/DodgeKarts/img1.png",
+            "images/Blog Images/DodgeKarts/img2.png",
+            "images/Blog Images/DodgeKarts/img3.png",
+            // "images/Blog Images/PortLochne/img4.jpg",
+            // "images/Blog Images/PortLochne/img5.jpg",
 
            
         ],
@@ -329,7 +329,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Devil's Acre",
         playLink: "https://zorzini.itch.io/devils-acre",
        
-        background: "images/DevilsAcre/Blurred.png",
+        background: "images/Blog Images/DevilsAcre/Blurred.png",
 
         date: "April 22, 2022",
 
@@ -339,14 +339,14 @@ const projects = {
         },
 
         images: [
-            "images/DevilsAcre/DevilsAcre_Title_1000px.png",
-            "images/DevilsAcre/img1.gif",
-            "images/DevilsAcre/img2.gif",
-            "images/DevilsAcre/img3.png",
-            "images/DevilsAcre/img4.png",
-            "images/DevilsAcre/img5.png",
-            "images/DevilsAcre/img6.png",
-            "images/DevilsAcre/img7.png",
+            "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
+            "images/Blog Images/DevilsAcre/img1.gif",
+            "images/Blog Images/DevilsAcre/img2.gif",
+            "images/Blog Images/DevilsAcre/img3.png",
+            "images/Blog Images/DevilsAcre/img4.png",
+            "images/Blog Images/DevilsAcre/img5.png",
+            "images/Blog Images/DevilsAcre/img6.png",
+            "images/Blog Images/DevilsAcre/img7.png",
 
         ],
 
@@ -369,7 +369,7 @@ const projects = {
         title: "Modded Map: Port Lochne",
         playLink: "",
        
-        background: "images/PortLochne/Blurred.png",
+        background: "images/Blog Images/PortLochne/Blurred.png",
 
         date: "April 22, 2022",
 
@@ -379,12 +379,12 @@ const projects = {
         },
 
         images: [
-            "images/PortLochne/PortLochne_1000px.png",
-            "images/PortLochne/img1.jpg",
-            "images/PortLochne/img2.jpg",
-            "images/PortLochne/img3.jpg",
-            "images/PortLochne/img4.jpg",
-            "images/PortLochne/img5.jpg",
+            "images/Blog Images/PortLochne/PortLochne_1000px.png",
+            "images/Blog Images/PortLochne/img1.jpg",
+            "images/Blog Images/PortLochne/img2.jpg",
+            "images/Blog Images/PortLochne/img3.jpg",
+            "images/Blog Images/PortLochne/img4.jpg",
+            "images/Blog Images/PortLochne/img5.jpg",
 
            
         ],
@@ -406,7 +406,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Meoware Defender",
         playLink: "https://withcyber.itch.io/meoware-defender",
        
-        background: "images/MeowareDefender/Blurred.png",
+        background: "images/Blog Images/MeowareDefender/Blurred.png",
 
         date: "September 2, 2025",
 
@@ -417,12 +417,12 @@ const projects = {
         },
 
         images: [
-            "images/MeowareDefender/Menu.png",
-            "images/MeowareDefender/img1.png",
-            "images/MeowareDefender/img2.png",
-            "images/MeowareDefender/img3.png",
-            "images/MeowareDefender/img4.png",
-            // "images/MeowareDefender/img5.png",
+            "images/Blog Images/MeowareDefender/Menu.png",
+            "images/Blog Images/MeowareDefender/img1.png",
+            "images/Blog Images/MeowareDefender/img2.png",
+            "images/Blog Images/MeowareDefender/img3.png",
+            "images/Blog Images/MeowareDefender/img4.png",
+            // "images/Blog Images/MeowareDefender/img5.png",
 
            
         ],
@@ -449,7 +449,7 @@ const projects = {
         title: "TEAM PROJECT | Game: Signal-Link",
         playLink: "https://benbeary.itch.io/signal-link",
        
-        background: "images/Signal-Link/Blurred.jpg",
+        background: "images/Blog Images/Signal-Link/Blurred.jpg",
 
         date: "January 4, 2026",
 
@@ -462,26 +462,26 @@ const projects = {
         },
 
         images: [
-            "images/Signal-Link/singla_link_poster.png",
-            "images/Signal-Link/Menu Setup.mp4",
-            "images/Signal-Link/MainMenu_Blender.png",
-            "images/Signal-Link/MainMenu_Unity.png",
-            "images/Signal-Link/MainMenu_GameView.png",
-            "images/Signal-Link/Level_1.png",
-            "images/Signal-Link/Game_1.png",
-            "images/Signal-Link/ExtraImage_2.png",
-            "images/Signal-Link/ExtraImage_1.png",
-            "images/Signal-Link/ExtraImage_3.png",
-            "images/Signal-Link/ExtraImage_4.png",
-            "images/Signal-Link/Modeling_Layout.png",
-            "images/Signal-Link/Modeling_Layout_2.png",
-            "images/Signal-Link/Level2_Progress_1.png",
-            "images/Signal-Link/Level2_Progress_2.png",
-            "images/Signal-Link/Level2_Progress_3.png",
-            "images/Signal-Link/Level2_Progress_4.png",
-            "images/Signal-Link/Level_2.png",
+            "images/Blog Images/Signal-Link/singla_link_poster.png",
+            "images/Blog Images/Signal-Link/Menu Setup.mp4",
+            "images/Blog Images/Signal-Link/MainMenu_Blender.png",
+            "images/Blog Images/Signal-Link/MainMenu_Unity.png",
+            "images/Blog Images/Signal-Link/MainMenu_GameView.png",
+            "images/Blog Images/Signal-Link/Level_1.png",
+            "images/Blog Images/Signal-Link/Game_1.png",
+            "images/Blog Images/Signal-Link/ExtraImage_2.png",
+            "images/Blog Images/Signal-Link/ExtraImage_1.png",
+            "images/Blog Images/Signal-Link/ExtraImage_3.png",
+            "images/Blog Images/Signal-Link/ExtraImage_4.png",
+            "images/Blog Images/Signal-Link/Modeling_Layout.png",
+            "images/Blog Images/Signal-Link/Modeling_Layout_2.png",
+            "images/Blog Images/Signal-Link/Level2_Progress_1.png",
+            "images/Blog Images/Signal-Link/Level2_Progress_2.png",
+            "images/Blog Images/Signal-Link/Level2_Progress_3.png",
+            "images/Blog Images/Signal-Link/Level2_Progress_4.png",
+            "images/Blog Images/Signal-Link/Level_2.png",
 
-            // "images/MeowareDefender/img5.png",
+            // "images/Blog Images/MeowareDefender/img5.png",
 
            
         ],
