@@ -32,42 +32,42 @@
     },
     {
       "type": "image",
-      "src": "images/IdolofAshes/IdolOfAshes.png",
+      "src": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
       "alt": "Idol of Ashes key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/IdolofAshes/Img_4.png",
+          "src": "images/Blog Images/IdolofAshes/Img_4.png",
           "alt": "Idol of Ashes screenshot 1"
         },
         {
-          "src": "images/IdolofAshes/Img_2.png",
+          "src": "images/Blog Images/IdolofAshes/Img_2.png",
           "alt": "Idol of Ashes screenshot 2"
         },
         {
-          "src": "images/IdolofAshes/Img_3.png",
+          "src": "images/Blog Images/IdolofAshes/Img_3.png",
           "alt": "Idol of Ashes screenshot 3"
         },
         {
-          "src": "images/IdolofAshes/Img_5.png",
+          "src": "images/Blog Images/IdolofAshes/Img_5.png",
           "alt": "Idol of Ashes screenshot 4"
         },
         {
-          "src": "images/IdolofAshes/Outline.png",
+          "src": "images/Blog Images/IdolofAshes/Outline.png",
           "alt": "Idol of Ashes screenshot 5"
         },
         {
-          "src": "images/IdolofAshes/Shader.png",
+          "src": "images/Blog Images/IdolofAshes/Shader.png",
           "alt": "Idol of Ashes screenshot 6"
         },
         {
-          "src": "images/IdolofAshes/UI.png",
+          "src": "images/Blog Images/IdolofAshes/UI.png",
           "alt": "Idol of Ashes screenshot 7"
         },
         {
-          "src": "images/IdolofAshes/UI2.png",
+          "src": "images/Blog Images/IdolofAshes/UI2.png",
           "alt": "Idol of Ashes screenshot 8"
         }
       ]

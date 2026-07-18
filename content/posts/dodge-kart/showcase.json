@@ -30,22 +30,22 @@
     },
     {
       "type": "image",
-      "src": "images/DodgeKarts/DodgeKarts_1000px.png",
+      "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
       "alt": "Dodge Kart key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/DodgeKarts/img1.png",
+          "src": "images/Blog Images/DodgeKarts/img1.png",
           "alt": "Dodge Kart screenshot 1"
         },
         {
-          "src": "images/DodgeKarts/img2.png",
+          "src": "images/Blog Images/DodgeKarts/img2.png",
           "alt": "Dodge Kart screenshot 2"
         },
         {
-          "src": "images/DodgeKarts/img3.png",
+          "src": "images/Blog Images/DodgeKarts/img3.png",
           "alt": "Dodge Kart screenshot 3"
         }
       ]

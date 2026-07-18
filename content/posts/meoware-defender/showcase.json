@@ -33,26 +33,26 @@
     },
     {
       "type": "image",
-      "src": "images/MeowareDefender/Menu.png",
+      "src": "images/Blog Images/MeowareDefender/Menu.png",
       "alt": "Meoware Defender key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/MeowareDefender/img1.png",
+          "src": "images/Blog Images/MeowareDefender/img1.png",
           "alt": "Meoware Defender screenshot 1"
         },
         {
-          "src": "images/MeowareDefender/img2.png",
+          "src": "images/Blog Images/MeowareDefender/img2.png",
           "alt": "Meoware Defender screenshot 2"
         },
         {
-          "src": "images/MeowareDefender/img3.png",
+          "src": "images/Blog Images/MeowareDefender/img3.png",
           "alt": "Meoware Defender screenshot 3"
         },
         {
-          "src": "images/MeowareDefender/img4.png",
+          "src": "images/Blog Images/MeowareDefender/img4.png",
           "alt": "Meoware Defender screenshot 4"
         }
       ]

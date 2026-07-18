@@ -33,81 +33,81 @@
     },
     {
       "type": "image",
-      "src": "images/Signal-Link/singla_link_poster.png",
+      "src": "images/Blog Images/Signal-Link/singla_link_poster.png",
       "alt": "Signal-Link key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/Signal-Link/MainMenu_Blender.png",
+          "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
           "alt": "Signal-Link screenshot 1"
         },
         {
-          "src": "images/Signal-Link/MainMenu_Unity.png",
+          "src": "images/Blog Images/Signal-Link/MainMenu_Unity.png",
           "alt": "Signal-Link screenshot 2"
         },
         {
-          "src": "images/Signal-Link/MainMenu_GameView.png",
+          "src": "images/Blog Images/Signal-Link/MainMenu_GameView.png",
           "alt": "Signal-Link screenshot 3"
         },
         {
-          "src": "images/Signal-Link/Level_1.png",
+          "src": "images/Blog Images/Signal-Link/Level_1.png",
           "alt": "Signal-Link screenshot 4"
         },
         {
-          "src": "images/Signal-Link/Game_1.png",
+          "src": "images/Blog Images/Signal-Link/Game_1.png",
           "alt": "Signal-Link screenshot 5"
         },
         {
-          "src": "images/Signal-Link/ExtraImage_2.png",
+          "src": "images/Blog Images/Signal-Link/ExtraImage_2.png",
           "alt": "Signal-Link screenshot 6"
         },
         {
-          "src": "images/Signal-Link/ExtraImage_1.png",
+          "src": "images/Blog Images/Signal-Link/ExtraImage_1.png",
           "alt": "Signal-Link screenshot 7"
         },
         {
-          "src": "images/Signal-Link/ExtraImage_3.png",
+          "src": "images/Blog Images/Signal-Link/ExtraImage_3.png",
           "alt": "Signal-Link screenshot 8"
         },
         {
-          "src": "images/Signal-Link/ExtraImage_4.png",
+          "src": "images/Blog Images/Signal-Link/ExtraImage_4.png",
           "alt": "Signal-Link screenshot 9"
         },
         {
-          "src": "images/Signal-Link/Modeling_Layout.png",
+          "src": "images/Blog Images/Signal-Link/Modeling_Layout.png",
           "alt": "Signal-Link screenshot 10"
         },
         {
-          "src": "images/Signal-Link/Modeling_Layout_2.png",
+          "src": "images/Blog Images/Signal-Link/Modeling_Layout_2.png",
           "alt": "Signal-Link screenshot 11"
         },
         {
-          "src": "images/Signal-Link/Level2_Progress_1.png",
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_1.png",
           "alt": "Signal-Link screenshot 12"
         },
         {
-          "src": "images/Signal-Link/Level2_Progress_2.png",
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_2.png",
           "alt": "Signal-Link screenshot 13"
         },
         {
-          "src": "images/Signal-Link/Level2_Progress_3.png",
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_3.png",
           "alt": "Signal-Link screenshot 14"
         },
         {
-          "src": "images/Signal-Link/Level2_Progress_4.png",
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_4.png",
           "alt": "Signal-Link screenshot 15"
         },
         {
-          "src": "images/Signal-Link/Level_2.png",
+          "src": "images/Blog Images/Signal-Link/Level_2.png",
           "alt": "Signal-Link screenshot 16"
         }
       ]
     },
     {
       "type": "video",
-      "src": "images/Signal-Link/Menu Setup.mp4",
+      "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
       "caption": ""
     }
   ]

@@ -33,57 +33,57 @@
     },
     {
       "type": "image",
-      "src": "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+      "src": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
       "alt": "Docking Bay key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/DockingBay/HomeScreen.png",
+          "src": "images/Blog Images/DockingBay/HomeScreen.png",
           "alt": "Docking Bay screenshot 1"
         },
         {
-          "src": "images/DockingBay/Monitor4.png",
+          "src": "images/Blog Images/DockingBay/Monitor4.png",
           "alt": "Docking Bay screenshot 2"
         },
         {
-          "src": "images/DockingBay/Monitor.png",
+          "src": "images/Blog Images/DockingBay/Monitor.png",
           "alt": "Docking Bay screenshot 3"
         },
         {
-          "src": "images/DockingBay/Monitor2.png",
+          "src": "images/Blog Images/DockingBay/Monitor2.png",
           "alt": "Docking Bay screenshot 4"
         },
         {
-          "src": "images/DockingBay/Monitor3.png",
+          "src": "images/Blog Images/DockingBay/Monitor3.png",
           "alt": "Docking Bay screenshot 5"
         },
         {
-          "src": "images/DockingBay/sideView.png",
+          "src": "images/Blog Images/DockingBay/sideView.png",
           "alt": "Docking Bay screenshot 6"
         },
         {
-          "src": "images/DockingBay/Camera.png",
+          "src": "images/Blog Images/DockingBay/Camera.png",
           "alt": "Docking Bay screenshot 7"
         },
         {
-          "src": "images/DockingBay/layout.png",
+          "src": "images/Blog Images/DockingBay/layout.png",
           "alt": "Docking Bay screenshot 8"
         },
         {
-          "src": "images/DockingBay/DialogueTest.gif",
+          "src": "images/Blog Images/DockingBay/DialogueTest.gif",
           "alt": "Docking Bay screenshot 9"
         },
         {
-          "src": "images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
+          "src": "images/Blog Images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
           "alt": "Docking Bay screenshot 10"
         }
       ]
     },
     {
       "type": "video",
-      "src": "images/DockingBay/MenuAnimation.mp4",
+      "src": "images/Blog Images/DockingBay/MenuAnimation.mp4",
       "caption": ""
     }
   ]

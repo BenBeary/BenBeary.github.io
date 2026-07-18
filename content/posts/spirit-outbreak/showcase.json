@@ -33,43 +33,43 @@
     },
     {
       "type": "image",
-      "src": "images/SpiritOutbreak/FrontImage.jpg",
+      "src": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
       "alt": "Spirit Outbreak key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/SpiritOutbreak/img1.png",
+          "src": "images/Blog Images/SpiritOutbreak/img1.png",
           "alt": "Spirit Outbreak screenshot 1"
         },
         {
-          "src": "images/SpiritOutbreak/img2.png",
+          "src": "images/Blog Images/SpiritOutbreak/img2.png",
           "alt": "Spirit Outbreak screenshot 2"
         },
         {
-          "src": "images/SpiritOutbreak/img3.png",
+          "src": "images/Blog Images/SpiritOutbreak/img3.png",
           "alt": "Spirit Outbreak screenshot 3"
         },
         {
-          "src": "images/SpiritOutbreak/img4.png",
+          "src": "images/Blog Images/SpiritOutbreak/img4.png",
           "alt": "Spirit Outbreak screenshot 4"
         }
       ]
     },
     {
       "type": "video",
-      "src": "images/SpiritOutbreak/video1.mp4",
+      "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
       "caption": ""
     },
     {
       "type": "video",
-      "src": "images/SpiritOutbreak/video2.mp4",
+      "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
       "caption": ""
     },
     {
       "type": "video",
-      "src": "images/SpiritOutbreak/video3.mp4",
+      "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
       "caption": ""
     }
   ]

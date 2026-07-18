@@ -72,8 +72,8 @@
         "modeling": 2,
         "home": 4
       },
-      "cover": "images/CleanUpCrew/16_9 shot.png",
-      "background": "images/CleanUpCrew/Blurred.jpg",
+      "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png",
+      "background": "images/Blog Images/CleanUpCrew/Blurred.jpg",
       "posts": [
         {
           "slug": "showcase",
@@ -81,7 +81,7 @@
           "title": "Clean Up Crew — Showcase",
           "date": "2025-07-29",
           "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
-          "cover": "images/CleanUpCrew/16_9 shot.png"
+          "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
         }
       ]
     },
@@ -115,8 +115,8 @@
         "modeling": 1,
         "home": 2
       },
-      "cover": "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
-      "background": "images/DockingBay/Blurred.png",
+      "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+      "background": "images/Blog Images/DockingBay/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -124,7 +124,7 @@
           "title": "Docking Bay — Showcase",
           "date": "2025-10-17",
           "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
-          "cover": "images/DockingBay/DockingBay_Poster_Warm_Wide.png"
+          "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
         }
       ]
     },
@@ -154,8 +154,8 @@
         "modeling": 3,
         "home": 5
       },
-      "cover": "images/IdolofAshes/IdolOfAshes.png",
-      "background": "images/IdolofAshes/Blurred.png",
+      "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
+      "background": "images/Blog Images/IdolofAshes/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -163,7 +163,7 @@
           "title": "Idol of Ashes — Showcase",
           "date": "2025-06-09",
           "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
-          "cover": "images/IdolofAshes/IdolOfAshes.png"
+          "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
         }
       ]
     },
@@ -195,8 +195,8 @@
         "modeling": 4,
         "pixel-art": 1
       },
-      "cover": "images/SpiritOutbreak/FrontImage.jpg",
-      "background": "images/SpiritOutbreak/Blurred.jpg",
+      "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
+      "background": "images/Blog Images/SpiritOutbreak/Blurred.jpg",
       "posts": [
         {
           "slug": "showcase",
@@ -204,7 +204,7 @@
           "title": "Spirit Outbreak — Showcase",
           "date": "2025-04-19",
           "excerpt": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based…",
-          "cover": "images/SpiritOutbreak/FrontImage.jpg"
+          "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg"
         }
       ]
     },
@@ -239,8 +239,8 @@
         "pixel-art": 2,
         "home": 6
       },
-      "cover": "images/DiceClimber/Title Poster.jpg",
-      "background": "images/DiceClimber/Blurred.jpg",
+      "cover": "images/Blog Images/DiceClimber/Title Poster.jpg",
+      "background": "images/Blog Images/DiceClimber/Blurred.jpg",
       "posts": [
         {
           "slug": "showcase",
@@ -248,7 +248,7 @@
           "title": "Dice Climbers: Shelf of Chaos — Showcase",
           "date": "2025-05-20",
           "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
-          "cover": "images/DiceClimber/Title Poster.jpg"
+          "cover": "images/Blog Images/DiceClimber/Title Poster.jpg"
         }
       ]
     },
@@ -278,8 +278,8 @@
         "ui-ux": 6,
         "pixel-art": 3
       },
-      "cover": "images/DeathTides/DeathTides_1000px.png",
-      "background": "images/DeathTides/Blurred.png",
+      "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png",
+      "background": "images/Blog Images/DeathTides/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -287,7 +287,7 @@
           "title": "Death Tides — Showcase",
           "date": "2024-07-27",
           "excerpt": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets…",
-          "cover": "images/DeathTides/DeathTides_1000px.png"
+          "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png"
         }
       ]
     },
@@ -315,8 +315,8 @@
         "level-design": 8,
         "pixel-art": 6
       },
-      "cover": "images/DodgeKarts/DodgeKarts_1000px.png",
-      "background": "images/DodgeKarts/Blurred.png",
+      "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
+      "background": "images/Blog Images/DodgeKarts/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -324,7 +324,7 @@
           "title": "Dodge Kart — Showcase",
           "date": "2023-10-27",
           "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
-          "cover": "images/DodgeKarts/DodgeKarts_1000px.png"
+          "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png"
         }
       ]
     },
@@ -348,8 +348,8 @@
         "programming": 5,
         "pixel-art": 5
       },
-      "cover": "images/DevilsAcre/DevilsAcre_Title_1000px.png",
-      "background": "images/DevilsAcre/Blurred.png",
+      "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
+      "background": "images/Blog Images/DevilsAcre/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -357,7 +357,7 @@
           "title": "Devil's Acre — Showcase",
           "date": "2022-04-22",
           "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
-          "cover": "images/DevilsAcre/DevilsAcre_Title_1000px.png"
+          "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png"
         }
       ]
     },
@@ -381,8 +381,8 @@
         "level-design": 4,
         "modeling": 2
       },
-      "cover": "images/PortLochne/PortLochne_1000px.png",
-      "background": "images/PortLochne/Blurred.png",
+      "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png",
+      "background": "images/Blog Images/PortLochne/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -390,7 +390,7 @@
           "title": "Port Lochne — Showcase",
           "date": "2022-04-22",
           "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
-          "cover": "images/PortLochne/PortLochne_1000px.png"
+          "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"
         }
       ]
     },
@@ -418,8 +418,8 @@
         "level-design": 8,
         "home": 3
       },
-      "cover": "images/MeowareDefender/Menu.png",
-      "background": "images/MeowareDefender/Blurred.png",
+      "cover": "images/Blog Images/MeowareDefender/Menu.png",
+      "background": "images/Blog Images/MeowareDefender/Blurred.png",
       "posts": [
         {
           "slug": "showcase",
@@ -427,7 +427,7 @@
           "title": "Meoware Defender — Showcase",
           "date": "2025-09-02",
           "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
-          "cover": "images/MeowareDefender/Menu.png"
+          "cover": "images/Blog Images/MeowareDefender/Menu.png"
         }
       ]
     },
@@ -462,8 +462,8 @@
         "sound-design": 5,
         "home": 1
       },
-      "cover": "images/Signal-Link/singla_link_poster.png",
-      "background": "images/Signal-Link/Blurred.jpg",
+      "cover": "images/Blog Images/Signal-Link/singla_link_poster.png",
+      "background": "images/Blog Images/Signal-Link/Blurred.jpg",
       "posts": [
         {
           "slug": "showcase",
@@ -471,7 +471,7 @@
           "title": "Signal-Link — Showcase",
           "date": "2026-01-04",
           "excerpt": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental…",
-          "cover": "images/Signal-Link/singla_link_poster.png"
+          "cover": "images/Blog Images/Signal-Link/singla_link_poster.png"
         }
       ]
     }

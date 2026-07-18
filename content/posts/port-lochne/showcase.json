@@ -30,30 +30,30 @@
     },
     {
       "type": "image",
-      "src": "images/PortLochne/PortLochne_1000px.png",
+      "src": "images/Blog Images/PortLochne/PortLochne_1000px.png",
       "alt": "Port Lochne key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/PortLochne/img1.jpg",
+          "src": "images/Blog Images/PortLochne/img1.jpg",
           "alt": "Port Lochne screenshot 1"
         },
         {
-          "src": "images/PortLochne/img2.jpg",
+          "src": "images/Blog Images/PortLochne/img2.jpg",
           "alt": "Port Lochne screenshot 2"
         },
         {
-          "src": "images/PortLochne/img3.jpg",
+          "src": "images/Blog Images/PortLochne/img3.jpg",
           "alt": "Port Lochne screenshot 3"
         },
         {
-          "src": "images/PortLochne/img4.jpg",
+          "src": "images/Blog Images/PortLochne/img4.jpg",
           "alt": "Port Lochne screenshot 4"
         },
         {
-          "src": "images/PortLochne/img5.jpg",
+          "src": "images/Blog Images/PortLochne/img5.jpg",
           "alt": "Port Lochne screenshot 5"
         }
       ]

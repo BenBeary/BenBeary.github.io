@@ -76,9 +76,11 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 │   ├── package.json, optimize-media.mjs, migrate-projects.mjs
 ├── docs/ROADMAP.md, docs/ARCHITECTURE.md, docs/reference-cadre/
 ├── images/                       # ONE top-level media folder
-│   ├── <Project>/<name>.<ext>    #   originals, untouched
-│   └── _derived/                 #   committed derivatives, mirrors the images/ tree; skipped by the pipeline walk
-│       └── <Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
+│   ├── Blog Images/<Project>/<name>.<ext>   # project/blog image originals (the editor's image
+│   │                             #   browser is scoped to this folder; note the literal space)
+│   ├── SocialIcons/, SelfImage.jpg, …       # site chrome — NOT blog images, left at images/ root
+│   └── _derived/                 #   committed derivatives, mirrors the FULL images/ tree
+│       └── Blog Images/<Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
 └── Game/, Archived/              # untouched
 ```
 

@@ -31,38 +31,38 @@
     },
     {
       "type": "image",
-      "src": "images/DevilsAcre/DevilsAcre_Title_1000px.png",
+      "src": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
       "alt": "Devil's Acre key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/DevilsAcre/img1.gif",
+          "src": "images/Blog Images/DevilsAcre/img1.gif",
           "alt": "Devil's Acre screenshot 1"
         },
         {
-          "src": "images/DevilsAcre/img2.gif",
+          "src": "images/Blog Images/DevilsAcre/img2.gif",
           "alt": "Devil's Acre screenshot 2"
         },
         {
-          "src": "images/DevilsAcre/img3.png",
+          "src": "images/Blog Images/DevilsAcre/img3.png",
           "alt": "Devil's Acre screenshot 3"
         },
         {
-          "src": "images/DevilsAcre/img4.png",
+          "src": "images/Blog Images/DevilsAcre/img4.png",
           "alt": "Devil's Acre screenshot 4"
         },
         {
-          "src": "images/DevilsAcre/img5.png",
+          "src": "images/Blog Images/DevilsAcre/img5.png",
           "alt": "Devil's Acre screenshot 5"
         },
         {
-          "src": "images/DevilsAcre/img6.png",
+          "src": "images/Blog Images/DevilsAcre/img6.png",
           "alt": "Devil's Acre screenshot 6"
         },
         {
-          "src": "images/DevilsAcre/img7.png",
+          "src": "images/Blog Images/DevilsAcre/img7.png",
           "alt": "Devil's Acre screenshot 7"
         }
       ]

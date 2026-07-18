@@ -33,30 +33,30 @@
     },
     {
       "type": "image",
-      "src": "images/DeathTides/DeathTides_1000px.png",
+      "src": "images/Blog Images/DeathTides/DeathTides_1000px.png",
       "alt": "Death Tides key art"
     },
     {
       "type": "gallery",
       "items": [
         {
-          "src": "images/DeathTides/img1.png",
+          "src": "images/Blog Images/DeathTides/img1.png",
           "alt": "Death Tides screenshot 1"
         },
         {
-          "src": "images/DeathTides/img2.png",
+          "src": "images/Blog Images/DeathTides/img2.png",
           "alt": "Death Tides screenshot 2"
         },
         {
-          "src": "images/DeathTides/img3.png",
+          "src": "images/Blog Images/DeathTides/img3.png",
           "alt": "Death Tides screenshot 3"
         },
         {
-          "src": "images/DeathTides/img4.png",
+          "src": "images/Blog Images/DeathTides/img4.png",
           "alt": "Death Tides screenshot 4"
         },
         {
-          "src": "images/DeathTides/img5.png",
+          "src": "images/Blog Images/DeathTides/img5.png",
           "alt": "Death Tides screenshot 5"
         }
       ]
