@@ -27,7 +27,7 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 - Vanilla JS + CSS only. No frameworks, no site-side npm deps (npm only inside `tools/`). No build step —
   files are served exactly as committed.
 - Never rename or move files under `images/` — JSON references and the lightbox depend on original paths.
-  Derivatives go in `media/` mirroring the tree.
+  Derivatives go in `images/_derived/` mirroring the tree (one top-level `images/` folder).
 - Every emitted media URL goes through `encodeURI()` (filenames contain spaces and underscores).
 - All content reads go through `js/site/data.js`; all media path logic through `js/site/media.js`; all
   block rendering through `js/site/blocks.js` (shared with the editor preview — never fork it).
@@ -72,12 +72,13 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 │   ├── auth.js                   # adapted CADRE auth.js (owner-only; see M5)
 │   ├── github-api.js             # CADRE github-api.js near-verbatim; owner/repo constants changed
 │   └── editor.js, blocks-edit.js, drafts.js, upload.js, editor.css
-├── media/                        # committed derivatives, mirrors images/ tree
-│   └── <Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
 ├── tools/                        # local-only node scripts (deps: sharp, ffmpeg-static)
 │   ├── package.json, optimize-media.mjs, migrate-projects.mjs
 ├── docs/ROADMAP.md, docs/ARCHITECTURE.md, docs/reference-cadre/
-├── images/                       # originals, untouched
+├── images/                       # ONE top-level media folder
+│   ├── <Project>/<name>.<ext>    #   originals, untouched
+│   └── _derived/                 #   committed derivatives, mirrors the images/ tree; skipped by the pipeline walk
+│       └── <Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
 └── Game/, Archived/              # untouched
 ```
 
@@ -169,7 +170,8 @@ getProject(slug) -> Promise<project|null>
 getPost(projectSlug, postSlug) -> Promise<postJson>   // fetched with ?v=<contentVersion>
 getRole(slug) -> Promise<roleJson>
 
-// js/site/media.js — pure string transforms images/X/y.ext -> media/X/y.<kind>; always encodeURI'd
+// js/site/media.js — pure string transforms images/X/y.ext -> images/_derived/X/y.<kind>; always encodeURI'd
+//   (insert "_derived/" after the leading "images/", strip the source ext, append the kind suffix)
 thumbUrl(src), mediumUrl(src), posterUrl(src), optVideoUrl(src)
 setImg(imgEl, src, kind)            // sets derived URL; onerror -> encoded original (no manifest needed)
 makeVideo(container, src, caption)  // poster + play btn; click swaps in <video preload="none" controls
@@ -190,7 +192,7 @@ ghBatchCommit({ message, changes: [ {op:'put',path,content} | {op:'putB64',path,
 ## Conventions
 
 - **Slugs**: kebab-case, derived from folder/title.
-- **Derived media** (all under `media/<same subpath>/`):
+- **Derived media** (all under `images/_derived/<same subpath>/`):
   - `.thumb.webp` — width 480, quality 70 (~30 KB) — used by cards/shelves
   - `.md.webp` — width 1280, quality 78 (~150 KB) — used by post bodies
   - `.poster.webp` — width 1280, video frame @1s (fallback 0s) — video click-to-play poster
@@ -202,8 +204,10 @@ ghBatchCommit({ message, changes: [ {op:'put',path,content} | {op:'putB64',path,
 ## Media pipeline (`tools/optimize-media.mjs`)
 
 Node + `sharp` + `ffmpeg-static` (both install via `npm i` with prebuilt Windows binaries — no PATH work).
-Walk `images/` (skip `Archived/`, `Game/`), emit the derivatives above into `media/`. Idempotent: skip when
-output is newer than source, so it's safe to re-run after every editor upload batch. Never rename sources.
+Walk `images/` (skip `_derived/`, `Archived/`, `Game/`), emit the derivatives above into `images/_derived/`.
+Skipping `_derived/` matters: without it the walk would treat a generated `.opt.mp4` as a new source video.
+Idempotent: skip when output is newer than source, so it's safe to re-run after every editor upload batch.
+Never rename sources.
 
 ## Migration (`tools/migrate-projects.mjs`, run once)
 
@@ -247,7 +251,7 @@ Editor CSS is independent of the site (`Editor/editor.css`, can start from CADRE
 - `file://` fetch fails → local server always; `data.js` shows a clear error instead of a blank page.
 - Spaces in filenames → `encodeURI` everywhere; never rename originals.
 - Freshly uploaded images lack derivatives until `optimize-media.mjs` reruns locally → the `onerror`
-  fallback in `setImg` makes this a non-issue; re-run the script periodically and commit `media/`.
+  fallback in `setImg` makes this a non-issue; re-run the script periodically and commit `images/_derived/`.
 - Repo size: keep originals (lightbox needs them); +~20 MB derivatives is fine.
 
 ## Environment notes

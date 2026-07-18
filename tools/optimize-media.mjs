@@ -1,14 +1,17 @@
-/* optimize-media.mjs — generate the site's derived media into /media, mirroring
-   the /images tree. Local-only; run with `npm run optimize` from tools/.
+/* optimize-media.mjs — generate the site's derived media into images/_derived,
+   mirroring the images/ tree. Local-only; run with `npm run optimize` from tools/.
+
+   Everything lives under one top-level images/ folder: originals stay in their
+   project subfolders, generated files mirror the tree inside images/_derived/.
 
    Derivatives (see docs/ARCHITECTURE.md "Conventions"):
      images/<sub>/<name>.<ext>  (png|jpg|jpeg|gif)
-        -> media/<sub>/<name>.thumb.webp   width 480,  q70  (cards / shelves)
-        -> media/<sub>/<name>.md.webp      width 1280, q78  (post bodies)
+        -> images/_derived/<sub>/<name>.thumb.webp   width 480,  q70  (cards / shelves)
+        -> images/_derived/<sub>/<name>.md.webp      width 1280, q78  (post bodies)
      images/<sub>/<name>.mp4
-        -> media/<sub>/<name>.poster.webp  frame @1s (fallback 0s), width 1280, q78
-        -> media/<sub>/<name>.opt.mp4      ONLY if source > 20 MB (crf 28, <=1080p,
-                                            +faststart, aac 128k)
+        -> images/_derived/<sub>/<name>.poster.webp  frame @1s (fallback 0s), width 1280, q78
+        -> images/_derived/<sub>/<name>.opt.mp4      ONLY if source > 20 MB (crf 28, <=1080p,
+                                                      +faststart, aac 128k)
 
    Derived name = original basename with its extension stripped, plus the kind
    suffix (bar.png -> bar.thumb.webp). This matches the pure string transform in
@@ -33,13 +36,15 @@ const execFileP = promisify(execFile);
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '..');
 const SRC_ROOT = path.join(REPO, 'images');
-const OUT_ROOT = path.join(REPO, 'media');
+const OUT_ROOT = path.join(REPO, 'images', '_derived');   // lives inside images/, skipped by the walk
 
 const THUMB_W = 480, THUMB_Q = 70;
 const MD_W = 1280, MD_Q = 78;
 const POSTER_W = 1280, POSTER_Q = 78;
 const OPT_MP4_THRESHOLD = 20 * 1024 * 1024;   // re-encode mp4s larger than this
-const SKIP_DIRS = new Set(['Archived', 'Game', 'node_modules', '.git']);
+// _derived is the OUTPUT tree (inside images/) — skip it so we never re-derive
+// from generated files (e.g. treating a .opt.mp4 as a new source video).
+const SKIP_DIRS = new Set(['_derived', 'Archived', 'Game', 'node_modules', '.git']);
 
 const stats = { thumbs: 0, mds: 0, posters: 0, opts: 0, skipped: 0, errors: 0, bytes: 0 };
 const derivedByOutput = new Map();   // collision guard: output path -> source path
@@ -177,6 +182,6 @@ console.log(`  poster.webp  ${stats.posters}`);
 console.log(`  opt.mp4      ${stats.opts}`);
 console.log(`  skipped      ${stats.skipped} (already up to date)`);
 console.log(`  errors       ${stats.errors}`);
-console.log(`  media/ total ${mb} MB`);
+console.log(`  images/_derived total ${mb} MB`);
 console.log(`  time         ${secs}s`);
 if (stats.errors) process.exitCode = 1;

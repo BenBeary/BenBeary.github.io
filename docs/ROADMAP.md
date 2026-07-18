@@ -20,7 +20,8 @@
 - Vanilla JS + CSS only, no build step, no site-side npm deps (npm only inside `tools/`).
 - **Do NOT modify the legacy site** until Milestone 6's swap: `index.html`, `js/newWebMain.js`,
   `js/projects.js`, `css/newWebStyle.css`, `css/navbar.css`. The old site stays live throughout.
-- Never rename/move files under `images/`. Derivatives live in `media/` mirroring the tree.
+- Never rename/move files under `images/`. Derivatives live in `images/_derived/` mirroring the tree
+  (one top-level `images/` folder; the pipeline walk skips `_derived/`).
 - Content reads → `js/site/data.js`; media paths → `js/site/media.js`; block rendering →
   `js/site/blocks.js` (shared with the editor preview — never fork it).
 - Schema/API changes require editing ARCHITECTURE.md in the same commit + a changelog note below.
@@ -55,7 +56,7 @@
       installed fine; verify with the sharp import + `ffmpeg -version` checks if re-installing.
 - [x] `tools/optimize-media.mjs` — idempotent (skip when output newer than source); collision guard;
       thumb(480/q70) + md(1280/q78) webp, poster.webp @1s, opt.mp4 for sources > 20 MB
-- [x] Ran it; committing `media/` (249 derivatives, 16.8 MB)
+- [x] Ran it; committed `images/_derived/` (249 derivatives, 16.8 MB)
 - [x] Verify: 120 thumb + 120 md + 6 poster + 3 opt, 0 errors; 13.3 MB PNG → 19 KB thumb;
       54 MB mp4 → 4.9 MB opt; re-run skipped all 249 (idempotent)
 
@@ -108,3 +109,6 @@
 - M1: `css/pages.css` was created in M1 (holds the About-page layout); M4 extends it rather than
   creating it. Headless Edge (`msedge --headless=new --dump-dom` over a `file://` URL) is a usable
   render-verification path on this machine when the page's JS doesn't depend on `fetch` succeeding.
+- Post-M2 (user request): derivatives moved from a top-level `media/` folder into `images/_derived/`
+  so everything stays in one `images/` folder. `media.js` transform (M4, not yet written) inserts
+  `_derived/` after `images/`. Pipeline OUT_ROOT + SKIP_DIRS updated; ARCHITECTURE contract updated.
