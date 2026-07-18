@@ -30,65 +30,6 @@
         "Developed a spawner system that would spawn items on top of terrain geometry",
         "Worked on particle systems and animations for 3D assets."
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/CleanUpCrew/16_9 shot.png",
-      "alt": "Clean Up Crew key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/CleanUpCrew/Homescreen.png",
-          "alt": "Clean Up Crew screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/Gameplay1.png",
-          "alt": "Clean Up Crew screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/UI.png",
-          "alt": "Clean Up Crew screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/ControlUI.png",
-          "alt": "Clean Up Crew screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout.png",
-          "alt": "Clean Up Crew screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout4.png",
-          "alt": "Clean Up Crew screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout2.png",
-          "alt": "Clean Up Crew screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/map_layout3.png",
-          "alt": "Clean Up Crew screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/3DModel.png",
-          "alt": "Clean Up Crew screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/spawnObjects.png",
-          "alt": "Clean Up Crew screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/fpsGunSpread.png",
-          "alt": "Clean Up Crew screenshot 11"
-        }
-      ]
-    },
-    {
-      "type": "video",
-      "src": "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
-      "caption": ""
     }
   ]
 }

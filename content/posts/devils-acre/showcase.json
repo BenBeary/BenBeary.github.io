@@ -28,44 +28,6 @@
         "Worked on the boss AI",
         "Created pause menu UI"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
-      "alt": "Devil's Acre key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/DevilsAcre/img1.gif",
-          "alt": "Devil's Acre screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img2.gif",
-          "alt": "Devil's Acre screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img3.png",
-          "alt": "Devil's Acre screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img4.png",
-          "alt": "Devil's Acre screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img5.png",
-          "alt": "Devil's Acre screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img6.png",
-          "alt": "Devil's Acre screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/DevilsAcre/img7.png",
-          "alt": "Devil's Acre screenshot 7"
-        }
-      ]
     }
   ]
 }

@@ -30,47 +30,6 @@
         "Created an upgrade system that would add effects or change how traps worked",
         "Created a map system that could change the overall layout of the map as the game progressed"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
-      "alt": "Spirit Outbreak key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img1.png",
-          "alt": "Spirit Outbreak screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img2.png",
-          "alt": "Spirit Outbreak screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img3.png",
-          "alt": "Spirit Outbreak screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/img4.png",
-          "alt": "Spirit Outbreak screenshot 4"
-        }
-      ]
-    },
-    {
-      "type": "video",
-      "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
-      "caption": ""
-    },
-    {
-      "type": "video",
-      "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
-      "caption": ""
-    },
-    {
-      "type": "video",
-      "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
-      "caption": ""
     }
   ]
 }

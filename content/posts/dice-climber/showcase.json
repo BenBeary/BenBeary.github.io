@@ -30,60 +30,6 @@
         "Created multiple mechanics that the player learns over time",
         "Created a cutscene system"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/DiceClimber/Title Poster.jpg",
-      "alt": "Dice Climbers: Shelf of Chaos key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/DiceClimber/Menu.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img1.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img2.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img3.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img4.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 5"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img5.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 6"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img6.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 7"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img7.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 8"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img8.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 9"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img9.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/DiceClimber/img10.png",
-          "alt": "Dice Climbers: Shelf of Chaos screenshot 11"
-        }
-      ]
     }
   ]
 }

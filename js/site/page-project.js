@@ -91,6 +91,15 @@
         hero.appendChild(overlay);
         hub.appendChild(hero);
 
+        // Media slideshow (original-site style): the project's screenshots /
+        // clips, above the summary. Videos get poster thumbs; gifs animate.
+        if (project.media && project.media.length) {
+            var showWrap = document.createElement('section');
+            showWrap.className = 'hub-media';
+            window.makeSlideshow(showWrap, project.media);
+            hub.appendChild(showWrap);
+        }
+
         // Summary
         if (project.summary) {
             var sum = document.createElement('p');

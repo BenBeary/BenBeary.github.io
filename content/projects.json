@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 1,
+  "contentVersion": 2,
   "categories": [
     {
       "slug": "programming",
@@ -83,7 +83,62 @@
           "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
           "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/CleanUpCrew/16_9 shot.png",
+          "alt": "Clean Up Crew key art"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/Homescreen.png",
+          "alt": "Clean Up Crew screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/Gameplay1.png",
+          "alt": "Clean Up Crew screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/UI.png",
+          "alt": "Clean Up Crew screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/ControlUI.png",
+          "alt": "Clean Up Crew screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/map_layout.png",
+          "alt": "Clean Up Crew screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/map_layout4.png",
+          "alt": "Clean Up Crew screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/map_layout2.png",
+          "alt": "Clean Up Crew screenshot 7"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/map_layout3.png",
+          "alt": "Clean Up Crew screenshot 8"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/3DModel.png",
+          "alt": "Clean Up Crew screenshot 9"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/spawnObjects.png",
+          "alt": "Clean Up Crew screenshot 10"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/fpsGunSpread.png",
+          "alt": "Clean Up Crew screenshot 11"
+        },
+        {
+          "src": "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
+          "alt": ""
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "docking-bay",
@@ -126,7 +181,58 @@
           "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
           "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+          "alt": "Docking Bay key art"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/HomeScreen.png",
+          "alt": "Docking Bay screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/Monitor4.png",
+          "alt": "Docking Bay screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/Monitor.png",
+          "alt": "Docking Bay screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/Monitor2.png",
+          "alt": "Docking Bay screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/Monitor3.png",
+          "alt": "Docking Bay screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/sideView.png",
+          "alt": "Docking Bay screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/Camera.png",
+          "alt": "Docking Bay screenshot 7"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/layout.png",
+          "alt": "Docking Bay screenshot 8"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/DialogueTest.gif",
+          "alt": "Docking Bay screenshot 9"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
+          "alt": "Docking Bay screenshot 10"
+        },
+        {
+          "src": "images/Blog Images/DockingBay/MenuAnimation.mp4",
+          "alt": ""
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "idol-of-ashes",
@@ -165,7 +271,46 @@
           "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
           "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
+          "alt": "Idol of Ashes key art"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Img_4.png",
+          "alt": "Idol of Ashes screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Img_2.png",
+          "alt": "Idol of Ashes screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Img_3.png",
+          "alt": "Idol of Ashes screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Img_5.png",
+          "alt": "Idol of Ashes screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Outline.png",
+          "alt": "Idol of Ashes screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/Shader.png",
+          "alt": "Idol of Ashes screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/UI.png",
+          "alt": "Idol of Ashes screenshot 7"
+        },
+        {
+          "src": "images/Blog Images/IdolofAshes/UI2.png",
+          "alt": "Idol of Ashes screenshot 8"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "spirit-outbreak",
@@ -206,7 +351,42 @@
           "excerpt": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based…",
           "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
+          "alt": "Spirit Outbreak key art"
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/img1.png",
+          "alt": "Spirit Outbreak screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/img2.png",
+          "alt": "Spirit Outbreak screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/img3.png",
+          "alt": "Spirit Outbreak screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/img4.png",
+          "alt": "Spirit Outbreak screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
+          "alt": ""
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "dice-climber",
@@ -250,7 +430,58 @@
           "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
           "cover": "images/Blog Images/DiceClimber/Title Poster.jpg"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/DiceClimber/Title Poster.jpg",
+          "alt": "Dice Climbers: Shelf of Chaos key art"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/Menu.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img1.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img2.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img3.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img4.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img5.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img6.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 7"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img7.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 8"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img8.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 9"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img9.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 10"
+        },
+        {
+          "src": "images/Blog Images/DiceClimber/img10.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 11"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "death-tides",
@@ -289,7 +520,34 @@
           "excerpt": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets…",
           "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/DeathTides/DeathTides_1000px.png",
+          "alt": "Death Tides key art"
+        },
+        {
+          "src": "images/Blog Images/DeathTides/img1.png",
+          "alt": "Death Tides screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/DeathTides/img2.png",
+          "alt": "Death Tides screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/DeathTides/img3.png",
+          "alt": "Death Tides screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/DeathTides/img4.png",
+          "alt": "Death Tides screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/DeathTides/img5.png",
+          "alt": "Death Tides screenshot 5"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "dodge-kart",
@@ -326,7 +584,26 @@
           "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
           "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
+          "alt": "Dodge Kart key art"
+        },
+        {
+          "src": "images/Blog Images/DodgeKarts/img1.png",
+          "alt": "Dodge Kart screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/DodgeKarts/img2.png",
+          "alt": "Dodge Kart screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/DodgeKarts/img3.png",
+          "alt": "Dodge Kart screenshot 3"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "devils-acre",
@@ -359,7 +636,42 @@
           "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
           "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
+          "alt": "Devil's Acre key art"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img1.gif",
+          "alt": "Devil's Acre screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img2.gif",
+          "alt": "Devil's Acre screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img3.png",
+          "alt": "Devil's Acre screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img4.png",
+          "alt": "Devil's Acre screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img5.png",
+          "alt": "Devil's Acre screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img6.png",
+          "alt": "Devil's Acre screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/DevilsAcre/img7.png",
+          "alt": "Devil's Acre screenshot 7"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "port-lochne",
@@ -392,7 +704,34 @@
           "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
           "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/PortLochne/PortLochne_1000px.png",
+          "alt": "Port Lochne key art"
+        },
+        {
+          "src": "images/Blog Images/PortLochne/img1.jpg",
+          "alt": "Port Lochne screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/PortLochne/img2.jpg",
+          "alt": "Port Lochne screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/PortLochne/img3.jpg",
+          "alt": "Port Lochne screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/PortLochne/img4.jpg",
+          "alt": "Port Lochne screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/PortLochne/img5.jpg",
+          "alt": "Port Lochne screenshot 5"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "meoware-defender",
@@ -429,13 +768,36 @@
           "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
           "cover": "images/Blog Images/MeowareDefender/Menu.png"
         }
-      ]
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/MeowareDefender/Menu.png",
+          "alt": "Meoware Defender key art"
+        },
+        {
+          "src": "images/Blog Images/MeowareDefender/img1.png",
+          "alt": "Meoware Defender screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/MeowareDefender/img2.png",
+          "alt": "Meoware Defender screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/MeowareDefender/img3.png",
+          "alt": "Meoware Defender screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/MeowareDefender/img4.png",
+          "alt": "Meoware Defender screenshot 4"
+        }
+      ],
+      "status": "Finished"
     },
     {
       "slug": "signal-link",
       "title": "Signal-Link",
       "kicker": "Team Project",
-      "status": "Actively Developing",
+      "status": "In Development",
       "date": "2026-01-04",
       "playLink": "https://benbeary.itch.io/signal-link",
       "summary": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.",
@@ -472,6 +834,80 @@
           "date": "2026-01-04",
           "excerpt": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental…",
           "cover": "images/Blog Images/Signal-Link/singla_link_poster.png"
+        }
+      ],
+      "media": [
+        {
+          "src": "images/Blog Images/Signal-Link/singla_link_poster.png",
+          "alt": "Signal-Link key art"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
+          "alt": "Signal-Link screenshot 1"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/MainMenu_Unity.png",
+          "alt": "Signal-Link screenshot 2"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/MainMenu_GameView.png",
+          "alt": "Signal-Link screenshot 3"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level_1.png",
+          "alt": "Signal-Link screenshot 4"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Game_1.png",
+          "alt": "Signal-Link screenshot 5"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/ExtraImage_2.png",
+          "alt": "Signal-Link screenshot 6"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/ExtraImage_1.png",
+          "alt": "Signal-Link screenshot 7"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/ExtraImage_3.png",
+          "alt": "Signal-Link screenshot 8"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/ExtraImage_4.png",
+          "alt": "Signal-Link screenshot 9"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Modeling_Layout.png",
+          "alt": "Signal-Link screenshot 10"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Modeling_Layout_2.png",
+          "alt": "Signal-Link screenshot 11"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_1.png",
+          "alt": "Signal-Link screenshot 12"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_2.png",
+          "alt": "Signal-Link screenshot 13"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_3.png",
+          "alt": "Signal-Link screenshot 14"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level2_Progress_4.png",
+          "alt": "Signal-Link screenshot 15"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Level_2.png",
+          "alt": "Signal-Link screenshot 16"
+        },
+        {
+          "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
+          "alt": ""
         }
       ]
     }

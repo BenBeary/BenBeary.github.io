@@ -135,37 +135,30 @@ Broken into sub-milestones — each a committable, verifiable unit.
       button; publish button enabled. **End-to-end (user, real PAT):** sign in → publish a test blog
       post → confirm it appears on its hub after CDN refresh (~10 min); then delete or keep.
 
-### M5.5 — CADRE parity pass (user feedback after importing the CADRE editor)
-The full CADRE source now lives at `docs/reference-cadre/full-editor/` — port from it, don't reinvent.
-- [ ] **Legacy site image fix** — js/projects.js paths → images/Blog Images/ (rule exception:
-      required because the folders moved; content unchanged otherwise)
-- [ ] **Paragraph block upgrade** — port CADRE rich toolbar (bold/italic/underline, link MODAL with
-      text+url, alignment L/C/R, bullet list, Tab indent, paste sanitize, loose-line wrapping);
-      REMOVE the separate Bullets block from the add bar (paragraph lists replace it; renderer
-      keeps `bullets` support for already-migrated content)
-- [ ] **Heading block on one line** (text input + level select in a single row, CADRE style)
-- [ ] **Slideshow block** — Steam-style mixed-media (png/jpg/gif/mp4) stage + thumb strip; video
-      thumbs use the derived .poster.webp (no black frames); shared renderer + editor form.
-      Gallery block stays for grid layouts.
-- [ ] **Project hub = slideshow + posts** — new `media[]` on each project; hub renders the
-      slideshow above summary/posts (like the original site). Showcase post becomes optional
-      (it keeps the write-up text; its old hero/gallery/videos hoist into project.media via a
-      one-off script). Small projects can be hub-only or a single blog post — no separate system.
-- [ ] **Preview: resizable split view** — bring back the side-by-side live preview, with a drag
-      handle to adjust the ratio and a header toggle to hide it entirely; preview renders in an
-      IFRAME (Editor/preview.html, site CSS only) so it can never pick up editor styling
-- [ ] **Image system: CADRE-style folder browser** — one 📁 button per image field (replaces the
-      separate 🔍/⬆ pair) opening the Blog Images tree; in-browser per-folder Upload…/New Folder
-      (context menu), OS-file drag onto a folder row, thumbnails; picking fills the field
-- [ ] **Manage overhaul** — fix cut-off layout; per-project edit view (manage.html?project=slug,
-      ⚙ Edit button next to "+ New post" on the landing); ➕ New project; 🗑 Delete project
-      (also deletes its post JSONs); status becomes a DROPDOWN (In Development default, Prototype,
-      Concept, On Hold, Finished, Released, Archived); collection select verified working
-- [ ] **Move post between projects** — project dropdown in the editor meta; publish relocates the
-      post JSON + index entries in one commit (enables consolidating small games into e.g. an
-      "Old Work" project)
-- [ ] **Changes log tool** — 📜 History modal (recent commits via GitHub API) on the editor landing
-      + manage pages
+### M5.5 — CADRE parity pass  ✅ complete (user feedback after importing the CADRE editor)
+The full CADRE source lives at `docs/reference-cadre/full-editor/` — port from it, don't reinvent.
+- [x] Legacy site image fix — js/projects.js: 116 refs → images/Blog Images/
+- [x] Paragraph block upgrade — CADRE toolbar (B/I/U, link modal + Ctrl+K, align L/C/R, bullet list
+      + Tab indent, paste sanitize, loose-line wrapping); Bullets removed from the add bar
+      (still render/edit-supported for migrated content)
+- [x] Heading block on one line
+- [x] Slideshow block — makeSlideshow() in media.js (stage + thumb strip, mp4 poster thumbs, gifs
+      animate in stage, images → lightbox); editor form shares the gallery row helper
+- [x] Project hub = slideshow + posts — project.media[] hoisted from showcases
+      (tools/hoist-showcase-media.mjs); showcases kept their 4 write-up blocks; statuses seeded
+      (signal-link In Development, rest Finished — flip per-project in Manage)
+- [x] Preview: resizable split view — iframe (Editor/preview.html, site CSS only), drag handle
+      (20–70%, persisted), 👁 header toggle; tool buttons moved into the header
+- [x] Image system: CADRE-style browser — right-click Add images…/New folder…, OS-file drag onto
+      folder rows, mp4 poster thumbs; ONE 📁 button per image field (uploads live in the browser)
+- [x] Manage overhaul — cut-off fixed; manage.html?project=slug single view (⚙ Edit on landing);
+      ➕ New project; 🗑 Delete project (+ its post JSONs on save); status DROPDOWN; collection
+      select confirmed present/working (was hidden by the layout overflow)
+- [x] Move post between projects — Project dropdown in editor meta; publish relocates post JSON +
+      both index entries in one commit (slug renames relocate too)
+- [x] Changes log — Editor/history.js 📜 modal (recent commits) on landing + manage
+- NOT done (needs auth/user or push): live upload/new-folder/publish round-trips; the image
+  browser & history read GitHub main, so they show pre-push state until the redesign is pushed.
 
 ### M6 — Home + swap (go-live)
 - [ ] `home.html` — intro → Featured shelf (`order.home`) → per-collection shelves

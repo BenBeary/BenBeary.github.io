@@ -27,28 +27,6 @@
         "Created a shader to randomize car colors",
         "Developed a spawner that progressively created harder challenges over time"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
-      "alt": "Dodge Kart key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/DodgeKarts/img1.png",
-          "alt": "Dodge Kart screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DodgeKarts/img2.png",
-          "alt": "Dodge Kart screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DodgeKarts/img3.png",
-          "alt": "Dodge Kart screenshot 3"
-        }
-      ]
     }
   ]
 }

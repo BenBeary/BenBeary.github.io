@@ -27,36 +27,6 @@
         "Created a publicly available map for the game Garry's Mod",
         "Areas were created to take advantage of player characteristics and tendencies, driving them to certain spots to group people together"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/PortLochne/PortLochne_1000px.png",
-      "alt": "Port Lochne key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/PortLochne/img1.jpg",
-          "alt": "Port Lochne screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img2.jpg",
-          "alt": "Port Lochne screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img3.jpg",
-          "alt": "Port Lochne screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img4.jpg",
-          "alt": "Port Lochne screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/PortLochne/img5.jpg",
-          "alt": "Port Lochne screenshot 5"
-        }
-      ]
     }
   ]
 }

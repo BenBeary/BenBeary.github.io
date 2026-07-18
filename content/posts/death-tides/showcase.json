@@ -30,36 +30,6 @@
         "Engineered a modular wave system for quick and easy to make objectives",
         "Created a system for chunk map-loading optimizing performance"
       ]
-    },
-    {
-      "type": "image",
-      "src": "images/Blog Images/DeathTides/DeathTides_1000px.png",
-      "alt": "Death Tides key art"
-    },
-    {
-      "type": "gallery",
-      "items": [
-        {
-          "src": "images/Blog Images/DeathTides/img1.png",
-          "alt": "Death Tides screenshot 1"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img2.png",
-          "alt": "Death Tides screenshot 2"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img3.png",
-          "alt": "Death Tides screenshot 3"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img4.png",
-          "alt": "Death Tides screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/DeathTides/img5.png",
-          "alt": "Death Tides screenshot 5"
-        }
-      ]
     }
   ]
 }

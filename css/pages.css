@@ -145,6 +145,7 @@
 .hub-hero__tags { margin-top: var(--space-4); }
 .hub-hero__play { margin-top: var(--space-5); }
 
+.hub-media { max-width: 960px; margin: 0 auto var(--space-6); }
 .hub-summary { font-size: var(--fs-400); max-width: 800px; margin: 0 auto var(--space-7); text-align: center; color: var(--text); }
 
 .hub-posts__title { margin-bottom: var(--space-5); }
