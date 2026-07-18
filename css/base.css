@@ -59,13 +59,16 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
+    /* Same outer padding as .site-footer so the two line up exactly. */
+    padding: 0 var(--content-pad);
 }
 .site-header__inner {
     width: 100%;
     height: 100%;
-    /* Full-bleed: brand hugs the left corner, nav hugs the right corner,
-       independent of the centered content column below. */
-    padding: 0 var(--space-5);
+    /* Mirrors .site-footer__inner exactly (padding lives on .site-header), so the
+       brand lines up with the footer brand and the nav with the footer copy. */
+    max-width: var(--content-max);
+    margin: 0 auto;
     display: flex;
     align-items: center;
     gap: var(--space-5);

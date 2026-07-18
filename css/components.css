@@ -196,8 +196,10 @@
 
 /* Slideshow (Steam-style stage + thumb strip; built by media.js makeSlideshow) */
 .pshow { display: flex; flex-direction: column; gap: var(--space-2); }
-.pshow__stagewrap { position: relative; }
+/* [ ❮ ][ image ][ ❯ ] — the arrows are laid out beside the stage, not over it. */
+.pshow__stagewrap { position: relative; display: flex; align-items: center; gap: var(--space-3); }
 .pshow__stage {
+    flex: 1; min-width: 0;
     aspect-ratio: 16 / 9;
     background: #000;
     border-radius: var(--radius-lg);
@@ -206,16 +208,15 @@
 }
 .pshow__stage .pshow__img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
 .pshow__stage .post-video, .pshow__stage .post-video__play, .pshow__stage .post-video__player { width: 100%; height: 100%; border-radius: 0; }
+/* Arrows sit OUTSIDE the image, in the gutters either side of the stage. */
 .pshow__arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
-    background: rgba(0, 0, 0, 0.45); border: 0; color: #fff;
-    font-size: 1.6rem; font-weight: 900; cursor: pointer;
-    padding: var(--space-4) var(--space-3); border-radius: var(--radius);
-    transition: color var(--ease), background var(--ease), transform var(--ease);
+    flex: 0 0 auto;
+    background: var(--surface-1); border: 1px solid var(--border-strong); color: var(--text);
+    font-size: 1.4rem; font-weight: 900; line-height: 1; cursor: pointer;
+    padding: var(--space-4) var(--space-2); border-radius: var(--radius);
+    transition: color var(--ease), background var(--ease), border-color var(--ease), transform var(--ease);
 }
-.pshow__arrow:hover { color: var(--accent); background: rgba(0, 0, 0, 0.75); transform: translateY(-50%) scale(1.1); }
-.pshow__arrow--prev { left: 10px; }
-.pshow__arrow--next { right: 10px; }
+.pshow__arrow:hover { color: var(--accent); border-color: var(--accent); background: var(--surface-2); transform: scale(1.08); }
 .pshow__thumbs {
     display: flex; gap: var(--space-2);
     overflow-x: auto; padding: var(--space-1) 2px var(--space-2);

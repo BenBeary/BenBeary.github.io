@@ -78,7 +78,9 @@
 
 /* --- Featured: alternating showcase rows over the project's own artwork --- */
 .featured-chips { margin-bottom: var(--space-6); }
-.featured-list { display: flex; flex-direction: column; gap: var(--space-6); }
+/* The rows are inset 80px from the page column on both sides (the intro card
+   above keeps the full width). The zigzag offset happens inside that inset. */
+.featured-list { display: flex; flex-direction: column; gap: var(--space-6); padding: 0 80px; }
 
 /* Each row also shifts to the opposite side of the page, so the list visibly
    zigzags left → right → left as you scroll (the art always hugs the outer edge). */
@@ -136,6 +138,7 @@
 .featured-row__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
 
 @media (max-width: 860px) {
+    .featured-list { padding: 0; }
     .featured-row, .featured-row.is-flipped { width: 100%; margin-left: 0; margin-right: 0; }
     .featured-row__grid,
     .featured-row.is-flipped .featured-row__grid { flex-direction: column; align-items: stretch; min-height: 0; }
@@ -151,15 +154,34 @@
     align-items: center;
 }
 .home-intro__kicker { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.9rem; margin-bottom: var(--space-3); }
-.home-intro__title { font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0 0 var(--space-4); }
-.home-intro__tagline { font-size: var(--fs-400); color: var(--text); margin-bottom: var(--space-4); }
-.home-intro__body { color: var(--text); opacity: 0.9; margin-bottom: var(--space-5); }
+.home-intro__title { font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0 0 var(--space-5); }
+
+/* Both paragraphs read as one block: shared measure, one rhythm, the lead
+   slightly larger and brighter so it steps down into the supporting line. */
+.home-intro__copy {
+    max-width: 62ch;
+    display: flex; flex-direction: column; gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    border-left: 3px solid var(--accent-dim);
+    padding-left: var(--space-5);
+}
+.home-intro__copy p { margin: 0; color: var(--text); line-height: 1.65; }
+.home-intro__lead { font-size: var(--fs-400); color: var(--text-strong); }
+.home-intro__copy p + p { font-size: 0.98rem; opacity: 0.85; }
 .home-intro__actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-.home-intro__portrait { width: 100%; max-width: 300px; justify-self: end; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
+
+/* Portrait + social links stack together on the right. */
+.home-intro__aside { justify-self: end; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+.home-intro__portrait { width: 100%; max-width: 300px; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
+.home-intro__socials { gap: var(--space-4); justify-content: center; }
+.home-intro__socials a { width: 56px; height: 56px; display: block; }
+.home-intro__socials img { width: 100%; height: 100%; object-fit: contain; }
+
 @media (max-width: 760px) {
     .home-intro { grid-template-columns: 1fr; text-align: center; }
-    .home-intro__portrait { justify-self: center; order: -1; max-width: 240px; }
-    .home-intro__tagline, .home-intro__body { text-align: left; }
+    .home-intro__aside { justify-self: center; order: -1; }
+    .home-intro__portrait { max-width: 240px; }
+    .home-intro__copy { text-align: left; margin-left: auto; margin-right: auto; }
     .home-intro__actions { justify-content: center; }
 }
 

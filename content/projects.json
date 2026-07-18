@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 8,
+  "contentVersion": 9,
   "categories": [
     {
       "slug": "programming",
@@ -102,6 +102,10 @@
           "alt": "Clean Up Crew key art"
         },
         {
+          "src": "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
+          "alt": ""
+        },
+        {
           "src": "images/Blog Images/CleanUpCrew/Homescreen.png",
           "alt": "Clean Up Crew screenshot 1"
         },
@@ -144,10 +148,6 @@
         {
           "src": "images/Blog Images/CleanUpCrew/fpsGunSpread.png",
           "alt": "Clean Up Crew screenshot 11"
-        },
-        {
-          "src": "images/Blog Images/CleanUpCrew/MenuLoadIn.mp4",
-          "alt": ""
         }
       ]
     },
@@ -207,6 +207,10 @@
           "alt": "Docking Bay key art"
         },
         {
+          "src": "images/Blog Images/DockingBay/MenuAnimation.mp4",
+          "alt": ""
+        },
+        {
           "src": "images/Blog Images/DockingBay/HomeScreen.png",
           "alt": "Docking Bay screenshot 1"
         },
@@ -245,10 +249,6 @@
         {
           "src": "images/Blog Images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
           "alt": "Docking Bay screenshot 10"
-        },
-        {
-          "src": "images/Blog Images/DockingBay/MenuAnimation.mp4",
-          "alt": ""
         }
       ]
     },
@@ -392,6 +392,18 @@
           "alt": "Spirit Outbreak key art"
         },
         {
+          "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
+          "alt": ""
+        },
+        {
+          "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
+          "alt": ""
+        },
+        {
           "src": "images/Blog Images/SpiritOutbreak/img1.png",
           "alt": "Spirit Outbreak screenshot 1"
         },
@@ -406,18 +418,6 @@
         {
           "src": "images/Blog Images/SpiritOutbreak/img4.png",
           "alt": "Spirit Outbreak screenshot 4"
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video1.mp4",
-          "alt": ""
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video2.mp4",
-          "alt": ""
-        },
-        {
-          "src": "images/Blog Images/SpiritOutbreak/video3.mp4",
-          "alt": ""
         }
       ]
     },
@@ -893,6 +893,10 @@
           "alt": "Signal-Link key art"
         },
         {
+          "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
+          "alt": ""
+        },
+        {
           "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
           "alt": "Signal-Link screenshot 1"
         },
@@ -955,10 +959,6 @@
         {
           "src": "images/Blog Images/Signal-Link/Level_2.png",
           "alt": "Signal-Link screenshot 16"
-        },
-        {
-          "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
-          "alt": ""
         }
       ]
     },
