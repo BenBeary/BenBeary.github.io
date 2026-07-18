@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 1,
+  "contentVersion": 2,
   "categories": [
     {
       "slug": "programming",
@@ -65,12 +65,12 @@
       ],
       "collection": "main",
       "order": {
+        "home": 4,
         "programming": 1,
         "ui-ux": 1,
         "level-design": 2,
         "sound-design": 2,
-        "modeling": 2,
-        "home": 4
+        "modeling": 2
       },
       "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png",
       "background": "images/Blog Images/CleanUpCrew/Blurred.jpg",
@@ -83,7 +83,8 @@
           "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
           "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "docking-bay",
@@ -108,12 +109,12 @@
       ],
       "collection": "main",
       "order": {
+        "home": 2,
         "programming": 2,
         "ui-ux": 2,
         "level-design": 1,
         "sound-design": 1,
-        "modeling": 1,
-        "home": 2
+        "modeling": 1
       },
       "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
       "background": "images/Blog Images/DockingBay/Blurred.png",
@@ -126,7 +127,8 @@
           "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
           "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "idol-of-ashes",
@@ -148,11 +150,11 @@
       ],
       "collection": "main",
       "order": {
+        "home": 5,
         "programming": 4,
         "ui-ux": 3,
         "sound-design": 3,
-        "modeling": 3,
-        "home": 5
+        "modeling": 3
       },
       "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
       "background": "images/Blog Images/IdolofAshes/Blurred.png",
@@ -165,7 +167,8 @@
           "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
           "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "spirit-outbreak",
@@ -206,7 +209,8 @@
           "excerpt": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based…",
           "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "dice-climber",
@@ -231,13 +235,13 @@
       ],
       "collection": "main",
       "order": {
+        "home": 6,
         "programming": 4,
         "ui-ux": 7,
         "level-design": 3,
         "sound-design": 9,
         "modeling": 3,
-        "pixel-art": 2,
-        "home": 6
+        "pixel-art": 2
       },
       "cover": "images/Blog Images/DiceClimber/Title Poster.jpg",
       "background": "images/Blog Images/DiceClimber/Blurred.jpg",
@@ -250,7 +254,8 @@
           "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
           "cover": "images/Blog Images/DiceClimber/Title Poster.jpg"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "death-tides",
@@ -267,15 +272,15 @@
       ],
       "categories": [
         "programming",
-        "level-design",
         "ui-ux",
+        "level-design",
         "pixel-art"
       ],
       "collection": "main",
       "order": {
         "programming": 5,
-        "level-design": 5,
         "ui-ux": 6,
+        "level-design": 5,
         "pixel-art": 3
       },
       "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png",
@@ -289,7 +294,8 @@
           "excerpt": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets…",
           "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "dodge-kart",
@@ -326,7 +332,8 @@
           "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
           "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "devils-acre",
@@ -359,7 +366,8 @@
           "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
           "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "port-lochne",
@@ -392,7 +400,8 @@
           "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
           "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "meoware-defender",
@@ -413,10 +422,10 @@
       ],
       "collection": "main",
       "order": {
+        "home": 3,
         "programming": 6,
         "ui-ux": 4,
-        "level-design": 8,
-        "home": 3
+        "level-design": 8
       },
       "cover": "images/Blog Images/MeowareDefender/Menu.png",
       "background": "images/Blog Images/MeowareDefender/Blurred.png",
@@ -429,7 +438,8 @@
           "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
           "cover": "images/Blog Images/MeowareDefender/Menu.png"
         }
-      ]
+      ],
+      "status": "In Development"
     },
     {
       "slug": "signal-link",
@@ -450,17 +460,17 @@
         "programming",
         "ui-ux",
         "level-design",
-        "modeling",
-        "sound-design"
+        "sound-design",
+        "modeling"
       ],
       "collection": "main",
       "order": {
+        "home": 1,
         "programming": 0,
         "ui-ux": 1,
         "level-design": 1,
-        "modeling": 1,
         "sound-design": 5,
-        "home": 1
+        "modeling": 1
       },
       "cover": "images/Blog Images/Signal-Link/singla_link_poster.png",
       "background": "images/Blog Images/Signal-Link/Blurred.jpg",
@@ -474,6 +484,23 @@
           "cover": "images/Blog Images/Signal-Link/singla_link_poster.png"
         }
       ]
+    },
+    {
+      "slug": "old-work",
+      "title": "Old Work",
+      "kicker": "Old Projects",
+      "status": "In Development",
+      "date": "2026-07-17",
+      "playLink": "",
+      "summary": "This is a List of all the old projects I've done that don't have a lot on them, but are here to archive the work I've done.",
+      "tags": [],
+      "categories": [],
+      "collection": "main",
+      "order": {},
+      "media": [],
+      "cover": "",
+      "background": "",
+      "posts": []
     }
   ]
 }
