@@ -219,15 +219,43 @@
         els.blocks.addEventListener('input', scheduleUpdate);
         els.blocks.addEventListener('change', scheduleUpdate);
 
-        // Rich-text paste → sanitize into the editor.
+        // Enter makes <p> (not <div>) so stored HTML matches the site output.
+        try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (_) {}
+
+        // Toolbar mousedown would collapse the editor selection before click — suppress.
+        els.blocks.addEventListener('mousedown', function (e) {
+            if (e.target.closest('.rt-btn')) e.preventDefault();
+        });
+
+        // Rich-text paste → sanitize; multi-line pastes get real <p> structure.
         els.blocks.addEventListener('paste', function (e) {
             var ed = e.target.closest && e.target.closest('.rt-editor');
             if (!ed || !e.clipboardData) return;
             e.preventDefault();
             var html = e.clipboardData.getData('text/html');
             var clean = html ? window.sanitizeRichHtml(html) : esc(e.clipboardData.getData('text/plain')).replace(/\n/g, '<br>');
+            if (/<(p|ul|ol|br)[\s>/]/i.test(clean)) clean = window.edNormalizeRich(clean);
             document.execCommand('insertHTML', false, clean);
             scheduleUpdate();
+        });
+
+        // Keyboard: Tab indents list items; Ctrl+B/I/U/K shortcuts.
+        els.blocks.addEventListener('keydown', function (e) {
+            var ed = e.target.closest && e.target.closest('.rt-editor');
+            if (!ed) return;
+            if (e.key === 'Tab') {
+                if (selectionInListItem(ed)) {
+                    e.preventDefault();
+                    document.execCommand(e.shiftKey ? 'outdent' : 'indent', false, null);
+                    scheduleUpdate();
+                }
+                return;
+            }
+            if (!(e.ctrlKey || e.metaKey) || e.shiftKey) return;
+            var key = e.key.toLowerCase();
+            if (key === 'k') { e.preventDefault(); openLinkModal(ed); return; }
+            var cmd = { b: 'bold', i: 'italic', u: 'underline' }[key];
+            if (cmd) { e.preventDefault(); document.execCommand(cmd, false, null); scheduleUpdate(); }
         });
 
         // Clicks: add / move / delete / gallery rows / rich-text toolbar.
@@ -279,6 +307,18 @@
         });
 
         els.byId('ed-save-draft').addEventListener('click', function () { flush(); saveDraftLocal(true); });
+        // Link modal wiring
+        els.byId('link-modal-confirm').addEventListener('click', confirmLinkModal);
+        els.byId('link-modal-cancel').addEventListener('click', closeLinkModal);
+        els.byId('link-modal-remove').addEventListener('click', removeLinkModal);
+        var lmo = els.byId('link-modal-overlay');
+        lmo.addEventListener('click', function (e) { if (e.target === lmo) closeLinkModal(); });
+        ['link-modal-text', 'link-modal-url'].forEach(function (id) {
+            els.byId(id).addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') { e.preventDefault(); confirmLinkModal(); }
+                else if (e.key === 'Escape') { e.preventDefault(); closeLinkModal(); }
+            });
+        });
         els.byId('ed-publish').addEventListener('click', publish);
         els.byId('ed-tool-preview').addEventListener('click', openPreview);
         els.byId('ed-tool-images').addEventListener('click', function () { if (window.ImageBrowser) window.ImageBrowser.open({ pick: false }); });
@@ -325,13 +365,92 @@
         if (!ed) return;
         ed.focus();
         var cmd = btn.dataset.rt;
-        if (cmd === 'link') {
-            var url = prompt('Link URL:');
-            if (url) document.execCommand('createLink', false, url);
-        } else {
-            document.execCommand(cmd, false, null);
-        }
+        if (cmd === 'link') { openLinkModal(ed); return; }
+        document.execCommand(cmd, false, null);
         scheduleUpdate();
+    }
+
+    // ---- link modal (port of CADRE richLinkFlow: text + url in one dialog) ----
+    var linkPending = null;   // { editor, range, anchor }
+
+    function safeHref(raw) {
+        var url = String(raw || '').trim();
+        if (!url) return '';
+        if (/^(https?:|mailto:|tel:)/i.test(url)) return url;
+        if (/^[a-z][a-z0-9+.\-]*:/i.test(url)) return '';   // javascript:, data:, …
+        return url;
+    }
+    function closestAnchor(ed) {
+        var sel = window.getSelection();
+        if (!sel.rangeCount) return null;
+        var n = sel.getRangeAt(0).commonAncestorContainer;
+        if (n.nodeType === 3) n = n.parentNode;
+        var a = n && n.closest ? n.closest('a') : null;
+        return a && ed.contains(a) ? a : null;
+    }
+    function openLinkModal(ed) {
+        var sel = window.getSelection();
+        if (!sel.rangeCount || !ed.contains(sel.anchorNode)) return;
+        var anchor = closestAnchor(ed);
+        linkPending = { editor: ed, range: sel.getRangeAt(0).cloneRange(), anchor: anchor };
+        els.byId('link-modal-text').value = anchor ? (anchor.textContent || '') : sel.toString();
+        els.byId('link-modal-url').value = anchor ? (anchor.getAttribute('href') || '') : '';
+        els.byId('link-modal-remove').style.display = anchor ? '' : 'none';
+        els.byId('link-modal-error').style.display = 'none';
+        els.byId('link-modal-overlay').style.display = 'flex';
+        var focusUrl = !!els.byId('link-modal-text').value.trim();
+        var target = els.byId(focusUrl ? 'link-modal-url' : 'link-modal-text');
+        setTimeout(function () { target.focus(); target.select(); }, 30);
+    }
+    function closeLinkModal() { els.byId('link-modal-overlay').style.display = 'none'; linkPending = null; }
+    function restoreLinkSelection() {
+        var p = linkPending;
+        p.editor.focus();
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(p.range);
+        return sel;
+    }
+    function confirmLinkModal() {
+        var p = linkPending;
+        if (!p) return;
+        var text = els.byId('link-modal-text').value.trim();
+        var raw = els.byId('link-modal-url').value.trim();
+        if (!raw) { var e1 = els.byId('link-modal-error'); e1.textContent = 'Enter a URL.'; e1.style.display = ''; return; }
+        var safe = safeHref(raw);
+        if (!safe) { var e2 = els.byId('link-modal-error'); e2.textContent = 'Use an http(s), mailto:, or relative URL.'; e2.style.display = ''; return; }
+        restoreLinkSelection();
+        if (p.anchor) {
+            p.anchor.setAttribute('href', safe);
+            var label = text || safe;
+            if (label !== p.anchor.textContent) p.anchor.textContent = label;
+        } else {
+            var lbl = text || safe;
+            document.execCommand('insertHTML', false, '<a href="' + esc(safe) + '">' + esc(lbl) + '</a>');
+        }
+        closeLinkModal();
+        scheduleUpdate();
+    }
+    function removeLinkModal() {
+        var p = linkPending;
+        if (p && p.anchor) {
+            var sel = restoreLinkSelection();
+            var r = document.createRange();
+            r.selectNodeContents(p.anchor);
+            sel.removeAllRanges();
+            sel.addRange(r);
+            document.execCommand('unlink', false, null);
+        }
+        closeLinkModal();
+        scheduleUpdate();
+    }
+    function selectionInListItem(ed) {
+        var sel = window.getSelection();
+        if (!sel.rangeCount) return false;
+        var n = sel.getRangeAt(0).commonAncestorContainer;
+        if (n.nodeType === 3) n = n.parentNode;
+        var li = n && n.closest ? n.closest('li') : null;
+        return !!(li && ed.contains(li));
     }
 
     // ---- load ----

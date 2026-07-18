@@ -14,7 +14,7 @@
     'use strict';
 
     var BASE = 'images/Blog Images';
-    var IMG_EXT = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
+    var IMG_EXT = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'mp4'];   // mp4: poster-webp thumbnail
 
     var tree = null, loaded = false, loading = false;
     var expanded = new Set();
@@ -77,7 +77,15 @@
         if (!body) return;
         if (!tree) { body.innerHTML = '<div class="imgb-empty">No tree loaded.</div>'; return; }
         body.innerHTML = '<div class="imgb-tree">' + renderNode(tree, 0) + '</div>';
-        body.querySelectorAll('.imgb-thumb').forEach(function (img) { window.setImg(img, img.dataset.src, 'thumb'); });
+        body.querySelectorAll('.imgb-thumb').forEach(function (img) {
+            var src = img.dataset.src;
+            if (/\.mp4$/i.test(src)) {   // video: derived poster frame, ▶ hint in name row
+                img.src = window.posterUrl(src);
+                img.onerror = function () { img.onerror = null; img.style.visibility = 'hidden'; };
+            } else {
+                window.setImg(img, src, 'thumb');
+            }
+        });
     }
     function renderState(msg) { var body = byId('imgbrowse-body'); if (body) body.innerHTML = '<div class="imgb-empty">' + esc(msg) + '</div>'; }
 

@@ -67,6 +67,25 @@
         </div>
     </div>
 
+    <!-- Insert/edit link modal (paragraph toolbar; CADRE-style text + URL) -->
+    <div class="modal-overlay" id="link-modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">Insert Link</div>
+            <div class="modal-body">
+                <div class="ed-field"><label for="link-modal-text">Text</label>
+                    <input class="ed-input" id="link-modal-text" placeholder="Link text" autocomplete="off"></div>
+                <div class="ed-field"><label for="link-modal-url">URL</label>
+                    <input class="ed-input" id="link-modal-url" placeholder="https://…" autocomplete="off" spellcheck="false"></div>
+                <div class="auth-error" id="link-modal-error" style="display:none"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="link-modal-remove" style="display:none;margin-right:auto">Remove Link</button>
+                <button class="btn btn-ghost" id="link-modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="link-modal-confirm">Insert Link</button>
+            </div>
+        </div>
+    </div>
+
     <div class="ed-toast" id="ed-toast" style="display:none"></div>
 
     <!-- Sign-in modal (wired by auth.js) -->

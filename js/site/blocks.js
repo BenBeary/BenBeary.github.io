@@ -74,6 +74,11 @@
             });
             return grid;
         },
+        slideshow: function (b) {
+            var holder = el('div', 'post-slideshow');
+            window.makeSlideshow(holder, b.items || []);
+            return holder.firstChild ? holder : null;
+        },
         video: function (b) {
             var holder = el('div', 'post-video-holder');
             window.makeVideo(holder, b.src, b.caption || '');

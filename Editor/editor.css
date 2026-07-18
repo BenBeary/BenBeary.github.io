@@ -236,6 +236,17 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .rt-editor a { color: var(--accent); text-decoration: underline; }
 .rt-editor ul { margin-left: var(--space-5); }
 
+/* Heading block: one-line row (text + compact level select) */
+.ed-heading-row { display: flex; gap: var(--space-2); align-items: stretch; }
+.ed-heading-row > input { flex: 1; min-width: 0; }
+.ed-heading-level { flex: 0 0 auto; width: 64px; text-align: center; }
+
+.ed-block-hint { font-size: 0.82rem; color: var(--text-muted); margin-bottom: var(--space-3); }
+.rt-sep { width: 1px; height: 16px; background: var(--border-strong); margin: 0 4px; align-self: center; flex: none; }
+.rt-editor p { margin: 0 0 0.6em; }
+.rt-editor p:last-child, .rt-editor ul:last-child, .rt-editor ol:last-child { margin-bottom: 0; }
+.rt-editor li > ul, .rt-editor li > ol { margin: 2px 0 0; }
+
 /* Gallery rows */
 .ed-gallery { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-2); }
 .ed-gallery-row { display: flex; gap: var(--space-2); }

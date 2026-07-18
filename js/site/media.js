@@ -94,6 +94,88 @@
         return fig;
     };
 
+    // ---- Slideshow (Steam-style stage + thumb strip; mixed png/jpg/gif/mp4) --
+    // Used by BOTH the slideshow post block (blocks.js) and the project hub's
+    // project.media. Video thumbs use the derived .poster.webp (no black frames);
+    // gifs animate in the stage (original file) but use their derived still as
+    // the thumb. Image stages open the lightbox (images only).
+    var isVid = function (s) { return /\.mp4$/i.test(s || ''); };
+    var isGif = function (s) { return /\.gif$/i.test(s || ''); };
+
+    window.makeSlideshow = function (container, items) {
+        items = (items || []).filter(function (i) { return i && i.src; });
+        if (!items.length) return null;
+        var idx = 0;
+        var imageItems = items.filter(function (i) { return !isVid(i.src); });
+
+        var root = document.createElement('div');
+        root.className = 'pshow';
+        root.innerHTML =
+            '<div class="pshow__stagewrap">' +
+            '<button class="pshow__arrow pshow__arrow--prev" aria-label="Previous">❮</button>' +
+            '<div class="pshow__stage"></div>' +
+            '<button class="pshow__arrow pshow__arrow--next" aria-label="Next">❯</button>' +
+            '</div><div class="pshow__thumbs"></div>';
+        var stage = root.querySelector('.pshow__stage');
+        var thumbs = root.querySelector('.pshow__thumbs');
+
+        function renderStage() {
+            var item = items[idx];
+            stage.innerHTML = '';
+            if (isVid(item.src)) {
+                // Click-to-play: poster + button, swaps in a real <video>.
+                window.makeVideo(stage, item.src, '');
+            } else {
+                var img = document.createElement('img');
+                img.className = 'pshow__img';
+                if (isGif(item.src)) {              // animate: serve the original gif
+                    img.loading = 'lazy'; img.decoding = 'async';
+                    img.src = encodeURI(ROOT + item.src);
+                } else {
+                    window.setImg(img, item.src, 'md');
+                }
+                img.alt = item.alt || '';
+                img.addEventListener('click', function () {
+                    window.openLightbox(imageItems, imageItems.indexOf(item));
+                });
+                stage.appendChild(img);
+            }
+            Array.prototype.forEach.call(thumbs.children, function (t, i) {
+                t.classList.toggle('is-active', i === idx);
+            });
+        }
+        function go(i) { idx = (i + items.length) % items.length; renderStage(); }
+
+        items.forEach(function (item, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'pshow__thumb';
+            b.setAttribute('aria-label', 'Slide ' + (i + 1));
+            var t = document.createElement('img');
+            t.loading = 'lazy'; t.decoding = 'async'; t.alt = '';
+            if (isVid(item.src)) {
+                t.src = window.posterUrl(item.src);
+                t.onerror = function () { t.onerror = null; t.style.visibility = 'hidden'; };
+                var play = document.createElement('span');
+                play.className = 'pshow__thumb-play';
+                play.setAttribute('aria-hidden', 'true');
+                play.textContent = '▶';
+                b.appendChild(t); b.appendChild(play);
+            } else {
+                window.setImg(t, item.src, 'thumb');
+                b.appendChild(t);
+            }
+            b.addEventListener('click', function () { go(i); });
+            thumbs.appendChild(b);
+        });
+
+        root.querySelector('.pshow__arrow--prev').addEventListener('click', function () { go(idx - 1); });
+        root.querySelector('.pshow__arrow--next').addEventListener('click', function () { go(idx + 1); });
+        renderStage();
+        container.appendChild(root);
+        return root;
+    };
+
     // ---- Lightbox (singleton; originals loaded on open only) ----------------
     var lb = null, lbItems = [], lbIndex = 0;
 
