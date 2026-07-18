@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit post — Ben Beary</title>
+    <title>Manage — Ben Beary</title>
     <link rel="stylesheet" href="../css/tokens.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/components.css">
@@ -13,36 +13,20 @@
 
     <header class="ed-header">
         <a class="ed-brand" href="index.html"><span>Ben</span> Beary</a>
-        <span class="ed-subtitle">— Edit post</span>
+        <span class="ed-subtitle">— Manage</span>
         <div class="ed-header__actions">
             <a href="index.html">← All content</a>
-            <button class="btn btn-ghost btn-sm" id="ed-save-draft" title="Save a local draft in this browser">💾 Save draft</button>
-            <button class="btn btn-primary btn-sm" id="ed-publish" title="Publish to GitHub (the live site)">🚀 Publish</button>
+            <button class="btn btn-primary btn-sm" id="mg-save" title="Commit projects.json to GitHub">💾 Save changes</button>
             <div id="auth-chip"></div>
         </div>
     </header>
 
-    <div class="ed-editor" id="ed-editor">
-        <section class="ed-pane ed-pane--form">
-            <div class="ed-meta" id="ed-meta"></div>
-            <h2 class="ed-section-h">Content blocks</h2>
-            <div class="ed-blocks" id="ed-blocks"></div>
-            <div class="ed-addbar" id="ed-addbar"></div>
-        </section>
-
-        <section class="ed-pane ed-pane--preview">
-            <div class="ed-preview-head">Live preview</div>
-            <div class="ed-preview-scroll">
-                <h1 class="post-title" id="ed-preview-title"></h1>
-                <div class="post-meta" id="ed-preview-meta"></div>
-                <article class="post-body" id="ed-preview-body"></article>
-            </div>
-        </section>
-    </div>
+    <main id="mg-root">
+        <div class="ed-landing"><p class="ed-empty">Loading…</p></div>
+    </main>
 
     <div class="ed-toast" id="ed-toast" style="display:none"></div>
 
-    <!-- Sign-in modal (wired by auth.js) -->
     <div class="modal-overlay" id="auth-modal-overlay">
         <div class="modal-box">
             <div class="modal-title">Sign in with GitHub</div>
@@ -65,13 +49,8 @@
     </div>
 
     <script src="../js/site/data.js"></script>
-    <script src="../js/site/richtext-sanitize.js"></script>
-    <script src="../js/site/media.js"></script>
-    <script src="../js/site/blocks.js"></script>
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
-    <script src="upload.js"></script>
-    <script src="blocks-edit.js"></script>
-    <script src="editor.js"></script>
+    <script src="manage.js"></script>
 </body>
 </html>

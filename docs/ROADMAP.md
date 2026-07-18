@@ -122,11 +122,18 @@ Broken into sub-milestones — each a committable, verifiable unit.
       buttons (1 image + 16 gallery + 1 cover); preview intact; drafts.js loads clean. Actual
       upload + draft delete need a token/localStorage state — user verifies in Live Server.
 
-**M5d — Publish + manage**
-- [ ] Publish = `ghBatchCommit` of post JSON + projects.json (upsert post entry), bump `contentVersion`
-- [ ] `Editor/manage.html` — forms over project meta/order/collection/status, categories, roles
-- [ ] Verify (needs real PAT — user runs): sign in → publish a test blog post → appears on its hub
-      after CDN refresh (~10 min); then delete or keep
+**M5d — Publish + manage**  ✅ complete (code); end-to-end awaits user PAT
+- [x] Publish (editor.js): GET freshest projects.json → upsert this post's entry (showcase replaces
+      any existing showcase) → `ghBatchCommit` post JSON + projects.json in one commit → bump
+      `contentVersion` → clear local draft. Publish button enabled with a confirm() guard.
+- [x] `Editor/manage.html` + `manage.js` — per-project forms (title/kicker/status/collection/
+      playLink/cover/background/date/tags/categories/order incl. home) + collection & category
+      labels; "Save changes" commits projects.json (bump contentVersion). Owner-only.
+      NOTE: role JSON editing NOT included in v1 (roles hand-edited or a small follow-up) — the
+      sample role + role.html render already work.
+- [x] Verify (headless): editor.js + manage.js pass node --check; manage signed-out prompt + Save
+      button; publish button enabled. **End-to-end (user, real PAT):** sign in → publish a test blog
+      post → confirm it appears on its hub after CDN refresh (~10 min); then delete or keep.
 
 ### M6 — Home + swap (go-live)
 - [ ] `home.html` — intro → Featured shelf (`order.home`) → per-collection shelves

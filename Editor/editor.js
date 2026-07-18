@@ -129,6 +129,72 @@
         clearTimeout(saveTimer);
         saveTimer = setTimeout(function () { saveDraftLocal(false); }, 900);
     }
+    function clearLocalDraft() {
+        try {
+            var key = draftKey();
+            localStorage.removeItem(key);
+            localStorage.setItem(DRAFT_INDEX, JSON.stringify(readIndex().filter(function (e) { return e.key !== key; })));
+        } catch (_) {}
+    }
+
+    // ---- publish (GitHub) ----
+    function decodeB64Utf8(b64) {
+        var bin = atob(String(b64).replace(/\s/g, ''));
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    async function publish() {
+        if (typeof isAuthenticated !== 'function' || !isAuthenticated()) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
+        updatePreview();   // flush the DOM into state
+        if (!state.title.trim()) { toast('Add a title first.'); return; }
+        if (!state.slug.trim()) { toast('Add a slug first.'); return; }
+        if (!state.date) { toast('Add a date first.'); return; }
+
+        var postPath = 'content/posts/' + state.project + '/' + state.slug + '.json';
+        var msg = 'Publish "' + state.title + '" to ' + state.project + '?\n\n' +
+            'Commits ' + postPath + ' and content/projects.json to main (the live site).\n' +
+            'It can take ~10 minutes to appear.';
+        if (!confirm(msg)) return;
+
+        var btn = els.byId('ed-publish');
+        btn.disabled = true;
+        var label = btn.textContent;
+        btn.textContent = 'Publishing…';
+        try {
+            // Fetch the freshest projects.json from the repo, upsert this post's entry.
+            var res = await ghFetch('GET', '/contents/content/projects.json');
+            var projectsJson = JSON.parse(decodeB64Utf8(res.content));
+            var proj = (projectsJson.projects || []).find(function (p) { return p.slug === state.project; });
+            if (!proj) throw new Error('Project "' + state.project + '" not found in projects.json.');
+
+            var entry = { slug: state.slug, type: state.type, title: state.title, date: state.date, excerpt: state.excerpt, cover: state.cover };
+            if (state.type === 'showcase') {
+                proj.posts = (proj.posts || []).filter(function (p) { return p.type !== 'showcase' || p.slug === state.slug; });
+            }
+            if (!proj.posts) proj.posts = [];
+            var i = proj.posts.findIndex(function (p) { return p.slug === state.slug; });
+            if (i >= 0) proj.posts[i] = entry; else proj.posts.push(entry);
+            projectsJson.contentVersion = (projectsJson.contentVersion || 0) + 1;
+
+            var result = await ghBatchCommit({
+                message: 'Editor: publish ' + state.project + '/' + state.slug,
+                changes: [
+                    { op: 'put', path: postPath, content: JSON.stringify(buildPost(), null, 2) + '\n' },
+                    { op: 'put', path: 'content/projects.json', content: JSON.stringify(projectsJson, null, 2) + '\n' }
+                ]
+            });
+            clearLocalDraft();
+            toast('Published! Live in ~10 min.');
+            if (result && result.commitUrl) console.log('Commit:', result.commitUrl);
+        } catch (err) {
+            alert('Publish failed: ' + (err && err.message ? err.message : err));
+        } finally {
+            btn.disabled = false;
+            btn.textContent = label;
+        }
+    }
 
     // ---- events ----
     function wire() {
@@ -203,6 +269,7 @@
         });
 
         els.byId('ed-save-draft').addEventListener('click', function () { updatePreview(); saveDraftLocal(true); });
+        els.byId('ed-publish').addEventListener('click', publish);
     }
 
     // ---- image upload (upload.js) ----

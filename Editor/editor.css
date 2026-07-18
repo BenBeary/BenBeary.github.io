@@ -152,6 +152,16 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 }
 .ed-upload-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+/* Manage page */
+.ed-checks { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.ed-order-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: var(--space-2); }
+.ed-order-cell { display: flex; flex-direction: column; gap: 2px; }
+.ed-order-cell label { font-size: 0.72rem; color: var(--text-muted); text-transform: none; letter-spacing: 0; }
+.ed-order-cell input { padding: var(--space-2); }
+.ed-tax-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); }
+.ed-tax-row .ed-collection-badge { min-width: 96px; text-align: center; }
+#mg-root .ed-landing { max-width: 1000px; }
+
 /* Rich-text mini editor */
 .rt-wrap { border: 1px solid var(--border-strong); border-radius: var(--radius-sm); overflow: hidden; }
 .rt-toolbar { display: flex; gap: 2px; padding: 4px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
