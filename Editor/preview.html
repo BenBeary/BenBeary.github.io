@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+    <!-- SITE stylesheets only — the whole point of the iframe is that the
+         preview can never inherit editor styling. -->
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body data-root="../" data-page="">
+    <main class="page post-page">
+        <header class="post-header">
+            <h1 class="post-title" id="pv-title"></h1>
+            <div class="post-meta" id="pv-meta"></div>
+        </header>
+        <article class="post-body" id="pv-body"></article>
+    </main>
+
+    <script src="../js/site/richtext-sanitize.js"></script>
+    <script src="../js/site/media.js"></script>
+    <script src="../js/site/blocks.js"></script>
+    <script>
+        /* Renders whatever the editor posts to us. Payload:
+           { type:'post', title, date, blocks } */
+        (function () {
+            function fmtDate(iso) {
+                var d = new Date(iso + 'T00:00:00');
+                return isNaN(d) ? (iso || '') : d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            window.addEventListener('message', function (e) {
+                var m = e.data;
+                if (!m || m.type !== 'post') return;
+                document.getElementById('pv-title').textContent = m.title || 'Untitled post';
+                document.getElementById('pv-meta').textContent = fmtDate(m.date || '');
+                window.renderBlocks(m.blocks || [], document.getElementById('pv-body'));
+            });
+            // Tell the parent we're ready for the first payload.
+            if (window.parent !== window) window.parent.postMessage({ type: 'preview-ready' }, '*');
+        })();
+    </script>
+</body>
+</html>

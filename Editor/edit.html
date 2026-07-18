@@ -16,24 +16,29 @@
         <span class="ed-subtitle">— Edit post</span>
         <div class="ed-header__actions">
             <a href="index.html">← All content</a>
+            <button class="btn btn-ghost btn-sm" id="ed-tool-images" title="Browse images in the repo">🖼 Images</button>
+            <button class="btn btn-ghost btn-sm" id="ed-tool-preview" title="Show / hide the live preview">👁 Preview</button>
             <button class="btn btn-ghost btn-sm" id="ed-save-draft" title="Save a local draft in this browser">💾 Save draft</button>
             <button class="btn btn-primary btn-sm" id="ed-publish" title="Publish to GitHub (the live site)">🚀 Publish</button>
             <div id="auth-chip"></div>
         </div>
     </header>
 
+    <!-- Editor | drag handle | live preview (iframe with SITE CSS only, so it
+         can never pick up editor styling). Handle drag resizes the split; the
+         👁 Preview header button hides/shows the pane. Both persist locally. -->
     <div class="ed-editor" id="ed-editor">
         <main class="ed-main">
-            <div class="ed-meta" id="ed-meta"></div>
-            <h2 class="ed-section-h">Content blocks</h2>
-            <div class="ed-blocks" id="ed-blocks"></div>
-            <div class="ed-addbar" id="ed-addbar"></div>
+            <div class="ed-main__inner">
+                <div class="ed-meta" id="ed-meta"></div>
+                <h2 class="ed-section-h">Content blocks</h2>
+                <div class="ed-blocks" id="ed-blocks"></div>
+                <div class="ed-addbar" id="ed-addbar"></div>
+            </div>
         </main>
-
-        <aside class="ed-toolbar">
-            <div class="ed-toolbar__title">Tools</div>
-            <button class="ed-tool-btn" id="ed-tool-preview" title="Preview this post"><span class="ed-tool-icon">👁</span><span>Preview</span></button>
-            <button class="ed-tool-btn" id="ed-tool-images" title="Browse images in the repo"><span class="ed-tool-icon">🖼</span><span>Images</span></button>
+        <div class="ed-split-handle" id="ed-split-handle" title="Drag to resize the preview"></div>
+        <aside class="ed-preview-pane" id="ed-preview-pane">
+            <iframe class="ed-preview-frame" id="ed-preview-frame" src="preview.html" title="Live post preview"></iframe>
         </aside>
     </div>
 
@@ -47,23 +52,6 @@
             </div>
             <div class="imgb-hint" id="imgbrowse-hint">Click an image to copy its path.</div>
             <div class="imgb-body" id="imgbrowse-body"><div class="imgb-empty">Loading…</div></div>
-        </div>
-    </div>
-
-    <!-- Preview modal (rendered by the shared site renderer) -->
-    <div class="modal-overlay ed-preview-overlay" id="ed-preview-overlay">
-        <div class="ed-preview-box">
-            <div class="ed-preview-bar">
-                <span class="ed-preview-bar__title">Preview</span>
-                <button class="ed-preview-close" id="ed-preview-close" aria-label="Close preview">✕</button>
-            </div>
-            <div class="ed-preview-scroll">
-                <div class="page ed-preview-page">
-                    <h1 class="post-title" id="ed-preview-title"></h1>
-                    <div class="post-meta" id="ed-preview-meta"></div>
-                    <article class="post-body" id="ed-preview-body"></article>
-                </div>
-            </div>
         </div>
     </div>
 

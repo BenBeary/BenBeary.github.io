@@ -96,22 +96,71 @@
     // ---- flush DOM -> state ----
     function flush() { syncMeta(); syncBlocks(); }
 
-    // Autosave (debounced). No live render — preview is on-demand via the modal.
+    // Debounced: autosave + push the latest state into the live preview iframe.
     function scheduleUpdate() {
         clearTimeout(previewTimer);
-        previewTimer = setTimeout(function () { flush(); saveDraftLocal(false); }, 400);
+        previewTimer = setTimeout(function () { flush(); saveDraftLocal(false); sendPreview(); }, 350);
     }
 
-    // ---- preview modal (shared site renderer, on demand) ----
-    function openPreview() {
-        flush();
-        els.previewTitle.textContent = state.title || 'Untitled post';
-        els.previewMeta.textContent = fmtDate(state.date);
-        window.renderBlocks(state.blocks, els.previewBody);
-        els.previewOverlay.style.display = 'flex';
-        document.body.classList.add('ed-preview-open');
+    // ---- live preview (iframe: Editor/preview.html, site CSS only) ----------
+    var previewReady = false, pendingPreview = null;
+    var PREVIEW_VIS_KEY = 'pf.editor.previewVisible';
+    var PREVIEW_W_KEY = 'pf.editor.previewWidthPct';
+
+    function sendPreview() {
+        var payload = { type: 'post', title: state.title, date: state.date, blocks: state.blocks };
+        if (!previewReady || !els.previewFrame.contentWindow) { pendingPreview = payload; return; }
+        els.previewFrame.contentWindow.postMessage(payload, '*');
     }
-    function closePreview() { els.previewOverlay.style.display = 'none'; document.body.classList.remove('ed-preview-open'); }
+
+    function previewVisible() { return localStorage.getItem(PREVIEW_VIS_KEY) !== '0'; }
+    function applyPreviewVis() {
+        var on = previewVisible();
+        els.previewPane.style.display = on ? '' : 'none';
+        els.splitHandle.style.display = on ? '' : 'none';
+        els.byId('ed-tool-preview').classList.toggle('is-active', on);
+        if (on) sendPreview();
+    }
+    function togglePreview() {
+        try { localStorage.setItem(PREVIEW_VIS_KEY, previewVisible() ? '0' : '1'); } catch (_) {}
+        applyPreviewVis();
+    }
+
+    function initSplit() {
+        var saved = parseFloat(localStorage.getItem(PREVIEW_W_KEY));
+        if (saved >= 20 && saved <= 70) els.previewPane.style.width = saved + '%';
+        var dragging = false;
+        els.splitHandle.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            dragging = true;
+            els.previewFrame.style.pointerEvents = 'none';   // iframe would eat mousemove
+            document.body.style.cursor = 'col-resize';
+        });
+        document.addEventListener('mousemove', function (e) {
+            if (!dragging) return;
+            var rect = document.getElementById('ed-editor').getBoundingClientRect();
+            var pct = ((rect.right - e.clientX) / rect.width) * 100;
+            pct = Math.min(70, Math.max(20, pct));
+            els.previewPane.style.width = pct + '%';
+        });
+        document.addEventListener('mouseup', function () {
+            if (!dragging) return;
+            dragging = false;
+            els.previewFrame.style.pointerEvents = '';
+            document.body.style.cursor = '';
+            var pct = parseFloat(els.previewPane.style.width);
+            if (pct) { try { localStorage.setItem(PREVIEW_W_KEY, String(pct)); } catch (_) {} }
+        });
+    }
+
+    // preview.html announces readiness; deliver the latest payload then.
+    window.addEventListener('message', function (e) {
+        if (e.data && e.data.type === 'preview-ready') {
+            previewReady = true;
+            if (pendingPreview) { els.previewFrame.contentWindow.postMessage(pendingPreview, '*'); pendingPreview = null; }
+            else sendPreview();
+        }
+    });
 
     // ---- local draft autosave ----
     function draftKey() { return DRAFT_PREFIX + state.project + '.' + (state.slug || 'untitled'); }
@@ -320,11 +369,11 @@
             });
         });
         els.byId('ed-publish').addEventListener('click', publish);
-        els.byId('ed-tool-preview').addEventListener('click', openPreview);
+        els.byId('ed-tool-preview').addEventListener('click', togglePreview);
         els.byId('ed-tool-images').addEventListener('click', function () { if (window.ImageBrowser) window.ImageBrowser.open({ pick: false }); });
-        els.byId('ed-preview-close').addEventListener('click', closePreview);
-        els.previewOverlay.addEventListener('click', function (e) { if (e.target === els.previewOverlay) closePreview(); });
-        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && els.previewOverlay.style.display === 'flex') closePreview(); });
+        applyPreviewVis();
+        initSplit();
+        sendPreview();
     }
 
     // ---- image upload (upload.js) ----
@@ -487,10 +536,9 @@
         els.meta = document.getElementById('ed-meta');
         els.blocks = document.getElementById('ed-blocks');
         els.addbar = document.getElementById('ed-addbar');
-        els.previewOverlay = document.getElementById('ed-preview-overlay');
-        els.previewTitle = document.getElementById('ed-preview-title');
-        els.previewMeta = document.getElementById('ed-preview-meta');
-        els.previewBody = document.getElementById('ed-preview-body');
+        els.previewPane = document.getElementById('ed-preview-pane');
+        els.previewFrame = document.getElementById('ed-preview-frame');
+        els.splitHandle = document.getElementById('ed-split-handle');
         els.toast = document.getElementById('ed-toast');
         els.byId = function (id) { return document.getElementById(id); };
 
