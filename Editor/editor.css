@@ -137,6 +137,21 @@ input.ed-input[type="password"], input.ed-input.mono { font-family: var(--font-m
 
 textarea.ed-input { resize: vertical; font-family: inherit; }
 
+/* Path input + inline upload button */
+.ed-src-row { display: flex; gap: var(--space-2); }
+.ed-src-row > input { flex: 1; min-width: 0; }
+.ed-upload-btn {
+    flex: 0 0 auto;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    cursor: pointer;
+    padding: 0 var(--space-3);
+    font-size: 0.95rem;
+}
+.ed-upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+
 /* Rich-text mini editor */
 .rt-wrap { border: 1px solid var(--border-strong); border-radius: var(--radius-sm); overflow: hidden; }
 .rt-toolbar { display: flex; gap: 2px; padding: 4px; background: var(--surface-2); border-bottom: 1px solid var(--border); }

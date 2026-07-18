@@ -111,10 +111,16 @@ Broken into sub-milestones — each a committable, verifiable unit.
       16 gallery/1 video poster with _derived paths (matches post.html); new post → 0 blocks, 9
       add buttons. Interactive typing/reorder/rich-text/save are input-driven — eyeball in Live Server.
 
-**M5c — Drafts + image upload**
-- [ ] `Editor/drafts.js` (localStorage autosave/list, CADRE pattern, keyed draft:<project>:<slug>)
-- [ ] `Editor/upload.js` (Contents PUT to images/<Project>/, warn > 4 MB, onerror fallback covers
-      missing derivatives)
+**M5c — Drafts + image upload**  ✅ complete
+- [x] `Editor/drafts.js` — listDrafts()/deleteDraft() over the index editor.js writes; 30-day prune.
+      editor-index.js drafts section gains Resume + Delete; index.html loads drafts.js.
+- [x] `Editor/upload.js` — window.EditorUpload.{uploadImage,pickAndUpload}: single Contents-API PUT
+      to images/<projectFolder>/ (folder derived from the project's cover/background path), warns
+      > 4 MB, GET-for-sha on overwrite. Inline ⬆ upload buttons on image/gallery/cover path inputs
+      auto-fill the field. Missing derivatives covered by setImg onerror-fallback.
+- [x] Verify (headless): 5 editor JS pass node --check; signal-link showcase shows 18 upload
+      buttons (1 image + 16 gallery + 1 cover); preview intact; drafts.js loads clean. Actual
+      upload + draft delete need a token/localStorage state — user verifies in Live Server.
 
 **M5d — Publish + manage**
 - [ ] Publish = `ghBatchCommit` of post JSON + projects.json (upsert post entry), bump `contentVersion`

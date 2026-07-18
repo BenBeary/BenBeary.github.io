@@ -13,6 +13,9 @@
 
     function field(label, inner) { return '<div class="ed-field"><label>' + label + '</label>' + inner + '</div>'; }
     function textInput(f, v, ph) { return '<input class="ed-input" data-f="' + f + '" value="' + esc(v) + '" placeholder="' + esc(ph || '') + '">'; }
+    function uploadBtn() { return '<button type="button" class="ed-upload-btn" data-upload title="Upload an image">⬆</button>'; }
+    // A path input paired with an inline upload button (upload.js fills the input).
+    function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + uploadBtn() + '</div>'; }
 
     var REG = {
         heading: {
@@ -60,7 +63,7 @@
             label: 'Image',
             defaults: function () { return { type: 'image', src: '', alt: '', caption: '' }; },
             renderBody: function (b) {
-                return field('Image path', textInput('src', b.src, 'images/Project/file.png')) +
+                return field('Image path', srcRow('src', b.src, 'images/Project/file.png')) +
                     field('Alt text', textInput('alt', b.alt, 'Describe the image')) +
                     field('Caption (optional)', textInput('caption', b.caption, ''));
             },
@@ -73,7 +76,10 @@
             renderBody: function (b) {
                 var rows = (b.items || []).map(function (it, i) {
                     return '<div class="ed-gallery-row">' +
+                        '<div class="ed-src-row">' +
                         '<input class="ed-input" data-gf="src" data-i="' + i + '" value="' + esc(it.src) + '" placeholder="images/Project/file.png">' +
+                        uploadBtn() +
+                        '</div>' +
                         '<input class="ed-input" data-gf="alt" data-i="' + i + '" value="' + esc(it.alt) + '" placeholder="Alt text">' +
                         '<button type="button" class="btn btn-ghost btn-sm" data-gallery-remove="' + i + '" title="Remove">✕</button>' +
                         '</div>';

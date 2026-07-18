@@ -62,6 +62,7 @@
                 '<span class="ed-draft__title">' + esc(d.title || d.slug) + '</span>' +
                 '<span class="ed-post__date">' + esc(fmtDate(d.date)) + '</span>' +
                 '<a class="btn btn-ghost btn-sm" href="edit.html?draft=' + encodeURIComponent(d.key) + '">Resume</a>' +
+                '<button class="btn btn-ghost btn-sm" data-draft-del="' + esc(d.key) + '">Delete</button>' +
                 '</div>';
         }).join('');
         return '<div class="ed-drafts"><h2>Local drafts</h2>' + rows + '</div>';
@@ -92,6 +93,11 @@
         root = document.getElementById('ed-root');
         document.addEventListener('auth:ready', render);
         document.addEventListener('auth:changed', render);
+        // Draft delete (delegated; root element persists across re-renders).
+        root.addEventListener('click', function (e) {
+            var del = e.target.closest('[data-draft-del]');
+            if (del && typeof deleteDraft === 'function') { deleteDraft(del.dataset.draftDel); render(); }
+        });
         render();   // paint immediately (auth:ready re-renders after token warm-up)
     }
 
