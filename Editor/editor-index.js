@@ -30,9 +30,10 @@
     function postRow(projectSlug, post) {
         var cls = post.type === 'showcase' ? 'is-showcase' : 'is-blog';
         var label = post.type === 'showcase' ? 'Showcase' : 'Blog';
-        return '<li class="ed-post">' +
+        return '<li class="ed-post' + (post.hidden ? ' is-hidden' : '') + '">' +
             '<span class="ed-post__type ' + cls + '">' + label + '</span>' +
             '<a class="ed-post__title" href="edit.html?project=' + encodeURIComponent(projectSlug) + '&post=' + encodeURIComponent(post.slug) + '">' + esc(post.title) + '</a>' +
+            (post.hidden ? '<span class="ed-hidden-badge">Hidden</span>' : '') +
             '<span class="ed-post__date">' + esc(fmtDate(post.date)) + '</span>' +
             '<button class="ed-post__del" data-del-post="' + esc(projectSlug) + '::' + esc(post.slug) + '" title="Delete this post">🗑</button>' +
             '</li>';
@@ -48,7 +49,7 @@
             '<div class="ed-project__head">' +
             '<div>' +
             (p.kicker ? '<div class="ed-project__kicker">' + esc(p.kicker) + '</div>' : '') +
-            '<div class="ed-project__title">' + esc(p.title) + '</div>' +
+            '<div class="ed-project__title">' + esc(p.title) + (p.hidden ? ' <span class="ed-hidden-badge">Hidden</span>' : '') + '</div>' +
             '</div>' +
             '<div class="ed-project__meta">' +
             '<span class="ed-collection-badge">' + esc(p.collection || 'main') + '</span>' +

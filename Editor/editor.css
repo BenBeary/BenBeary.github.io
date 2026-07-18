@@ -337,6 +337,14 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .ed-post__del { flex: 0 0 auto; background: none; border: 1px solid transparent; color: var(--text-muted); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.9rem; line-height: 1; padding: 2px 7px; }
 .ed-post__del:hover { border-color: var(--danger); color: var(--danger); }
 
+/* Hidden (unlisted) marker + hide toggle */
+.ed-hidden-badge { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 1px 7px; border-radius: var(--radius-pill); background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border-strong); vertical-align: middle; }
+.ed-post.is-hidden .ed-post__title { color: var(--text-muted); }
+.ed-hide-toggle { text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--text); font-size: 0.9rem; }
+.ed-lock { flex: 0 0 auto; color: var(--text-muted); font-size: 0.9rem; padding: 0 4px; }
+.ed-tax-add { margin-top: var(--space-2); }
+.ed-tax-add > input { flex: 1; }
+
 /* Project media[] editor rows on the manage page (reuse gallery row styling) */
 .mg-media-hint { font-size: 0.82rem; color: var(--text-muted); margin: var(--space-2) 0; }
 

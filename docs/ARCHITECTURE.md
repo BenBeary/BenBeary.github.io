@@ -107,15 +107,17 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
   "projects": [{
     "slug": "clean-up-crew", "title": "Clean Up Crew", "kicker": "Team Project",
     "status": "In Development",   // OPTIONAL tag shown top-right of the hub hero; "" or absent = none
-    "date": "2025-07-29", "playLink": "…", "summary": "…", "tags": ["…"],
+    "hidden": false,             // OPTIONAL — true = unlisted (off catalogue/home/navbar; direct link still works)
+    "date": "2025-07-29", "playLink": "…", "summary": "…",
     "categories": ["programming", "ui-ux"],
+    "tags": ["Programming", "UI / UX"],   // DERIVED from categories at save time (category labels) — not hand-edited
     "collection": "main",
     "order": { "home": 1, "programming": 1 },
     "cover": "images/CleanUpCrew/16_9 shot.png", "background": "images/CleanUpCrew/Blurred.jpg",
     "media":   [ { "src": "images/…png|jpg|gif|mp4", "alt": "…" } ],  // hub slideshow (right col of the hero)
     "bullets": [ "role-specific highlight…" ],                       // hub hero left-column list
     "posts": [ { "slug": "showcase", "type": "showcase", "title": "…", "date": "2025-07-29",
-                 "excerpt": "…", "cover": "…" } ]
+                 "excerpt": "…", "cover": "…", "hidden": false } ]   // post "hidden": true = off the hub, direct link works
   }]
 }
 ```
@@ -127,9 +129,14 @@ then `tools/hoist-bullets.mjs`); the showcase post keeps the longer write-up (Ab
 after the fact in `manage.html` (media rows with 📁 browse/reorder; bullets as one-per-line).
 
 **Two independent grouping axes**: `categories` = skills the project demonstrates (a project can have
-several); `collection` = kind (exactly one of Main / Game Jams / Misc). Navbar Projects dropdown groups by
-collection; `projects.html` filters by either axis. Small jam/misc projects are ordinary projects — a hub
-with just a showcase post renders fine, no special-casing.
+several); `collection` = kind. `categories` doubles as the project's `tags` (the editor derives `tags`
+from the selected categories' labels — there is no separate tags field). `collection` is exactly one of
+the `collections[]` list, which is editable in Manage (add / rename / delete) EXCEPT `main` ("Main
+Projects"), which is permanent; deleting a collection reassigns its projects to `main`. Navbar Projects
+dropdown groups by collection; `projects.html` filters by either axis. Hidden projects/posts (`"hidden":
+true`) are excluded from every listing (catalogue, hub post list, navbar) but remain reachable by direct
+URL — an "unlisted" state for drafts/WIP. Small jam/misc projects are ordinary projects — a hub with just
+a slideshow renders fine, no special-casing.
 
 **Ordering**: `order` is opt-in — a missing key means "not featured in that listing". Within a listing,
 sort by `order` ascending, then `date` descending. (`order.home` drives the homepage Featured shelf.)

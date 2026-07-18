@@ -25,7 +25,8 @@
 
     function filtered(st) {
         var list = (data.projects || []).filter(function (p) {
-            return (!st.collection || p.collection === st.collection) &&
+            return !p.hidden &&
+                   (!st.collection || p.collection === st.collection) &&
                    (!st.cat || (p.categories || []).indexOf(st.cat) !== -1);
         });
         var rank = function (p) { return p.order && p.order[st.cat] != null ? p.order[st.cat] : 9999; };

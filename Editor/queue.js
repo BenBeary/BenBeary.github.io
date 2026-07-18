@@ -245,9 +245,21 @@
 
     document.addEventListener('queue:changed', refreshBadge);
 
-    // Warn before leaving with uncommitted work.
+    // Warn ONLY when the tab is actually being closed — not when navigating
+    // between editor pages (the queue persists in localStorage, so moving around
+    // never loses work). Any same-tab link/button navigation sets a short-lived
+    // "internal nav" flag that suppresses the prompt; a bare unload (close tab /
+    // type a new URL) still gets it.
+    var internalNav = false;
+    function markInternalNav() { internalNav = true; setTimeout(function () { internalNav = false; }, 1500); }
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (a && !/^_blank$/i.test(a.target || '') && !/^#/.test(a.getAttribute('href') || '')) markInternalNav();
+    }, true);
+    document.addEventListener('submit', markInternalNav, true);
     window.addEventListener('beforeunload', function (e) {
-        if (!API.isEmpty()) { e.preventDefault(); e.returnValue = ''; return ''; }
+        if (internalNav || API.isEmpty()) return;
+        e.preventDefault(); e.returnValue = ''; return '';
     });
 
     function init() { injectUI(); }

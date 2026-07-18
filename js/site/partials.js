@@ -118,7 +118,7 @@
         // A link to the full catalogue first.
         html += '<a href="' + root + 'projects.html">All Projects</a>';
         collections.forEach(function (col) {
-            var inCol = data.projects.filter(function (p) { return p.collection === col.slug; });
+            var inCol = data.projects.filter(function (p) { return !p.hidden && p.collection === col.slug; });
             if (!inCol.length) return;
             html += '<span class="nav-projects__group">' + escapeHtml(col.label) + '</span>';
             inCol.forEach(function (p) {

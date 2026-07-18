@@ -52,7 +52,7 @@
         // title, date, tags, play, bullets. Right (~2/3): slideshow + summary.
         var hasMedia = !!(project.media && project.media.length);
         var hero = document.createElement('section');
-        hero.className = 'hub-hero' + (hasMedia ? '' : ' hub-hero--nomedia');
+        hero.className = 'hub-hero' + (hasMedia ? '' : ' hub-hero--nomedia') + (project.status ? ' hub-hero--status' : '');
         var bg = document.createElement('img');
         bg.className = 'hub-hero__bg';
         window.setImg(bg, project.background || project.cover, 'md');
@@ -121,7 +121,7 @@
         hub.appendChild(hero);
 
         // Posts
-        var posts = (project.posts || []).slice();
+        var posts = (project.posts || []).slice().filter(function (p) { return !p.hidden; });
         var showcase = posts.filter(function (p) { return p.type === 'showcase'; });
         var blogs = posts.filter(function (p) { return p.type !== 'showcase'; })
             .sort(function (a, b) { return b.date.localeCompare(a.date); });

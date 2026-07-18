@@ -16,7 +16,7 @@
     var DRAFT_PREFIX = 'pf.editor.draft.';
     var DRAFT_INDEX = 'pf.editor.drafts';
 
-    var state = { project: '', projectMeta: null, allProjects: [], slug: '', type: 'blog', title: '', date: '', excerpt: '', cover: '', blocks: [] };
+    var state = { project: '', projectMeta: null, allProjects: [], slug: '', type: 'blog', title: '', date: '', excerpt: '', cover: '', hidden: false, blocks: [] };
     // Set when editing an existing published post; publish relocates (delete +
     // re-add) when the project or slug changed. Enables moving posts between
     // projects (e.g. consolidating small games into one collection project).
@@ -56,6 +56,7 @@
             '<div class="ed-field"><label>Slug (URL)</label><input class="ed-input mono" id="m-slug" value="' + esc(state.slug) + '" placeholder="post-slug"></div>' +
             '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-browse title="Pick from the image folders (right-click inside to upload)">📁</button></div></div>' +
             '<div class="ed-field ed-field--wide"><label>Excerpt</label><textarea class="ed-input" id="m-excerpt" rows="2" placeholder="Short summary for listings">' + esc(state.excerpt) + '</textarea></div>' +
+            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" id="m-hidden"' + (state.hidden ? ' checked' : '') + '> Hide this post (keep it off the project page — direct link still works)</label></div>' +
             '</div>';
     }
 
@@ -71,6 +72,7 @@
         state.slug = els.byId('m-slug').value;
         state.cover = els.byId('m-cover').value;
         state.excerpt = els.byId('m-excerpt').value;
+        var hid = els.byId('m-hidden'); state.hidden = !!(hid && hid.checked);
     }
 
     // ---- block list ----
@@ -185,7 +187,7 @@
     function saveDraftLocal(announce) {
         try {
             var key = draftKey();
-            var rec = { post: buildPost(), cover: state.cover, savedAt: Date.now() };
+            var rec = { post: buildPost(), cover: state.cover, hidden: state.hidden, savedAt: Date.now() };
             localStorage.setItem(key, JSON.stringify(rec));
             var entry = { key: key, project: state.project, slug: state.slug, title: state.title, date: state.date, type: state.type, savedAt: rec.savedAt };
             var idx = readIndex().filter(function (e) { return e.key !== key; });
@@ -241,6 +243,7 @@
             }
 
             var entry = { slug: state.slug, type: state.type, title: state.title, date: state.date, excerpt: state.excerpt, cover: state.cover };
+            if (state.hidden) entry.hidden = true;
             if (state.type === 'showcase') {
                 proj.posts = (proj.posts || []).filter(function (p) { return p.type !== 'showcase' || p.slug === state.slug; });
             }
@@ -524,6 +527,7 @@
             state.slug = post.slug || ''; state.type = post.type || 'blog';
             state.title = post.title || ''; state.date = post.date || todayIso();
             state.excerpt = post.excerpt || ''; state.cover = rec.cover || '';
+            state.hidden = !!rec.hidden;
             state.blocks = Array.isArray(post.blocks) ? post.blocks : [];
             slugTouched = true;
             finishLoad();
@@ -570,6 +574,7 @@
                     state.excerpt = post.excerpt || ''; state.blocks = Array.isArray(post.blocks) ? post.blocks : [];
                     var entry = (meta.posts || []).find(function (p) { return p.slug === postSlug; });
                     state.cover = entry && entry.cover ? entry.cover : '';
+                    state.hidden = !!(entry && entry.hidden);
                     slugTouched = true;
                     loadedPath = postPath;
                     origProject = projectSlug; origSlug = postSlug;

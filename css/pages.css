@@ -128,12 +128,18 @@
     display: grid;
     grid-template-columns: minmax(260px, 1fr) 2fr;
     gap: var(--space-6);
-    align-items: center;
+    align-items: start;          /* grow downward; never vertically centre a tall column */
     padding: var(--space-6);
 }
 .hub-hero--nomedia .hub-hero__grid { grid-template-columns: 1fr; }
 .hub-hero__info { min-width: 0; }
 .hub-hero__media { min-width: 0; }
+/* When the status tag is present, drop the slideshow below it so it can never
+   sit on top of ("block") the tag — the card just grows downward instead. */
+.hub-hero--status .hub-hero__media { padding-top: calc(var(--space-6) + 8px); }
+@media (max-width: 900px) {
+    .hub-hero--status .hub-hero__media { padding-top: 0; }
+}
 .hub-bullets {
     margin: var(--space-5) 0 0;
     padding-left: var(--space-5);
@@ -150,7 +156,7 @@
     position: absolute;
     top: var(--space-4);
     right: var(--space-4);
-    z-index: 2;
+    z-index: 5;   /* always above the hero grid / slideshow */
     background: var(--accent);
     color: var(--on-accent);
     border-radius: var(--radius-pill);
