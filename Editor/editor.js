@@ -93,20 +93,25 @@
         });
     }
 
-    // ---- live preview (shared renderer) ----
-    function updatePreview() {
-        syncMeta();
-        syncBlocks();
+    // ---- flush DOM -> state ----
+    function flush() { syncMeta(); syncBlocks(); }
+
+    // Autosave (debounced). No live render — preview is on-demand via the modal.
+    function scheduleUpdate() {
+        clearTimeout(previewTimer);
+        previewTimer = setTimeout(function () { flush(); saveDraftLocal(false); }, 400);
+    }
+
+    // ---- preview modal (shared site renderer, on demand) ----
+    function openPreview() {
+        flush();
         els.previewTitle.textContent = state.title || 'Untitled post';
         els.previewMeta.textContent = fmtDate(state.date);
         window.renderBlocks(state.blocks, els.previewBody);
+        els.previewOverlay.style.display = 'flex';
+        document.body.classList.add('ed-preview-open');
     }
-
-    function scheduleUpdate() {
-        clearTimeout(previewTimer);
-        previewTimer = setTimeout(updatePreview, 200);
-        scheduleSave();
-    }
+    function closePreview() { els.previewOverlay.style.display = 'none'; document.body.classList.remove('ed-preview-open'); }
 
     // ---- local draft autosave ----
     function draftKey() { return DRAFT_PREFIX + state.project + '.' + (state.slug || 'untitled'); }
@@ -147,7 +152,7 @@
 
     async function publish() {
         if (typeof isAuthenticated !== 'function' || !isAuthenticated()) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
-        updatePreview();   // flush the DOM into state
+        flush();   // DOM -> state
         if (!state.title.trim()) { toast('Add a title first.'); return; }
         if (!state.slug.trim()) { toast('Add a slug first.'); return; }
         if (!state.date) { toast('Add a date first.'); return; }
@@ -231,7 +236,7 @@
             syncBlocks();
             state.blocks.push(def.defaults());
             renderBlocks();
-            updatePreview();
+            saveDraftLocal(false);
         });
 
         els.blocks.addEventListener('click', function (e) {
@@ -265,11 +270,15 @@
                 state.blocks.splice(Number(del.dataset.del), 1);
             }
             renderBlocks();
-            updatePreview();
+            saveDraftLocal(false);
         });
 
-        els.byId('ed-save-draft').addEventListener('click', function () { updatePreview(); saveDraftLocal(true); });
+        els.byId('ed-save-draft').addEventListener('click', function () { flush(); saveDraftLocal(true); });
         els.byId('ed-publish').addEventListener('click', publish);
+        els.byId('ed-tool-preview').addEventListener('click', openPreview);
+        els.byId('ed-preview-close').addEventListener('click', closePreview);
+        els.previewOverlay.addEventListener('click', function (e) { if (e.target === els.previewOverlay) closePreview(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && els.previewOverlay.style.display === 'flex') closePreview(); });
     }
 
     // ---- image upload (upload.js) ----
@@ -315,7 +324,6 @@
         renderBlocks();
         renderAddBar();
         wire();
-        updatePreview();
     }
 
     function loadFromDraft(key) {
@@ -340,6 +348,7 @@
         els.meta = document.getElementById('ed-meta');
         els.blocks = document.getElementById('ed-blocks');
         els.addbar = document.getElementById('ed-addbar');
+        els.previewOverlay = document.getElementById('ed-preview-overlay');
         els.previewTitle = document.getElementById('ed-preview-title');
         els.previewMeta = document.getElementById('ed-preview-meta');
         els.previewBody = document.getElementById('ed-preview-body');

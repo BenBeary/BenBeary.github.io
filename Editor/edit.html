@@ -23,21 +23,34 @@
     </header>
 
     <div class="ed-editor" id="ed-editor">
-        <section class="ed-pane ed-pane--form">
+        <main class="ed-main">
             <div class="ed-meta" id="ed-meta"></div>
             <h2 class="ed-section-h">Content blocks</h2>
             <div class="ed-blocks" id="ed-blocks"></div>
             <div class="ed-addbar" id="ed-addbar"></div>
-        </section>
+        </main>
 
-        <section class="ed-pane ed-pane--preview">
-            <div class="ed-preview-head">Live preview</div>
-            <div class="ed-preview-scroll">
-                <h1 class="post-title" id="ed-preview-title"></h1>
-                <div class="post-meta" id="ed-preview-meta"></div>
-                <article class="post-body" id="ed-preview-body"></article>
+        <aside class="ed-toolbar">
+            <div class="ed-toolbar__title">Tools</div>
+            <button class="ed-tool-btn" id="ed-tool-preview" title="Preview this post"><span class="ed-tool-icon">👁</span><span>Preview</span></button>
+        </aside>
+    </div>
+
+    <!-- Preview modal (rendered by the shared site renderer) -->
+    <div class="modal-overlay ed-preview-overlay" id="ed-preview-overlay">
+        <div class="ed-preview-box">
+            <div class="ed-preview-bar">
+                <span class="ed-preview-bar__title">Preview</span>
+                <button class="ed-preview-close" id="ed-preview-close" aria-label="Close preview">✕</button>
             </div>
-        </section>
+            <div class="ed-preview-scroll">
+                <div class="page ed-preview-page">
+                    <h1 class="post-title" id="ed-preview-title"></h1>
+                    <div class="post-meta" id="ed-preview-meta"></div>
+                    <article class="post-body" id="ed-preview-body"></article>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="ed-toast" id="ed-toast" style="display:none"></div>
