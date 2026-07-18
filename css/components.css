@@ -172,7 +172,14 @@
     display: flex; gap: var(--space-2);
     overflow-x: auto; padding: var(--space-1) 2px var(--space-2);
     scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
 }
+.pshow__thumbs::-webkit-scrollbar { height: 6px; }
+.pshow__thumbs::-webkit-scrollbar-track { background: transparent; }
+.pshow__thumbs::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.pshow__thumbs::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+/* Center when they fit; `safe` avoids clipping the first thumb when they overflow. */
+.pshow__thumbs { justify-content: safe center; }
 .pshow__thumb {
     position: relative; flex: 0 0 auto;
     width: 112px; aspect-ratio: 16 / 9;

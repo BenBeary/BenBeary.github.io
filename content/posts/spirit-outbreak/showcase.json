@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created a custom UI Line Renderer for a custom made graph",
-        "Created a custom A* pathfinder that worked for isometric grids",
-        "Created multiple enemy types that would all behave differently",
-        "Created an upgrade system that would add effects or change how traps worked",
-        "Created a map system that could change the overall layout of the map as the game progressed"
-      ]
     }
   ]
 }

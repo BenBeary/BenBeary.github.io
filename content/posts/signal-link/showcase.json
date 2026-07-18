@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "2-week-long Game Jam",
-        "Created scenery for 2 worlds and The Main Menu Scene",
-        "Main Menu Scene integrates UI and the 3D world into 1 space",
-        "Created multiple puzzles that are integrated in the world",
-        "Created multiple 3D assets and 2D UI tools to make the interface come alive"
-      ]
     }
   ]
 }

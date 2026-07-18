@@ -1,7 +1,9 @@
-/* page-project.js — a project hub. ?slug=<project>. Renders a hero (kicker,
-   title, date, tags, play link, summary over the blurred background) and the
-   post list: the showcase pinned on top, then blog posts newest-first, 5 shown
-   with a "Load more". Each post links to post.html?slug=<project>&post=<post>. */
+/* page-project.js — a project hub. ?slug=<project>. The hero is a two-column
+   card over the blurred background (original-site style): left = kicker, title,
+   date, tags, play link, contribution bullets; right = the media slideshow with
+   the summary under it. Status tag pins top-right. Below: the post list — the
+   showcase pinned on top, then blog posts newest-first, 5 shown with a "Load
+   more". Each post links to post.html?slug=<project>&post=<post>. */
 
 (function () {
     'use strict';
@@ -46,16 +48,18 @@
         hub.innerHTML = '';
         document.title = project.title + ' — Ben Beary';
 
-        // Hero
+        // Hero: blurred-bg card holding everything. Left column (~1/3): kicker,
+        // title, date, tags, play, bullets. Right (~2/3): slideshow + summary.
+        var hasMedia = !!(project.media && project.media.length);
         var hero = document.createElement('section');
-        hero.className = 'hub-hero';
+        hero.className = 'hub-hero' + (hasMedia ? '' : ' hub-hero--nomedia');
         var bg = document.createElement('img');
         bg.className = 'hub-hero__bg';
         window.setImg(bg, project.background || project.cover, 'md');
         bg.alt = '';
         hero.appendChild(bg);
 
-        // Optional status tag, top-right of the hero (e.g. "Actively Developing").
+        // Status tag stays pinned top-right of the hero card.
         if (project.status) {
             var status = document.createElement('div');
             status.className = 'hub-status';
@@ -63,13 +67,16 @@
             hero.appendChild(status);
         }
 
-        var overlay = document.createElement('div');
-        overlay.className = 'hub-hero__inner';
+        var grid = document.createElement('div');
+        grid.className = 'hub-hero__grid';
+
+        var info = document.createElement('div');
+        info.className = 'hub-hero__info';
         var html = '';
         if (project.kicker) html += '<div class="hub-hero__kicker">' + escAttr(project.kicker) + '</div>';
         html += '<h1 class="hub-hero__title">' + escAttr(project.title) + '</h1>';
         html += '<div class="hub-hero__date">' + escAttr(fmtDate(project.date)) + '</div>';
-        overlay.innerHTML = html;
+        info.innerHTML = html;
 
         if (project.tags && project.tags.length) {
             var tl = document.createElement('div');
@@ -77,7 +84,7 @@
             project.tags.forEach(function (tag) {
                 var c = document.createElement('span'); c.className = 'chip chip-accent'; c.textContent = tag; tl.appendChild(c);
             });
-            overlay.appendChild(tl);
+            info.appendChild(tl);
         }
         if (project.playLink) {
             var play = document.createElement('a');
@@ -86,27 +93,32 @@
             play.target = '_blank';
             play.rel = 'noopener';
             play.textContent = '▶ Play the Game';
-            overlay.appendChild(play);
+            info.appendChild(play);
         }
-        hero.appendChild(overlay);
+        if (project.bullets && project.bullets.length) {
+            var ul = document.createElement('ul');
+            ul.className = 'hub-bullets';
+            project.bullets.forEach(function (item) {
+                var li = document.createElement('li'); li.textContent = item; ul.appendChild(li);
+            });
+            info.appendChild(ul);
+        }
+        grid.appendChild(info);
+
+        if (hasMedia || project.summary) {
+            var mediaCol = document.createElement('div');
+            mediaCol.className = 'hub-hero__media';
+            if (hasMedia) window.makeSlideshow(mediaCol, project.media);
+            if (project.summary) {
+                var sum = document.createElement('p');
+                sum.className = 'hub-hero__summary';
+                sum.textContent = project.summary;
+                mediaCol.appendChild(sum);
+            }
+            grid.appendChild(mediaCol);
+        }
+        hero.appendChild(grid);
         hub.appendChild(hero);
-
-        // Media slideshow (original-site style): the project's screenshots /
-        // clips, above the summary. Videos get poster thumbs; gifs animate.
-        if (project.media && project.media.length) {
-            var showWrap = document.createElement('section');
-            showWrap.className = 'hub-media';
-            window.makeSlideshow(showWrap, project.media);
-            hub.appendChild(showWrap);
-        }
-
-        // Summary
-        if (project.summary) {
-            var sum = document.createElement('p');
-            sum.className = 'hub-summary';
-            sum.textContent = project.summary;
-            hub.appendChild(sum);
-        }
 
         // Posts
         var posts = (project.posts || []).slice();

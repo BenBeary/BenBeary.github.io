@@ -67,6 +67,14 @@
 }
 .ed-input:focus { outline: none; border-color: var(--accent); }
 input.ed-input[type="password"], input.ed-input.mono { font-family: var(--font-mono); }
+/* Dropdowns: force an opaque dark box + options (the translucent --surface-1
+   made the native option popup render white-on-white on Windows). */
+select.ed-input { background-color: var(--surface-solid); color: var(--text); appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23ffbb00' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right var(--space-3) center; padding-right: var(--space-6); }
+select.ed-input option { background-color: var(--surface-solid); color: var(--text); }
+/* date input: keep the native calendar picker glyph visible on the dark field */
+input.ed-input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
 .ed-field { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
 .ed-field label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
 .ed-check { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-3) 0; }
@@ -290,6 +298,11 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .imgb-thumb { width: 26px; height: 26px; object-fit: cover; border-radius: 3px; background: var(--surface-1); flex-shrink: 0; }
 .imgb-name { flex: 1; overflow: hidden; text-overflow: ellipsis; }
 .imgb-folder.imgb-drop-hover { background: var(--accent); color: var(--on-accent); }
+/* Type tags so gifs / videos / just-uploaded files are easy to spot */
+.imgb-tag { flex: 0 0 auto; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.03em; padding: 1px 6px; border-radius: var(--radius-pill); }
+.imgb-tag--vid { background: rgba(120, 170, 255, 0.18); color: #78aaff; border: 1px solid #78aaff; }
+.imgb-tag--gif { background: rgba(180, 130, 255, 0.18); color: #b482ff; border: 1px solid #b482ff; }
+.imgb-tag--new { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
 
 /* Right-click context menu (folders: add images / new folder) */
 .imgb-menu {
@@ -299,6 +312,33 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 }
 .imgb-menu__item { padding: 7px 14px; font-size: 0.9rem; color: var(--text); cursor: pointer; white-space: nowrap; }
 .imgb-menu__item:hover { background: var(--accent); color: var(--on-accent); }
+
+/* --- Change queue (queue.js): header button + badge + review modal --- */
+.q-btn { position: relative; }
+.q-btn.has-changes { border-color: var(--accent); color: var(--accent); }
+.q-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 4px;
+    background: var(--accent); color: var(--on-accent);
+    border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 800; line-height: 1;
+}
+.q-box { max-width: 540px; }
+.q-body { max-height: 46vh; overflow-y: auto; margin-bottom: var(--space-5); }
+.q-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.q-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.q-op { flex: 0 0 auto; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: var(--radius-pill); }
+.q-op--put { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+.q-op--del { background: rgba(224, 82, 82, 0.15); color: var(--danger); border: 1px solid var(--danger); }
+.q-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); font-size: 0.92rem; }
+.q-drop { flex: 0 0 auto; background: none; border: 0; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; line-height: 1; }
+.q-drop:hover { color: var(--danger); }
+
+/* Per-post delete on the landing (small round danger button) */
+.ed-post__del { flex: 0 0 auto; background: none; border: 1px solid transparent; color: var(--text-muted); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.9rem; line-height: 1; padding: 2px 7px; }
+.ed-post__del:hover { border-color: var(--danger); color: var(--danger); }
+
+/* Project media[] editor rows on the manage page (reuse gallery row styling) */
+.mg-media-hint { font-size: 0.82rem; color: var(--text-muted); margin: var(--space-2) 0; }
 
 /* Toast */
 .ed-toast {

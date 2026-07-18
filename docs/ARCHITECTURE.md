@@ -66,14 +66,17 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 │   ├── data.js, media.js, blocks.js, richtext-sanitize.js
 │   └── page-home.js, page-projects.js, page-project.js, page-post.js, page-role.js
 ├── Editor/
-│   ├── index.html                # sign-in + project/post/draft picker
-│   ├── edit.html                 # block editor + live preview (uses ../js/site/blocks.js)
-│   ├── manage.html               # forms over projects.json + roles
+│   ├── index.html                # sign-in + New Project + project/post/draft picker
+│   ├── edit.html                 # block editor + split live-preview iframe (uses ../js/site/blocks.js)
+│   ├── manage.html               # forms over projects.json (meta, hub slideshow media[], bullets)
+│   ├── preview.html              # site-CSS-only iframe target for the split preview
 │   ├── auth.js                   # adapted CADRE auth.js (owner-only; see M5)
 │   ├── github-api.js             # CADRE github-api.js near-verbatim; owner/repo constants changed
-│   └── editor.js, blocks-edit.js, drafts.js, upload.js, editor.css
+│   ├── queue.js                  # persistent change queue: stage-all + one-batch commit + beforeunload
+│   ├── image-browser.js          # Blog Images tree browser (pick / upload / new folder), gif+mp4 tagged
+│   └── editor.js, editor-index.js, manage.js, blocks-edit.js, drafts.js, upload.js, editor.css
 ├── tools/                        # local-only node scripts (deps: sharp, ffmpeg-static)
-│   ├── package.json, optimize-media.mjs, migrate-projects.mjs
+│   ├── package.json, optimize-media.mjs, migrate-projects.mjs, hoist-showcase-media.mjs, hoist-bullets.mjs
 ├── docs/ROADMAP.md, docs/ARCHITECTURE.md, docs/reference-cadre/
 ├── images/                       # ONE top-level media folder
 │   ├── Blog Images/<Project>/<name>.<ext>   # project/blog image originals (the editor's image
@@ -103,17 +106,25 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
                    { "slug": "misc", "label": "Miscellaneous" } ],
   "projects": [{
     "slug": "clean-up-crew", "title": "Clean Up Crew", "kicker": "Team Project",
-    "status": "Actively Developing",   // OPTIONAL free-text tag shown top-right of the hub hero; "" or absent = none
+    "status": "In Development",   // OPTIONAL tag shown top-right of the hub hero; "" or absent = none
     "date": "2025-07-29", "playLink": "…", "summary": "…", "tags": ["…"],
     "categories": ["programming", "ui-ux"],
     "collection": "main",
     "order": { "home": 1, "programming": 1 },
     "cover": "images/CleanUpCrew/16_9 shot.png", "background": "images/CleanUpCrew/Blurred.jpg",
+    "media":   [ { "src": "images/…png|jpg|gif|mp4", "alt": "…" } ],  // hub slideshow (right col of the hero)
+    "bullets": [ "role-specific highlight…" ],                       // hub hero left-column list
     "posts": [ { "slug": "showcase", "type": "showcase", "title": "…", "date": "2025-07-29",
                  "excerpt": "…", "cover": "…" } ]
   }]
 }
 ```
+
+**Hub hero (M5.6)** is a two-column card over the blurred background: left (~1/3) = kicker, title, date,
+tags, play button, `bullets`; right (~2/3) = the `media` slideshow with `summary` beneath it. `status`
+pins top-right. `media`/`bullets` were hoisted out of each showcase post (`tools/hoist-showcase-media.mjs`
+then `tools/hoist-bullets.mjs`); the showcase post keeps the longer write-up (About). Both are editable
+after the fact in `manage.html` (media rows with 📁 browse/reorder; bullets as one-per-line).
 
 **Two independent grouping axes**: `categories` = skills the project demonstrates (a project can have
 several); `collection` = kind (exactly one of Main / Game Jams / Misc). Navbar Projects dropdown groups by
@@ -127,8 +138,9 @@ sort by `order` ascending, then `date` descending. (`order.home` drives the home
 one `type:"showcase"` post per project (pinned top of hub); others are `type:"blog"` (newest-first, 5
 shown + "Load more").
 
-**`contentVersion`** increments on every editor publish; `data.js` appends it as `?v=` to post fetches to
-bust the GitHub Pages CDN (~10 min cache).
+**`contentVersion`** increments once per editor commit (bumped inside `EditorQueue.commit()` when
+projects.json is part of the batch); `data.js` appends it as `?v=` to post fetches to bust the GitHub
+Pages CDN (~10 min cache).
 
 ### `content/posts/<project>/<post>.json`
 
@@ -201,6 +213,21 @@ renderBlocks(blocks, containerEl)
 // Editor/github-api.js (from CADRE, near-verbatim):
 ghBatchCommit({ message, changes: [ {op:'put',path,content} | {op:'putB64',path,base64} | {op:'delete',path} ], branch })
 //   Atomic Git Data API commit: blobs -> tree(base_tree) -> commit -> PATCH ref; retries once on race.
+
+// Editor/queue.js — the persistent change queue (localStorage; CADRE ChangeQueue concept).
+//   Every editor mutation STAGES a file change here (keyed by repo path, last-write-wins) instead of
+//   committing. Survives navigation across edit/manage/index and reloads. A universal 📋 Changes button
+//   (injected into .ed-header__actions on every editor page) opens a review modal; one commit sends the
+//   whole batch via ghBatchCommit. beforeunload warns on unstaged-to-GitHub work.
+window.EditorQueue = {
+  loadProjects(),                    // committed(main, if authed) or public projects.json, overlaid with the queued edit
+  stageProjects(json, label), stagePut(path, content, label), stagePutB64(path, b64, label), stageDelete(path, label),
+  getStaged(path), hasPath(path), remove(path), list(), count(), isEmpty(), clear(),
+  commit(message?)                   // bumps contentVersion once, ghBatchCommit's everything, clears on success
+}
+//   Fires document events 'queue:changed' (badge refresh) and 'queue:committed' (pages reload their copy).
+//   NOTE: image uploads + new folders still commit IMMEDIATELY (binary in localStorage would blow quota) —
+//   the browser inserts them optimistically so they show at once, then reconciles with the committed tree.
 ```
 
 ## Conventions
@@ -248,16 +275,18 @@ Dry-run prints; `--write` writes.
 - The draft system from `post-gen.js` — debounced localStorage autosave, draft index with 30-day pruning,
   recent-drafts popover. Key `draft:<project>:<slug>`.
 
-**Do NOT port (v1):** `post-gen-output.js` / base-template HTML generation (JSON model replaces it);
-ChangeQueue + Show Changes + AdminToolManager (v1 publish is one atomic 2-file commit — staging is overkill,
-add later only if batching is missed); the tutorial; the image-manager tree panel (v1 uses simple upload;
-a browse-tree can be ported from `image-manager.js` later if wanted).
+**Not ported:** `post-gen-output.js` / base-template HTML generation (the JSON model replaces it); the
+tutorial. The image-manager tree WAS ported (`image-browser.js`), and the ChangeQueue concept WAS adopted
+in M5.6 (`queue.js`) — v1 shipped without it (immediate per-action commits), M5.6 moved all JSON mutations
+behind the queue so work persists across editor pages and commits in one batch.
 
-**Publish flow:** build post JSON → upsert its entry into in-memory projects.json → bump `contentVersion` →
-`ghBatchCommit([postPath, "content/projects.json"])`. Image upload is a single Contents-API PUT to
-`images/<Project>/` at insert time (immediate raw-URL preview; orphans from abandoned drafts are acceptable).
-Editor CSS is independent of the site (`Editor/editor.css`, can start from CADRE `postGen-style.css`'s
-`:root`).
+**Publish flow (M5.6):** everything STAGES into `EditorQueue`. "✓ Add to changes" on edit.html builds the
+post JSON + upserts its projects.json entry (relocating the old file if the project/slug changed) and stages
+both; Manage stages projects.json (+ post-file deletions); the landing stages new-project / delete-post.
+The single GitHub write is `EditorQueue.commit()` from the 📋 Changes modal — one `ghBatchCommit` of the
+whole batch, bumping `contentVersion` once. Image uploads + new folders are the exception: still immediate
+Contents-API PUTs (binary can't sit in localStorage), shown optimistically in the browser then reconciled.
+Editor CSS is independent of the site (`Editor/editor.css`).
 
 ## Risks / pitfalls
 

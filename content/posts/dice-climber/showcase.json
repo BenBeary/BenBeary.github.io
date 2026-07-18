@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created modular puzzle pieces for reuse",
-        "Created a dialogue system from scratch",
-        "Created a visual editor guide to help with map creation",
-        "Created multiple mechanics that the player learns over time",
-        "Created a cutscene system"
-      ]
     }
   ]
 }

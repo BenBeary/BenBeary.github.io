@@ -160,6 +160,30 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` — port from
 - NOT done (needs auth/user or push): live upload/new-folder/publish round-trips; the image
   browser & history read GitHub main, so they show pre-push state until the redesign is pushed.
 
+### M5.6 — CADRE parity pass #2  ✅ complete (second user feedback batch)
+- [x] Merged origin/main (the user's live editor tests: "Old Work" project + Old_Work image folder)
+      into the redesign; re-added Old Work in the current schema (collection misc, status Archived)
+- [x] Persistent change queue — Editor/queue.js: every JSON mutation STAGES to localStorage (survives
+      moving between editor pages + reloads); universal 📋 Changes header button + review modal;
+      one-batch commit via ghBatchCommit (contentVersion bumped once); beforeunload guard on unsaved work
+- [x] edit.html: 🚀 Publish → ✓ Add to changes (stages); 💾 Save draft button removed (silent autosave
+      kept for crash recovery); reopening a staged post loads its queued version
+- [x] Hub redesign — two-column card in the blurred box: left (title/date/tags/play/bullets) ~1/3,
+      right (slideshow + summary) ~2/3; status stays top-right. project.bullets[] hoisted from showcases
+      (tools/hoist-bullets.mjs)
+- [x] Editable hub slideshow — Manage per-project media[] rows (📁 browse, add/remove/reorder) + bullets
+      textarea (fixes "you just hard coded it, I need to edit it from the browser")
+- [x] New Project moved to the editor landing (was Manage-only); newly created projects show there
+      immediately (queue overlay); per-post 🗑 delete on the landing (stages entry removal + file delete)
+- [x] Project dropdown / landing read EditorQueue.loadProjects() so new/removed projects appear at once
+- [x] Manage sorts projects newest-first; History button removed (index + manage); Editor/history.js deleted
+      (the queue is the change log; committed history lives on GitHub)
+- [x] Image browser: gif/mp4 tagged (▶ MP4 / GIF badges), mp4 uploads allowed; folder create + upload
+      insert optimistically (fixes "adding a folder doesn't update locally"), then reconcile with main
+- [x] Small fixes: dark <select> styling (was white-on-white), themed + safe-centered slideshow thumb strip
+- NOT done (needs auth/user): the actual GitHub commit from the 📋 Changes modal, and upload/new-folder
+  round-trips. The browser still reads GitHub main, so it shows pre-push paths until the redesign is pushed.
+
 ### M6 — Home + swap (go-live)
 - [ ] `home.html` — intro → Featured shelf (`order.home`) → per-collection shelves
       (CSS `scroll-snap-type: x mandatory`) → about section
@@ -196,3 +220,16 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` — port from
   Migrated alt text is placeholder ("<title> key art" / "screenshot N") — refine in the editor.
   Game-jam candidates flagged by the script: idol-of-ashes, death-tides, signal-link (still
   collection:"main" — re-tag in M5's manage page). Home-featured = 6 most recent (tunable).
+- M5.5: **schema** — project gained `media[]` (hub slideshow) + `status` (enum: In Development |
+  Prototype | Concept | On Hold | Finished | Released | Archived, free text still renders); new
+  `slideshow` block (mixed png/jpg/gif/mp4). `bullets` block deprecated for authoring. Showcase
+  visual blocks hoisted into project.media by `tools/hoist-showcase-media.mjs`.
+- M5.6: **schema** — project gained `bullets[]` (hub hero left column), hoisted from showcase posts
+  by `tools/hoist-bullets.mjs`. **API** — new `Editor/queue.js` (`window.EditorQueue`): all editor
+  JSON mutations stage into a localStorage queue and commit in one batch; `contentVersion` now bumps
+  once inside `EditorQueue.commit()` (not per stage-action). Editor reads route through
+  `EditorQueue.loadProjects()` (committed main + queue overlay). Image uploads / new folders stay
+  immediate Contents-API PUTs (binary can't live in localStorage) but insert optimistically in the
+  browser. `Editor/history.js` deleted (queue replaces it; committed history is on GitHub). Hub hero
+  is now a two-column card (info | slideshow+summary) over the blurred bg. `origin/main` (the user's
+  two live editor test commits) merged in.

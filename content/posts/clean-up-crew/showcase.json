@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move around through while keeping the game low-poly to save performance due to it being a web-based game.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Designed the map layout",
-        "Engineered a first-person modular gun system that worked with multiple gun types",
-        "Created the UI, to include the leaderboard system",
-        "Developed a spawner system that would spawn items on top of terrain geometry",
-        "Worked on particle systems and animations for 3D assets."
-      ]
     }
   ]
 }

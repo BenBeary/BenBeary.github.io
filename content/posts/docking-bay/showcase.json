@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We wanted to create an atmosphere that was eerie and made the player constantly second-guess their choices.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created room layout and exterior scenes",
-        "Created a sound system to efficiently play audio",
-        "Made all 3D animations and particle effects",
-        "Created the menu screen and pause menu UI",
-        "Created a dialogue system that could match voice acting audio"
-      ]
     }
   ]
 }

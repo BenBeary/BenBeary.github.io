@@ -1,33 +1,52 @@
 /* manage.js — project & taxonomy metadata editor.
 
    Views:
-     manage.html                → all projects + taxonomy labels
-     manage.html?project=<slug> → ONE project (linked from the ⚙ button on the landing)
+     manage.html                → all projects (newest first) + taxonomy labels
+     manage.html?project=<slug> → ONE project (linked from the ⚙ button)
 
-   Features: per-project forms (title/kicker/status DROPDOWN/collection/links/
-   dates/tags/categories/order), ➕ New project, 🗑 Delete project (also deletes
-   its post JSONs on save), collection/category label editing, 📜 History.
-   "Save changes" commits projects.json (+ any queued post deletions) in ONE
-   ghBatchCommit and bumps contentVersion. Owner-only. */
+   Per-project forms cover title/kicker/status DROPDOWN/collection/links/dates/
+   tags/summary/categories/order, the hub SLIDESHOW media[] (add/remove/reorder,
+   📁 browse), highlight bullets, and 🗑 Delete project (queues its post-file
+   deletions). Everything is STAGED into the shared change queue (queue.js) via
+   "✓ Add to changes"; the actual GitHub commit happens from the 📋 Changes modal.
+   New projects are created on the editor landing, not here. Owner-only. */
 
 (function () {
     'use strict';
 
     var STATUS_OPTIONS = ['In Development', 'Prototype', 'Concept', 'On Hold', 'Finished', 'Released', 'Archived'];
 
-    var data = null;              // working projects.json
+    var data = null;              // working projects.json (committed + queue overlay)
     var deletedPostPaths = [];    // content/posts/... files to delete on save
     var onlyProject = new URLSearchParams(location.search).get('project') || '';
     var root, toastEl;
 
     function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
     function toast(m) { toastEl.textContent = m; toastEl.style.display = 'block'; clearTimeout(toastEl._t); toastEl._t = setTimeout(function () { toastEl.style.display = 'none'; }, 2200); }
-    function decodeB64Utf8(b64) { var bin = atob(String(b64).replace(/\s/g, '')); var by = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) by[i] = bin.charCodeAt(i); return new TextDecoder('utf-8').decode(by); }
-    function slugify(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60); }
-    function todayIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 
     function textField(label, k, v, ph) {
         return '<div class="ed-field"><label>' + label + '</label><input class="ed-input" data-k="' + k + '" value="' + esc(v) + '" placeholder="' + esc(ph || '') + '"></div>';
+    }
+
+    // --- hub slideshow media[] rows (src + alt + browse + reorder/remove) ---
+    function mediaRow(it) {
+        return '<div class="ed-gallery-row" data-media-row>' +
+            '<div class="ed-src-row">' +
+            '<input class="ed-input" data-mf="src" value="' + esc(it.src || '') + '" placeholder="images/Blog Images/Project/shot.png">' +
+            '<button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button>' +
+            '</div>' +
+            '<input class="ed-input" data-mf="alt" value="' + esc(it.alt || '') + '" placeholder="Alt text (optional)">' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-media-up title="Move up">↑</button>' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-media-down title="Move down">↓</button>' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-media-remove title="Remove">✕</button>' +
+            '</div>';
+    }
+    function mediaEditor(p) {
+        var rows = (p.media || []).map(mediaRow).join('');
+        return '<div class="ed-field ed-field--wide"><label>Hub slideshow media</label>' +
+            '<p class="mg-media-hint">Shown at the top of the project page. Mix png / jpg / gif / mp4 — video slides get a poster thumbnail automatically. 📁 browses the image folders.</p>' +
+            '<div class="ed-gallery" data-media>' + rows + '</div>' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-media-add>+ Add media</button></div>';
     }
 
     function projectForm(p) {
@@ -38,7 +57,6 @@
         var statusOpts = STATUS_OPTIONS.map(function (s) {
             return '<option value="' + esc(s) + '"' + (statusVal === s ? ' selected' : '') + '>' + esc(s) + '</option>';
         }).join('');
-        // A legacy free-text status not in the list stays selectable so it isn't lost silently.
         if (STATUS_OPTIONS.indexOf(statusVal) < 0) statusOpts = '<option value="' + esc(statusVal) + '" selected>' + esc(statusVal) + ' (custom)</option>' + statusOpts;
 
         var catChecks = (data.categories || []).map(function (c) {
@@ -56,7 +74,7 @@
             '<div class="ed-project__meta">' +
             '<span class="ed-collection-badge">' + esc(p.slug) + '</span>' +
             (onlyProject ? '' : '<a class="btn btn-ghost btn-sm" href="manage.html?project=' + encodeURIComponent(p.slug) + '">⚙ Edit only this</a>') +
-            '<button class="btn btn-ghost btn-sm mg-danger" data-del-project="' + esc(p.slug) + '" title="Remove this project (and its post files) on Save">🗑 Delete</button>' +
+            '<button class="btn btn-ghost btn-sm mg-danger" data-del-project="' + esc(p.slug) + '" title="Remove this project (and its post files) on Add to changes">🗑 Delete</button>' +
             '</div></div>' +
             '<div class="ed-block__body">' +
             '<div class="ed-meta-grid">' +
@@ -66,11 +84,13 @@
             '<div class="ed-field"><label>Collection</label><select class="ed-input" data-k="collection">' + collOpts + '</select></div>' +
             textField('Play link', 'playLink', p.playLink || '') +
             textField('Date', 'date', p.date || '', 'YYYY-MM-DD') +
-            textField('Cover path', 'cover', p.cover || '') +
-            textField('Background path', 'background', p.background || '') +
+            '<div class="ed-field"><label>Cover path</label><div class="ed-src-row"><input class="ed-input" data-k="cover" value="' + esc(p.cover || '') + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
+            '<div class="ed-field"><label>Background path</label><div class="ed-src-row"><input class="ed-input" data-k="background" value="' + esc(p.background || '') + '" placeholder="images/Blog Images/Project/Blurred.jpg"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
             '<div class="ed-field ed-field--wide"><label>Tags (comma-separated)</label><input class="ed-input" data-k="tags" value="' + esc((p.tags || []).join(', ')) + '"></div>' +
             '<div class="ed-field ed-field--wide"><label>Summary</label><textarea class="ed-input" data-k="summary" rows="2">' + esc(p.summary || '') + '</textarea></div>' +
+            '<div class="ed-field ed-field--wide"><label>Highlight bullets (hub left column — one per line)</label><textarea class="ed-input" data-k-bullets rows="4" placeholder="One contribution / highlight per line">' + esc((p.bullets || []).join('\n')) + '</textarea></div>' +
             '</div>' +
+            mediaEditor(p) +
             '<div class="ed-field"><label>Skill categories</label><div class="ed-checks">' + catChecks + '</div></div>' +
             '<div class="ed-field"><label>Order (blank = not featured there; lower shows first)</label><div class="ed-order-grid">' + orderInputs + '</div></div>' +
             '</div></div>';
@@ -90,71 +110,30 @@
             '</div></div></div>';
     }
 
-    function newProjectForm() {
-        var collOpts = (data.collections || []).map(function (c) { return '<option value="' + esc(c.slug) + '">' + esc(c.label) + '</option>'; }).join('');
-        return '<div class="ed-project" id="mg-new" style="display:none">' +
-            '<div class="ed-project__head"><div class="ed-project__title">New project</div></div>' +
-            '<div class="ed-block__body"><div class="ed-meta-grid">' +
-            '<div class="ed-field"><label>Title</label><input class="ed-input" id="mg-new-title" placeholder="e.g. Old Work Collection"></div>' +
-            '<div class="ed-field"><label>Slug (URL)</label><input class="ed-input mono" id="mg-new-slug" placeholder="old-work"></div>' +
-            '<div class="ed-field"><label>Collection</label><select class="ed-input" id="mg-new-coll">' + collOpts + '</select></div>' +
-            '<div class="ed-field" style="align-self:end"><button class="btn btn-primary" id="mg-new-add">Add project</button></div>' +
-            '</div><p class="ed-block-hint">Added locally — click 💾 Save changes to commit. Then set its cover/media and add posts.</p></div></div>';
+    // Newest first (item request: "sort these projects by date").
+    function sortedProjects() {
+        return (data.projects || []).slice().sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
     }
 
     function render() {
-        var list = (data.projects || []);
+        var list = sortedProjects();
         if (onlyProject) list = list.filter(function (p) { return p.slug === onlyProject; });
         var head = onlyProject
             ? '<div class="ed-toolbar-row"><h1>Edit: ' + esc(onlyProject) + '</h1>' +
-              '<a class="btn btn-ghost" href="manage.html">← All projects</a>' +
-              '<button class="btn btn-ghost" id="mg-history">📜 History</button></div>'
+              '<a class="btn btn-ghost" href="manage.html">← All projects</a></div>'
             : '<div class="ed-toolbar-row"><h1>Manage content</h1>' +
-              '<button class="btn btn-ghost" id="mg-new-toggle">➕ New project</button>' +
-              '<button class="btn btn-ghost" id="mg-history">📜 History</button></div>' +
-              '<p class="ed-empty">Edit metadata, then 💾 Save changes commits content/projects.json (~10 min to go live).</p>';
+              '<a class="btn btn-ghost" href="index.html">← All content</a></div>' +
+              '<p class="ed-empty">Edit project metadata &amp; the hub slideshow, then ✓ Add to changes stages it. Commit from 📋 Changes. Create new projects on the editor home.</p>';
 
         root.innerHTML = '<div class="ed-landing mg-landing">' + head +
-            (onlyProject ? '' : newProjectForm() + taxonomyForm()) +
+            (onlyProject ? '' : taxonomyForm()) +
             (list.length ? list.map(projectForm).join('') : '<p class="ed-empty">Project not found.</p>') +
-            (deletedPostPaths.length ? '<p class="ed-block-hint mg-danger">Pending deletion on save: ' + deletedPostPaths.length + ' post file(s).</p>' : '') +
+            (deletedPostPaths.length ? '<p class="ed-block-hint mg-danger">Pending deletion on Add to changes: ' + deletedPostPaths.length + ' post file(s).</p>' : '') +
             '</div>';
 
-        var nt = document.getElementById('mg-new-toggle');
-        if (nt) nt.addEventListener('click', function () {
-            var f = document.getElementById('mg-new');
-            f.style.display = f.style.display === 'none' ? '' : 'none';
-        });
-        var na = document.getElementById('mg-new-add');
-        if (na) na.addEventListener('click', addNewProject);
-        var nTitle = document.getElementById('mg-new-title');
-        if (nTitle) nTitle.addEventListener('input', function () {
-            var s = document.getElementById('mg-new-slug');
-            if (s && !s.dataset.touched) s.value = slugify(nTitle.value);
-        });
-        var nSlug = document.getElementById('mg-new-slug');
-        if (nSlug) nSlug.addEventListener('input', function () { nSlug.dataset.touched = '1'; });
-        var hist = document.getElementById('mg-history');
-        if (hist) hist.addEventListener('click', function () { if (window.EditorHistory) window.EditorHistory.open(); });
         root.querySelectorAll('[data-del-project]').forEach(function (btn) {
             btn.addEventListener('click', function () { deleteProject(btn.dataset.delProject); });
         });
-    }
-
-    function addNewProject() {
-        collect();   // keep any in-progress edits
-        var title = document.getElementById('mg-new-title').value.trim();
-        var slug = slugify(document.getElementById('mg-new-slug').value || title);
-        var coll = document.getElementById('mg-new-coll').value;
-        if (!title || !slug) { toast('Give the project a title and slug.'); return; }
-        if ((data.projects || []).some(function (p) { return p.slug === slug; })) { toast('Slug "' + slug + '" already exists.'); return; }
-        data.projects.push({
-            slug: slug, title: title, kicker: '', status: 'In Development', date: todayIso(),
-            playLink: '', summary: '', tags: [], categories: [], collection: coll,
-            order: {}, media: [], cover: '', background: '', posts: []
-        });
-        toast('Added "' + title + '" — remember to Save changes.');
-        render();
     }
 
     function deleteProject(slug) {
@@ -162,14 +141,45 @@
         if (!p) return;
         var postCount = (p.posts || []).length;
         var msg = 'Delete project "' + (p.title || slug) + '"?' +
-            (postCount ? '\n\nIts ' + postCount + ' post file(s) under content/posts/' + slug + '/ will also be deleted on Save.' : '') +
-            '\n\nImages are NOT deleted. This takes effect when you click Save changes.';
+            (postCount ? '\n\nIts ' + postCount + ' post file(s) under content/posts/' + slug + '/ will also be deleted.' : '') +
+            '\n\nImages are NOT deleted. This is staged — it takes effect when you commit from 📋 Changes.';
         if (!confirm(msg)) return;
         collect();
         (p.posts || []).forEach(function (post) { deletedPostPaths.push('content/posts/' + slug + '/' + post.slug + '.json'); });
         data.projects = data.projects.filter(function (x) { return x.slug !== slug; });
-        toast('Removed "' + (p.title || slug) + '" — Save changes to commit.');
+        toast('Removed "' + (p.title || slug) + '" — Add to changes to stage it.');
         render();
+    }
+
+    // --- media row events (browse / add / remove / reorder), delegated ---
+    function mediaInputForBrowse(btn) {
+        var input = btn.previousElementSibling;
+        while (input && input.tagName !== 'INPUT') input = input.previousElementSibling;
+        return input;
+    }
+    function wireRoot() {
+        root.addEventListener('click', function (e) {
+            var browse = e.target.closest('[data-media-browse]');
+            if (browse) {
+                var input = mediaInputForBrowse(browse);
+                if (input && window.ImageBrowser) {
+                    window.ImageBrowser.open({ pick: true, onPick: function (path) { input.value = path; input.dispatchEvent(new Event('input', { bubbles: true })); toast('Selected ' + path); } });
+                }
+                return;
+            }
+            var add = e.target.closest('[data-media-add]');
+            if (add) {
+                var cont = add.closest('.ed-block__body').querySelector('[data-media]');
+                if (cont) { cont.insertAdjacentHTML('beforeend', mediaRow({ src: '', alt: '' })); }
+                return;
+            }
+            var rm = e.target.closest('[data-media-remove]');
+            if (rm) { var r = rm.closest('[data-media-row]'); if (r) r.remove(); return; }
+            var up = e.target.closest('[data-media-up]');
+            if (up) { var ru = up.closest('[data-media-row]'); if (ru && ru.previousElementSibling) ru.parentNode.insertBefore(ru, ru.previousElementSibling); return; }
+            var down = e.target.closest('[data-media-down]');
+            if (down) { var rd = down.closest('[data-media-row]'); if (rd && rd.nextElementSibling) rd.parentNode.insertBefore(rd.nextElementSibling, rd); return; }
+        });
     }
 
     // Read every form back into `data`.
@@ -190,48 +200,34 @@
                 if (k === 'tags') p.tags = v.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
                 else p[k] = v;
             });
-            p.categories = Array.prototype.map.call(form.querySelectorAll('[data-cat]:checked'), function (c) { return c.dataset.cat; });
-            var order = {};
-            form.querySelectorAll('[data-order]').forEach(function (inp) {
-                if (inp.value !== '') order[inp.dataset.order] = Number(inp.value);
+            var bt = form.querySelector('[data-k-bullets]');
+            if (bt) p.bullets = bt.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+            var media = [];
+            form.querySelectorAll('[data-media-row]').forEach(function (row) {
+                var src = row.querySelector('[data-mf="src"]');
+                var alt = row.querySelector('[data-mf="alt"]');
+                if (src && src.value.trim()) media.push({ src: src.value.trim(), alt: alt ? alt.value : '' });
             });
-            p.order = order;
+            p.media = media;
+            p.categories = Array.prototype.map.call(form.querySelectorAll('[data-cat]:checked'), function (c) { return c.dataset.cat; });
+            var ord = {};
+            form.querySelectorAll('[data-order]').forEach(function (inp) { if (inp.value !== '') ord[inp.dataset.order] = Number(inp.value); });
+            p.order = ord;
         });
     }
 
-    async function save() {
-        if (typeof isAuthenticated !== 'function' || !isAuthenticated()) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
+    // Stage projects.json (+ queued post-file deletions) into the change queue.
+    function stage() {
         collect();
-        var extra = deletedPostPaths.length ? ('\nAlso deletes ' + deletedPostPaths.length + ' post file(s).') : '';
-        if (!confirm('Commit content/projects.json to main (the live site)?' + extra + '\nIt can take ~10 minutes to appear.')) return;
-        var btn = document.getElementById('mg-save');
-        btn.disabled = true; var label = btn.textContent; btn.textContent = 'Saving…';
-        try {
-            data.contentVersion = (data.contentVersion || 0) + 1;
-            var changes = [{ op: 'put', path: 'content/projects.json', content: JSON.stringify(data, null, 2) + '\n' }];
-            deletedPostPaths.forEach(function (p) { changes.push({ op: 'delete', path: p }); });
-            await ghBatchCommit({ message: 'Editor: update project metadata', changes: changes });
-            deletedPostPaths = [];
-            toast('Saved! Live in ~10 min.');
-            render();
-        } catch (err) {
-            alert('Save failed: ' + (err && err.message ? err.message : err));
-        } finally {
-            btn.disabled = false; btn.textContent = label;
-        }
-    }
-
-    function renderSignedOut() {
-        root.innerHTML = '<div class="ed-landing"><div class="ed-signin-prompt"><h1>Manage content</h1>' +
-            '<p>Sign in to edit project metadata.</p><button class="btn btn-primary" id="mg-signin">🔒 Sign in</button></div></div>';
-        var b = document.getElementById('mg-signin');
-        if (b) b.addEventListener('click', function () { if (typeof openAuthModal === 'function') openAuthModal(); });
+        window.EditorQueue.stageProjects(data, 'Project metadata');
+        deletedPostPaths.forEach(function (path) { window.EditorQueue.stageDelete(path, 'Delete post file ' + path.split('/').slice(-2).join('/')); });
+        deletedPostPaths = [];
+        toast('Added to changes — commit from 📋 Changes when ready.');
     }
 
     function load() {
-        if (typeof isAuthenticated !== 'function' || !isAuthenticated()) { renderSignedOut(); return; }
-        ghFetch('GET', '/contents/content/projects.json').then(function (res) {
-            data = JSON.parse(decodeB64Utf8(res.content));
+        window.EditorQueue.loadProjects().then(function (json) {
+            data = json;
             deletedPostPaths = [];
             render();
         }).catch(function (err) {
@@ -242,7 +238,10 @@
     function init() {
         root = document.getElementById('mg-root');
         toastEl = document.getElementById('ed-toast');
-        document.getElementById('mg-save').addEventListener('click', save);
+        document.getElementById('mg-save').addEventListener('click', stage);
+        wireRoot();
+        // Reload the working copy when a commit clears the queue elsewhere.
+        document.addEventListener('queue:committed', load);
         document.addEventListener('auth:ready', load);
         document.addEventListener('auth:changed', load);
         load();

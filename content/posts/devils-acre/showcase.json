@@ -15,19 +15,6 @@
     {
       "type": "text",
       "html": "<p>This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves. The overall project time was around 2 months in total.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created environmental art for the game",
-        "Worked on the boss AI",
-        "Created pause menu UI"
-      ]
     }
   ]
 }

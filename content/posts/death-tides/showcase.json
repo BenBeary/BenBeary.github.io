@@ -15,21 +15,6 @@
     {
       "type": "text",
       "html": "<p>This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets and limited programming. My main role was creating enemy AI and world design which used a chunk loading system to increase overall performance.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created all the pixel art in a module design for reuse",
-        "AI uses a faction system allowing different ai to fight each other",
-        "AI uses a field of view so you can sneak up behind them",
-        "Engineered a modular wave system for quick and easy to make objectives",
-        "Created a system for chunk map-loading optimizing performance"
-      ]
     }
   ]
 }

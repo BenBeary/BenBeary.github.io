@@ -15,18 +15,6 @@
     {
       "type": "text",
       "html": "<p>This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created a publicly available map for the game Garry's Mod",
-        "Areas were created to take advantage of player characteristics and tendencies, driving them to certain spots to group people together"
-      ]
     }
   ]
 }

@@ -15,20 +15,6 @@
     {
       "type": "text",
       "html": "<p>I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest, and manual system within a week-long time span for the Game Jam.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created all of the UI for the game",
-        "Created a quest system",
-        "Developed an in-house dialogue system",
-        "Created a toon shader with an outline"
-      ]
     }
   ]
 }

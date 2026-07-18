@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 3,
+  "contentVersion": 4,
   "categories": [
     {
       "slug": "programming",
@@ -138,7 +138,14 @@
           "alt": ""
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Designed the map layout",
+        "Engineered a first-person modular gun system that worked with multiple gun types",
+        "Created the UI, to include the leaderboard system",
+        "Developed a spawner system that would spawn items on top of terrain geometry",
+        "Worked on particle systems and animations for 3D assets."
+      ]
     },
     {
       "slug": "docking-bay",
@@ -232,7 +239,14 @@
           "alt": ""
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created room layout and exterior scenes",
+        "Created a sound system to efficiently play audio",
+        "Made all 3D animations and particle effects",
+        "Created the menu screen and pause menu UI",
+        "Created a dialogue system that could match voice acting audio"
+      ]
     },
     {
       "slug": "idol-of-ashes",
@@ -310,7 +324,13 @@
           "alt": "Idol of Ashes screenshot 8"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created all of the UI for the game",
+        "Created a quest system",
+        "Developed an in-house dialogue system",
+        "Created a toon shader with an outline"
+      ]
     },
     {
       "slug": "spirit-outbreak",
@@ -386,7 +406,14 @@
           "alt": ""
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created a custom UI Line Renderer for a custom made graph",
+        "Created a custom A* pathfinder that worked for isometric grids",
+        "Created multiple enemy types that would all behave differently",
+        "Created an upgrade system that would add effects or change how traps worked",
+        "Created a map system that could change the overall layout of the map as the game progressed"
+      ]
     },
     {
       "slug": "dice-climber",
@@ -481,7 +508,14 @@
           "alt": "Dice Climbers: Shelf of Chaos screenshot 11"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created modular puzzle pieces for reuse",
+        "Created a dialogue system from scratch",
+        "Created a visual editor guide to help with map creation",
+        "Created multiple mechanics that the player learns over time",
+        "Created a cutscene system"
+      ]
     },
     {
       "slug": "death-tides",
@@ -547,7 +581,14 @@
           "alt": "Death Tides screenshot 5"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created all the pixel art in a module design for reuse",
+        "AI uses a faction system allowing different ai to fight each other",
+        "AI uses a field of view so you can sneak up behind them",
+        "Engineered a modular wave system for quick and easy to make objectives",
+        "Created a system for chunk map-loading optimizing performance"
+      ]
     },
     {
       "slug": "dodge-kart",
@@ -603,7 +644,11 @@
           "alt": "Dodge Kart screenshot 3"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created a shader to randomize car colors",
+        "Developed a spawner that progressively created harder challenges over time"
+      ]
     },
     {
       "slug": "devils-acre",
@@ -671,7 +716,12 @@
           "alt": "Devil's Acre screenshot 7"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created environmental art for the game",
+        "Worked on the boss AI",
+        "Created pause menu UI"
+      ]
     },
     {
       "slug": "port-lochne",
@@ -731,7 +781,11 @@
           "alt": "Port Lochne screenshot 5"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "Created a publicly available map for the game Garry's Mod",
+        "Areas were created to take advantage of player characteristics and tendencies, driving them to certain spots to group people together"
+      ]
     },
     {
       "slug": "meoware-defender",
@@ -791,7 +845,14 @@
           "alt": "Meoware Defender screenshot 4"
         }
       ],
-      "status": "Finished"
+      "status": "Finished",
+      "bullets": [
+        "San Jose State University funded team project",
+        "Created a player customizer system",
+        "Created a system that allowed for mobile compatibility",
+        "Made a save system that allowed the player to customize the irliving room",
+        "Made the password creator mini game"
+      ]
     },
     {
       "slug": "signal-link",
@@ -909,6 +970,13 @@
           "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
           "alt": ""
         }
+      ],
+      "bullets": [
+        "2-week-long Game Jam",
+        "Created scenery for 2 worlds and The Main Menu Scene",
+        "Main Menu Scene integrates UI and the 3D world into 1 space",
+        "Created multiple puzzles that are integrated in the world",
+        "Created multiple 3D assets and 2D UI tools to make the interface come alive"
       ]
     },
     {
@@ -926,7 +994,8 @@
       "cover": "",
       "background": "",
       "posts": [],
-      "media": []
+      "media": [],
+      "bullets": []
     }
   ]
 }

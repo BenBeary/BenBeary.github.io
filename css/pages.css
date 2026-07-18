@@ -105,18 +105,45 @@
 /* =========================================================================
    PROJECT HUB  (project.html)
    ========================================================================= */
+/* Two-column card over the blurred background (original-site style):
+   info (~1/3) | slideshow + summary (~2/3). A scrim keeps text readable. */
 .hub-hero {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
     margin-bottom: var(--space-6);
     min-height: 320px;
-    display: flex;
-    align-items: flex-end;
 }
 .hub-hero__bg {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; z-index: 0;
+}
+.hub-hero::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(110deg, rgba(11, 14, 25, 0.92) 0%, rgba(11, 14, 25, 0.72) 45%, rgba(11, 14, 25, 0.55) 100%);
+}
+.hub-hero__grid {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-6);
+}
+.hub-hero--nomedia .hub-hero__grid { grid-template-columns: 1fr; }
+.hub-hero__info { min-width: 0; }
+.hub-hero__media { min-width: 0; }
+.hub-bullets {
+    margin: var(--space-5) 0 0;
+    padding-left: var(--space-5);
+    display: flex; flex-direction: column; gap: var(--space-2);
+}
+.hub-bullets li { color: var(--text); font-size: 0.95rem; line-height: 1.5; }
+.hub-hero__summary { margin-top: var(--space-4); color: var(--text); font-size: 0.95rem; }
+@media (max-width: 900px) {
+    .hub-hero__grid { grid-template-columns: 1fr; }
+    .hub-hero__media { order: -1; }
 }
 /* Status tag pinned to the top-right of the hero card (e.g. "Actively Developing"). */
 .hub-status {
@@ -134,19 +161,11 @@
     letter-spacing: 0.05em;
     box-shadow: var(--shadow-card);
 }
-.hub-hero__inner {
-    position: relative; z-index: 1; width: 100%;
-    padding: var(--space-7) var(--space-6) var(--space-6);
-    background: linear-gradient(to top, rgba(11, 14, 25, 0.95) 15%, rgba(11, 14, 25, 0.55) 60%, rgba(11, 14, 25, 0.1));
-}
 .hub-hero__kicker { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--space-2); }
 .hub-hero__title { margin: 0; }
 .hub-hero__date { color: var(--text-muted); margin-top: var(--space-2); }
 .hub-hero__tags { margin-top: var(--space-4); }
 .hub-hero__play { margin-top: var(--space-5); }
-
-.hub-media { max-width: 960px; margin: 0 auto var(--space-6); }
-.hub-summary { font-size: var(--fs-400); max-width: 800px; margin: 0 auto var(--space-7); text-align: center; color: var(--text); }
 
 .hub-posts__title { margin-bottom: var(--space-5); }
 .post-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-5); }

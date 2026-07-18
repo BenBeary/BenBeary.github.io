@@ -1,8 +1,10 @@
 /* editor.js — the block editor. Loads a post (or a blank one), renders the meta
    form + block list, and keeps a live preview in sync via the SHARED site
    renderer (../js/site/blocks.js) so preview == production. Blocks come from the
-   EDBLOCKS registry (blocks-edit.js). Autosaves to localStorage so work isn't
-   lost. Publish (M5d) is wired later; the button is disabled for now.
+   EDBLOCKS registry (blocks-edit.js). Autosaves to localStorage so an in-progress
+   edit isn't lost. "Add to changes" STAGES the post + updated projects.json into
+   the shared change queue (queue.js) rather than committing; the actual GitHub
+   commit happens from the 📋 Changes modal.
 
    URL: edit.html?project=<slug>&post=<slug>  (edit existing)
         edit.html?project=<slug>&type=blog     (new post)
@@ -204,50 +206,38 @@
         } catch (_) {}
     }
 
-    // ---- publish (GitHub) ----
-    function decodeB64Utf8(b64) {
-        var bin = atob(String(b64).replace(/\s/g, ''));
-        var bytes = new Uint8Array(bin.length);
-        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        return new TextDecoder('utf-8').decode(bytes);
-    }
-
-    async function publish() {
-        if (typeof isAuthenticated !== 'function' || !isAuthenticated()) { if (typeof openAuthModal === 'function') openAuthModal(); return; }
+    // ---- stage into the change queue (queue.js) ----
+    // Instead of committing immediately, this post + the updated projects.json
+    // are staged in the local queue, which persists across editor pages. The
+    // actual GitHub commit happens from the 📋 Changes modal (queue.js).
+    async function stageChanges() {
         flush();   // DOM -> state
         if (!state.title.trim()) { toast('Add a title first.'); return; }
         if (!state.slug.trim()) { toast('Add a slug first.'); return; }
         if (!state.date) { toast('Add a date first.'); return; }
 
         var postPath = 'content/posts/' + state.project + '/' + state.slug + '.json';
-        var msg = 'Publish "' + state.title + '" to ' + state.project + '?\n\n' +
-            'Commits ' + postPath + ' and content/projects.json to main (the live site).\n' +
-            'It can take ~10 minutes to appear.';
-        if (!confirm(msg)) return;
-
         var btn = els.byId('ed-publish');
         btn.disabled = true;
         var label = btn.textContent;
-        btn.textContent = 'Publishing…';
+        btn.textContent = 'Adding…';
         try {
-            // Fetch the freshest projects.json from the repo, upsert this post's entry.
-            var res = await ghFetch('GET', '/contents/content/projects.json');
-            var projectsJson = JSON.parse(decodeB64Utf8(res.content));
+            // Effective projects.json (committed on main + anything already queued)
+            // so this composes with other staged edits.
+            var projectsJson = await window.EditorQueue.loadProjects();
             var proj = (projectsJson.projects || []).find(function (p) { return p.slug === state.project; });
-            if (!proj) throw new Error('Project "' + state.project + '" not found in projects.json.');
+            if (!proj) throw new Error('Project "' + state.project + '" not found. Create it in Manage first.');
 
-            var changes = [
-                { op: 'put', path: postPath, content: JSON.stringify(buildPost(), null, 2) + '\n' }
-            ];
+            // Stage the post file.
+            window.EditorQueue.stagePut(postPath, JSON.stringify(buildPost(), null, 2) + '\n',
+                (state.type === 'showcase' ? 'Showcase' : 'Post') + ': ' + state.title);
 
             // Relocation: post loaded from elsewhere (moved project or renamed
             // slug) — delete the old file and drop the old index entry.
             if (loadedPath && loadedPath !== postPath) {
-                changes.push({ op: 'delete', path: loadedPath });
+                window.EditorQueue.stageDelete(loadedPath, 'Delete old post: ' + origSlug);
                 var oldProj = (projectsJson.projects || []).find(function (p) { return p.slug === origProject; });
-                if (oldProj && oldProj.posts) {
-                    oldProj.posts = oldProj.posts.filter(function (p) { return p.slug !== origSlug; });
-                }
+                if (oldProj && oldProj.posts) oldProj.posts = oldProj.posts.filter(function (p) { return p.slug !== origSlug; });
             }
 
             var entry = { slug: state.slug, type: state.type, title: state.title, date: state.date, excerpt: state.excerpt, cover: state.cover };
@@ -257,21 +247,13 @@
             if (!proj.posts) proj.posts = [];
             var i = proj.posts.findIndex(function (p) { return p.slug === state.slug; });
             if (i >= 0) proj.posts[i] = entry; else proj.posts.push(entry);
-            projectsJson.contentVersion = (projectsJson.contentVersion || 0) + 1;
 
-            changes.push({ op: 'put', path: 'content/projects.json', content: JSON.stringify(projectsJson, null, 2) + '\n' });
-
-            var result = await ghBatchCommit({
-                message: 'Editor: publish ' + state.project + '/' + state.slug +
-                    (loadedPath && loadedPath !== postPath ? ' (moved from ' + origProject + '/' + origSlug + ')' : ''),
-                changes: changes
-            });
+            window.EditorQueue.stageProjects(projectsJson, 'Project index (posts)');
             clearLocalDraft();
             loadedPath = postPath; origProject = state.project; origSlug = state.slug;
-            toast('Published! Live in ~10 min.');
-            if (result && result.commitUrl) console.log('Commit:', result.commitUrl);
+            toast('Added to changes — commit from 📋 Changes when ready.');
         } catch (err) {
-            alert('Publish failed: ' + (err && err.message ? err.message : err));
+            alert('Could not add to changes: ' + (err && err.message ? err.message : err));
         } finally {
             btn.disabled = false;
             btn.textContent = label;
@@ -288,7 +270,6 @@
         });
         els.meta.addEventListener('change', scheduleUpdate);
         els.meta.addEventListener('click', function (e) {
-            var up = e.target.closest('[data-upload]'); if (up) { uploadFromButton(up); return; }
             var br = e.target.closest('[data-browse]'); if (br) browseFromButton(br);
         });
 
@@ -349,8 +330,6 @@
 
         els.blocks.addEventListener('click', function (e) {
             var t = e.target;
-            var up = t.closest('[data-upload]');
-            if (up) { uploadFromButton(up); return; }
             var br = t.closest('[data-browse]');
             if (br) { browseFromButton(br); return; }
             var rt = t.closest('.rt-btn');
@@ -383,7 +362,6 @@
             saveDraftLocal(false);
         });
 
-        els.byId('ed-save-draft').addEventListener('click', function () { flush(); saveDraftLocal(true); });
         // Link modal wiring
         els.byId('link-modal-confirm').addEventListener('click', confirmLinkModal);
         els.byId('link-modal-cancel').addEventListener('click', closeLinkModal);
@@ -396,7 +374,7 @@
                 else if (e.key === 'Escape') { e.preventDefault(); closeLinkModal(); }
             });
         });
-        els.byId('ed-publish').addEventListener('click', publish);
+        els.byId('ed-publish').addEventListener('click', stageChanges);
         els.byId('ed-tool-preview').addEventListener('click', togglePreview);
         els.byId('ed-tool-images').addEventListener('click', function () { if (window.ImageBrowser) window.ImageBrowser.open({ pick: false }); });
         applyPreviewVis();
@@ -404,26 +382,11 @@
         sendPreview();
     }
 
-    // ---- image upload (upload.js) ----
-    function folderFromMeta() {
-        var m = state.projectMeta || {};
-        var c = m.cover || m.background || ('images/' + state.project + '/_');
-        return c.replace(/\/[^/]+$/, '') || ('images/' + state.project);
-    }
+    // ---- image field browse (image-browser.js) ----
     function inputForButton(btn) {
         var input = btn.previousElementSibling;
         while (input && input.tagName !== 'INPUT') input = input.previousElementSibling;
         return input;
-    }
-    function uploadFromButton(btn) {
-        if (!window.EditorUpload) { alert('Upload is unavailable.'); return; }
-        var input = inputForButton(btn);
-        if (!input) return;
-        window.EditorUpload.pickAndUpload(folderFromMeta(), function (path) {
-            input.value = path;
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-            toast('Uploaded ' + path);
-        });
     }
     function browseFromButton(btn) {
         if (!window.ImageBrowser) { alert('Image browser is unavailable.'); return; }
@@ -548,7 +511,7 @@
         var rec;
         try { rec = JSON.parse(raw); } catch (_) { showError('Draft is corrupted'); return; }
         var post = rec.post || {};
-        window.getProjects().then(function (data) {
+        window.EditorQueue.loadProjects().then(function (data) {
             state.project = post.project || '';
             state.allProjects = data.projects || [];
             state.projectMeta = (data.projects || []).find(function (p) { return p.slug === state.project; }) || null;
@@ -585,7 +548,9 @@
         var postSlug = params.get('post') || '';
         var type = params.get('type') || 'blog';
 
-        window.getProjects().then(function (data) {
+        // Effective projects (committed + anything queued) so newly-created
+        // projects and staged post entries are visible here.
+        window.EditorQueue.loadProjects().then(function (data) {
             var meta = (data.projects || []).find(function (p) { return p.slug === projectSlug; });
             if (!meta) { showError('Unknown project "' + projectSlug + '"'); return; }
             state.project = projectSlug;
@@ -593,14 +558,20 @@
             state.allProjects = data.projects || [];
 
             if (postSlug) {
-                return window.getPost(projectSlug, postSlug).then(function (post) {
+                var postPath = 'content/posts/' + projectSlug + '/' + postSlug + '.json';
+                // Prefer a queued (unstaged-to-GitHub) version so pending edits reopen.
+                var staged = window.EditorQueue.getStaged(postPath);
+                var loadPost = (staged && staged.kind === 'text')
+                    ? Promise.resolve(JSON.parse(staged.content))
+                    : window.getPost(projectSlug, postSlug);
+                return loadPost.then(function (post) {
                     state.slug = post.slug; state.type = post.type || 'blog';
                     state.title = post.title || ''; state.date = post.date || todayIso();
                     state.excerpt = post.excerpt || ''; state.blocks = Array.isArray(post.blocks) ? post.blocks : [];
                     var entry = (meta.posts || []).find(function (p) { return p.slug === postSlug; });
                     state.cover = entry && entry.cover ? entry.cover : '';
                     slugTouched = true;
-                    loadedPath = 'content/posts/' + projectSlug + '/' + postSlug + '.json';
+                    loadedPath = postPath;
                     origProject = projectSlug; origSlug = postSlug;
                     finishLoad();
                 });

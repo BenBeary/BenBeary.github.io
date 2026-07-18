@@ -21,15 +21,19 @@
     function sanitizeName(name) { return String(name).replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/-+/g, '-'); }
 
     // Upload `file` to images/<folder>/<name>; returns the repo-relative path.
+    // Accepts images and mp4 clips (for slideshow videos). Warns past a size
+    // threshold that differs by type (images are meant to be small).
     async function uploadImage(folder, file) {
         if (typeof isAuthenticated !== 'function' || !isAuthenticated()) {
             if (typeof openAuthModal === 'function') openAuthModal();
             throw new Error('Sign in to upload images.');
         }
-        if (!/^image\//.test(file.type)) throw new Error('That file is not an image.');
-        if (file.size > 4 * 1024 * 1024) {
+        var isVideo = /^video\/mp4$/.test(file.type) || /\.mp4$/i.test(file.name);
+        if (!/^image\//.test(file.type) && !isVideo) throw new Error('That file is not an image or mp4.');
+        var limitMb = isVideo ? 40 : 4;
+        if (file.size > limitMb * 1024 * 1024) {
             var mb = (file.size / 1024 / 1024).toFixed(1);
-            if (!confirm('This image is ' + mb + ' MB (over 4 MB). Large images slow the site down. Upload anyway?')) {
+            if (!confirm('This file is ' + mb + ' MB (over ' + limitMb + ' MB). Large files slow the site and bloat the repo. Upload anyway?')) {
                 throw new Error('cancelled');
             }
         }
@@ -61,5 +65,5 @@
         input.click();
     }
 
-    window.EditorUpload = { uploadImage: uploadImage, pickAndUpload: pickAndUpload };
+    window.EditorUpload = { uploadImage: uploadImage, pickAndUpload: pickAndUpload, sanitizeName: sanitizeName };
 })();

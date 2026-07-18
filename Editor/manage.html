@@ -16,7 +16,7 @@
         <span class="ed-subtitle">— Manage</span>
         <div class="ed-header__actions">
             <a href="index.html">← All content</a>
-            <button class="btn btn-primary btn-sm" id="mg-save" title="Commit projects.json to GitHub">💾 Save changes</button>
+            <button class="btn btn-primary btn-sm" id="mg-save" title="Stage these edits in your pending changes">✓ Add to changes</button>
             <div id="auth-chip"></div>
         </div>
     </header>
@@ -26,6 +26,19 @@
     </main>
 
     <div class="ed-toast" id="ed-toast" style="display:none"></div>
+
+    <!-- Image browser modal (scoped to images/Blog Images/) -->
+    <div class="modal-overlay imgb-overlay" id="imgbrowse-overlay">
+        <div class="imgb-box">
+            <div class="imgb-bar">
+                <span class="imgb-bar__title">Images — Blog Images/</span>
+                <button class="imgb-tool" id="imgbrowse-reload" title="Reload from GitHub">↻</button>
+                <button class="ed-preview-close" id="imgbrowse-close" aria-label="Close">✕</button>
+            </div>
+            <div class="imgb-hint" id="imgbrowse-hint">Click an image to copy its path.</div>
+            <div class="imgb-body" id="imgbrowse-body"><div class="imgb-empty">Loading…</div></div>
+        </div>
+    </div>
 
     <div class="modal-overlay" id="auth-modal-overlay">
         <div class="modal-box">
@@ -56,9 +69,12 @@
     </div>
 
     <script src="../js/site/data.js"></script>
+    <script src="../js/site/media.js"></script>
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
-    <script src="history.js"></script>
+    <script src="queue.js"></script>
+    <script src="upload.js"></script>
+    <script src="image-browser.js"></script>
     <script src="manage.js"></script>
 </body>
 </html>

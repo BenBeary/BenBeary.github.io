@@ -15,18 +15,6 @@
     {
       "type": "text",
       "html": "<p>This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time and reduce the required amount of tilesheets.</p>"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "My Contributions"
-    },
-    {
-      "type": "bullets",
-      "items": [
-        "Created a shader to randomize car colors",
-        "Developed a spawner that progressively created harder challenges over time"
-      ]
     }
   ]
 }
