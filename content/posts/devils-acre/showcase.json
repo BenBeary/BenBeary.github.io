@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "devils-acre",
+  "type": "showcase",
+  "title": "Devil's Acre — Showcase",
+  "date": "2022-04-22",
+  "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves. The overall project time was around 2 months in total.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Created environmental art for the game",
+        "Worked on the boss AI",
+        "Created pause menu UI"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/DevilsAcre/DevilsAcre_Title_1000px.png",
+      "alt": "Devil's Acre key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/DevilsAcre/img1.gif",
+          "alt": "Devil's Acre screenshot 1"
+        },
+        {
+          "src": "images/DevilsAcre/img2.gif",
+          "alt": "Devil's Acre screenshot 2"
+        },
+        {
+          "src": "images/DevilsAcre/img3.png",
+          "alt": "Devil's Acre screenshot 3"
+        },
+        {
+          "src": "images/DevilsAcre/img4.png",
+          "alt": "Devil's Acre screenshot 4"
+        },
+        {
+          "src": "images/DevilsAcre/img5.png",
+          "alt": "Devil's Acre screenshot 5"
+        },
+        {
+          "src": "images/DevilsAcre/img6.png",
+          "alt": "Devil's Acre screenshot 6"
+        },
+        {
+          "src": "images/DevilsAcre/img7.png",
+          "alt": "Devil's Acre screenshot 7"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "idol-of-ashes",
+  "type": "showcase",
+  "title": "Idol of Ashes — Showcase",
+  "date": "2025-06-09",
+  "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest, and manual system within a week-long time span for the Game Jam.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Created all of the UI for the game",
+        "Created a quest system",
+        "Developed an in-house dialogue system",
+        "Created a toon shader with an outline"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/IdolofAshes/IdolOfAshes.png",
+      "alt": "Idol of Ashes key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/IdolofAshes/Img_4.png",
+          "alt": "Idol of Ashes screenshot 1"
+        },
+        {
+          "src": "images/IdolofAshes/Img_2.png",
+          "alt": "Idol of Ashes screenshot 2"
+        },
+        {
+          "src": "images/IdolofAshes/Img_3.png",
+          "alt": "Idol of Ashes screenshot 3"
+        },
+        {
+          "src": "images/IdolofAshes/Img_5.png",
+          "alt": "Idol of Ashes screenshot 4"
+        },
+        {
+          "src": "images/IdolofAshes/Outline.png",
+          "alt": "Idol of Ashes screenshot 5"
+        },
+        {
+          "src": "images/IdolofAshes/Shader.png",
+          "alt": "Idol of Ashes screenshot 6"
+        },
+        {
+          "src": "images/IdolofAshes/UI.png",
+          "alt": "Idol of Ashes screenshot 7"
+        },
+        {
+          "src": "images/IdolofAshes/UI2.png",
+          "alt": "Idol of Ashes screenshot 8"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "docking-bay",
+  "type": "showcase",
+  "title": "Docking Bay — Showcase",
+  "date": "2025-10-17",
+  "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We wanted to create an atmosphere that was eerie and made the player constantly second-guess their choices.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Created room layout and exterior scenes",
+        "Created a sound system to efficiently play audio",
+        "Made all 3D animations and particle effects",
+        "Created the menu screen and pause menu UI",
+        "Created a dialogue system that could match voice acting audio"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+      "alt": "Docking Bay key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/DockingBay/HomeScreen.png",
+          "alt": "Docking Bay screenshot 1"
+        },
+        {
+          "src": "images/DockingBay/Monitor4.png",
+          "alt": "Docking Bay screenshot 2"
+        },
+        {
+          "src": "images/DockingBay/Monitor.png",
+          "alt": "Docking Bay screenshot 3"
+        },
+        {
+          "src": "images/DockingBay/Monitor2.png",
+          "alt": "Docking Bay screenshot 4"
+        },
+        {
+          "src": "images/DockingBay/Monitor3.png",
+          "alt": "Docking Bay screenshot 5"
+        },
+        {
+          "src": "images/DockingBay/sideView.png",
+          "alt": "Docking Bay screenshot 6"
+        },
+        {
+          "src": "images/DockingBay/Camera.png",
+          "alt": "Docking Bay screenshot 7"
+        },
+        {
+          "src": "images/DockingBay/layout.png",
+          "alt": "Docking Bay screenshot 8"
+        },
+        {
+          "src": "images/DockingBay/DialogueTest.gif",
+          "alt": "Docking Bay screenshot 9"
+        },
+        {
+          "src": "images/DockingBay/DockingBay Front Panel Timeline_Condensed.png",
+          "alt": "Docking Bay screenshot 10"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "src": "images/DockingBay/MenuAnimation.mp4",
+      "caption": ""
+    }
+  ]
+}

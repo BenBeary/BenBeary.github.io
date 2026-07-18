@@ -1,0 +1,478 @@
+{
+  "version": 1,
+  "contentVersion": 1,
+  "categories": [
+    {
+      "slug": "programming",
+      "label": "Programming"
+    },
+    {
+      "slug": "ui-ux",
+      "label": "UI / UX"
+    },
+    {
+      "slug": "level-design",
+      "label": "Level Design"
+    },
+    {
+      "slug": "sound-design",
+      "label": "Sound Design"
+    },
+    {
+      "slug": "modeling",
+      "label": "3D Modeling"
+    },
+    {
+      "slug": "pixel-art",
+      "label": "Pixel Art"
+    }
+  ],
+  "collections": [
+    {
+      "slug": "main",
+      "label": "Main Projects"
+    },
+    {
+      "slug": "game-jams",
+      "label": "Game Jams"
+    },
+    {
+      "slug": "misc",
+      "label": "Miscellaneous"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "clean-up-crew",
+      "title": "Clean Up Crew",
+      "kicker": "Team Project",
+      "date": "2025-07-29",
+      "playLink": "https://benbeary.itch.io/cleanup-crew",
+      "summary": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move around through while keeping the game low-poly to save performance due to it being a web-based game.",
+      "tags": [
+        "Programming",
+        "UI / UX",
+        "Level Design",
+        "3D Modeling",
+        "3D Animation"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design",
+        "sound-design",
+        "modeling"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 1,
+        "ui-ux": 1,
+        "level-design": 2,
+        "sound-design": 2,
+        "modeling": 2,
+        "home": 4
+      },
+      "cover": "images/CleanUpCrew/16_9 shot.png",
+      "background": "images/CleanUpCrew/Blurred.jpg",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Clean Up Crew — Showcase",
+          "date": "2025-07-29",
+          "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
+          "cover": "images/CleanUpCrew/16_9 shot.png"
+        }
+      ]
+    },
+    {
+      "slug": "docking-bay",
+      "title": "Docking Bay",
+      "kicker": "Team Project",
+      "date": "2025-10-17",
+      "playLink": "https://zorzini.itch.io/dockingbay",
+      "summary": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We wanted to create an atmosphere that was eerie and made the player constantly second-guess their choices.",
+      "tags": [
+        "Programming",
+        "UI / UX",
+        "Level Design",
+        "3D Modeling",
+        "Sound Design"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design",
+        "sound-design",
+        "modeling"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 2,
+        "ui-ux": 2,
+        "level-design": 1,
+        "sound-design": 1,
+        "modeling": 1,
+        "home": 2
+      },
+      "cover": "images/DockingBay/DockingBay_Poster_Warm_Wide.png",
+      "background": "images/DockingBay/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Docking Bay — Showcase",
+          "date": "2025-10-17",
+          "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
+          "cover": "images/DockingBay/DockingBay_Poster_Warm_Wide.png"
+        }
+      ]
+    },
+    {
+      "slug": "idol-of-ashes",
+      "title": "Idol of Ashes",
+      "kicker": "Team Project",
+      "date": "2025-06-09",
+      "playLink": "https://zorzini.itch.io/idol-of-ashes",
+      "summary": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest, and manual system within a week-long time span for the Game Jam.",
+      "tags": [
+        "Programming",
+        "UI / UX",
+        "Sound Design"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "sound-design",
+        "modeling"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 4,
+        "ui-ux": 3,
+        "sound-design": 3,
+        "modeling": 3,
+        "home": 5
+      },
+      "cover": "images/IdolofAshes/IdolOfAshes.png",
+      "background": "images/IdolofAshes/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Idol of Ashes — Showcase",
+          "date": "2025-06-09",
+          "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
+          "cover": "images/IdolofAshes/IdolOfAshes.png"
+        }
+      ]
+    },
+    {
+      "slug": "spirit-outbreak",
+      "title": "Spirit Outbreak",
+      "kicker": "",
+      "date": "2025-04-19",
+      "playLink": "https://benbeary.itch.io/spirit-outbreak",
+      "summary": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time.",
+      "tags": [
+        "Programming",
+        "Level Design",
+        "UI / UX",
+        "Pixel Art"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design",
+        "modeling",
+        "pixel-art"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 2,
+        "ui-ux": 2,
+        "level-design": 2,
+        "modeling": 4,
+        "pixel-art": 1
+      },
+      "cover": "images/SpiritOutbreak/FrontImage.jpg",
+      "background": "images/SpiritOutbreak/Blurred.jpg",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Spirit Outbreak — Showcase",
+          "date": "2025-04-19",
+          "excerpt": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based…",
+          "cover": "images/SpiritOutbreak/FrontImage.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "dice-climber",
+      "title": "Dice Climbers: Shelf of Chaos",
+      "kicker": "",
+      "date": "2025-05-20",
+      "playLink": "https://benbeary.itch.io/dice-climber-shelf-of-chaos",
+      "summary": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
+      "tags": [
+        "Programming",
+        "Level Design",
+        "UI / UX",
+        "Pixel Art"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design",
+        "sound-design",
+        "modeling",
+        "pixel-art"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 4,
+        "ui-ux": 7,
+        "level-design": 3,
+        "sound-design": 9,
+        "modeling": 3,
+        "pixel-art": 2,
+        "home": 6
+      },
+      "cover": "images/DiceClimber/Title Poster.jpg",
+      "background": "images/DiceClimber/Blurred.jpg",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Dice Climbers: Shelf of Chaos — Showcase",
+          "date": "2025-05-20",
+          "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
+          "cover": "images/DiceClimber/Title Poster.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "death-tides",
+      "title": "Death Tides",
+      "kicker": "Team Project",
+      "date": "2024-07-27",
+      "playLink": "https://benbeary.itch.io/death-tides",
+      "summary": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets and limited programming. My main role was creating enemy AI and world design which used a chunk loading system to increase overall performance.",
+      "tags": [
+        "Programming",
+        "Level Design",
+        "UI / UX",
+        "Pixel Art"
+      ],
+      "categories": [
+        "programming",
+        "level-design",
+        "ui-ux",
+        "pixel-art"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 5,
+        "level-design": 5,
+        "ui-ux": 6,
+        "pixel-art": 3
+      },
+      "cover": "images/DeathTides/DeathTides_1000px.png",
+      "background": "images/DeathTides/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Death Tides — Showcase",
+          "date": "2024-07-27",
+          "excerpt": "This game was part of a week-long Game Jam. I was the lead artist, coder, and game designer. I worked with one other person who helped with several art assets…",
+          "cover": "images/DeathTides/DeathTides_1000px.png"
+        }
+      ]
+    },
+    {
+      "slug": "dodge-kart",
+      "title": "Dodge Kart",
+      "kicker": "",
+      "date": "2023-10-27",
+      "playLink": "https://benbeary.itch.io/dodge-kart",
+      "summary": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time and reduce the required amount of tilesheets.",
+      "tags": [
+        "Programming",
+        "Level Design",
+        "UI / UX",
+        "Pixel Art"
+      ],
+      "categories": [
+        "programming",
+        "level-design",
+        "pixel-art"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 6,
+        "level-design": 8,
+        "pixel-art": 6
+      },
+      "cover": "images/DodgeKarts/DodgeKarts_1000px.png",
+      "background": "images/DodgeKarts/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Dodge Kart — Showcase",
+          "date": "2023-10-27",
+          "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
+          "cover": "images/DodgeKarts/DodgeKarts_1000px.png"
+        }
+      ]
+    },
+    {
+      "slug": "devils-acre",
+      "title": "Devil's Acre",
+      "kicker": "Team Project",
+      "date": "2022-04-22",
+      "playLink": "https://zorzini.itch.io/devils-acre",
+      "summary": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves. The overall project time was around 2 months in total.",
+      "tags": [
+        "Programming",
+        "Pixel Art"
+      ],
+      "categories": [
+        "programming",
+        "pixel-art"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 5,
+        "pixel-art": 5
+      },
+      "cover": "images/DevilsAcre/DevilsAcre_Title_1000px.png",
+      "background": "images/DevilsAcre/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Devil's Acre — Showcase",
+          "date": "2022-04-22",
+          "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
+          "cover": "images/DevilsAcre/DevilsAcre_Title_1000px.png"
+        }
+      ]
+    },
+    {
+      "slug": "port-lochne",
+      "title": "Port Lochne",
+      "kicker": "Modded Map",
+      "date": "2022-04-22",
+      "playLink": "",
+      "summary": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\" The map design is of a city cargo station made entirely from scratch.",
+      "tags": [
+        "Level Design",
+        "3D Modeling"
+      ],
+      "categories": [
+        "level-design",
+        "modeling"
+      ],
+      "collection": "main",
+      "order": {
+        "level-design": 4,
+        "modeling": 2
+      },
+      "cover": "images/PortLochne/PortLochne_1000px.png",
+      "background": "images/PortLochne/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Port Lochne — Showcase",
+          "date": "2022-04-22",
+          "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
+          "cover": "images/PortLochne/PortLochne_1000px.png"
+        }
+      ]
+    },
+    {
+      "slug": "meoware-defender",
+      "title": "Meoware Defender",
+      "kicker": "Team Project",
+      "date": "2025-09-02",
+      "playLink": "https://withcyber.itch.io/meoware-defender",
+      "summary": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to pursue a cybersecurity career path. I primarily focused on programming and UI design, and helped integrate the entire team's contributions into the final game.",
+      "tags": [
+        "Programming",
+        "Level Design",
+        "UI / UX"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 6,
+        "ui-ux": 4,
+        "level-design": 8,
+        "home": 3
+      },
+      "cover": "images/MeowareDefender/Menu.png",
+      "background": "images/MeowareDefender/Blurred.png",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Meoware Defender — Showcase",
+          "date": "2025-09-02",
+          "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
+          "cover": "images/MeowareDefender/Menu.png"
+        }
+      ]
+    },
+    {
+      "slug": "signal-link",
+      "title": "Signal-Link",
+      "kicker": "Team Project",
+      "date": "2026-01-04",
+      "playLink": "https://benbeary.itch.io/signal-link",
+      "summary": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.",
+      "tags": [
+        "Level Design",
+        "Programming",
+        "UI / UX",
+        "3D Modeling",
+        "Sound Design"
+      ],
+      "categories": [
+        "programming",
+        "ui-ux",
+        "level-design",
+        "modeling",
+        "sound-design"
+      ],
+      "collection": "main",
+      "order": {
+        "programming": 0,
+        "ui-ux": 1,
+        "level-design": 1,
+        "modeling": 1,
+        "sound-design": 5,
+        "home": 1
+      },
+      "cover": "images/Signal-Link/singla_link_poster.png",
+      "background": "images/Signal-Link/Blurred.jpg",
+      "posts": [
+        {
+          "slug": "showcase",
+          "type": "showcase",
+          "title": "Signal-Link — Showcase",
+          "date": "2026-01-04",
+          "excerpt": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental…",
+          "cover": "images/Signal-Link/singla_link_poster.png"
+        }
+      ]
+    }
+  ]
+}

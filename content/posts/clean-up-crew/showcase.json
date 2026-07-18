@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "clean-up-crew",
+  "type": "showcase",
+  "title": "Clean Up Crew — Showcase",
+  "date": "2025-07-29",
+  "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move around through while keeping the game low-poly to save performance due to it being a web-based game.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Designed the map layout",
+        "Engineered a first-person modular gun system that worked with multiple gun types",
+        "Created the UI, to include the leaderboard system",
+        "Developed a spawner system that would spawn items on top of terrain geometry",
+        "Worked on particle systems and animations for 3D assets."
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/CleanUpCrew/16_9 shot.png",
+      "alt": "Clean Up Crew key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/CleanUpCrew/Homescreen.png",
+          "alt": "Clean Up Crew screenshot 1"
+        },
+        {
+          "src": "images/CleanUpCrew/Gameplay1.png",
+          "alt": "Clean Up Crew screenshot 2"
+        },
+        {
+          "src": "images/CleanUpCrew/UI.png",
+          "alt": "Clean Up Crew screenshot 3"
+        },
+        {
+          "src": "images/CleanUpCrew/ControlUI.png",
+          "alt": "Clean Up Crew screenshot 4"
+        },
+        {
+          "src": "images/CleanUpCrew/map_layout.png",
+          "alt": "Clean Up Crew screenshot 5"
+        },
+        {
+          "src": "images/CleanUpCrew/map_layout4.png",
+          "alt": "Clean Up Crew screenshot 6"
+        },
+        {
+          "src": "images/CleanUpCrew/map_layout2.png",
+          "alt": "Clean Up Crew screenshot 7"
+        },
+        {
+          "src": "images/CleanUpCrew/map_layout3.png",
+          "alt": "Clean Up Crew screenshot 8"
+        },
+        {
+          "src": "images/CleanUpCrew/3DModel.png",
+          "alt": "Clean Up Crew screenshot 9"
+        },
+        {
+          "src": "images/CleanUpCrew/spawnObjects.png",
+          "alt": "Clean Up Crew screenshot 10"
+        },
+        {
+          "src": "images/CleanUpCrew/fpsGunSpread.png",
+          "alt": "Clean Up Crew screenshot 11"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "src": "images/CleanUpCrew/MenuLoadIn.mp4",
+      "caption": ""
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "dodge-kart",
+  "type": "showcase",
+  "title": "Dodge Kart — Showcase",
+  "date": "2023-10-27",
+  "excerpt": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time and reduce the required amount of tilesheets.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Created a shader to randomize car colors",
+        "Developed a spawner that progressively created harder challenges over time"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/DodgeKarts/DodgeKarts_1000px.png",
+      "alt": "Dodge Kart key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/DodgeKarts/img1.png",
+          "alt": "Dodge Kart screenshot 1"
+        },
+        {
+          "src": "images/DodgeKarts/img2.png",
+          "alt": "Dodge Kart screenshot 2"
+        },
+        {
+          "src": "images/DodgeKarts/img3.png",
+          "alt": "Dodge Kart screenshot 3"
+        }
+      ]
+    }
+  ]
+}

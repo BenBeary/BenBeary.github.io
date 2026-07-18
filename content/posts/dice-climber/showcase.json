@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "dice-climber",
+  "type": "showcase",
+  "title": "Dice Climbers: Shelf of Chaos — Showcase",
+  "date": "2025-05-20",
+  "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "Created modular puzzle pieces for reuse",
+        "Created a dialogue system from scratch",
+        "Created a visual editor guide to help with map creation",
+        "Created multiple mechanics that the player learns over time",
+        "Created a cutscene system"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/DiceClimber/Title Poster.jpg",
+      "alt": "Dice Climbers: Shelf of Chaos key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/DiceClimber/Menu.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 1"
+        },
+        {
+          "src": "images/DiceClimber/img1.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 2"
+        },
+        {
+          "src": "images/DiceClimber/img2.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 3"
+        },
+        {
+          "src": "images/DiceClimber/img3.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 4"
+        },
+        {
+          "src": "images/DiceClimber/img4.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 5"
+        },
+        {
+          "src": "images/DiceClimber/img5.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 6"
+        },
+        {
+          "src": "images/DiceClimber/img6.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 7"
+        },
+        {
+          "src": "images/DiceClimber/img7.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 8"
+        },
+        {
+          "src": "images/DiceClimber/img8.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 9"
+        },
+        {
+          "src": "images/DiceClimber/img9.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 10"
+        },
+        {
+          "src": "images/DiceClimber/img10.png",
+          "alt": "Dice Climbers: Shelf of Chaos screenshot 11"
+        }
+      ]
+    }
+  ]
+}

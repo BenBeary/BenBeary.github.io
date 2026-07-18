@@ -60,11 +60,15 @@
 - [x] Verify: 120 thumb + 120 md + 6 poster + 3 opt, 0 errors; 13.3 MB PNG → 19 KB thumb;
       54 MB mp4 → 4.9 MB opt; re-run skipped all 249 (idempotent)
 
-### M3 — Migration
-- [ ] `tools/migrate-projects.mjs` — parse `js/projects.js`, emit `content/projects.json` +
-      one `content/posts/<slug>/showcase.json` per project (dry-run default, `--write` to write)
-- [ ] Run `--write`; commit content
-- [ ] Verify: JSON parses; every referenced `src` exists on disk; 12 projects, 12 showcase posts
+### M3 — Migration  ✅ complete
+- [x] `tools/migrate-projects.mjs` — parses `js/projects.js` via `new Function`; explicit SLUGS map
+      (keys/folders don't kebab-case cleanly); title split (kicker/Game:/Modded Map:/[brackets]);
+      rankings→categories+order dropping the `10` hide-sentinel; home order = 6 most recent by date;
+      collection defaults to `main`. Refuses `--write` if any referenced media is missing.
+- [x] Ran `--write`: content/projects.json + 11 showcase posts
+- [x] Verify: all 12 JSON files parse; all 112 referenced media exist on disk; **11** projects/posts
+      (the earlier exploration's "12" was a miscount — js/projects.js has 11 keys). Spot-checked
+      projects.json + signal-link showcase: schema-correct, curly quotes + spaced filenames intact.
 
 ### M4 — Site pages
 - [ ] `js/site/data.js`, `media.js`, `richtext-sanitize.js`, `blocks.js`
@@ -112,3 +116,8 @@
 - Post-M2 (user request): derivatives moved from a top-level `media/` folder into `images/_derived/`
   so everything stays in one `images/` folder. `media.js` transform (M4, not yet written) inserts
   `_derived/` after `images/`. Pipeline OUT_ROOT + SKIP_DIRS updated; ARCHITECTURE contract updated.
+- M3: legacy data has **11** projects, not 12. Slugs are an explicit hand-map (see SLUGS in
+  migrate-projects.mjs) — `dice-climber`, `dodge-kart`, `meoware-defender`, `idol-of-ashes`, etc.
+  Migrated alt text is placeholder ("<title> key art" / "screenshot N") — refine in the editor.
+  Game-jam candidates flagged by the script: idol-of-ashes, death-tides, signal-link (still
+  collection:"main" — re-tag in M5's manage page). Home-featured = 6 most recent (tunable).

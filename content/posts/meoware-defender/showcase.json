@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "meoware-defender",
+  "type": "showcase",
+  "title": "Meoware Defender — Showcase",
+  "date": "2025-09-02",
+  "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to pursue a cybersecurity career path. I primarily focused on programming and UI design, and helped integrate the entire team's contributions into the final game.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "San Jose State University funded team project",
+        "Created a player customizer system",
+        "Created a system that allowed for mobile compatibility",
+        "Made a save system that allowed the player to customize the irliving room",
+        "Made the password creator mini game"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/MeowareDefender/Menu.png",
+      "alt": "Meoware Defender key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/MeowareDefender/img1.png",
+          "alt": "Meoware Defender screenshot 1"
+        },
+        {
+          "src": "images/MeowareDefender/img2.png",
+          "alt": "Meoware Defender screenshot 2"
+        },
+        {
+          "src": "images/MeowareDefender/img3.png",
+          "alt": "Meoware Defender screenshot 3"
+        },
+        {
+          "src": "images/MeowareDefender/img4.png",
+          "alt": "Meoware Defender screenshot 4"
+        }
+      ]
+    }
+  ]
+}

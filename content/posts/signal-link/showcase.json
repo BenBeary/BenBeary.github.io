@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "slug": "showcase",
+  "project": "signal-link",
+  "type": "showcase",
+  "title": "Signal-Link — Showcase",
+  "date": "2026-01-04",
+  "excerpt": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental…",
+  "blocks": [
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "About"
+    },
+    {
+      "type": "text",
+      "html": "<p>This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.</p>"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "My Contributions"
+    },
+    {
+      "type": "bullets",
+      "items": [
+        "2-week-long Game Jam",
+        "Created scenery for 2 worlds and The Main Menu Scene",
+        "Main Menu Scene integrates UI and the 3D world into 1 space",
+        "Created multiple puzzles that are integrated in the world",
+        "Created multiple 3D assets and 2D UI tools to make the interface come alive"
+      ]
+    },
+    {
+      "type": "image",
+      "src": "images/Signal-Link/singla_link_poster.png",
+      "alt": "Signal-Link key art"
+    },
+    {
+      "type": "gallery",
+      "items": [
+        {
+          "src": "images/Signal-Link/MainMenu_Blender.png",
+          "alt": "Signal-Link screenshot 1"
+        },
+        {
+          "src": "images/Signal-Link/MainMenu_Unity.png",
+          "alt": "Signal-Link screenshot 2"
+        },
+        {
+          "src": "images/Signal-Link/MainMenu_GameView.png",
+          "alt": "Signal-Link screenshot 3"
+        },
+        {
+          "src": "images/Signal-Link/Level_1.png",
+          "alt": "Signal-Link screenshot 4"
+        },
+        {
+          "src": "images/Signal-Link/Game_1.png",
+          "alt": "Signal-Link screenshot 5"
+        },
+        {
+          "src": "images/Signal-Link/ExtraImage_2.png",
+          "alt": "Signal-Link screenshot 6"
+        },
+        {
+          "src": "images/Signal-Link/ExtraImage_1.png",
+          "alt": "Signal-Link screenshot 7"
+        },
+        {
+          "src": "images/Signal-Link/ExtraImage_3.png",
+          "alt": "Signal-Link screenshot 8"
+        },
+        {
+          "src": "images/Signal-Link/ExtraImage_4.png",
+          "alt": "Signal-Link screenshot 9"
+        },
+        {
+          "src": "images/Signal-Link/Modeling_Layout.png",
+          "alt": "Signal-Link screenshot 10"
+        },
+        {
+          "src": "images/Signal-Link/Modeling_Layout_2.png",
+          "alt": "Signal-Link screenshot 11"
+        },
+        {
+          "src": "images/Signal-Link/Level2_Progress_1.png",
+          "alt": "Signal-Link screenshot 12"
+        },
+        {
+          "src": "images/Signal-Link/Level2_Progress_2.png",
+          "alt": "Signal-Link screenshot 13"
+        },
+        {
+          "src": "images/Signal-Link/Level2_Progress_3.png",
+          "alt": "Signal-Link screenshot 14"
+        },
+        {
+          "src": "images/Signal-Link/Level2_Progress_4.png",
+          "alt": "Signal-Link screenshot 15"
+        },
+        {
+          "src": "images/Signal-Link/Level_2.png",
+          "alt": "Signal-Link screenshot 16"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "src": "images/Signal-Link/Menu Setup.mp4",
+      "caption": ""
+    }
+  ]
+}
