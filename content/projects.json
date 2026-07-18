@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 2,
+  "contentVersion": 3,
   "categories": [
     {
       "slug": "programming",
@@ -910,6 +910,23 @@
           "alt": ""
         }
       ]
+    },
+    {
+      "slug": "old-work",
+      "title": "Old Work",
+      "kicker": "Old Projects",
+      "status": "Archived",
+      "date": "2026-07-17",
+      "playLink": "",
+      "summary": "This is a List of all the old projects I've done that don't have a lot on them, but are here to archive the work I've done.",
+      "tags": [],
+      "categories": [],
+      "collection": "misc",
+      "order": {},
+      "cover": "",
+      "background": "",
+      "posts": [],
+      "media": []
     }
   ]
 }
