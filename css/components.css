@@ -87,6 +87,37 @@
 /* --- Section heading (centered accent title used atop page sections) --- */
 .section-title { text-align: center; color: var(--accent); margin-bottom: var(--space-6); }
 
+/* --- Shelf: a horizontal scroll-snap row of cards (home page, M6) --- */
+.shelf { margin-bottom: var(--space-7); }
+.shelf__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+.shelf__title { margin: 0; font-size: 1.5rem; }
+.shelf__title-link { color: var(--text-strong); }
+.shelf__title-link:hover { color: var(--accent); }
+.shelf__nav { display: flex; gap: var(--space-2); }
+.shelf__arrow {
+    background: var(--surface-1); border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    color: var(--text); cursor: pointer; font-size: 1rem; font-weight: 900; line-height: 1;
+    padding: var(--space-2) var(--space-3); transition: color var(--ease), border-color var(--ease), background var(--ease);
+}
+.shelf__arrow:hover { color: var(--accent); border-color: var(--accent); background: var(--surface-2); }
+.shelf__track {
+    display: flex; gap: var(--space-5);
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: var(--space-1) var(--space-1) var(--space-3);
+    scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
+}
+.shelf__track::-webkit-scrollbar { height: 8px; }
+.shelf__track::-webkit-scrollbar-track { background: transparent; }
+.shelf__track::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+.shelf__track::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.shelf-card { flex: 0 0 clamp(260px, 72vw, 320px); scroll-snap-align: start; }
+.shelf-card .card__title { font-size: 1.1rem; }
+.shelf-card__status {
+    align-self: flex-start; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent);
+    border-radius: var(--radius-pill); padding: 1px 9px;
+}
+
 /* --- Social icon row (reused by footer and about page) --- */
 .social-row { display: flex; gap: var(--space-5); align-items: center; }
 .social-row a { display: block; transition: transform var(--ease), opacity var(--ease); }

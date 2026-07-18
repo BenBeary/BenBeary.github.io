@@ -68,6 +68,37 @@
 .data-error h2 { color: var(--danger); margin-bottom: var(--space-3); }
 
 /* =========================================================================
+   HOME  (home.html, body[data-page="home"])
+   ========================================================================= */
+.home-page { display: flex; flex-direction: column; gap: var(--space-7); }
+
+.home-hero {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--space-6) 0 var(--space-2);
+}
+.home-hero__kicker { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.9rem; margin-bottom: var(--space-3); }
+.home-hero__title { font-size: clamp(2.4rem, 6vw, 3.6rem); margin: 0 0 var(--space-4); }
+.home-hero__tagline { font-size: var(--fs-400); color: var(--text); margin: 0 auto var(--space-5); max-width: 620px; }
+.home-hero__actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+
+.home-about {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-6);
+    align-items: center;
+}
+.home-about__text h2 { margin-bottom: var(--space-4); color: var(--accent); }
+.home-about__text p { font-size: var(--fs-400); margin-bottom: var(--space-5); }
+.home-about__portrait { width: 100%; max-width: 260px; justify-self: end; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
+@media (max-width: 760px) {
+    .home-about { grid-template-columns: 1fr; text-align: center; }
+    .home-about__portrait { justify-self: center; order: -1; max-width: 220px; }
+    .home-about__text p { text-align: left; }
+}
+
+/* =========================================================================
    PROJECTS catalogue  (projects.html)
    ========================================================================= */
 .filter-bar { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }

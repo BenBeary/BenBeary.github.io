@@ -185,8 +185,9 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` — port from
   round-trips. The browser still reads GitHub main, so it shows pre-push paths until the redesign is pushed.
 
 ### M6 — Home + swap (go-live)
-- [ ] `home.html` — intro → Featured shelf (`order.home`) → per-collection shelves
-      (CSS `scroll-snap-type: x mandatory`) → about section
+- [x] `home.html` — intro hero → Featured shelf (`order.home`) → per-collection shelves
+      (CSS `scroll-snap-type: x mandatory`, ❮ ❯ arrows hidden when content fits) → about teaser.
+      `js/site/page-home.js`; hidden projects excluded. Verified headless: 3 shelves render.
 - [ ] On user approval: `git mv index.html Archived/old-index.html`; rename `home.html` → `index.html`;
       delete `js/newWebMain.js`, `js/projects.js`, `css/newWebStyle.css`, `css/navbar.css`
 - [ ] Verify: full click-through from new home locally, then live site after push

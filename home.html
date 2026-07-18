@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Beary — Game Developer</title>
+    <meta name="description" content="Ben Beary — indie game developer, level designer, technical artist, and gameplay programmer. Browse featured projects and dev blogs.">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="home">
+
+    <div id="site-header"></div>
+
+    <main class="page home-page">
+
+        <!-- Intro -->
+        <section class="home-hero">
+            <p class="home-hero__kicker">Level Designer · Technical Artist · Gameplay Programmer</p>
+            <h1 class="home-hero__title">Ben Beary</h1>
+            <p class="home-hero__tagline">Indie game developer crafting polished player experiences — designing levels,
+                scripting mechanics, building tools, and making the art and audio that hold it together.</p>
+            <div class="home-hero__actions">
+                <a class="btn btn-primary" href="projects.html">Browse Projects</a>
+                <a class="btn btn-secondary" href="about.html">About Me</a>
+            </div>
+        </section>
+
+        <!-- Shelves (Featured + per-collection), built by page-home.js -->
+        <div id="home-shelves" class="home-shelves">
+            <p class="loading-note">Loading projects…</p>
+        </div>
+
+        <!-- About teaser -->
+        <section class="home-about panel">
+            <div class="home-about__text">
+                <h2>About Me</h2>
+                <p>I'm Ben Beary, an indie developer with a BFA in Digital Media Arts from San José State University.
+                    I work across gameplay programming, UI/UX, level design, 3D modeling, and audio — and I like solving
+                    problems with modular, efficient code and tools that improve the workflow.</p>
+                <a class="btn btn-secondary" href="about.html">More about me →</a>
+            </div>
+            <img class="home-about__portrait" src="images/SelfImage.jpg" alt="Ben Beary portrait">
+        </section>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/site/data.js"></script>
+    <script src="js/site/media.js"></script>
+    <script src="js/site/partials.js"></script>
+    <script src="js/site/page-home.js"></script>
+</body>
+</html>
