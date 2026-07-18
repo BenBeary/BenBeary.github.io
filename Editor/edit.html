@@ -48,8 +48,15 @@
             <div class="modal-title">Sign in with GitHub</div>
             <div class="modal-body">
                 <p>Paste a GitHub Personal Access Token. It's stored (encrypted) only in this browser.</p>
-                <p><a id="auth-generate-link" href="#" target="_blank" rel="noopener">Generate a fine-grained PAT →</a>
-                   — this repo only, <code>Contents: read and write</code>.</p>
+                <p><a id="auth-generate-link" href="#" target="_blank" rel="noopener">Generate a fine-grained PAT →</a></p>
+                <div class="auth-perm-note">
+                    <p>On the GitHub page:</p>
+                    <ol class="auth-steps">
+                        <li><strong>Only select repositories</strong> → <code>BenBeary.github.io</code></li>
+                        <li><strong>Repository permissions → Contents → Read and write</strong> (the only one needed)</li>
+                        <li><strong>Generate token</strong>, then paste it below</li>
+                    </ol>
+                </div>
                 <div class="ed-field">
                     <label for="auth-pat-input">Token</label>
                     <input type="password" id="auth-pat-input" class="ed-input mono" placeholder="github_pat_…" autocomplete="off" spellcheck="false">

@@ -149,7 +149,7 @@ function renderAuthUI() {
             + '<button class="btn-ghost btn-sm" id="btn-sign-out" title="Sign out">Sign out</button>'
             + '</div>';
     } else {
-        chip.innerHTML = '<button class="btn-primary btn-sm" id="btn-sign-in">🔑 Sign in</button>';
+        chip.innerHTML = '<button class="btn-primary btn-sm" id="btn-sign-in">🔒 Sign in</button>';
     }
 }
 

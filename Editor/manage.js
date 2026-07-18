@@ -125,7 +125,7 @@
 
     function renderSignedOut() {
         root.innerHTML = '<div class="ed-landing"><div class="ed-signin-prompt"><h1>Manage content</h1>' +
-            '<p>Sign in to edit project metadata.</p><button class="btn btn-primary" id="mg-signin">🔑 Sign in</button></div></div>';
+            '<p>Sign in to edit project metadata.</p><button class="btn btn-primary" id="mg-signin">🔒 Sign in</button></div></div>';
         var b = document.getElementById('mg-signin');
         if (b) b.addEventListener('click', function () { if (typeof openAuthModal === 'function') openAuthModal(); });
     }

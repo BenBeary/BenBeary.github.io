@@ -72,6 +72,20 @@ input.ed-input[type="password"], input.ed-input.mono { font-family: var(--font-m
 .ed-check { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-3) 0; }
 .auth-error { color: var(--danger); font-size: 0.9rem; margin-top: var(--space-3); }
 
+/* Highlighted PAT permission checklist in the sign-in modal */
+.auth-perm-note {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.9rem;
+    margin: var(--space-3) 0;
+}
+.auth-perm-note p { margin: 0 0 var(--space-2); font-weight: 700; color: var(--text); }
+.auth-steps { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+.auth-steps li { line-height: 1.5; color: var(--text); }
+.auth-steps code { background: var(--surface-1); border-radius: 4px; padding: 1px 5px; font-family: var(--font-mono); font-size: 0.85em; }
+
 /* --- Landing picker --- */
 .ed-landing { max-width: var(--content-max); margin: 0 auto; padding: var(--space-7) var(--content-pad); }
 .ed-signin-prompt { text-align: center; padding: var(--space-8) var(--space-5); }

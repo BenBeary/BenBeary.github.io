@@ -16,7 +16,7 @@
             '<div class="ed-landing"><div class="ed-signin-prompt">' +
             '<h1>Portfolio Editor</h1>' +
             '<p>Sign in with your GitHub token to create, edit, and publish posts.</p>' +
-            '<button class="btn btn-primary" id="ed-signin-btn">🔑 Sign in</button>' +
+            '<button class="btn btn-primary" id="ed-signin-btn">🔒 Sign in</button>' +
             '</div></div>';
         var b = document.getElementById('ed-signin-btn');
         if (b) b.addEventListener('click', function () { if (typeof openAuthModal === 'function') openAuthModal(); });
