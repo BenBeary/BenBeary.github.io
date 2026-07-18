@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 6,
+  "contentVersion": 7,
   "categories": [
     {
       "slug": "programming",
@@ -39,6 +39,10 @@
     {
       "slug": "school-projects",
       "label": "School Projects"
+    },
+    {
+      "slug": "laguna-interactive",
+      "label": "Laguna Interactive"
     }
   ],
   "projects": [
@@ -63,7 +67,7 @@
         "sound-design",
         "modeling"
       ],
-      "collection": "main",
+      "collection": "laguna-interactive",
       "order": {
         "home": 4,
         "programming": 1,
@@ -109,7 +113,7 @@
         "sound-design",
         "modeling"
       ],
-      "collection": "main",
+      "collection": "laguna-interactive",
       "order": {
         "home": 2,
         "programming": 2,
@@ -153,7 +157,7 @@
         "sound-design",
         "modeling"
       ],
-      "collection": "main",
+      "collection": "laguna-interactive",
       "order": {
         "home": 5,
         "programming": 4,
@@ -444,7 +448,7 @@
       "slug": "signal-link",
       "title": "Signal-Link",
       "kicker": "Team Project",
-      "status": "Actively Developing",
+      "status": "Released",
       "date": "2026-01-04",
       "playLink": "https://benbeary.itch.io/signal-link",
       "summary": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental Art. I created both worlds and created the entire menu scene. I also aided in programming the puzzle mechanics for the game and individually created some puzzles with them as well.",
@@ -462,7 +466,7 @@
         "sound-design",
         "modeling"
       ],
-      "collection": "main",
+      "collection": "laguna-interactive",
       "order": {
         "home": 1,
         "programming": 0,
@@ -490,7 +494,7 @@
       "slug": "old-work",
       "title": "Old Work",
       "kicker": "",
-      "status": "In Development",
+      "status": "Archived",
       "date": "2026-07-18",
       "playLink": "",
       "summary": "",
