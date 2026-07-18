@@ -87,17 +87,35 @@
       game-jams collection → no-match note; all-projects → 11; CSS brace-balanced. **Note:** lightbox
       open + video swap are click-driven — structurally present and wired; eyeball in Live Server.
 
-### M5 — Editor v1
-- [ ] `Editor/github-api.js` (port from docs/reference-cadre; change owner/repo constants)
-- [ ] `Editor/auth.js` (port; owner-only — delete collaborator + page-role/redirect code)
-- [ ] `Editor/edit.html` + `editor.js` + `blocks-edit.js` (BLOCK_TYPES registry pattern;
-      drag reorder; rich text) with live preview via shared `js/site/blocks.js`
-- [ ] `Editor/drafts.js` (localStorage autosave, CADRE pattern)
-- [ ] `Editor/upload.js` (Contents PUT to `images/<Project>/`, warn > 4 MB)
-- [ ] Publish = `ghBatchCommit` of post JSON + projects.json, bump `contentVersion`
-- [ ] `Editor/manage.html` — forms over project meta/order/collection, categories, roles
-- [ ] `Editor/index.html` — sign-in + project/post/draft picker
-- [ ] Verify: real PAT sign-in → publish a test blog post → appears on its hub after CDN refresh
+### M5 — Editor v1  (owner = BenBeary, repo = BenBeary.github.io)
+Broken into sub-milestones — each a committable, verifiable unit.
+
+**M5a — Auth + API + editor shell**  ✅ complete
+- [x] `Editor/github-api.js` (copied verbatim — uses auth.js globals; ghBatchCommit = publish primitive)
+- [x] `Editor/auth.js` (adapted: owner=BenBeary, repo=BenBeary.github.io; AES-GCM at-rest +
+      keep-logged-in + expiry chip + sign-in modal kept; page-role/redirect/collaborator/contributor
+      removed; validate = GET /user → login===owner → repo push check; fires 'auth:changed')
+- [x] `Editor/index.html` + `editor-index.js` + `editor.css` — sign-in chip/modal + project/post/
+      draft picker (reuses ../css tokens/base/components; data via ../js/site/data.js, data-root="../")
+- [x] Verify: signed-out prompt + chip + modal render headless; all editor JS passes node --check.
+      NOTE: signed-in picker + real token flow need a PAT — deferred to M5d end-to-end test.
+
+**M5b — Block editor + live preview**
+- [ ] `Editor/edit.html` + `editor.js` + `blocks-edit.js` — BLOCK_TYPES registry
+      (defaults/renderBody/syncFromDOM), drag reorder, rich-text toolbar; live preview via shared
+      `js/site/blocks.js` (preview == production)
+- [ ] Verify: build a post, preview matches the site renderer
+
+**M5c — Drafts + image upload**
+- [ ] `Editor/drafts.js` (localStorage autosave/list, CADRE pattern, keyed draft:<project>:<slug>)
+- [ ] `Editor/upload.js` (Contents PUT to images/<Project>/, warn > 4 MB, onerror fallback covers
+      missing derivatives)
+
+**M5d — Publish + manage**
+- [ ] Publish = `ghBatchCommit` of post JSON + projects.json (upsert post entry), bump `contentVersion`
+- [ ] `Editor/manage.html` — forms over project meta/order/collection/status, categories, roles
+- [ ] Verify (needs real PAT — user runs): sign in → publish a test blog post → appears on its hub
+      after CDN refresh (~10 min); then delete or keep
 
 ### M6 — Home + swap (go-live)
 - [ ] `home.html` — intro → Featured shelf (`order.home`) → per-collection shelves

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor — Ben Beary</title>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="editor.css">
+</head>
+<body data-root="../" data-page="">
+
+    <header class="ed-header">
+        <span class="ed-brand"><span>Ben</span> Beary</span>
+        <span class="ed-subtitle">— Editor</span>
+        <div class="ed-header__actions">
+            <a href="../index.html" title="View the live site">View site ↗</a>
+            <div id="auth-chip"></div>
+        </div>
+    </header>
+
+    <main id="ed-root">
+        <div class="ed-landing"><p class="ed-empty">Loading…</p></div>
+    </main>
+
+    <!-- Sign-in modal (wired by auth.js) -->
+    <div class="modal-overlay" id="auth-modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">Sign in with GitHub</div>
+            <div class="modal-body">
+                <p>Paste a GitHub Personal Access Token. It's stored (encrypted) only in this browser and
+                   is used to publish content to your repo.</p>
+                <p><a id="auth-generate-link" href="#" target="_blank" rel="noopener">Generate a fine-grained PAT →</a>
+                   — this repo only, <code>Contents: read and write</code>.</p>
+                <div class="ed-field">
+                    <label for="auth-pat-input">Token</label>
+                    <input type="password" id="auth-pat-input" class="ed-input mono" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+                </div>
+                <label class="ed-check"><input type="checkbox" id="auth-keep-logged-in" checked> Keep me logged in</label>
+                <div class="auth-error" id="auth-error" style="display:none"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="auth-modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="auth-modal-confirm">Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/site/data.js"></script>
+    <script src="auth.js"></script>
+    <script src="github-api.js"></script>
+    <script src="editor-index.js"></script>
+</body>
+</html>

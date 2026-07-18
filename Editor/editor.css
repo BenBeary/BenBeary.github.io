@@ -1,0 +1,104 @@
+/* editor.css — editor-only chrome. Reuses the site's tokens/base/components
+   (../css/*) for the dark+amber identity, buttons, and chips; adds the editor
+   header, auth chip, modal, and the landing picker (M5a). The two-pane block
+   editor styles are added in M5b. */
+
+/* Small button variant used in the header/auth chip */
+.btn-sm { padding: var(--space-2) var(--space-4); font-size: 0.9rem; }
+
+/* --- Editor header --- */
+.ed-header {
+    position: sticky; top: 0; z-index: 100;
+    height: var(--header-h);
+    background: var(--surface-0);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; gap: var(--space-4);
+    padding: 0 var(--space-5);
+}
+.ed-brand { font-weight: 800; font-size: 1.2rem; color: var(--text-strong); }
+.ed-brand span { color: var(--accent); }
+.ed-subtitle { color: var(--text-muted); font-size: 0.9rem; }
+.ed-header__actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-3); }
+.ed-header a { font-weight: 600; color: var(--text); }
+.ed-header a:hover { color: var(--accent); }
+
+/* --- Auth chip --- */
+#auth-chip { display: flex; align-items: center; }
+.auth-user { display: flex; align-items: center; gap: var(--space-3); }
+.auth-avatar { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border-strong); }
+.auth-login { font-weight: 600; color: var(--text); }
+.auth-expiry-warn {
+    font-size: 0.72rem; font-weight: 700; color: var(--danger);
+    border: 1px solid var(--danger); border-radius: var(--radius-pill);
+    padding: 1px 8px; cursor: help;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; align-items: center; justify-content: center;
+    padding: var(--space-5);
+}
+.modal-box {
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-pop);
+    width: 100%; max-width: 460px;
+    padding: var(--space-6);
+}
+.modal-title { color: var(--text-strong); margin-bottom: var(--space-4); }
+.modal-body { color: var(--text); font-size: 0.95rem; margin-bottom: var(--space-5); }
+.modal-body p { margin-bottom: var(--space-3); }
+.modal-body a { color: var(--accent); font-weight: 600; }
+.modal-body code { background: var(--surface-1); border-radius: 4px; padding: 1px 5px; font-family: var(--font-mono); font-size: 0.85em; }
+.modal-actions { display: flex; gap: var(--space-3); justify-content: flex-end; }
+
+.ed-input {
+    width: 100%;
+    background: var(--surface-1);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: inherit; font-size: 0.95rem;
+    padding: var(--space-3) var(--space-4);
+}
+.ed-input:focus { outline: none; border-color: var(--accent); }
+input.ed-input[type="password"], input.ed-input.mono { font-family: var(--font-mono); }
+.ed-field { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
+.ed-field label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); }
+.ed-check { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-3) 0; }
+.auth-error { color: var(--danger); font-size: 0.9rem; margin-top: var(--space-3); }
+
+/* --- Landing picker --- */
+.ed-landing { max-width: var(--content-max); margin: 0 auto; padding: var(--space-7) var(--content-pad); }
+.ed-signin-prompt { text-align: center; padding: var(--space-8) var(--space-5); }
+.ed-signin-prompt h1 { margin-bottom: var(--space-3); }
+.ed-signin-prompt p { color: var(--text-muted); margin-bottom: var(--space-5); }
+
+.ed-toolbar { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6); flex-wrap: wrap; }
+.ed-toolbar h1 { margin-right: auto; }
+
+.ed-project { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: var(--space-4); overflow: hidden; }
+.ed-project__head { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border); }
+.ed-project__title { font-weight: 700; font-size: 1.1rem; color: var(--text-strong); }
+.ed-project__kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.ed-project__meta { margin-left: auto; display: flex; gap: var(--space-2); align-items: center; }
+.ed-collection-badge { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); border: 1px solid var(--border-strong); border-radius: var(--radius-pill); padding: 1px 10px; }
+.ed-posts { list-style: none; padding: var(--space-2) var(--space-3); display: flex; flex-direction: column; gap: 2px; }
+.ed-post { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); }
+.ed-post:hover { background: var(--surface-2); }
+.ed-post__type { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 1px 8px; border-radius: var(--radius-pill); }
+.ed-post__type.is-showcase { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+.ed-post__type.is-blog { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border-strong); }
+.ed-post__title { flex: 1; color: var(--text); }
+.ed-post__date { color: var(--text-muted); font-size: 0.85rem; }
+.ed-post a, .ed-post__title { text-decoration: none; }
+
+.ed-drafts { margin-top: var(--space-6); }
+.ed-drafts h2 { margin-bottom: var(--space-3); }
+.ed-draft { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: var(--space-2); }
+.ed-draft__title { flex: 1; }
+.ed-empty { color: var(--text-muted); font-style: italic; }
