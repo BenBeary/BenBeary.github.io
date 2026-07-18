@@ -100,11 +100,16 @@ Broken into sub-milestones — each a committable, verifiable unit.
 - [x] Verify: signed-out prompt + chip + modal render headless; all editor JS passes node --check.
       NOTE: signed-in picker + real token flow need a PAT — deferred to M5d end-to-end test.
 
-**M5b — Block editor + live preview**
-- [ ] `Editor/edit.html` + `editor.js` + `blocks-edit.js` — BLOCK_TYPES registry
-      (defaults/renderBody/syncFromDOM), drag reorder, rich-text toolbar; live preview via shared
-      `js/site/blocks.js` (preview == production)
-- [ ] Verify: build a post, preview matches the site renderer
+**M5b — Block editor + live preview**  ✅ complete
+- [x] `Editor/edit.html` + `editor.js` + `blocks-edit.js` — EDBLOCKS registry (all 9 types:
+      defaults/renderBody/syncFromDOM), up/down reorder (drag deferred — buttons are equivalent),
+      rich-text mini-toolbar (bold/italic/underline/list/link via execCommand + paste sanitize),
+      meta form (type/title/slug/date/excerpt/cover, auto-slug). Live preview via shared
+      `../js/site/blocks.js` → **preview == production**. Local autosave to localStorage already
+      wired (key `pf.editor.draft.<project>.<slug>` + index `pf.editor.drafts`).
+- [x] Verify (headless): edit signal-link showcase → 7 editor blocks + preview shows 2 headings/
+      16 gallery/1 video poster with _derived paths (matches post.html); new post → 0 blocks, 9
+      add buttons. Interactive typing/reorder/rich-text/save are input-driven — eyeball in Live Server.
 
 **M5c — Drafts + image upload**
 - [ ] `Editor/drafts.js` (localStorage autosave/list, CADRE pattern, keyed draft:<project>:<slug>)
