@@ -257,3 +257,12 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` - port from i
   `metadata` so a clip is only streamed once its slide is active AND on screen. The 1.2 MB
   `SelfImage.jpg` portrait on home/about is now a `<picture>` served from the 108 KB webp derivative
   with the jpg as fallback. Home page references ~1.3 MB of derived images, all `loading="lazy"`.
+- Editor uploads now GENERATE DERIVATIVES IN THE BROWSER. Previously `upload.js` committed only the
+  original, so anything added through the editor had no `_derived` files: its `.thumb.webp`/`.md.webp`
+  404'd and the site silently served the full-size original. It now canvas-resizes to the same sizes
+  and quality as `tools/optimize-media.mjs` (480/q0.70, 1280/q0.78, poster 1280/q0.78 from an mp4
+  frame), never enlarges, honours EXIF orientation, and commits the original + derivatives in ONE
+  `ghBatchCommit`. Uses the synchronous `canvas.toDataURL` (toBlob's callback never fires headless)
+  and RACES `createImageBitmap` against a 5s timeout, because it can hang without rejecting and would
+  otherwise wedge an upload. Falls back to `<img>` decoding, and to original-only if webp encoding is
+  unavailable. `tools/optimize-media.mjs` remains the authority for bulk/local processing.
