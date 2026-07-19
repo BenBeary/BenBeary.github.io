@@ -4,17 +4,18 @@
      manage.html                → all projects (newest first) + taxonomy labels
      manage.html?project=<slug> → ONE project (linked from the ⚙ button)
 
-   Per-project forms cover title/kicker/status DROPDOWN/collection/links/dates/
-   tags/summary/categories/order, the hub SLIDESHOW media[] (add/remove/reorder,
-   📁 browse), highlight bullets, and 🗑 Delete project (queues its post-file
-   deletions). Everything is STAGED into the shared change queue (queue.js) via
-   "✓ Add to changes"; the actual GitHub commit happens from the 📋 Changes modal.
-   New projects are created on the editor landing, not here. Owner-only. */
+   Per-project forms cover title/kicker/links/dates/summary/categories/order,
+   the hub SLIDESHOW media[] (add/remove/reorder, 📁 browse), highlight bullets,
+   and 🗑 Delete project (queues its post-file deletions). Everything is STAGED
+   into the shared change queue (queue.js) via "✓ Add to changes"; the actual
+   GitHub commit happens from the 📋 Changes modal.
+
+   Lives on the editor LANDING page instead, for one-click access: creating a
+   new project, and each project's status / collection / hidden toggle.
+   Owner-only. */
 
 (function () {
     'use strict';
-
-    var STATUS_OPTIONS = ['In Development', 'Prototype', 'Concept', 'On Hold', 'Finished', 'Released', 'Archived'];
 
     var data = null;              // working projects.json (committed + queue overlay)
     var baseline = null;          // snapshot of projects.json as loaded (data-loss guard)
@@ -52,15 +53,6 @@
     }
 
     function projectForm(p) {
-        var collOpts = (data.collections || []).map(function (c) {
-            return '<option value="' + esc(c.slug) + '"' + (p.collection === c.slug ? ' selected' : '') + '>' + esc(c.label) + '</option>';
-        }).join('');
-        var statusVal = p.status || 'In Development';
-        var statusOpts = STATUS_OPTIONS.map(function (s) {
-            return '<option value="' + esc(s) + '"' + (statusVal === s ? ' selected' : '') + '>' + esc(s) + '</option>';
-        }).join('');
-        if (STATUS_OPTIONS.indexOf(statusVal) < 0) statusOpts = '<option value="' + esc(statusVal) + '" selected>' + esc(statusVal) + ' (custom)</option>' + statusOpts;
-
         var catChecks = (data.categories || []).map(function (c) {
             var on = (p.categories || []).indexOf(c.slug) !== -1;
             return '<label class="ed-check"><input type="checkbox" data-cat="' + esc(c.slug) + '"' + (on ? ' checked' : '') + '> ' + esc(c.label) + '</label>';
@@ -82,13 +74,10 @@
             '<div class="ed-meta-grid">' +
             textField('Title', 'title', p.title) +
             textField('Kicker', 'kicker', p.kicker || '', 'e.g. Team Project') +
-            '<div class="ed-field"><label>Status</label><select class="ed-input" data-k="status">' + statusOpts + '</select></div>' +
-            '<div class="ed-field"><label>Collection</label><select class="ed-input" data-k="collection">' + collOpts + '</select></div>' +
             textField('Play link', 'playLink', p.playLink || '') +
             textField('Date', 'date', p.date || '', 'YYYY-MM-DD') +
             '<div class="ed-field"><label>Cover path</label><div class="ed-src-row"><input class="ed-input" data-k="cover" value="' + esc(p.cover || '') + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
             '<div class="ed-field"><label>Background path</label><div class="ed-src-row"><input class="ed-input" data-k="background" value="' + esc(p.background || '') + '" placeholder="images/Blog Images/Project/Blurred.jpg"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
-            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" data-hidden' + (p.hidden ? ' checked' : '') + '> Hide this project (keep it off the site, direct links still work)</label></div>' +
             '<div class="ed-field ed-field--wide"><label>Summary</label><textarea class="ed-input" data-k="summary" rows="2">' + esc(p.summary || '') + '</textarea></div>' +
             '<div class="ed-field ed-field--wide"><label>Highlight bullets (hub left column, one per line)</label><textarea class="ed-input" data-k-bullets rows="4" placeholder="One contribution / highlight per line">' + esc((p.bullets || []).join('\n')) + '</textarea></div>' +
             '</div>' +
@@ -315,9 +304,9 @@
         root.querySelectorAll('.ed-project[data-slug]').forEach(function (form) {
             var p = (data.projects || []).find(function (x) { return x.slug === form.dataset.slug; });
             if (!p) return;
+            // status / collection / hidden are edited on the landing page, so
+            // they aren't in this form and are left untouched here.
             form.querySelectorAll('[data-k]').forEach(function (inp) { p[inp.dataset.k] = inp.value; });
-            var hid = form.querySelector('[data-hidden]');
-            if (hid) { if (hid.checked) p.hidden = true; else delete p.hidden; }
             var bt = form.querySelector('[data-k-bullets]');
             if (bt) p.bullets = bt.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
             var media = [];

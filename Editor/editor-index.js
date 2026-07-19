@@ -39,6 +39,35 @@
             '</li>';
     }
 
+    // Status / collection are edited right here on the landing rather than in
+    // Manage, so flipping a project's state doesn't need a page trip. Changing
+    // either stages projects.json into the queue immediately.
+    function statusSelect(p) {
+        var val = p.status || 'In Development';
+        var opts = (window.PROJECT_STATUSES || []).map(function (s) {
+            return '<option value="' + esc(s) + '"' + (val === s ? ' selected' : '') + '>' + esc(s) + '</option>';
+        }).join('');
+        // Keep a legacy free-text status selectable so it isn't silently dropped.
+        if ((window.PROJECT_STATUSES || []).indexOf(val) < 0) {
+            opts = '<option value="' + esc(val) + '" selected>' + esc(val) + ' (custom)</option>' + opts;
+        }
+        return '<select class="ed-input ed-inline-select" data-proj-status="' + esc(p.slug) + '" title="Project status (shown as the tag on its page)">' + opts + '</select>';
+    }
+    function collectionSelect(p) {
+        var val = p.collection || 'main';
+        var opts = (data.collections || []).map(function (c) {
+            return '<option value="' + esc(c.slug) + '"' + (val === c.slug ? ' selected' : '') + '>' + esc(c.label) + '</option>';
+        }).join('');
+        return '<select class="ed-input ed-inline-select" data-proj-coll="' + esc(p.slug) + '" title="Collection this project belongs to">' + opts + '</select>';
+    }
+    function hideToggle(p) {
+        var hidden = !!p.hidden;
+        return '<button type="button" class="btn btn-ghost btn-sm ed-hide-btn' + (hidden ? ' is-off' : '') + '"' +
+            ' data-proj-hide="' + esc(p.slug) + '" aria-pressed="' + (hidden ? 'true' : 'false') + '"' +
+            ' title="' + (hidden ? 'Hidden from the site. Click to show it again.' : 'Visible on the site. Click to hide it.') + '">' +
+            (hidden ? '🙈 Hidden' : '👁 Visible') + '</button>';
+    }
+
     function projectBlock(p) {
         var posts = (p.posts || []).slice().sort(function (a, b) {
             if (a.type === 'showcase') return -1;
@@ -52,7 +81,9 @@
             '<div class="ed-project__title">' + esc(p.title) + (p.hidden ? ' <span class="ed-hidden-badge">Hidden</span>' : '') + '</div>' +
             '</div>' +
             '<div class="ed-project__meta">' +
-            '<span class="ed-collection-badge">' + esc(p.collection || 'main') + '</span>' +
+            statusSelect(p) +
+            collectionSelect(p) +
+            hideToggle(p) +
             '<a class="btn btn-ghost btn-sm" href="edit.html?project=' + encodeURIComponent(p.slug) + '&type=blog">+ New post</a>' +
             '<a class="btn btn-ghost btn-sm" href="manage.html?project=' + encodeURIComponent(p.slug) + '" title="Edit this project\'s metadata &amp; slideshow">⚙ Edit</a>' +
             '</div>' +
@@ -126,6 +157,27 @@
         renderSignedIn();
     }
 
+    // Update one field on a project and stage the whole index. `rerender` is for
+    // changes that alter what the row looks like (the Hidden badge); plain
+    // dropdown edits skip it so the select keeps focus.
+    function setProjectField(slug, key, value, label, rerender) {
+        var p = (data.projects || []).find(function (x) { return x.slug === slug; });
+        if (!p || p[key] === value) return;
+        if (value === false || value === '' || value == null) delete p[key];
+        else p[key] = value;
+        window.EditorQueue.stageProjects(data, 'Project ' + key + ': ' + p.title);
+        toast(label);
+        if (rerender) renderSignedIn();
+    }
+
+    function toggleHidden(slug) {
+        var p = (data.projects || []).find(function (x) { return x.slug === slug; });
+        if (!p) return;
+        var next = !p.hidden;
+        setProjectField(slug, 'hidden', next ? true : false,
+            next ? 'Hidden "' + p.title + '" - commit from 📋 Changes.' : 'Showing "' + p.title + '" again.', true);
+    }
+
     function deletePost(projectSlug, postSlug) {
         var p = (data.projects || []).find(function (x) { return x.slug === projectSlug; });
         if (!p) return;
@@ -160,6 +212,15 @@
             if (del && typeof deleteDraft === 'function') { deleteDraft(del.dataset.draftDel); render(); return; }
             var dp = e.target.closest('[data-del-post]');
             if (dp) { var parts = dp.dataset.delPost.split('::'); deletePost(parts[0], parts[1]); return; }
+            var hb = e.target.closest('[data-proj-hide]');
+            if (hb) { toggleHidden(hb.dataset.projHide); return; }
+        });
+        // Status / collection dropdowns on each project block.
+        root.addEventListener('change', function (e) {
+            var st = e.target.closest('[data-proj-status]');
+            if (st) { setProjectField(st.dataset.projStatus, 'status', st.value, 'Status set to "' + st.value + '".', false); return; }
+            var co = e.target.closest('[data-proj-coll]');
+            if (co) { setProjectField(co.dataset.projColl, 'collection', co.value, 'Moved to collection "' + co.value + '".', false); return; }
         });
         render();
     }

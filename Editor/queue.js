@@ -32,6 +32,11 @@
 
     var KEY = 'pf.editor.queue';
 
+    // The project status vocabulary. It lives here because queue.js is the one
+    // module every editor page loads, and both the landing page and Manage need
+    // the same list. Shown as the hub's status tag on the site.
+    window.PROJECT_STATUSES = ['In Development', 'Prototype', 'Concept', 'On Hold', 'Finished', 'Released', 'Archived'];
+
     function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
     function nowTs() { return Date.now(); }
 

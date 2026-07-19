@@ -333,6 +333,18 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .q-drop { flex: 0 0 auto; background: none; border: 0; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; line-height: 1; }
 .q-drop:hover { color: var(--danger); }
 
+/* Inline status / collection dropdowns on the landing project blocks */
+.ed-inline-select {
+    width: auto;
+    min-width: 132px;
+    font-size: 0.85rem;
+    padding: var(--space-2) var(--space-6) var(--space-2) var(--space-3);
+}
+/* Visible / Hidden toggle next to them */
+.ed-hide-btn { white-space: nowrap; }
+.ed-hide-btn.is-off { border-color: var(--border-strong); color: var(--text-muted); }
+.ed-hide-btn.is-off:hover { border-color: var(--accent); color: var(--accent); }
+
 /* Per-post delete on the landing (small round danger button) */
 .ed-post__del { flex: 0 0 auto; background: none; border: 1px solid transparent; color: var(--text-muted); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.9rem; line-height: 1; padding: 2px 7px; }
 .ed-post__del:hover { border-color: var(--danger); color: var(--danger); }
