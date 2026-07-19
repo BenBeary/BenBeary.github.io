@@ -7,7 +7,14 @@
 /* =========================================================================
    ABOUT  (about.html, body[data-page="about"])
    ========================================================================= */
-.about-page { display: flex; flex-direction: column; gap: var(--space-6); }
+/* Wider than the standard content column: 70vw, with a floor so it doesn't get
+   cramped on smaller screens (width:100% still keeps it inside tiny viewports). */
+.about-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: max(70vw, 680px);
+}
 
 .about-grid {
     display: grid;
@@ -15,6 +22,11 @@
     gap: var(--space-7);
     align-items: start;
 }
+
+/* One colour for the bio. base.css paints every <strong> amber, which turned
+   the paragraphs into a patchwork of highlighted phrases; keep the weight,
+   drop the colour change. */
+.about-body, .about-body p, .about-body strong { color: var(--text); }
 
 .about-header {
     display: flex;
@@ -40,7 +52,8 @@
     max-width: 340px;
     height: auto;
     aspect-ratio: 1 / 1;
-    justify-self: end;
+    justify-self: center;
+    align-self: center;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-pop);
     object-fit: cover;
