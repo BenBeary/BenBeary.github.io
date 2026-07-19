@@ -103,6 +103,7 @@
 
     // Auto-advance timing. Stills get a flat dwell; videos advance when they end;
     // gifs advance after two full loops (see gifDurationMs below).
+    var FADE_MS = 350;            // slide cross-fade, matches the CSS transition
     var AUTO_STILL_MS = 5000;
     var GIF_FALLBACK_MS = 6000;   // used when a gif's frame delays can't be read
     // Safety valve: a very long gif (e.g. a minutes-long screen capture) would
@@ -207,7 +208,12 @@
             clearTimer();
             pendingAdvance = false;
             if (stageVideo) { try { stageVideo.pause(); } catch (_) {} stageVideo = null; }
-            stage.innerHTML = '';
+
+            // Each slide is its own layer stacked on the stage, so the outgoing
+            // and incoming ones can cross-fade instead of the stage blanking and
+            // snapping to the next image.
+            var slide = document.createElement('div');
+            slide.className = 'pshow__slide';
 
             if (isVid(item.src)) {
                 // Muted autoplay (the only kind browsers allow unprompted).
@@ -231,7 +237,7 @@
                     if (canAuto()) go(idx + 1); else pendingAdvance = true;
                 });
                 v.addEventListener('error', function () { if (token === gen) schedule(AUTO_STILL_MS, token); }, true);
-                stage.appendChild(v);
+                slide.appendChild(v);
                 stageVideo = v;
                 if (onScreen) playVideo(v);
             } else {
@@ -247,8 +253,36 @@
                 img.addEventListener('click', function () {
                     window.openLightbox(imageItems, imageItems.indexOf(item));
                 });
-                stage.appendChild(img);
+                slide.appendChild(img);
             }
+
+            // Cross-fade: the new layer starts transparent, goes opaque next
+            // frame while the outgoing layers fade out, then they're dropped.
+            // The incoming layer goes on top (appended last) and fades in over
+            // the outgoing ones, which fade out beneath it.
+            var previous = Array.prototype.slice.call(stage.children);
+            if (REDUCED_MOTION) {
+                previous.forEach(function (el) { el.remove(); });
+                stage.appendChild(slide);
+            } else {
+                slide.classList.add('is-entering');
+                stage.appendChild(slide);
+                previous.forEach(function (el) {
+                    el.classList.remove('is-entering');
+                    el.classList.add('is-leaving');
+                });
+                // Drop the faded-out layers. Guarded by the token: without it, a
+                // sweep queued by an earlier render would delete the slide a
+                // later render just put up.
+                setTimeout(function () {
+                    if (token !== gen) return;
+                    Array.prototype.slice.call(stage.children).forEach(function (el) {
+                        if (el !== slide) el.remove();
+                    });
+                    slide.classList.remove('is-entering');
+                }, FADE_MS + 80);
+            }
+
             Array.prototype.forEach.call(thumbs.children, function (t, i) {
                 t.classList.toggle('is-active', i === idx);
             });
