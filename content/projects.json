@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 12,
+  "contentVersion": 14,
   "categories": [
     {
       "slug": "programming",
@@ -88,7 +88,7 @@
           "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
         }
       ],
-      "status": "Finished",
+      "status": "Released",
       "bullets": [
         "Designed the map layout",
         "Engineered a first-person modular gun system that worked with multiple gun types",
@@ -193,7 +193,7 @@
           "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
         }
       ],
-      "status": "In Development",
+      "status": "Released",
       "bullets": [
         "Created room layout and exterior scenes",
         "Created a sound system to efficiently play audio",
@@ -291,7 +291,7 @@
           "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
         }
       ],
-      "status": "Finished",
+      "status": "Released",
       "bullets": [
         "Created all of the UI for the game",
         "Created a quest system",
@@ -813,7 +813,7 @@
       ],
       "collection": "school-projects",
       "order": {
-        "home": 3,
+        "home": 5,
         "programming": 6,
         "ui-ux": 4,
         "level-design": 8
