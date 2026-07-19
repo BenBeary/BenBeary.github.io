@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 10,
+  "contentVersion": 11,
   "categories": [
     {
       "slug": "programming",
@@ -33,16 +33,16 @@
       "label": "Main Projects"
     },
     {
-      "slug": "misc",
-      "label": "Miscellaneous"
+      "slug": "laguna-interactive",
+      "label": "Laguna Interactive"
     },
     {
       "slug": "school-projects",
       "label": "School Projects"
     },
     {
-      "slug": "laguna-interactive",
-      "label": "Laguna Interactive"
+      "slug": "misc",
+      "label": "Miscellaneous"
     }
   ],
   "projects": [
