@@ -1,0 +1,10 @@
+Disables Jekyll processing on GitHub Pages.
+
+Without this file Pages runs the repo through Jekyll, which skips any file or
+directory whose name starts with an underscore. That silently dropped the whole
+of images/_derived/ from the published site: every .thumb.webp / .md.webp /
+.poster.webp / .opt.mp4 returned 404 while the original images served fine, so
+the site fell back to full-size originals (js/site/media.js setImg onerror) and
+the console filled with 404s.
+
+Keep this file. It must stay at the repo root, and its contents don't matter.
