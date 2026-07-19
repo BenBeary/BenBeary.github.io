@@ -356,6 +356,28 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 .ed-tax-row > input[data-coll] { flex: 1; min-width: 0; }
 .ed-tax-row button[disabled] { opacity: 0.35; cursor: default; }
 
+/* Drag-to-reorder collections */
+.ed-tax-grip {
+    flex: 0 0 auto;
+    cursor: grab;
+    color: var(--text-muted);
+    font-size: 1.1rem; line-height: 1;
+    padding: 0 2px;
+    user-select: none;
+    transition: color var(--ease);
+}
+.ed-tax-grip:hover { color: var(--accent); }
+.ed-tax-grip:active { cursor: grabbing; }
+#mg-collections .ed-tax-row {
+    border-radius: var(--radius-sm);
+    padding: 2px;
+    transition: opacity var(--ease), background var(--ease), box-shadow var(--ease);
+}
+#mg-collections .ed-tax-row.is-dragging { opacity: 0.45; background: var(--surface-2); }
+/* Insertion line showing where the row will land */
+#mg-collections .ed-tax-row.is-drop-before { box-shadow: inset 0 3px 0 0 var(--accent); }
+#mg-collections .ed-tax-row.is-drop-after { box-shadow: inset 0 -3px 0 0 var(--accent); }
+
 /* Project media[] editor rows on the manage page (reuse gallery row styling) */
 .mg-media-hint { font-size: 0.82rem; color: var(--text-muted); margin: var(--space-2) 0; }
 
