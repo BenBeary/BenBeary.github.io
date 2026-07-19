@@ -172,6 +172,57 @@
     .featured-row__actions { margin-top: var(--space-4); }
 }
 
+/* --- Compact variant: the catalogue rows. Same look as a featured row, about a
+   quarter of the screen tall, cover art instead of a slideshow, and the whole
+   row is a link so it carries no buttons. --- */
+.featured-row--compact { color: var(--text); }
+.featured-row--compact:hover { color: var(--text); border-color: var(--accent); }
+.featured-row--compact .featured-row__grid {
+    min-height: 25vh;
+    /* Badge clearance lives on the grid, not on one column: putting it on a
+       column made flipped rows taller than their neighbours. */
+    padding: calc(var(--space-5) + 18px) var(--space-5) var(--space-5);
+    gap: var(--space-5);
+}
+.featured-row--compact .featured-row__art { flex: 0 0 34%; }
+/* The cover is sized from viewport HEIGHT so the row stays about a quarter of
+   the screen on short displays too; object-fit crops instead of letterboxing. */
+.featured-row--compact .featured-row__cover {
+    width: 100%;
+    height: clamp(104px, 15vh, 200px);
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+}
+.featured-row--compact .featured-row__info { padding-left: var(--space-5); }
+.featured-row--compact.is-flipped .featured-row__info { padding-left: 0; padding-right: var(--space-5); }
+.featured-row--compact .featured-row__title { font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+.featured-row--compact .featured-row__summary { -webkit-line-clamp: 2; font-size: 0.9rem; margin-top: var(--space-2); }
+.featured-row--compact .featured-row__tags { margin-top: var(--space-3); }
+/* Clearance is handled by the grid's padding above, so neither column adds
+   height of its own and flipped rows match their neighbours exactly. */
+.featured-row--compact:not(.is-flipped) .featured-row__info,
+.featured-row--compact.is-flipped .featured-row__art { padding-top: 0; }
+
+/* Short screens: a 2-line summary plus a wrapping tag list set a height floor
+   the row can't get under, and the wrapping made rows uneven (211 vs 184).
+   One summary line and a single clipped tag row fixes both. Must come AFTER the
+   compact rules above, which have equal specificity. */
+@media (max-height: 800px) {
+    .featured-row--compact .featured-row__grid { padding: calc(var(--space-4) + 14px) var(--space-4) var(--space-4); }
+    .featured-row--compact .featured-row__cover { height: clamp(92px, 15vh, 150px); }
+    .featured-row--compact .featured-row__summary { -webkit-line-clamp: 1; margin-top: var(--space-2); }
+    .featured-row--compact .featured-row__tags { flex-wrap: nowrap; overflow: hidden; margin-top: var(--space-2); }
+    .featured-row--compact .featured-row__title { font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
+}
+
+@media (max-width: 860px) {
+    .featured-row--compact .featured-row__info,
+    .featured-row--compact.is-flipped .featured-row__info { padding-left: 0; padding-right: 0; }
+    .featured-row--compact .featured-row__art { flex: 0 0 auto; }
+    .featured-row--compact .featured-row__cover { height: clamp(140px, 22vh, 220px); }
+}
+
 @media (max-width: 860px) {
     .home-featured { width: 100%; left: auto; transform: none; }
     .featured-row, .featured-row.is-flipped { width: 100%; margin-left: 0; margin-right: 0; }
@@ -253,59 +304,10 @@
 .filter-chip:hover { border-color: var(--accent); color: var(--accent); }
 .filter-chip.is-active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
-/* Same shape as the hub's post list: one vertical column of wide, short rows
-   with the cover beside the text, instead of a grid of tall cards. */
+/* The catalogue reuses the home page's featured showcase row (blurred artwork,
+   scrim, alternating sides) via .featured-row + .featured-row--compact, defined
+   in the HOME section above. Only the column layout lives here. */
 .project-grid { display: flex; flex-direction: column; gap: var(--space-4); }
-.project-card {
-    display: flex;
-    align-items: stretch;
-    gap: var(--space-5);
-    color: var(--text);
-    padding: 0;
-}
-.project-card:hover { color: var(--text); transform: translateX(4px); }
-/* Forced, identical thumbnail on every row: an explicit width plus aspect-ratio,
-   and centred rather than stretched, so a longer summary can't make one row's
-   image taller than its neighbours'. */
-.project-card .card__media {
-    flex: 0 0 auto;
-    width: clamp(200px, 26%, 280px);
-    aspect-ratio: 16 / 9;
-    height: auto;
-    align-self: center;
-    object-fit: cover;
-}
-.project-card .card__body {
-    flex: 1; min-width: 0;
-    justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-4) var(--space-5) var(--space-4) 0;
-}
-.project-card .card__title { font-size: 1.25rem; }
-.project-card .card__text {
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    font-size: 0.92rem;
-}
-.project-card__head { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
-.project-card__kicker {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-}
-.project-card__status {
-    font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--accent); background: var(--accent-dim);
-    border: 1px solid var(--accent); border-radius: var(--radius-pill);
-    padding: 1px 9px;
-}
-@media (max-width: 640px) {
-    .project-card { flex-direction: column; }
-    .project-card .card__media { flex: 0 0 auto; width: 100%; }
-    .project-card .card__body { padding: var(--space-4); }
-    .project-card:hover { transform: none; }
-}
 
 /* =========================================================================
    PROJECT HUB  (project.html)

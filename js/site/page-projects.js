@@ -35,66 +35,74 @@
         return list;
     }
 
-    function projectCard(p) {
+    // A compact version of the home page's featured showcase row: same blurred
+    // artwork, scrim and left/right alternation, but about a quarter of the
+    // screen tall and showing the cover instead of a slideshow. The whole row is
+    // the link, so it carries no buttons of its own.
+    function projectCard(p, index) {
         var a = document.createElement('a');
-        a.className = 'card project-card';
+        a.className = 'featured-row featured-row--compact' + (index % 2 ? ' is-flipped' : '');
         a.href = 'project.html?slug=' + encodeURIComponent(p.slug);
 
-        var img = document.createElement('img');
-        img.className = 'card__media';
-        window.setImg(img, p.cover, 'thumb');
-        img.alt = p.title;
-        a.appendChild(img);
+        var bg = document.createElement('img');
+        bg.className = 'featured-row__bg';
+        window.setImg(bg, p.background || p.cover, 'md');
+        bg.alt = '';
+        a.appendChild(bg);
 
-        var body = document.createElement('div');
-        body.className = 'card__body';
+        var shade = document.createElement('div');
+        shade.className = 'featured-row__shade';
+        a.appendChild(shade);
 
-        // Kicker and status share the top line of the row.
-        if (p.kicker || p.status) {
-            var head = document.createElement('div');
-            head.className = 'project-card__head';
-            if (p.kicker) {
-                var k = document.createElement('div');
-                k.className = 'project-card__kicker';
-                k.textContent = p.kicker;
-                head.appendChild(k);
-            }
-            if (p.status) {
-                var st = document.createElement('span');
-                st.className = 'project-card__status';
-                st.textContent = p.status;
-                head.appendChild(st);
-            }
-            body.appendChild(head);
+        if (p.status) {
+            var st = document.createElement('span');
+            st.className = 'featured-row__status';
+            st.textContent = p.status;
+            a.appendChild(st);
         }
 
-        var t = document.createElement('div');
-        t.className = 'card__title';
-        t.textContent = p.title;
-        body.appendChild(t);
+        var grid = document.createElement('div');
+        grid.className = 'featured-row__grid';
 
-        // The wide row has space for the blurb, so show it.
+        var art = document.createElement('div');
+        art.className = 'featured-row__art';
+        var cover = document.createElement('img');
+        cover.className = 'featured-row__cover';
+        window.setImg(cover, p.cover, 'md');
+        cover.alt = p.title;
+        art.appendChild(cover);
+        grid.appendChild(art);
+
+        var info = document.createElement('div');
+        info.className = 'featured-row__info';
+        var head = '';
+        if (p.kicker) head += '<div class="featured-row__kicker">' + esc(p.kicker) + '</div>';
+        head += '<h2 class="featured-row__title">' + esc(p.title) + '</h2>';
+        info.innerHTML = head;
+
         if (p.summary) {
             var s = document.createElement('p');
-            s.className = 'card__text';
+            s.className = 'featured-row__summary';
             s.textContent = p.summary;
-            body.appendChild(s);
+            info.appendChild(s);
         }
-
         if (p.tags && p.tags.length) {
             var tl = document.createElement('div');
-            tl.className = 'chip-list';
+            tl.className = 'chip-list featured-row__tags';
             p.tags.slice(0, 4).forEach(function (tag) {
                 var c = document.createElement('span');
                 c.className = 'chip chip-accent';
                 c.textContent = tag;
                 tl.appendChild(c);
             });
-            body.appendChild(tl);
+            info.appendChild(tl);
         }
-        a.appendChild(body);
+        grid.appendChild(info);
+        a.appendChild(grid);
         return a;
     }
+
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
     function chip(label, active, onClick) {
         var b = document.createElement('button');
@@ -136,7 +144,7 @@
             gridEl.innerHTML = '<p class="loading-note">No projects match this filter yet.</p>';
             return;
         }
-        list.forEach(function (p) { gridEl.appendChild(projectCard(p)); });
+        list.forEach(function (p, i) { gridEl.appendChild(projectCard(p, i)); });
     }
 
     function init() {
