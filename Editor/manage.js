@@ -101,10 +101,14 @@
     var PERMANENT_COLLECTIONS = ['main'];   // Main Projects can't be renamed-away or deleted
 
     function taxonomyForm() {
-        var cols = (data.collections || []).map(function (c) {
+        var list = data.collections || [];
+        var cols = list.map(function (c, i) {
             var locked = PERMANENT_COLLECTIONS.indexOf(c.slug) !== -1;
-            return '<div class="ed-tax-row"><span class="ed-collection-badge">' + esc(c.slug) + '</span>' +
+            return '<div class="ed-tax-row"><span class="ed-tax-pos" title="Position on the home page">' + (i + 1) + '</span>' +
+                '<span class="ed-collection-badge">' + esc(c.slug) + '</span>' +
                 '<input class="ed-input" data-coll="' + esc(c.slug) + '" value="' + esc(c.label) + '">' +
+                '<button type="button" class="btn btn-ghost btn-sm" data-coll-up="' + esc(c.slug) + '" title="Move up"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+                '<button type="button" class="btn btn-ghost btn-sm" data-coll-down="' + esc(c.slug) + '" title="Move down"' + (i === list.length - 1 ? ' disabled' : '') + '>↓</button>' +
                 (locked ? '<span class="ed-lock" title="Main Projects is permanent">🔒</span>'
                         : '<button type="button" class="btn btn-ghost btn-sm mg-danger" data-coll-del="' + esc(c.slug) + '" title="Delete collection (its projects move to Main)">✕</button>') +
                 '</div>';
@@ -114,10 +118,25 @@
         }).join('');
         return '<div class="ed-project"><div class="ed-project__head"><div class="ed-project__title">Collections &amp; Categories</div></div>' +
             '<div class="ed-block__body"><div class="ed-meta-grid">' +
-            '<div class="ed-field"><label>Collections</label>' + cols +
+            '<div class="ed-field"><label>Collections</label>' +
+            '<p class="mg-media-hint">This order is the order the collection tiles appear at the bottom of the home page (1 shows first). It also sets the grouping order in the Projects menu and on the catalogue page. Empty collections are skipped on the home page.</p>' +
+            cols +
             '<div class="ed-tax-row ed-tax-add"><input class="ed-input" id="mg-newcoll" placeholder="New collection name"><button type="button" class="btn btn-ghost btn-sm" id="mg-newcoll-add">+ Add</button></div></div>' +
             '<div class="ed-field"><label>Category labels</label>' + cats + '</div>' +
             '</div></div></div>';
+    }
+
+    // Move a collection within data.collections; the array order IS the display
+    // order on the home page, so this is all the "position" control needs to do.
+    function moveCollection(slug, delta) {
+        collect();   // keep any label edits made before the arrows were clicked
+        var list = data.collections || [];
+        var i = list.findIndex(function (c) { return c.slug === slug; });
+        var j = i + delta;
+        if (i < 0 || j < 0 || j >= list.length) return;
+        var tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+        toast('Moved "' + list[j].label + '" to position ' + (j + 1) + '. Add to changes to stage it.');
+        render();
     }
 
     function addCollection() {
@@ -174,6 +193,12 @@
         if (addColl) addColl.addEventListener('click', addCollection);
         root.querySelectorAll('[data-coll-del]').forEach(function (btn) {
             btn.addEventListener('click', function () { deleteCollection(btn.dataset.collDel); });
+        });
+        root.querySelectorAll('[data-coll-up]').forEach(function (btn) {
+            btn.addEventListener('click', function () { moveCollection(btn.dataset.collUp, -1); });
+        });
+        root.querySelectorAll('[data-coll-down]').forEach(function (btn) {
+            btn.addEventListener('click', function () { moveCollection(btn.dataset.collDown, 1); });
         });
     }
 
