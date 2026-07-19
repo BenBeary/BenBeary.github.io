@@ -43,6 +43,11 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
    a layout box of its own, or the img inside stops inheriting the flex/grid
    sizing its class expects. */
 picture { display: contents; }
+/* ...but display:contents promotes <source> to a real child of that flex/grid
+   container. <source> has no UA display:none, so as a grid item it gets
+   blockified and eats a cell, pushing the image into the next row. It must
+   never generate a box. */
+picture > source { display: none; }
 
 /* Shared page content column */
 .page {
