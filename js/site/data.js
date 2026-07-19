@@ -1,4 +1,4 @@
-/* data.js — content loader with a module-level Promise cache and a visible error
+/* data.js, content loader with a module-level Promise cache and a visible error
    state. All content reads on the site go through here. Reads body[data-root]
    ('' at site root, '../' under Editor/) so the same code works in the editor.
 
@@ -18,7 +18,7 @@
             if (!r.ok) throw new Error('Failed to load ' + path + ' (' + r.status + ')');
             return r.json();
         }).catch(function (err) {
-            delete cache[path];   // don't cache failures — allow a retry
+            delete cache[path];   // don't cache failures, allow a retry
             throw err;
         });
         return cache[path];

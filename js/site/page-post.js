@@ -1,4 +1,4 @@
-/* page-post.js — renders a single post. ?slug=<project>&post=<post>. Header
+/* page-post.js, renders a single post. ?slug=<project>&post=<post>. Header
    (back-to-hub link, title, date) then the post body via the shared renderBlocks.
    The showcase's "back" points at its project hub. */
 
@@ -24,7 +24,7 @@
                 var post = res[1];
                 if (!post) { window.renderDataError(root, new Error('Post not found')); return; }
 
-                document.title = post.title + ' — Ben Beary';
+                document.title = post.title + ' | Ben Beary';
                 root.innerHTML = '';
 
                 var header = document.createElement('header');

@@ -1,7 +1,7 @@
-/* richtext-sanitize.js — whitelist sanitizer for the `text` block's stored HTML.
+/* richtext-sanitize.js, whitelist sanitizer for the `text` block's stored HTML.
    Ported (sanitize-only) from the CADRE post-gen-richtext.js in docs/reference-cadre/.
 
-   Rule (see ARCHITECTURE): stored post HTML is never trusted blindly — the site
+   Rule (see ARCHITECTURE): stored post HTML is never trusted blindly, the site
    re-sanitizes it on render. Allowed: p, strong, em, u, a[href http(s)/mailto/
    relative], ul/ol/li, br, and text-align on blocks. Everything else is unwrapped
    or dropped. Exposes the global `sanitizeRichHtml(html) -> string`.
@@ -54,7 +54,7 @@
 
     function cleanChildren(parent) {
         Array.prototype.slice.call(parent.childNodes).forEach(function (node) {
-            if (node.nodeType === 3) return;                               // text — keep
+            if (node.nodeType === 3) return;                               // text, keep
             var tagName = node.nodeType === 1 ? node.tagName.toUpperCase() : '';
             if (node.nodeType !== 1 || DROP_TAGS[tagName]) { parent.removeChild(node); return; }
 
@@ -88,7 +88,7 @@
         });
     }
 
-    // Chrome nests indented lists as a sibling of the <li> — fold into the prior <li>.
+    // Chrome nests indented lists as a sibling of the <li> - fold into the prior <li>.
     function fixListNesting(root) {
         Array.prototype.slice.call(root.querySelectorAll('ul > ul, ul > ol, ol > ul, ol > ol'))
             .forEach(function (list) {

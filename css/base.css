@@ -1,4 +1,4 @@
-/* base.css — reset, global typography, and the universal header/footer chrome
+/* base.css, reset, global typography, and the universal header/footer chrome
    injected by js/site/partials.js. Reads only tokens.css variables.
    Loaded after tokens.css, before components.css and pages.css. */
 
@@ -116,6 +116,15 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
 }
 .nav-projects:hover .nav-projects__menu,
 .nav-projects:focus-within .nav-projects__menu { display: flex; }
+/* Caret is mobile-only; on desktop hover opens the menu. */
+.nav-projects__toggle {
+    display: none;
+    background: none; border: 0; cursor: pointer;
+    color: var(--text); font-size: 1rem; line-height: 1;
+    padding: var(--space-2) var(--space-3);
+    transition: color var(--ease), transform var(--ease);
+}
+.nav-projects__toggle:hover { color: var(--accent); }
 .nav-projects__group {
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -132,7 +141,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
 }
 .nav-projects__menu a:hover { background: var(--surface-2); color: var(--accent); }
 
-/* Hamburger — hidden on desktop */
+/* Hamburger, hidden on desktop */
 .nav-toggle {
     display: none;
     margin-left: auto;
@@ -200,13 +209,20 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0; }
     }
     .site-nav > a:hover,
     .nav-projects > a:hover { background: var(--surface-2); }
-    /* On mobile the dropdown just expands inline under the trigger. */
+    /* On mobile the submenu is a real dropdown: collapsed until the caret is
+       tapped (the Projects label itself still links through to the catalogue). */
+    .nav-projects { display: flex; flex-wrap: wrap; align-items: center; }
+    .nav-projects > a { flex: 1; }
+    .nav-projects__toggle { display: block; }
     .nav-projects__menu {
         position: static;
-        display: flex;
+        display: none;
+        width: 100%;
         border: 0;
         box-shadow: none;
         background: transparent;
         padding-left: var(--space-4);
     }
+    .nav-projects.is-open .nav-projects__menu { display: flex; }
+    .nav-projects.is-open .nav-projects__toggle { transform: rotate(180deg); }
 }

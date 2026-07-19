@@ -1,7 +1,7 @@
-/* upload.js — image upload to the repo via the GitHub Contents API. A single
+/* upload.js, image upload to the repo via the GitHub Contents API. A single
    immediate PUT at insert time (not batched) so the returned raw path is usable
    right away. Derivatives (_derived thumbs/md) won't exist until optimize-media
-   is re-run locally — the site's setImg onerror-fallback covers that meanwhile.
+   is re-run locally, the site's setImg onerror-fallback covers that meanwhile.
 
    Exposes window.EditorUpload.{ uploadImage(folder,file)->path, pickAndUpload(folder,cb) }.
    Requires auth.js + github-api.js. Load after github-api.js, before editor.js. */

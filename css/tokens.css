@@ -1,4 +1,4 @@
-/* tokens.css — the single source of every design value for the redesigned site.
+/* tokens.css, the single source of every design value for the redesigned site.
    Everything else (base.css, components.css, pages.css) reads these variables and
    sets no raw colors of its own. Values are the current dark + amber identity,
    extracted from the legacy css/newWebStyle.css so the look carries over.
@@ -48,7 +48,7 @@
     --success: #3ecf6e;
 
     /* --- Typography --- */
-    /* System stack (no web font request — matches the legacy site and the
+    /* System stack (no web font request, matches the legacy site and the
        performance goal). Gill Sans on Apple, Segoe/Calibri fallbacks elsewhere. */
     --font-sans: 'Gill Sans', 'Gill Sans MT', 'Segoe UI', Calibri, 'Trebuchet MS', system-ui, sans-serif;
     --font-mono: 'Courier New', ui-monospace, monospace;
@@ -94,4 +94,21 @@
     /* --- Motion --- */
     --ease: 0.2s ease;
     --ease-slow: 0.35s ease;
+}
+
+/* 720p-class displays (1280x720 and other short viewports): step the spacing
+   scale, header, and headings down so a section still fits on screen, without
+   every layout needing its own breakpoint. */
+@media (max-width: 1366px), (max-height: 800px) {
+    :root {
+        --header-h: 56px;
+        --space-5: 1.15rem;
+        --space-6: 1.5rem;
+        --space-7: 2.15rem;
+        --space-8: 3rem;
+        --content-pad: clamp(0.85rem, 3vw, 2rem);
+        --fs-400: 1.1rem;
+        --fs-500: 1.35rem;
+        --fs-600: 1.75rem;
+    }
 }

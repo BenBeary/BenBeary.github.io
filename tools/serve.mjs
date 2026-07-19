@@ -1,4 +1,4 @@
-/* serve.mjs — zero-dependency static file server for local testing (the site
+/* serve.mjs, zero-dependency static file server for local testing (the site
    uses fetch(), which fails on file://). Serves the repo root.
 
      node serve.mjs            # http://localhost:8080

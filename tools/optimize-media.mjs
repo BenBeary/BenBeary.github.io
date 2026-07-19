@@ -1,4 +1,4 @@
-/* optimize-media.mjs — generate the site's derived media into images/_derived,
+/* optimize-media.mjs, generate the site's derived media into images/_derived,
    mirroring the images/ tree. Local-only; run with `npm run optimize` from tools/.
 
    Everything lives under one top-level images/ folder: originals stay in their
@@ -42,7 +42,7 @@ const THUMB_W = 480, THUMB_Q = 70;
 const MD_W = 1280, MD_Q = 78;
 const POSTER_W = 1280, POSTER_Q = 78;
 const OPT_MP4_THRESHOLD = 20 * 1024 * 1024;   // re-encode mp4s larger than this
-// _derived is the OUTPUT tree (inside images/) — skip it so we never re-derive
+// _derived is the OUTPUT tree (inside images/), skip it so we never re-derive
 // from generated files (e.g. treating a .opt.mp4 as a new source video).
 const SKIP_DIRS = new Set(['_derived', 'Archived', 'Game', 'node_modules', '.git']);
 
@@ -168,7 +168,7 @@ async function walk(dir) {
 
 const t0 = Date.now();
 console.log(`optimize-media: ${SRC_ROOT} -> ${OUT_ROOT}`);
-if (!ffmpegPath) { console.error('ffmpeg-static path is null — is it installed?'); process.exit(1); }
+if (!ffmpegPath) { console.error('ffmpeg-static path is null, is it installed?'); process.exit(1); }
 await fs.mkdir(OUT_ROOT, { recursive: true });
 await walk(SRC_ROOT);
 

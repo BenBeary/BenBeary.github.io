@@ -1,9 +1,8 @@
-/* media.js — derived-media URL resolution, lazy images, click-to-play video, and
+/* media.js, derived-media URL resolution, lazy images, click-to-play video, and
    the shared lightbox. Reads only original `images/…` paths from content JSON and
    maps them to the derivatives produced by tools/optimize-media.mjs.
 
-   Path transform (see ARCHITECTURE): images/X/y.ext -> images/_derived/X/y.<kind>
-   — insert "_derived/" after the leading "images/", strip the source extension,
+   Path transform (see ARCHITECTURE): images/X/y.ext -> images/_derived/X/y.<kind> - insert "_derived/" after the leading "images/", strip the source extension,
    append the kind suffix. Everything is encodeURI'd (filenames contain spaces).
    A body[data-root] prefix ('' at site root, '../' under Editor/) lets the same
    code work in the editor preview.

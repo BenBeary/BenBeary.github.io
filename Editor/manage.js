@@ -1,4 +1,4 @@
-/* manage.js — project & taxonomy metadata editor.
+/* manage.js, project & taxonomy metadata editor.
 
    Views:
      manage.html                → all projects (newest first) + taxonomy labels
@@ -46,7 +46,7 @@
     function mediaEditor(p) {
         var rows = (p.media || []).map(mediaRow).join('');
         return '<div class="ed-field ed-field--wide"><label>Hub slideshow media</label>' +
-            '<p class="mg-media-hint">Shown at the top of the project page. Mix png / jpg / gif / mp4 — video slides get a poster thumbnail automatically. 📁 browses the image folders.</p>' +
+            '<p class="mg-media-hint">Shown at the top of the project page. Mix png / jpg / gif / mp4, video slides get a poster thumbnail automatically. 📁 browses the image folders.</p>' +
             '<div class="ed-gallery" data-media>' + rows + '</div>' +
             '<button type="button" class="btn btn-ghost btn-sm" data-media-add>+ Add media</button></div>';
     }
@@ -88,9 +88,9 @@
             textField('Date', 'date', p.date || '', 'YYYY-MM-DD') +
             '<div class="ed-field"><label>Cover path</label><div class="ed-src-row"><input class="ed-input" data-k="cover" value="' + esc(p.cover || '') + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
             '<div class="ed-field"><label>Background path</label><div class="ed-src-row"><input class="ed-input" data-k="background" value="' + esc(p.background || '') + '" placeholder="images/Blog Images/Project/Blurred.jpg"><button type="button" class="ed-upload-btn" data-media-browse title="Pick from the image folders">📁</button></div></div>' +
-            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" data-hidden' + (p.hidden ? ' checked' : '') + '> Hide this project (keep it off the site — direct links still work)</label></div>' +
+            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" data-hidden' + (p.hidden ? ' checked' : '') + '> Hide this project (keep it off the site, direct links still work)</label></div>' +
             '<div class="ed-field ed-field--wide"><label>Summary</label><textarea class="ed-input" data-k="summary" rows="2">' + esc(p.summary || '') + '</textarea></div>' +
-            '<div class="ed-field ed-field--wide"><label>Highlight bullets (hub left column — one per line)</label><textarea class="ed-input" data-k-bullets rows="4" placeholder="One contribution / highlight per line">' + esc((p.bullets || []).join('\n')) + '</textarea></div>' +
+            '<div class="ed-field ed-field--wide"><label>Highlight bullets (hub left column, one per line)</label><textarea class="ed-input" data-k-bullets rows="4" placeholder="One contribution / highlight per line">' + esc((p.bullets || []).join('\n')) + '</textarea></div>' +
             '</div>' +
             mediaEditor(p) +
             '<div class="ed-field"><label>Skill categories (these are the project\'s tags)</label><div class="ed-checks">' + catChecks + '</div></div>' +
@@ -129,7 +129,7 @@
         if (!slug) { toast('Invalid collection name.'); return; }
         if ((data.collections || []).some(function (c) { return c.slug === slug; })) { toast('Collection "' + slug + '" already exists.'); return; }
         data.collections.push({ slug: slug, label: label });
-        toast('Added collection "' + label + '" — Add to changes to stage it.');
+        toast('Added collection "' + label + '" - Add to changes to stage it.');
         render();
     }
 
@@ -138,11 +138,11 @@
         var c = (data.collections || []).find(function (x) { return x.slug === slug; });
         if (!c) return;
         var affected = (data.projects || []).filter(function (p) { return p.collection === slug; }).length;
-        if (!confirm('Delete collection "' + c.label + '"?' + (affected ? '\n\n' + affected + ' project(s) in it will move to Main Projects.' : '') + '\n\nStaged — commit from 📋 Changes to apply.')) return;
+        if (!confirm('Delete collection "' + c.label + '"?' + (affected ? '\n\n' + affected + ' project(s) in it will move to Main Projects.' : '') + '\n\nStaged. Commit from 📋 Changes to apply.')) return;
         collect();
         (data.projects || []).forEach(function (p) { if (p.collection === slug) p.collection = 'main'; });
         data.collections = data.collections.filter(function (x) { return x.slug !== slug; });
-        toast('Deleted "' + c.label + '" — Add to changes to stage it.');
+        toast('Deleted "' + c.label + '" - Add to changes to stage it.');
         render();
     }
 
@@ -183,12 +183,12 @@
         var postCount = (p.posts || []).length;
         var msg = 'Delete project "' + (p.title || slug) + '"?' +
             (postCount ? '\n\nIts ' + postCount + ' post file(s) under content/posts/' + slug + '/ will also be deleted.' : '') +
-            '\n\nImages are NOT deleted. This is staged — it takes effect when you commit from 📋 Changes.';
+            '\n\nImages are NOT deleted. This is staged, it takes effect when you commit from 📋 Changes.';
         if (!confirm(msg)) return;
         collect();
         (p.posts || []).forEach(function (post) { deletedPostPaths.push('content/posts/' + slug + '/' + post.slug + '.json'); });
         data.projects = data.projects.filter(function (x) { return x.slug !== slug; });
-        toast('Removed "' + (p.title || slug) + '" — Add to changes to stage it.');
+        toast('Removed "' + (p.title || slug) + '" - Add to changes to stage it.');
         render();
     }
 
@@ -249,7 +249,7 @@
             });
             p.media = media;
             p.categories = Array.prototype.map.call(form.querySelectorAll('[data-cat]:checked'), function (c) { return c.dataset.cat; });
-            // Tags ARE the selected skill categories (by label) — no separate list.
+            // Tags ARE the selected skill categories (by label), no separate list.
             p.tags = p.categories.map(function (slug) { var c = (data.categories || []).find(function (x) { return x.slug === slug; }); return c ? c.label : slug; });
             var ord = {};
             form.querySelectorAll('[data-order]').forEach(function (inp) { if (inp.value !== '') ord[inp.dataset.order] = Number(inp.value); });
@@ -267,8 +267,8 @@
         (baseline.projects || []).forEach(function (b) {
             var p = (data.projects || []).find(function (x) { return x.slug === b.slug; });
             if (!p) return;   // deleting a project is an explicit, separately-confirmed action
-            if ((b.media || []).length && !(p.media || []).length) lost.push(b.slug + ' — ' + b.media.length + ' media item(s)');
-            if ((b.bullets || []).length && !(p.bullets || []).length) lost.push(b.slug + ' — ' + b.bullets.length + ' bullet(s)');
+            if ((b.media || []).length && !(p.media || []).length) lost.push(b.slug + ' - ' + b.media.length + ' media item(s)');
+            if ((b.bullets || []).length && !(p.bullets || []).length) lost.push(b.slug + ' - ' + b.bullets.length + ' bullet(s)');
         });
         if (!lost.length) return true;
         return confirm('This will CLEAR existing content:\n\n' + lost.join('\n') +
@@ -279,11 +279,11 @@
     // Stage projects.json (+ queued post-file deletions) into the change queue.
     function stage() {
         collect();
-        if (!confirmDataLoss()) { toast('Nothing staged — your content was left alone.'); return; }
+        if (!confirmDataLoss()) { toast('Nothing staged. Your content was left alone.'); return; }
         window.EditorQueue.stageProjects(data, 'Project metadata');
         deletedPostPaths.forEach(function (path) { window.EditorQueue.stageDelete(path, 'Delete post file ' + path.split('/').slice(-2).join('/')); });
         deletedPostPaths = [];
-        toast('Added to changes — commit from 📋 Changes when ready.');
+        toast('Added to changes. Commit from 📋 Changes when ready.');
     }
 
     function load() {

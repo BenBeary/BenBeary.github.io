@@ -1,4 +1,4 @@
-/* page-projects.js — the catalogue. Renders a filter bar (collection tabs +
+/* page-projects.js, the catalogue. Renders a filter bar (collection tabs +
    skill-category chips) and a grid of project cards. Reads ?cat= and ?collection=
    from the URL; chips update the URL (pushState) and re-render in place so views
    are shareable and the back button works. */

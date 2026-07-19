@@ -1,4 +1,4 @@
-/* page-role.js — a curated role landing page. ?slug=<role>. Renders a headline,
+/* page-role.js, a curated role landing page. ?slug=<role>. Renders a headline,
    intro, optional resume button, and the role's featured projects in order, each
    with role-specific bullets that override the project's own. Linked per job
    application (not in the navbar). */
@@ -55,7 +55,7 @@
                 var byslug = {};
                 (res[1].projects || []).forEach(function (p) { byslug[p.slug] = p; });
 
-                document.title = role.headline + ' — Ben Beary';
+                document.title = role.headline + ' | Ben Beary';
                 root.innerHTML = '';
 
                 var header = document.createElement('header');

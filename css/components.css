@@ -1,4 +1,4 @@
-/* components.css — reusable UI primitives shared across pages.
+/* components.css, reusable UI primitives shared across pages.
    Reads only tokens.css variables. Loaded after base.css.
 
    Present now (M1): buttons, chips/tags, cards, panels, section headings.
@@ -142,7 +142,7 @@
 .social-row img { object-fit: contain; }
 
 /* =========================================================================
-   POST BODY BLOCKS  (rendered by js/site/blocks.js — shared with editor preview)
+   POST BODY BLOCKS  (rendered by js/site/blocks.js, shared with editor preview)
    ========================================================================= */
 .post-body { max-width: 800px; margin: 0 auto; }
 .post-body > * { margin-bottom: var(--space-5); }
@@ -196,7 +196,7 @@
 
 /* Slideshow (Steam-style stage + thumb strip; built by media.js makeSlideshow) */
 .pshow { display: flex; flex-direction: column; gap: var(--space-2); }
-/* [❮][ image ][❯] — arrows sit beside the stage, kept narrow so the image keeps
+/* [❮][ image ][❯], arrows sit beside the stage, kept narrow so the image keeps
    as much of the row's width as possible. */
 .pshow__stagewrap { position: relative; display: flex; align-items: center; gap: var(--space-2); }
 .pshow__stage {

@@ -1,4 +1,4 @@
-/* hoist-bullets.mjs — one-off (M5.6): move each showcase post's first `bullets`
+/* hoist-bullets.mjs, one-off (M5.6): move each showcase post's first `bullets`
    block into the project's new `bullets[]` (shown in the hub hero's left column,
    original-site style). If a "Contributions"-style heading directly precedes the
    bullets block it moves out too (the hero renders its own label). The showcase

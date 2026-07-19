@@ -1,4 +1,4 @@
-/* queue.js — the editor's persistent change queue (CADRE ChangeQueue concept).
+/* queue.js, the editor's persistent change queue (CADRE ChangeQueue concept).
 
    Every mutating action in the editor (publish a post, save project metadata,
    add/delete a project, delete a post, upload an image, make a folder) STAGES a
@@ -72,7 +72,7 @@
                 return { path: p, op: files[p].op, kind: files[p].kind, label: files[p].label, ts: files[p].ts };
             }).sort(function (a, b) { return (b.ts || 0) - (a.ts || 0); });
         },
-        // Queued files that live under images/ — the browser overlays these on
+        // Queued files that live under images/ - the browser overlays these on
         // the committed tree so uploads/new folders show before they're pushed.
         imageFileEntries: function () {
             var files = read().files;
@@ -245,7 +245,7 @@
 
     document.addEventListener('queue:changed', refreshBadge);
 
-    // Warn ONLY when the tab is actually being closed — not when navigating
+    // Warn ONLY when the tab is actually being closed, not when navigating
     // between editor pages (the queue persists in localStorage, so moving around
     // never loses work). Any same-tab link/button navigation sets a short-lived
     // "internal nav" flag that suppresses the prompt; a bare unload (close tab /

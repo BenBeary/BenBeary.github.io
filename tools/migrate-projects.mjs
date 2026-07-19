@@ -1,4 +1,4 @@
-/* migrate-projects.mjs — one-time conversion of the legacy js/projects.js data
+/* migrate-projects.mjs, one-time conversion of the legacy js/projects.js data
    object into the new content model: content/projects.json + one
    content/posts/<slug>/showcase.json per project.
 
@@ -8,7 +8,7 @@
 
    The legacy file is a plain `const projects = { ... }` object literal (trailing
    commas, // comments, escaped curly quotes). We load it by evaluating the source
-   in a Function and returning the object — no rename of images, no edits to the
+   in a Function and returning the object, no rename of images, no edits to the
    legacy file. Every media path referenced by the output is checked to exist on
    disk; missing files block --write. See docs/ARCHITECTURE.md for the schemas. */
 
@@ -119,7 +119,7 @@ const jamCandidates = [];     // summaries that mention a game jam (for the repo
 for (const key of keys) {
     const p = projects[key];
     const slug = SLUGS[key];
-    if (!slug) throw new Error(`no slug mapping for legacy key "${key}" — add it to SLUGS`);
+    if (!slug) throw new Error(`no slug mapping for legacy key "${key}" - add it to SLUGS`);
 
     const { kicker, title } = parseTitle(p.title);
     const iso = toIso(p.date);
@@ -158,7 +158,7 @@ for (const key of keys) {
     }
     videos.forEach((v) => blocks.push({ type: 'video', src: v, caption: '' }));
 
-    const postTitle = `${title} — Showcase`;
+    const postTitle = `${title} Showcase`;
     const post = {
         version: 1, slug: 'showcase', project: slug, type: 'showcase',
         title: postTitle, date: iso, excerpt: excerpt(p.summary), blocks,
@@ -195,7 +195,7 @@ console.log(`migrate-projects  (${WRITE ? 'WRITE' : 'dry run'})`);
 console.log(`  projects: ${outProjects.length}   showcase posts: ${outPosts.length}\n`);
 for (const pr of outProjects) {
     const home = pr.order.home ? ` home#${pr.order.home}` : '';
-    console.log(`  ${pr.slug.padEnd(18)} ${String(pr.kicker || '—').padEnd(13)} ` +
+    console.log(`  ${pr.slug.padEnd(18)} ${String(pr.kicker || ' - ').padEnd(13)} ` +
         `cats[${pr.categories.length}]${home}  posts:${pr.posts.length}`);
 }
 console.log(`\n  referenced media files: ${referenced.size}`);
@@ -206,14 +206,14 @@ if (missing.length) {
     console.log('  all referenced media exist on disk ✓');
 }
 if (jamCandidates.length) {
-    console.log(`\n  note: these mention "game jam" in their text — candidates to re-tag`);
+    console.log(`\n  note: these mention "game jam" in their text, candidates to re-tag`);
     console.log(`  collection:"game-jams" in the editor: ${jamCandidates.join(', ')}`);
 }
 
 // --- write -----------------------------------------------------------------
 
 if (!WRITE) {
-    console.log('\n  dry run — pass --write to emit content/. Nothing written.');
+    console.log('\n  dry run, pass --write to emit content/. Nothing written.');
     process.exit(missing.length ? 1 : 0);
 }
 if (missing.length) {

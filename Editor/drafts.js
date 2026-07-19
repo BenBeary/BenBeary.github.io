@@ -1,4 +1,4 @@
-/* drafts.js — local draft index management for the editor landing page.
+/* drafts.js, local draft index management for the editor landing page.
    editor.js writes drafts (key `pf.editor.draft.<project>.<slug>`) and maintains
    the index `pf.editor.drafts`; this exposes listDrafts()/deleteDraft() for
    editor-index.js to render + manage them. Prunes drafts older than 30 days.

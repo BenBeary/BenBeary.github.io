@@ -1,4 +1,4 @@
-/* hoist-showcase-media.mjs — one-off (M5.5): move each showcase post's visual
+/* hoist-showcase-media.mjs, one-off (M5.5): move each showcase post's visual
    blocks (image / gallery / video / slideshow) into the project's new `media[]`
    (rendered as the hub's top slideshow, original-site style). The showcase post
    keeps its write-up blocks (headings/text/bullets/…). Also seeds `status`:
@@ -36,7 +36,7 @@ for (const p of data.projects || []) {
     p.media = media;
     if (!p.status) p.status = 'Finished';
     if (p.status === 'Actively Developing') p.status = 'In Development';
-    console.log(`${p.slug.padEnd(18)} media:${String(media.length).padStart(2)}  status:${p.status}  showcase blocks left:${post ? post.blocks.length : '—'}`);
+    console.log(`${p.slug.padEnd(18)} media:${String(media.length).padStart(2)}  status:${p.status}  showcase blocks left:${post ? post.blocks.length : ' - '}`);
 }
 
 data.contentVersion = (data.contentVersion || 0) + 1;

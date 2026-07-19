@@ -82,7 +82,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Clean Up Crew — Showcase",
+          "title": "Clean Up Crew Showcase",
           "date": "2025-07-29",
           "excerpt": "We took inspiration from different games such as Risk of Rain 2 and the original Doom games. We wanted to create a large world that the player could move…",
           "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png"
@@ -187,7 +187,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Docking Bay — Showcase",
+          "title": "Docking Bay Showcase",
           "date": "2025-10-17",
           "excerpt": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We…",
           "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png"
@@ -285,7 +285,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Idol of Ashes — Showcase",
+          "title": "Idol of Ashes Showcase",
           "date": "2025-06-09",
           "excerpt": "I was mainly the backend developer for this project and worked heavily on the UI and other systems. Some of the main systems I created were a dialogue, quest…",
           "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png"
@@ -372,7 +372,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Spirit Outbreak — Showcase",
+          "title": "Spirit Outbreak Showcase",
           "date": "2025-04-19",
           "excerpt": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based…",
           "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg"
@@ -460,7 +460,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Dice Climbers: Shelf of Chaos — Showcase",
+          "title": "Dice Climbers: Shelf of Chaos Showcase",
           "date": "2025-05-20",
           "excerpt": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the…",
           "cover": "images/Blog Images/DiceClimber/Title Poster.jpg"
@@ -667,7 +667,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Devil's Acre — Showcase",
+          "title": "Devil's Acre Showcase",
           "date": "2022-04-22",
           "excerpt": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves…",
           "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png"
@@ -800,7 +800,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Meoware Defender — Showcase",
+          "title": "Meoware Defender Showcase",
           "date": "2025-09-02",
           "excerpt": "This was a state-funded project where I worked on a team to create a game targeted toward 3rd- and 4th-grade students, aiming to boost their motivation to…",
           "cover": "images/Blog Images/MeowareDefender/Menu.png"
@@ -874,7 +874,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Signal-Link — Showcase",
+          "title": "Signal-Link Showcase",
           "date": "2026-01-04",
           "excerpt": "This was a 2-week Game Jam where my team and I worked to create a game based on the theme of “connections”. My primary role was Level Design and Environmental…",
           "cover": "images/Blog Images/Signal-Link/singla_link_poster.png"
@@ -995,7 +995,7 @@
         {
           "slug": "showcase",
           "type": "showcase",
-          "title": "Port Lochne — Showcase",
+          "title": "Port Lochne Showcase",
           "date": "2022-04-22",
           "excerpt": "This map was created in the Hammer Editor used for the source engine of the game Garry's Mod. The map is used for the game mode \"Trouble In Terrorist Town.\"…",
           "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png"

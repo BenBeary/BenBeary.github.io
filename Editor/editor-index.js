@@ -1,4 +1,4 @@
-/* editor-index.js — the editor landing page. Sign-in prompt when signed out; a
+/* editor-index.js, the editor landing page. Sign-in prompt when signed out; a
    project/post/draft picker when signed in. Re-renders on 'auth:ready' /
    'auth:changed' and after queue commits. Creating a NEW project lives here (it
    stages into the change queue, so it shows up immediately). Each post has a
@@ -58,7 +58,7 @@
             '</div>' +
             '</div>' +
             (posts.length ? '<ul class="ed-posts">' + posts.map(function (post) { return postRow(p.slug, post); }).join('') + '</ul>'
-                          : '<ul class="ed-posts"><li class="ed-empty" style="padding:var(--space-2) var(--space-3)">No posts yet — “+ New post”, or set up the hub slideshow in ⚙ Edit.</li></ul>') +
+                          : '<ul class="ed-posts"><li class="ed-empty" style="padding:var(--space-2) var(--space-3)">No posts yet - “+ New post”, or set up the hub slideshow in ⚙ Edit.</li></ul>') +
             '</div>';
     }
 
@@ -135,7 +135,7 @@
         p.posts = (p.posts || []).filter(function (x) { return x.slug !== postSlug; });
         window.EditorQueue.stageProjects(data, 'Remove post entry: ' + title);
         window.EditorQueue.stageDelete('content/posts/' + projectSlug + '/' + postSlug + '.json', 'Delete post: ' + title);
-        toast('Deleted "' + title + '" — commit from 📋 Changes.');
+        toast('Deleted "' + title + '" - commit from 📋 Changes.');
         renderSignedIn();
     }
 

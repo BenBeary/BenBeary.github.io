@@ -1,4 +1,4 @@
-# Portfolio Redesign — Architecture & Contracts
+# Portfolio Redesign. Architecture & Contracts
 
 > This file is the **single source of truth** for the redesign. Future sessions COPY from it;
 > they do not redesign it. Any schema/API/convention change edits this file in the same commit
@@ -6,14 +6,14 @@
 
 ## Why this redesign exists
 
-The legacy site is one `index.html` with a fullscreen carousel of all 12 projects — 247 MB of media,
+The legacy site is one `index.html` with a fullscreen carousel of all 12 projects - 247 MB of media,
 zero lazy loading, data in a JS object literal (`js/projects.js`), no editor/blog/partials. It reloads
 everything on every visit and can't deep-link to a project for a recruiter. The redesign is a
 multi-page, blog-style portfolio: project **hubs** (pinned showcase post + dated sub-blogs), grouping by
 **skill category** and by **collection** (Main / Game Jams / Misc), curated **role landing pages** linked
 per job application, Steam/Netflix-style horizontal **shelves** on the homepage, a full media-optimization
 pass, and an in-browser **Editor/** that publishes JSON content to GitHub via a fine-grained PAT (adapted
-from the user's proven CADRE editor — see `docs/reference-cadre/`).
+from the user's proven CADRE editor, see `docs/reference-cadre/`).
 
 ## Locked decisions (do not relitigate)
 
@@ -24,17 +24,16 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 
 ## Hard rules
 
-- Vanilla JS + CSS only. No frameworks, no site-side npm deps (npm only inside `tools/`). No build step —
-  files are served exactly as committed.
-- Never rename or move files under `images/` — JSON references and the lightbox depend on original paths.
+- Vanilla JS + CSS only. No frameworks, no site-side npm deps (npm only inside `tools/`). No build step - files are served exactly as committed.
+- Never rename or move files under `images/` - JSON references and the lightbox depend on original paths.
   Derivatives go in `images/_derived/` mirroring the tree (one top-level `images/` folder).
 - Every emitted media URL goes through `encodeURI()` (filenames contain spaces and underscores).
 - All content reads go through `js/site/data.js`; all media path logic through `js/site/media.js`; all
-  block rendering through `js/site/blocks.js` (shared with the editor preview — never fork it).
+  block rendering through `js/site/blocks.js` (shared with the editor preview, never fork it).
 - Legacy files are read-only until Milestone 6: `index.html`, `js/newWebMain.js`, `js/projects.js`,
   `css/newWebStyle.css`, `css/navbar.css`.
 - Test via local server only (`fetch` fails on `file://`).
-- The editor publishes via `ghBatchCommit()` (atomic multi-file commit, Git Data API) — never sequential
+- The editor publishes via `ghBatchCommit()` (atomic multi-file commit, Git Data API), never sequential
   Contents-API PUTs for multi-file changes.
 
 ## Target file tree
@@ -81,7 +80,7 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 ├── images/                       # ONE top-level media folder
 │   ├── Blog Images/<Project>/<name>.<ext>   # project/blog image originals (the editor's image
 │   │                             #   browser is scoped to this folder; note the literal space)
-│   ├── SocialIcons/, SelfImage.jpg, …       # site chrome — NOT blog images, left at images/ root
+│   ├── SocialIcons/, SelfImage.jpg, …       # site chrome. NOT blog images, left at images/ root
 │   └── _derived/                 #   committed derivatives, mirrors the FULL images/ tree
 │       └── Blog Images/<Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
 └── Game/, Archived/              # untouched
@@ -89,7 +88,7 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 
 ## JSON schemas
 
-### `content/projects.json` — the index that drives everything
+### `content/projects.json` - the index that drives everything
 
 ```json
 {
@@ -107,10 +106,10 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
   "projects": [{
     "slug": "clean-up-crew", "title": "Clean Up Crew", "kicker": "Team Project",
     "status": "In Development",   // OPTIONAL tag shown top-right of the hub hero; "" or absent = none
-    "hidden": false,             // OPTIONAL — true = unlisted (off catalogue/home/navbar; direct link still works)
+    "hidden": false,             // OPTIONAL - true = unlisted (off catalogue/home/navbar; direct link still works)
     "date": "2025-07-29", "playLink": "…", "summary": "…",
     "categories": ["programming", "ui-ux"],
-    "tags": ["Programming", "UI / UX"],   // DERIVED from categories at save time (category labels) — not hand-edited
+    "tags": ["Programming", "UI / UX"],   // DERIVED from categories at save time (category labels), not hand-edited
     "collection": "main",
     "order": { "home": 1, "programming": 1 },
     "cover": "images/CleanUpCrew/16_9 shot.png", "background": "images/CleanUpCrew/Blurred.jpg",
@@ -130,15 +129,15 @@ after the fact in `manage.html` (media rows with 📁 browse/reorder; bullets as
 
 **Two independent grouping axes**: `categories` = skills the project demonstrates (a project can have
 several); `collection` = kind. `categories` doubles as the project's `tags` (the editor derives `tags`
-from the selected categories' labels — there is no separate tags field). `collection` is exactly one of
+from the selected categories' labels, there is no separate tags field). `collection` is exactly one of
 the `collections[]` list, which is editable in Manage (add / rename / delete) EXCEPT `main` ("Main
 Projects"), which is permanent; deleting a collection reassigns its projects to `main`. Navbar Projects
 dropdown groups by collection; `projects.html` filters by either axis. Hidden projects/posts (`"hidden":
 true`) are excluded from every listing (catalogue, hub post list, navbar) but remain reachable by direct
-URL — an "unlisted" state for drafts/WIP. Small jam/misc projects are ordinary projects — a hub with just
+URL - an "unlisted" state for drafts/WIP. Small jam/misc projects are ordinary projects, a hub with just
 a slideshow renders fine, no special-casing.
 
-**Ordering**: `order` is opt-in — a missing key means "not featured in that listing". Within a listing,
+**Ordering**: `order` is opt-in, a missing key means "not featured in that listing". Within a listing,
 sort by `order` ascending, then `date` descending. (`order.home` drives the homepage Featured shelf.)
 
 **Posts** are embedded here so a publish touches exactly 2 files (the post JSON + projects.json). Exactly
@@ -169,20 +168,20 @@ Pages CDN (~10 min cache).
 ```
 
 `text.html` is rich-text HTML that is **re-sanitized on render** by the shared whitelist sanitizer
-(`js/site/richtext-sanitize.js`, a port of CADRE `richSanitize` — see `docs/reference-cadre/post-gen-richtext.js`).
+(`js/site/richtext-sanitize.js`, a port of CADRE `richSanitize` - see `docs/reference-cadre/post-gen-richtext.js`).
 Allowed: `p, strong, em, u, a[href: http(s)/mailto/relative], ul, ol, li, br`, plus `text-align`. Never
-trust stored HTML blindly. `video` has no poster field — the poster is derived by convention (below).
+trust stored HTML blindly. `video` has no poster field, the poster is derived by convention (below).
 `gallery` is images-only. `slideshow` is MIXED media (Steam-style stage + thumb strip): mp4 items get
 their thumb from the derived `.poster.webp`, and both hub media and post slideshows use the one
 `makeSlideshow(container, items)` in media.js. `bullets` is DEPRECATED for authoring (paragraph lists
 replaced it, M5.5) but stays render-supported for migrated content.
 
-**Project-level media (M5.5):** each project may carry `"media": [ { "src", "alt" } ]` — the hub renders
+**Project-level media (M5.5):** each project may carry `"media": [ { "src", "alt" } ]` - the hub renders
 it as the top slideshow (original-site style) above summary + posts. Showcase posts are OPTIONAL: they
 hold the write-up (About/Contributions); their old hero/gallery/video blocks were hoisted into
 project.media by `tools/hoist-showcase-media.mjs`. `"status"` is authored via a dropdown:
 In Development (default) | Prototype | Concept | On Hold | Finished | Released | Archived
-(free text still renders — the enum is an editor convention, not a schema constraint).
+(free text still renders, the enum is an editor convention, not a schema constraint).
 
 ### `content/roles/<role>.json`
 
@@ -197,13 +196,13 @@ with these `bullets` overriding the showcase's, each linking to the project hub.
 ## Module APIs (signatures are the contract)
 
 ```js
-// js/site/data.js — module-level Promise cache + visible fetch-error state
+// js/site/data.js, module-level Promise cache + visible fetch-error state
 getProjects() -> Promise<projectsJson>
 getProject(slug) -> Promise<project|null>
 getPost(projectSlug, postSlug) -> Promise<postJson>   // fetched with ?v=<contentVersion>
 getRole(slug) -> Promise<roleJson>
 
-// js/site/media.js — pure string transforms images/X/y.ext -> images/_derived/X/y.<kind>; always encodeURI'd
+// js/site/media.js, pure string transforms images/X/y.ext -> images/_derived/X/y.<kind>; always encodeURI'd
 //   (insert "_derived/" after the leading "images/", strip the source ext, append the kind suffix)
 thumbUrl(src), mediumUrl(src), posterUrl(src), optVideoUrl(src)
 setImg(imgEl, src, kind)            // sets derived URL; onerror -> encoded original (no manifest needed)
@@ -211,17 +210,17 @@ makeVideo(container, src, caption)  // poster + play btn; click swaps in <video 
                                     //   autoplay>, trying .opt.mp4 then falling back to the original
 openLightbox(items, startIndex)     // full-res originals, loaded only on open
 
-// js/site/blocks.js — the ONE renderer; ALSO loaded by Editor/edit.html's live preview
+// js/site/blocks.js, the ONE renderer; ALSO loaded by Editor/edit.html's live preview
 renderBlocks(blocks, containerEl)
 
-// js/site/partials.js — header/footer template strings; {{root}} from body[data-root]
+// js/site/partials.js, header/footer template strings; {{root}} from body[data-root]
 //   ('.' at repo root, '..' inside Editor/); Projects dropdown grouped by collection from projects.json
 
 // Editor/github-api.js (from CADRE, near-verbatim):
 ghBatchCommit({ message, changes: [ {op:'put',path,content} | {op:'putB64',path,base64} | {op:'delete',path} ], branch })
 //   Atomic Git Data API commit: blobs -> tree(base_tree) -> commit -> PATCH ref; retries once on race.
 
-// Editor/queue.js — the persistent change queue (localStorage; CADRE ChangeQueue concept).
+// Editor/queue.js, the persistent change queue (localStorage; CADRE ChangeQueue concept).
 //   Every editor mutation STAGES a file change here (keyed by repo path, last-write-wins) instead of
 //   committing. Survives navigation across edit/manage/index and reloads. A universal 📋 Changes button
 //   (injected into .ed-header__actions on every editor page) opens a review modal; one commit sends the
@@ -233,25 +232,24 @@ window.EditorQueue = {
   commit(message?)                   // bumps contentVersion once, ghBatchCommit's everything, clears on success
 }
 //   Fires document events 'queue:changed' (badge refresh) and 'queue:committed' (pages reload their copy).
-//   NOTE: image uploads + new folders still commit IMMEDIATELY (binary in localStorage would blow quota) —
-//   the browser inserts them optimistically so they show at once, then reconciles with the committed tree.
+//   NOTE: image uploads + new folders still commit IMMEDIATELY (binary in localStorage would blow quota) - //   the browser inserts them optimistically so they show at once, then reconciles with the committed tree.
 ```
 
 ## Conventions
 
 - **Slugs**: kebab-case, derived from folder/title.
 - **Derived media** (all under `images/_derived/<same subpath>/`):
-  - `.thumb.webp` — width 480, quality 70 (~30 KB) — used by cards/shelves
-  - `.md.webp` — width 1280, quality 78 (~150 KB) — used by post bodies
-  - `.poster.webp` — width 1280, video frame @1s (fallback 0s) — video click-to-play poster
-  - `.opt.mp4` — only for source mp4 > 20 MB: crf 28, scale 1080p, `+faststart`, aac 128k
+  - `.thumb.webp` - width 480, quality 70 (~30 KB), used by cards/shelves
+  - `.md.webp` - width 1280, quality 78 (~150 KB), used by post bodies
+  - `.poster.webp` - width 1280, video frame @1s (fallback 0s), video click-to-play poster
+  - `.opt.mp4` - only for source mp4 > 20 MB: crf 28, scale 1080p, `+faststart`, aac 128k
 - **Images**: always `loading="lazy" decoding="async"`. Cards → thumb; post bodies → md; lightbox → originals.
 - **GIFs**: first frame → thumb/md stills for cards; the original gif stays the playback source in posts.
 - **Commit messages**: `Redesign M<N>: <what>` so `git log` shows milestone progress at a glance.
 
 ## Media pipeline (`tools/optimize-media.mjs`)
 
-Node + `sharp` + `ffmpeg-static` (both install via `npm i` with prebuilt Windows binaries — no PATH work).
+Node + `sharp` + `ffmpeg-static` (both install via `npm i` with prebuilt Windows binaries, no PATH work).
 Walk `images/` (skip `_derived/`, `Archived/`, `Game/`), emit the derivatives above into `images/_derived/`.
 Skipping `_derived/` matters: without it the walk would treat a generated `.opt.mp4` as a new source video.
 Idempotent: skip when output is newer than source, so it's safe to re-run after every editor upload batch.
@@ -266,31 +264,31 @@ folder name; ISO date; `categories` = keys of `rankings`; `order` = `rankings` v
 heading "My Contributions" + bullets + hero image + gallery of remaining images + one video block per mp4).
 Dry-run prints; `--write` writes.
 
-## Editor v1 — what to port vs. drop (M5)
+## Editor v1, what to port vs. drop (M5)
 
 **Port / adapt from `docs/reference-cadre/`:**
-- `github-api.js` near-verbatim — `ghBatchCommit()` is already the atomic multi-file commit path. Only
+- `github-api.js` near-verbatim - `ghBatchCommit()` is already the atomic multi-file commit path. Only
   change `GITHUB_OWNER`/`GITHUB_REPO` (this repo is owned by the user, so a fine-grained PAT works).
-- `auth.js` — keep AES-GCM token-at-rest, "Keep Me Logged In" (localStorage vs sessionStorage), expiry
+- `auth.js` - keep AES-GCM token-at-rest, "Keep Me Logged In" (localStorage vs sessionStorage), expiry
   chip, sign-in modal, `buildGenerateTokenUrl()`. **Delete** the collaborator-permission check (owner-only:
   validate `GET /user` + repo push permission), the basic/admin page-role gate + redirects, contributor path.
-- `post-gen-richtext.js` — the sanitizing contenteditable toolbar for the `text` block. Its `richSanitize`
+- `post-gen-richtext.js` - the sanitizing contenteditable toolbar for the `text` block. Its `richSanitize`
   whitelist also becomes the site-side `js/site/richtext-sanitize.js`.
 - The BLOCK_TYPES registry *pattern* (`{ defaults, renderBody, syncFromDOM }`), drag-handle reorder, and the
-  one-delegated-click-handler wiring from `post-gen.js`. **Drop `toBodyHtml`** — blocks serialize straight to
+  one-delegated-click-handler wiring from `post-gen.js`. **Drop `toBodyHtml`** - blocks serialize straight to
   post JSON; rendering is the shared `js/site/blocks.js` (so preview == production).
-- The draft system from `post-gen.js` — debounced localStorage autosave, draft index with 30-day pruning,
+- The draft system from `post-gen.js` - debounced localStorage autosave, draft index with 30-day pruning,
   recent-drafts popover. Key `draft:<project>:<slug>`.
 
 **Not ported:** `post-gen-output.js` / base-template HTML generation (the JSON model replaces it); the
 tutorial. The image-manager tree WAS ported (`image-browser.js`), and the ChangeQueue concept WAS adopted
-in M5.6 (`queue.js`) — v1 shipped without it (immediate per-action commits), M5.6 moved all JSON mutations
+in M5.6 (`queue.js`), v1 shipped without it (immediate per-action commits), M5.6 moved all JSON mutations
 behind the queue so work persists across editor pages and commits in one batch.
 
 **Publish flow (M5.6):** everything STAGES into `EditorQueue`. "✓ Add to changes" on edit.html builds the
 post JSON + upserts its projects.json entry (relocating the old file if the project/slug changed) and stages
 both; Manage stages projects.json (+ post-file deletions); the landing stages new-project / delete-post.
-The single GitHub write is `EditorQueue.commit()` from the 📋 Changes modal — one `ghBatchCommit` of the
+The single GitHub write is `EditorQueue.commit()` from the 📋 Changes modal, one `ghBatchCommit` of the
 whole batch, bumping `contentVersion` once. Image uploads + new folders are the exception: still immediate
 Contents-API PUTs (binary can't sit in localStorage), shown optimistically in the browser then reconciled.
 Editor CSS is independent of the site (`Editor/editor.css`).
@@ -313,10 +311,10 @@ Editor CSS is independent of the site (`Editor/editor.css`).
   extension (installed: `ritwickdey.liveserver`); it injects a dev-only reload script into served
   HTML. Node LTS must be installed at the start of M2 (`winget install OpenJS.NodeJS.LTS`) for the
   `tools/` scripts; after that `npx serve` is an alternative server.
-- Shell is Windows PowerShell 5.1 — see the environment's PowerShell rules (no `&&`, no inline
+- Shell is Windows PowerShell 5.1, see the environment's PowerShell rules (no `&&`, no inline
   `if()` expressions, backtick is the escape char so count literal backticks via `[char]96`).
 - Headless render check (no Node/Python needed): Edge at
   `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` supports
   `--headless=new --disable-gpu --virtual-time-budget=2500 --dump-dom <file:// URL>`, which runs the
   page's JS and prints the resulting DOM. Valid whenever the page doesn't require `fetch` to succeed
-  (partials injection qualifies; data-driven pages from M4 need a real server — use Live Server).
+  (partials injection qualifies; data-driven pages from M4 need a real server, use Live Server).

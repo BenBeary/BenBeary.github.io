@@ -1,4 +1,4 @@
-/* rewrite-blog-images.mjs — one-off: rewrite content JSON image paths from
+/* rewrite-blog-images.mjs, one-off: rewrite content JSON image paths from
    images/<Project>/ to images/Blog Images/<Project>/ after the project folders
    were moved under images/Blog Images/. Run once from tools/:  node rewrite-blog-images.mjs */
 
@@ -31,4 +31,4 @@ for (const f of files) {
     }
     if (text !== before) { await fs.writeFile(f, text, 'utf8'); changed++; console.log('rewrote', path.relative(REPO, f)); }
 }
-console.log(`done — ${changed}/${files.length} files updated.`);
+console.log(`done - ${changed}/${files.length} files updated.`);

@@ -1,4 +1,4 @@
-/* editor.css — editor-only chrome. Reuses the site's tokens/base/components
+/* editor.css, editor-only chrome. Reuses the site's tokens/base/components
    (../css/*) for the dark+amber identity, buttons, and chips; adds the editor
    header, auth chip, modal, and the landing picker (M5a). The two-pane block
    editor styles are added in M5b. */
@@ -126,7 +126,7 @@ input.ed-input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(
 .ed-empty { color: var(--text-muted); font-style: italic; }
 
 /* =========================================================================
-   BLOCK EDITOR  (edit.html) — form | drag handle | live preview iframe
+   BLOCK EDITOR  (edit.html), form | drag handle | live preview iframe
    ========================================================================= */
 .ed-editor { display: flex; height: calc(100vh - var(--header-h)); align-items: stretch; }
 .ed-main { flex: 1; min-width: 380px; overflow-y: auto; }

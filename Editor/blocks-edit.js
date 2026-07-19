@@ -1,4 +1,4 @@
-/* blocks-edit.js — the editor-side block registry. One entry per block type
+/* blocks-edit.js, the editor-side block registry. One entry per block type
    with { label, defaults(), renderBody(b), syncFromDOM(b, el) }. The SITE renders
    these same block objects via ../js/site/blocks.js, so the live preview equals
    production. Rich text uses the shared sanitizeRichHtml (richtext-sanitize.js).
@@ -14,7 +14,7 @@
     function field(label, inner) { return '<div class="ed-field"><label>' + label + '</label>' + inner + '</div>'; }
     function textInput(f, v, ph) { return '<input class="ed-input" data-f="' + f + '" value="' + esc(v) + '" placeholder="' + esc(ph || '') + '">'; }
     // Sanitize + wrap top-level loose inline runs in <p> (split at <br>) so
-    // execCommand list/alignment act per-line — port of CADRE richWrapLooseLines.
+    // execCommand list/alignment act per-line, port of CADRE richWrapLooseLines.
     window.edNormalizeRich = function (html) {
         var root = document.createElement('div');
         root.innerHTML = window.sanitizeRichHtml(html || '');
@@ -56,7 +56,7 @@
         b.items = items.filter(Boolean);
     }
 
-    // One 📁 button per image field — opens the Blog Images browser in pick
+    // One 📁 button per image field, opens the Blog Images browser in pick
     // mode (which also handles uploads/new folders via right-click, CADRE-style).
     function browseBtn() { return '<button type="button" class="ed-upload-btn" data-browse title="Pick from the image folders (right-click inside to upload)">📁</button>'; }
     function srcRow(f, v, ph) { return '<div class="ed-src-row">' + textInput(f, v, ph) + browseBtn() + '</div>'; }
@@ -145,7 +145,7 @@
             label: 'Slideshow',
             defaults: function () { return { type: 'slideshow', items: [{ src: '', alt: '' }] }; },
             renderBody: function (b) {
-                return '<p class="ed-block-hint">Steam-style slideshow — mix png / jpg / gif / mp4. Video slides get their thumbnail from the generated poster automatically.</p>' +
+                return '<p class="ed-block-hint">Steam-style slideshow, mix png / jpg / gif / mp4. Video slides get their thumbnail from the generated poster automatically.</p>' +
                     mediaRows(b, 'images/Blog Images/Project/file-or-clip.mp4');
             },
             syncFromDOM: mediaSync
@@ -184,7 +184,7 @@
         divider: {
             label: 'Divider',
             defaults: function () { return { type: 'divider' }; },
-            renderBody: function () { return '<p class="ed-empty">Horizontal rule — no options.</p>'; },
+            renderBody: function () { return '<p class="ed-empty">Horizontal rule, no options.</p>'; },
             syncFromDOM: function () { }
         }
     };

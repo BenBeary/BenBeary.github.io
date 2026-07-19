@@ -1,4 +1,4 @@
-/* editor.js — the block editor. Loads a post (or a blank one), renders the meta
+/* editor.js, the block editor. Loads a post (or a blank one), renders the meta
    form + block list, and keeps a live preview in sync via the SHARED site
    renderer (../js/site/blocks.js) so preview == production. Blocks come from the
    EDBLOCKS registry (blocks-edit.js). Autosaves to localStorage so an in-progress
@@ -56,7 +56,7 @@
             '<div class="ed-field"><label>Slug (URL)</label><input class="ed-input mono" id="m-slug" value="' + esc(state.slug) + '" placeholder="post-slug"></div>' +
             '<div class="ed-field"><label>Cover image path</label><div class="ed-src-row"><input class="ed-input" id="m-cover" value="' + esc(state.cover) + '" placeholder="images/Blog Images/Project/cover.png"><button type="button" class="ed-upload-btn" data-browse title="Pick from the image folders (right-click inside to upload)">📁</button></div></div>' +
             '<div class="ed-field ed-field--wide"><label>Excerpt</label><textarea class="ed-input" id="m-excerpt" rows="2" placeholder="Short summary for listings">' + esc(state.excerpt) + '</textarea></div>' +
-            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" id="m-hidden"' + (state.hidden ? ' checked' : '') + '> Hide this post (keep it off the project page — direct link still works)</label></div>' +
+            '<div class="ed-field ed-field--wide"><label class="ed-check ed-hide-toggle"><input type="checkbox" id="m-hidden"' + (state.hidden ? ' checked' : '') + '> Hide this post (keep it off the project page, direct link still works)</label></div>' +
             '</div>';
     }
 
@@ -235,7 +235,7 @@
                 (state.type === 'showcase' ? 'Showcase' : 'Post') + ': ' + state.title);
 
             // Relocation: post loaded from elsewhere (moved project or renamed
-            // slug) — delete the old file and drop the old index entry.
+            // slug), delete the old file and drop the old index entry.
             if (loadedPath && loadedPath !== postPath) {
                 window.EditorQueue.stageDelete(loadedPath, 'Delete old post: ' + origSlug);
                 var oldProj = (projectsJson.projects || []).find(function (p) { return p.slug === origProject; });
@@ -254,7 +254,7 @@
             window.EditorQueue.stageProjects(projectsJson, 'Project index (posts)');
             clearLocalDraft();
             loadedPath = postPath; origProject = state.project; origSlug = state.slug;
-            toast('Added to changes — commit from 📋 Changes when ready.');
+            toast('Added to changes. Commit from 📋 Changes when ready.');
         } catch (err) {
             alert('Could not add to changes: ' + (err && err.message ? err.message : err));
         } finally {
@@ -283,7 +283,7 @@
         // Enter makes <p> (not <div>) so stored HTML matches the site output.
         try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (_) {}
 
-        // Toolbar mousedown would collapse the editor selection before click — suppress.
+        // Toolbar mousedown would collapse the editor selection before click, suppress.
         els.blocks.addEventListener('mousedown', function (e) {
             if (e.target.closest('.rt-btn')) e.preventDefault();
         });

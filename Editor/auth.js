@@ -1,4 +1,4 @@
-/* auth.js — GitHub PAT auth for the portfolio editor. Adapted from
+/* auth.js. GitHub PAT auth for the portfolio editor. Adapted from
    docs/reference-cadre/auth.js (CADRE), trimmed to OWNER-ONLY:
      - owner/repo constants point at this repo
      - kept: AES-GCM token-at-rest, "keep me logged in", expiry chip, sign-in modal
@@ -10,7 +10,7 @@
    can re-render. Requires the sign-in modal + #auth-chip markup to exist first.
 
    Security note (unchanged from CADRE): the AES key sits beside the ciphertext in
-   the same browser store — this deters casual localStorage scraping, NOT a
+   the same browser store, this deters casual localStorage scraping, NOT a
    code-aware attacker. Acceptable for a single owner on their own machine. */
 
 const GITHUB_OWNER = 'BenBeary';

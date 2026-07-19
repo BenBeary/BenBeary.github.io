@@ -1,4 +1,4 @@
-/* reorder-media-videos.mjs — one-off: in every project's media[], move the video
+/* reorder-media-videos.mjs, one-off: in every project's media[], move the video
    clips (.mp4) so they come immediately AFTER the title image (media[0]) instead
    of trailing at the end. Order within each group is preserved:
 

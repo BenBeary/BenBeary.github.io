@@ -1,13 +1,13 @@
-/* restore-media-bullets.mjs — one-off recovery.
+/* restore-media-bullets.mjs, one-off recovery.
 
    The Manage page reads projects.json from GitHub `main`. Because the redesign
    (which introduced project.media[] and project.bullets[]) was never pushed, that
-   copy had no media/bullets — so saving metadata from Manage wrote empty arrays
+   copy had no media/bullets, so saving metadata from Manage wrote empty arrays
    back over them. This restores media[] and bullets[] from a known-good commit,
    matched by slug, WITHOUT touching anything the user has since changed
    (collections, collection assignments, statuses, hidden flags, order, posts…).
 
-   Only fills in where the current value is empty — never overwrites real data.
+   Only fills in where the current value is empty, never overwrites real data.
 
    Usage from tools/:  node restore-media-bullets.mjs <good-json-path> */
 

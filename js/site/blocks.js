@@ -1,4 +1,4 @@
-/* blocks.js — THE post-body renderer. Turns a post's `blocks` array into DOM.
+/* blocks.js. THE post-body renderer. Turns a post's `blocks` array into DOM.
    Shared by the site (post.html) and the editor's live preview (M5) so the two
    never drift. Depends on media.js (setImg / makeVideo / openLightbox) and
    richtext-sanitize.js (sanitizeRichHtml). Exposes global renderBlocks().

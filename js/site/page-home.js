@@ -1,8 +1,8 @@
-/* page-home.js — the home page.
+/* page-home.js, the home page.
 
    Two sections, deliberately different in shape:
 
-   1. FEATURED — a vertical stack of big showcase rows, one per project, that
+   1. FEATURED - a vertical stack of big showcase rows, one per project, that
       alternate sides (art left / info right, then flipped). Each row is about a
       third of the viewport tall, sits on the project's own blurred artwork, and
       carries the same information as the project hub: kicker, title, date,
@@ -16,7 +16,7 @@
       Any skill category in projects.json works. Chips above the list switch
       between them (pushState, so back/forward and sharing work).
 
-   2. COLLECTIONS — large blurred banner tiles, one per collection, with a fanned
+   2. COLLECTIONS - large blurred banner tiles, one per collection, with a fanned
       deck of covers; links into the filtered catalogue.
 
    Hidden projects are excluded everywhere. */
@@ -174,7 +174,7 @@
         if (title) title.textContent = key === 'home' ? 'Featured Projects' : 'Top ' + keyLabel(key) + ' Work';
 
         if (!list.length) {
-            featList.innerHTML = '<p class="loading-note">Nothing ranked for this skill yet — set an Order value for it in the editor.</p>';
+            featList.innerHTML = '<p class="loading-note">Nothing ranked for this skill yet. Set an Order value for it in the editor.</p>';
             return;
         }
         list.forEach(function (p, i) { featList.appendChild(featuredRow(p, i)); });

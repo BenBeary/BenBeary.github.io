@@ -1,4 +1,4 @@
-/* partials.js — injects the universal site header and footer so every page
+/* partials.js, injects the universal site header and footer so every page
    shares one nav/footer definition. Modeled on the CADRE partials pattern.
 
    A page opts in by including empty slots and this script:
@@ -15,7 +15,7 @@
    The Projects dropdown is progressively enhanced: after injecting the header we
    try to load content/projects.json and build a collection-grouped menu. If that
    file doesn't exist yet (before Milestone 3) the trigger stays a plain link to
-   projects.html. This module has no hard dependency on data.js — it uses the
+   projects.html. This module has no hard dependency on data.js, it uses the
    global getProjects() if present, else does its own guarded fetch. */
 
 (function () {
@@ -38,6 +38,7 @@
                 <a href="{{root}}index.html" data-nav="home">Home</a>
                 <span class="nav-projects" data-nav="projects">
                     <a href="{{root}}projects.html">Projects</a>
+                    <button class="nav-projects__toggle" type="button" aria-label="Show projects" aria-expanded="false">▾</button>
                     <span class="nav-projects__menu"></span>
                 </span>
                 <a href="{{root}}about.html" data-nav="about">About</a>
@@ -87,6 +88,19 @@
                 toggle.setAttribute('aria-expanded', 'false');
             }
         });
+
+        // Projects submenu: on mobile it collapses, and the caret expands it.
+        // (On desktop the menu opens on hover and the caret stays hidden.)
+        var projects = document.querySelector('.nav-projects');
+        var caret = document.querySelector('.nav-projects__toggle');
+        if (projects && caret) {
+            caret.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var open = projects.classList.toggle('is-open');
+                caret.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
     }
 
     // --- Progressive enhancement: collection-grouped Projects dropdown ---
@@ -97,7 +111,7 @@
             if (!res.ok) return null;
             return await res.json();
         } catch (_) {
-            return null;   // not built yet (pre-M3) or offline — keep the plain link
+            return null;   // not built yet (pre-M3) or offline, keep the plain link
         }
     }
 

@@ -1,7 +1,7 @@
-/* page-project.js — a project hub. ?slug=<project>. The hero is a two-column
+/* page-project.js, a project hub. ?slug=<project>. The hero is a two-column
    card over the blurred background (original-site style): left = kicker, title,
    date, tags, play link, contribution bullets; right = the media slideshow with
-   the summary under it. Status tag pins top-right. Below: the post list — the
+   the summary under it. Status tag pins top-right. Below: the post list, the
    showcase pinned on top, then blog posts newest-first, 5 shown with a "Load
    more". Each post links to post.html?slug=<project>&post=<post>. */
 
@@ -46,7 +46,7 @@
 
     function render() {
         hub.innerHTML = '';
-        document.title = project.title + ' — Ben Beary';
+        document.title = project.title + ' | Ben Beary';
 
         // Hero: blurred-bg card holding everything. Left column (~1/3): kicker,
         // title, date, tags, play, bullets. Right (~2/3): slideshow + summary.

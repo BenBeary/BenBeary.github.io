@@ -1,4 +1,4 @@
-/* pages.css — per-page layout, scoped by body[data-page] or a page-root class.
+/* pages.css, per-page layout, scoped by body[data-page] or a page-root class.
    Reads only tokens.css variables + component classes. Loaded last.
 
    Started in M1 with the About page. Later milestones append the projects
@@ -72,7 +72,7 @@
    ========================================================================= */
 .home-page { display: flex; flex-direction: column; gap: var(--space-8); }
 
-/* Collections get the most room on the page — full width, generous spacing. */
+/* Collections get the most room on the page, full width, generous spacing. */
 .home-collections { padding: var(--space-4) 0 var(--space-2); }
 .home-collections .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: var(--space-6); }
 
@@ -114,6 +114,10 @@
     font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
     box-shadow: var(--shadow-card);
 }
+/* The badge floats over the top-right corner, so whichever column sits on that
+   side gets clearance and its content can never run under the tag. */
+.featured-row:not(.is-flipped) .featured-row__info,
+.featured-row.is-flipped .featured-row__art { padding-top: 42px; }
 
 /* Roughly a third of the viewport, with headroom; sides swap every other row. */
 .featured-row__grid {
@@ -154,6 +158,18 @@
 .featured-row__bullets li { color: var(--text); font-size: 0.9rem; line-height: 1.45; opacity: 0.92; }
 .featured-row__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
 
+/* Short screens (720p-class): trim the row so more than one fits on screen. */
+@media (max-height: 800px) {
+    .featured-row__grid { min-height: 0; padding: var(--space-5); }
+    .featured-row .pshow__stage { max-height: 40vh; }
+    .featured-row .pshow__thumb { width: 64px; }
+    .featured-row__title { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+    .featured-row__summary { -webkit-line-clamp: 2; }
+    .featured-row__bullets li { font-size: 0.85rem; line-height: 1.35; }
+    .featured-row__bullets li:nth-child(n+4) { display: none; }
+    .featured-row__actions { margin-top: var(--space-4); }
+}
+
 @media (max-width: 860px) {
     .home-featured { width: 100%; left: auto; transform: none; }
     .featured-row, .featured-row.is-flipped { width: 100%; margin-left: 0; margin-right: 0; }
@@ -162,11 +178,15 @@
     /* Stacked: the divider would sit across the layout, so drop it. */
     .featured-row__info,
     .featured-row.is-flipped .featured-row__info { padding: 0; border: 0; }
+    /* Stacked, the badge sits over the art, which is first. */
+    .featured-row:not(.is-flipped) .featured-row__info { padding-top: 0; }
+    .featured-row.is-flipped .featured-row__art,
+    .featured-row:not(.is-flipped) .featured-row__art { padding-top: 42px; }
     .featured-row .pshow__stage { max-height: none; }
     .featured-row__summary { -webkit-line-clamp: 5; }
 }
 
-/* Intro card — text + portrait side by side (the old about-card treatment). */
+/* Intro card, text + portrait side by side (the old about-card treatment). */
 .home-intro {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -193,8 +213,12 @@
 /* Portrait + social links stack together on the right. */
 .home-intro__aside { justify-self: end; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
 .home-intro__portrait { width: 100%; max-width: 300px; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
-.home-intro__socials { gap: var(--space-4); justify-content: center; }
-.home-intro__socials a { width: 56px; height: 56px; display: block; }
+/* Icons span the portrait's width and space out evenly beneath it. */
+.home-intro__socials {
+    width: 100%; max-width: 300px;
+    display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+}
+.home-intro__socials a { width: 48px; height: 48px; display: block; flex: 0 0 auto; }
 .home-intro__socials img { width: 100%; height: 100%; object-fit: contain; }
 
 @media (max-width: 760px) {
@@ -273,7 +297,7 @@
 .hub-hero__info { min-width: 0; }
 .hub-hero__media { min-width: 0; }
 /* When the status tag is present, drop the slideshow below it so it can never
-   sit on top of ("block") the tag — the card just grows downward instead. */
+   sit on top of ("block") the tag, the card just grows downward instead. */
 .hub-hero--status .hub-hero__media { padding-top: calc(var(--space-6) + 8px); }
 @media (max-width: 900px) {
     .hub-hero--status .hub-hero__media { padding-top: 0; }

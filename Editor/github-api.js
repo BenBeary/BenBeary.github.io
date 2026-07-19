@@ -1,18 +1,18 @@
-/* GitHub API client — shared by the editor's publish/upload flows.
+/* GitHub API client, shared by the editor's publish/upload flows.
    Copied verbatim from docs/reference-cadre/github-api.js (CADRE). Loaded after
    Editor/auth.js so getStoredToken / GITHUB_OWNER / GITHUB_REPO are in scope.
 
    Public surface:
-     ghFetch(method, path, body?, timeoutMs?)        — low-level wrapped fetch with timeout
-     ghGetRef(branch)                                — get a branch's current ref (commit SHA)
-     ghGetCommit(sha)                                — get a commit by SHA (includes its tree SHA)
-     ghGetTree(treeish, recursive?)                  — get a tree (branch name or SHA)
-     ghCreateBlob(base64Content)                     — create a blob from base64 content
-     ghCreateTree(baseTreeSha, entries)              — create a new tree (entries with sha:null = delete)
-     ghCreateCommit(message, treeSha, parentSha)     — create a commit
-     ghUpdateRef(branch, commitSha, force?)          — advance a branch to a commit
-     ghStringToBase64(s)                             — UTF-8 safe string -> base64
-     ghBatchCommit({message, changes, branch?})      — bundle many file changes into ONE commit
+     ghFetch(method, path, body?, timeoutMs?) - low-level wrapped fetch with timeout
+     ghGetRef(branch) - get a branch's current ref (commit SHA)
+     ghGetCommit(sha) - get a commit by SHA (includes its tree SHA)
+     ghGetTree(treeish, recursive?) - get a tree (branch name or SHA)
+     ghCreateBlob(base64Content) - create a blob from base64 content
+     ghCreateTree(baseTreeSha, entries) - create a new tree (entries with sha:null = delete)
+     ghCreateCommit(message, treeSha, parentSha) - create a commit
+     ghUpdateRef(branch, commitSha, force?) - advance a branch to a commit
+     ghStringToBase64(s) - UTF-8 safe string -> base64
+     ghBatchCommit({message, changes, branch?}) - bundle many file changes into ONE commit
 */
 
 const GH_API_BASE = 'https://api.github.com';
@@ -73,7 +73,7 @@ async function ghGetRef(branch)              { return ghFetch('GET', '/git/refs/
 async function ghGetCommit(sha)              { return ghFetch('GET', '/git/commits/' + sha); }
 async function ghGetTree(treeish, recursive) { return ghFetch('GET', '/git/trees/' + treeish + (recursive ? '?recursive=1' : '')); }
 
-// Write endpoints (Git Data API — the building blocks of a commit) ------------
+// Write endpoints (Git Data API - the building blocks of a commit) ------------
 async function ghCreateBlob(base64Content)              { return ghFetch('POST', '/git/blobs', { content: base64Content, encoding: 'base64' }); }
 async function ghCreateTree(baseTreeSha, entries)       { return ghFetch('POST', '/git/trees', { base_tree: baseTreeSha, tree: entries }); }
 async function ghCreateCommit(message, treeSha, parentSha) { return ghFetch('POST', '/git/commits', { message: message, tree: treeSha, parents: [parentSha] }); }
@@ -82,7 +82,7 @@ async function ghUpdateRef(branch, commitSha, force)    { return ghFetch('PATCH'
 /**
  * UTF-8 safe string -> base64. Use for text content (JSON files). For binary
  * data already in base64 (images via FileReader.readAsDataURL), pass it through
- * the {op:'putB64'} change shape — don't re-encode.
+ * the {op:'putB64'} change shape, don't re-encode.
  */
 function ghStringToBase64(s) {
     if (typeof s !== 'string') throw new Error('ghStringToBase64: expected string, got ' + typeof s);
@@ -96,9 +96,9 @@ function ghStringToBase64(s) {
  * Bundle multiple file changes into ONE commit on the given branch.
  *
  * Each change:
- *   { op: 'put',    path, content }   — text; UTF-8 base64 encoded for you
- *   { op: 'putB64', path, base64 }    — content already base64 (binary uploads)
- *   { op: 'delete', path }            — remove the file at path
+ *   { op: 'put',    path, content } - text; UTF-8 base64 encoded for you
+ *   { op: 'putB64', path, base64 } - content already base64 (binary uploads)
+ *   { op: 'delete', path } - remove the file at path
  *
  * On a non-fast-forward race, retries once from a fresh parent ref.
  */

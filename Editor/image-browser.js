@@ -1,4 +1,4 @@
-/* image-browser.js — browse the repo's images under images/Blog Images/ and pick
+/* image-browser.js, browse the repo's images under images/Blog Images/ and pick
    one into a field. Scoped to that folder (adapted from the CADRE image-manager
    tree browser). Reads the committed tree via the GitHub Trees API. Images, gifs
    and mp4 clips are all listed, each tagged so videos/gifs are easy to spot;
@@ -10,7 +10,7 @@
    NOTE: the tree reflects what's committed on GitHub `main`, so images that were
    only moved/renamed locally (and not pushed) appear under their pushed paths.
 
-   window.ImageBrowser.open({ pick: bool, onPick: fn(path) })  — pick fills a field;
+   window.ImageBrowser.open({ pick: bool, onPick: fn(path) }) - pick fills a field;
    otherwise clicking an image copies its path to the clipboard. */
 
 (function () {
