@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 14,
+  "contentVersion": 15,
   "categories": [
     {
       "slug": "programming",
@@ -69,12 +69,12 @@
       ],
       "collection": "laguna-interactive",
       "order": {
-        "home": 4,
-        "programming": 1,
-        "ui-ux": 1,
-        "level-design": 2,
+        "home": 3,
+        "programming": 2,
+        "ui-ux": 2,
+        "level-design": 3,
         "sound-design": 2,
-        "modeling": 2
+        "modeling": 3
       },
       "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png",
       "background": "images/Blog Images/CleanUpCrew/Blurred.jpg",
@@ -175,11 +175,11 @@
       "collection": "laguna-interactive",
       "order": {
         "home": 2,
-        "programming": 2,
-        "ui-ux": 2,
-        "level-design": 1,
+        "programming": 3,
+        "ui-ux": 3,
+        "level-design": 2,
         "sound-design": 1,
-        "modeling": 1
+        "modeling": 2
       },
       "cover": "images/Blog Images/DockingBay/DockingBay_Poster_Warm_Wide.png",
       "background": "images/Blog Images/DockingBay/Blurred.png",
@@ -274,10 +274,10 @@
       "collection": "laguna-interactive",
       "order": {
         "home": 5,
-        "programming": 4,
-        "ui-ux": 3,
+        "programming": 5,
+        "ui-ux": 5,
         "sound-design": 3,
-        "modeling": 3
+        "modeling": 5
       },
       "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
       "background": "images/Blog Images/IdolofAshes/Blurred.png",
@@ -360,10 +360,10 @@
       ],
       "collection": "school-projects",
       "order": {
-        "programming": 2,
-        "ui-ux": 2,
-        "level-design": 2,
-        "modeling": 4,
+        "programming": 4,
+        "ui-ux": 4,
+        "level-design": 4,
+        "modeling": 7,
         "pixel-art": 1
       },
       "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
@@ -446,12 +446,12 @@
       ],
       "collection": "school-projects",
       "order": {
-        "home": 6,
-        "programming": 4,
-        "ui-ux": 7,
-        "level-design": 3,
-        "sound-design": 9,
-        "modeling": 3,
+        "home": 4,
+        "programming": 6,
+        "ui-ux": 8,
+        "level-design": 5,
+        "sound-design": 5,
+        "modeling": 6,
         "pixel-art": 2
       },
       "cover": "images/Blog Images/DiceClimber/Title Poster.jpg",
@@ -546,9 +546,9 @@
       ],
       "collection": "misc",
       "order": {
-        "programming": 5,
-        "ui-ux": 6,
-        "level-design": 5,
+        "programming": 7,
+        "ui-ux": 7,
+        "level-design": 7,
         "pixel-art": 3
       },
       "cover": "images/Blog Images/DeathTides/DeathTides_1000px.png",
@@ -617,9 +617,9 @@
       ],
       "collection": "misc",
       "order": {
-        "programming": 6,
-        "level-design": 8,
-        "pixel-art": 6
+        "programming": 10,
+        "level-design": 9,
+        "pixel-art": 5
       },
       "cover": "images/Blog Images/DodgeKarts/DodgeKarts_1000px.png",
       "background": "images/Blog Images/DodgeKarts/Blurred.png",
@@ -674,8 +674,8 @@
       ],
       "collection": "school-projects",
       "order": {
-        "programming": 5,
-        "pixel-art": 5
+        "programming": 8,
+        "pixel-art": 4
       },
       "cover": "images/Blog Images/DevilsAcre/DevilsAcre_Title_1000px.png",
       "background": "images/Blog Images/DevilsAcre/Blurred.png",
@@ -747,8 +747,8 @@
       ],
       "collection": "misc",
       "order": {
-        "level-design": 4,
-        "modeling": 2
+        "level-design": 6,
+        "modeling": 4
       },
       "cover": "images/Blog Images/PortLochne/PortLochne_1000px.png",
       "background": "images/Blog Images/PortLochne/Blurred.png",
@@ -813,9 +813,9 @@
       ],
       "collection": "school-projects",
       "order": {
-        "home": 5,
-        "programming": 6,
-        "ui-ux": 4,
+        "home": 6,
+        "programming": 9,
+        "ui-ux": 6,
         "level-design": 8
       },
       "cover": "images/Blog Images/MeowareDefender/Menu.png",
@@ -886,10 +886,10 @@
       "collection": "laguna-interactive",
       "order": {
         "home": 1,
-        "programming": 0,
+        "programming": 1,
         "ui-ux": 1,
         "level-design": 1,
-        "sound-design": 5,
+        "sound-design": 4,
         "modeling": 1
       },
       "cover": "images/Blog Images/Signal-Link/singla_link_poster.png",
