@@ -215,7 +215,10 @@
                 var v = document.createElement('video');
                 v.className = 'pshow__video';
                 v.muted = true; v.defaultMuted = true; v.playsInline = true;
-                v.controls = true; v.preload = 'auto'; v.loop = false;
+                // 'metadata', not 'auto': these clips are tens of MB, and the
+                // browser must not prefetch one just because its slide exists.
+                // play() streams it when the slide is actually active and visible.
+                v.controls = true; v.preload = 'metadata'; v.loop = false;
                 v.setAttribute('muted', '');            // Safari needs the attribute too
                 v.setAttribute('playsinline', '');
                 v.poster = window.posterUrl(item.src);

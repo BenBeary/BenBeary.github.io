@@ -41,7 +41,10 @@ const OUT_ROOT = path.join(REPO, 'images', '_derived');   // lives inside images
 const THUMB_W = 480, THUMB_Q = 70;
 const MD_W = 1280, MD_Q = 78;
 const POSTER_W = 1280, POSTER_Q = 78;
-const OPT_MP4_THRESHOLD = 20 * 1024 * 1024;   // re-encode mp4s larger than this
+// Re-encode mp4s larger than this. Lowered from 20 MB once slideshow videos
+// started autoplaying: an 11-16 MB clip streaming automatically is a real cost
+// to a visitor, and these re-encode to roughly a tenth of the size.
+const OPT_MP4_THRESHOLD = 8 * 1024 * 1024;
 // _derived is the OUTPUT tree (inside images/), skip it so we never re-derive
 // from generated files (e.g. treating a .opt.mp4 as a new source video).
 const SKIP_DIRS = new Set(['_derived', 'Archived', 'Game', 'node_modules', '.git']);

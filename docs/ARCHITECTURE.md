@@ -30,7 +30,7 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 - Every emitted media URL goes through `encodeURI()` (filenames contain spaces and underscores).
 - All content reads go through `js/site/data.js`; all media path logic through `js/site/media.js`; all
   block rendering through `js/site/blocks.js` (shared with the editor preview, never fork it).
-- Legacy files are read-only until Milestone 6: `index.html`, `js/newWebMain.js`, `js/projects.js`,
+- (HISTORICAL, satisfied at the M6 swap) Legacy files were read-only until Milestone 6: `index.html`, `js/newWebMain.js`, `js/projects.js`,
   `css/newWebStyle.css`, `css/navbar.css`.
 - Test via local server only (`fetch` fails on `file://`).
 - The editor publishes via `ghBatchCommit()` (atomic multi-file commit, Git Data API), never sequential
@@ -40,10 +40,12 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 
 ```
 /
-├── index.html                    # legacy until M6; then the new home
-├── home.html                     # new home built in M6 (renamed to index.html at swap):
-│                                 #   intro → horizontal card shelves (CSS scroll-snap):
-│                                 #   "Featured" (order.home) → one shelf per collection → about
+├── index.html                    # THE HOME PAGE since the M6 swap (was home.html):
+│                                 #   intro card → Featured showcase rows (ranked by order.home, or
+│                                 #   order.<skill> via ?featured=<slug>) → Collection banner tiles
+├── 404.html                      # served by Pages for any missing URL; data-root="/" so the
+│                                 #   injected header/footer links stay absolute at any depth
+├── favicon.svg, favicon-32.png, favicon-180.png
 ├── projects.html                 # catalogue; ?cat=<skill> and ?collection=<slug> filters
 ├── project.html                  # hub, ?slug=  (showcase post pinned; blogs newest-first,
 │                                 #   5 shown + "Load more" client-side slice)
@@ -83,7 +85,12 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
 │   ├── SocialIcons/, SelfImage.jpg, …       # site chrome. NOT blog images, left at images/ root
 │   └── _derived/                 #   committed derivatives, mirrors the FULL images/ tree
 │       └── Blog Images/<Project>/<name>.thumb.webp | .md.webp | .poster.webp | .opt.mp4
-└── Game/, Archived/              # untouched
+└── Game/                         # untouched
+└── Archived/                     # Archived_carousel-index.html (the old single-page carousel)
+                                  #   plus its own newWebMain.js / projects.js / newWebStyle.css /
+                                  #   navbar.css, moved here at the M6 swap so the snapshot still
+                                  #   runs. Its projects.js image paths are ../images/...
+                                  #   Nothing in here is loaded by the live site.
 ```
 
 ## JSON schemas

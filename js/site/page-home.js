@@ -11,8 +11,8 @@
       otherwise its cover.
 
       Which projects appear is driven by the URL:
-         home.html                      -> ranked by order.home  ("Featured")
-         home.html?featured=programming -> ranked by order.programming
+         index.html                      -> ranked by order.home  ("Featured")
+         index.html?featured=programming -> ranked by order.programming
       Any skill category in projects.json works. Chips above the list switch
       between them (pushState, so back/forward and sharing work).
 
@@ -48,7 +48,7 @@
     }
 
     function go(key) {
-        var url = 'home.html' + (key === 'home' ? '' : '?featured=' + encodeURIComponent(key));
+        var url = 'index.html' + (key === 'home' ? '' : '?featured=' + encodeURIComponent(key));
         history.pushState(null, '', url);
         renderFeatured();
     }

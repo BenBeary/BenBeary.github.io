@@ -1,0 +1,56 @@
+{
+  "slug": "ui-ux-designer",
+  "headline": "UI / UX Designer",
+  "intro": "I build interfaces that stay out of the player's way: menus, HUDs, dialogue and quest flows, and the systems behind them. Several of these put the UI inside the game world rather than on top of it. These are the projects where interface work led.",
+  "resumeLink": "https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf",
+  "featured": [
+    {
+      "project": "clean-up-crew",
+      "bullets": [
+        "Designed and built the full UI, including the leaderboard system",
+        "Kept the interface legible against a fast-moving first-person game",
+        "Shipped it inside a browser-based performance budget"
+      ]
+    },
+    {
+      "project": "signal-link",
+      "bullets": [
+        "Made the main menu a 3D space where UI and world occupy the same scene",
+        "Built 2D UI tooling so interface elements feel physically present",
+        "Integrated puzzle interactions directly into world geometry"
+      ]
+    },
+    {
+      "project": "spirit-outbreak",
+      "bullets": [
+        "Wrote a custom UI line renderer to drive a bespoke in-game graph",
+        "Designed an upgrade system whose options read clearly mid-run",
+        "Surfaced enemy and trap state so players can plan their next placement"
+      ]
+    },
+    {
+      "project": "idol-of-ashes",
+      "bullets": [
+        "Built the entire UI within a one-week game jam",
+        "Developed in-house dialogue and quest systems, plus an in-game manual",
+        "Kept the flows readable with no dedicated UI artist on the team"
+      ]
+    },
+    {
+      "project": "docking-bay",
+      "bullets": [
+        "Created the menu and pause-menu UI for a workstation-driven game",
+        "Built a dialogue system timed against recorded voice acting",
+        "Designed diegetic monitor screens the player reads as in-world tools"
+      ]
+    },
+    {
+      "project": "meoware-defender",
+      "bullets": [
+        "Built a player customiser and a save system that persists room decoration",
+        "Made the build mobile-compatible, adapting input and layout for touch",
+        "Designed the password-creator mini game as a self-contained interaction"
+      ]
+    }
+  ]
+}

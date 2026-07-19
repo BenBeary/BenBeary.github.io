@@ -1,0 +1,55 @@
+{
+  "slug": "technical-artist",
+  "headline": "Technical Artist",
+  "intro": "I sit between art and code: shaders, modular assets, animation and particle work, and the in-editor tooling that lets a small team produce a lot without repeating itself. These are the projects where the art pipeline was the interesting problem.",
+  "resumeLink": "https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf",
+  "featured": [
+    {
+      "project": "idol-of-ashes",
+      "bullets": [
+        "Authored a toon shader with an outline pass",
+        "Built the game's full UI on a one-week jam schedule",
+        "Delivered the art-facing systems alongside dialogue and quest tooling"
+      ]
+    },
+    {
+      "project": "docking-bay",
+      "bullets": [
+        "Created all 3D animations and particle effects",
+        "Modelled the station interior and exterior set dressing",
+        "Built a dialogue system that stays in sync with recorded voice acting"
+      ]
+    },
+    {
+      "project": "signal-link",
+      "bullets": [
+        "Modelled 3D assets and built 2D UI tools so the interface reads as part of the world",
+        "Integrated UI and the 3D main-menu scene into a single space",
+        "Produced the environment art for two distinct worlds in two weeks"
+      ]
+    },
+    {
+      "project": "clean-up-crew",
+      "bullets": [
+        "Built particle systems and animations for the 3D assets",
+        "Kept the world low-poly to hold performance in a web build",
+        "Engineered a modular first-person gun system shared across weapon types"
+      ]
+    },
+    {
+      "project": "dodge-kart",
+      "bullets": [
+        "Wrote a Unity Shader Graph shader that randomises car colours, reusing one material instead of many",
+        "Built a spawner that ramps difficulty over the course of a run"
+      ]
+    },
+    {
+      "project": "death-tides",
+      "bullets": [
+        "Produced all pixel art as modular, reusable pieces",
+        "Implemented chunked map loading to keep performance stable",
+        "Built a modular wave system so new objectives could be authored quickly"
+      ]
+    }
+  ]
+}

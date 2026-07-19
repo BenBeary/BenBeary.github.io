@@ -188,14 +188,18 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` - port from i
 - [x] `home.html` - intro hero → Featured shelf (`order.home`) → per-collection shelves
       (CSS `scroll-snap-type: x mandatory`, ❮ ❯ arrows hidden when content fits) → about teaser.
       `js/site/page-home.js`; hidden projects excluded. Verified headless: 3 shelves render.
-- [ ] On user approval: `git mv index.html Archived/old-index.html`; rename `home.html` → `index.html`;
-      delete `js/newWebMain.js`, `js/projects.js`, `css/newWebStyle.css`, `css/navbar.css`
-- [ ] Verify: full click-through from new home locally, then live site after push
+- [x] **Swap done (user approved).** `index.html` (carousel) → `Archived/Archived_carousel-index.html`;
+      `home.html` → `index.html`. The four legacy assets were MOVED into `Archived/` rather than
+      deleted, so the archived snapshot still runs (see changelog).
+- [x] Verify: headless click-through of every page after the swap, all `data-error`-free.
 
 ### M7. Roles + polish
-- [ ] Real role JSONs for target job titles
-- [ ] Per-page `document.title` + OG meta defaults; `404.html`; favicon
-- [ ] Lighthouse pass on home + one hub (record scores in changelog)
+- [x] Real role JSONs: `level-designer`, `technical-artist`, `ui-ux-designer` (+ the existing
+      `gameplay-programmer`), each with role-specific bullets drawn from the projects' own contributions.
+- [x] Per-page `document.title` + canonical + OG/Twitter meta via `tools/add-page-meta.mjs`
+      (idempotent, re-runnable); `404.html`; `favicon.svg` + PNG sizes; `images/og-image.jpg` (1200x630).
+- [x] Performance pass (numbers in the changelog). Full Lighthouse was NOT run: it isn't installed
+      and there's no package for it in `tools/`. Measured page weight and media sizes directly instead.
 - [ ] Optionally prune `Archived/`
 
 ## Changelog (schema/API/decision changes, append, newest last)
@@ -234,3 +238,22 @@ The full CADRE source lives at `docs/reference-cadre/full-editor/` - port from i
   browser. `Editor/history.js` deleted (queue replaces it; committed history is on GitHub). Hub hero
   is now a two-column card (info | slideshow+summary) over the blurred bg. `origin/main` (the user's
   two live editor test commits) merged in.
+- M6 GO-LIVE: the redesign is now the site. `index.html` (carousel) moved to
+  `Archived/Archived_carousel-index.html` and `home.html` was promoted to `index.html`. DEVIATION
+  from the original plan: the four legacy assets (`newWebMain.js`, `projects.js`, `newWebStyle.css`,
+  `navbar.css`) were MOVED into `Archived/` instead of deleted, matching how that folder already
+  keeps assets beside its snapshots; the archived page's refs were repointed (same-folder css/js,
+  `../images/` for the 116 image paths in its `projects.js`) and it was verified to still render a
+  live project title and its 22 catalogue cards. `page-home.js` pushState now targets `index.html`.
+- M7: role pages (`level-designer`, `technical-artist`, `ui-ux-designer`) written from each project's
+  real contribution bullets. `tools/add-page-meta.mjs` injects canonical + OG/Twitter + favicon links
+  into all 7 pages between marker comments, so it can be re-run safely. Icon hrefs are root-absolute
+  because `404.html` is served for URLs at any depth (it also sets `data-root="/"` so the injected
+  header/footer links stay absolute).
+- M7 performance: no Lighthouse available on this machine, so weight was measured directly.
+  `OPT_MP4_THRESHOLD` lowered 20 MB → 8 MB now that slideshow videos autoplay, and all 6 clips are
+  encoded: originals total 154.2 MB but the browser now fetches 16.2 MB (e.g. Signal-Link 33 MB →
+  2.6 MB, Spirit Outbreak video1 16 MB → 0.8 MB). Slideshow `<video preload>` changed `auto` →
+  `metadata` so a clip is only streamed once its slide is active AND on screen. The 1.2 MB
+  `SelfImage.jpg` portrait on home/about is now a `<picture>` served from the 108 KB webp derivative
+  with the jpg as fallback. Home page references ~1.3 MB of derived images, all `loading="lazy"`.

@@ -1,0 +1,56 @@
+{
+  "slug": "level-designer",
+  "headline": "Level Designer",
+  "intro": "I design spaces that teach players how to play them. Readable layouts, paced encounters, and systems that let a map keep changing after the player has learned it. These are the projects where the level and world design carried the experience.",
+  "resumeLink": "https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf",
+  "featured": [
+    {
+      "project": "docking-bay",
+      "bullets": [
+        "Designed the interior room layout and the exterior station scenes",
+        "Built the space around a swivel-chair workstation loop, so every station stays reachable and readable from one seat",
+        "Tuned the environment for an eerie tone that keeps players second-guessing their decisions"
+      ]
+    },
+    {
+      "project": "signal-link",
+      "bullets": [
+        "Built the scenery for two worlds plus the main menu scene in a two-week jam",
+        "Made the main menu a playable 3D space rather than a flat screen, with UI living inside the world",
+        "Designed multiple puzzles that are solved through the environment itself"
+      ]
+    },
+    {
+      "project": "spirit-outbreak",
+      "bullets": [
+        "Created a map system that reshapes the layout as the game progresses, so a map keeps posing new problems",
+        "Designed around player-placed traps and walls, with enemies that re-route in real time",
+        "Shipped six evolving map designs supporting 14+ trap types"
+      ]
+    },
+    {
+      "project": "clean-up-crew",
+      "bullets": [
+        "Designed the map layout for a large low-poly world built to run in a browser",
+        "Balanced open traversal against the performance budget of a web build",
+        "Placed items procedurally with a spawner that conforms to terrain geometry"
+      ]
+    },
+    {
+      "project": "port-lochne",
+      "bullets": [
+        "Built a Garry's Mod map for Trouble in Terrorist Town, from scratch in the Hammer Editor",
+        "Shaped areas around player tendencies, funnelling people into shared spaces to create encounters",
+        "Released publicly for community play"
+      ]
+    },
+    {
+      "project": "dice-climber",
+      "bullets": [
+        "Built modular puzzle pieces designed for reuse across levels",
+        "Authored a visual editor guide to speed up map creation",
+        "Sequenced mechanics so each one is taught before it is combined with the next"
+      ]
+    }
+  ]
+}

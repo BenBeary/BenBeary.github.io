@@ -68,7 +68,7 @@
 .data-error h2 { color: var(--danger); margin-bottom: var(--space-3); }
 
 /* =========================================================================
-   HOME  (home.html, body[data-page="home"])
+   HOME  (index.html, body[data-page="home"])
    ========================================================================= */
 .home-page { display: flex; flex-direction: column; gap: var(--space-8); }
 
@@ -437,6 +437,15 @@
 .post-back { display: inline-block; margin-bottom: var(--space-4); font-weight: 600; }
 .post-title { margin: 0 0 var(--space-2); }
 .post-meta { color: var(--text-muted); }
+
+/* =========================================================================
+   404  (404.html)
+   ========================================================================= */
+.notfound { text-align: center; max-width: 640px; margin: var(--space-7) auto; }
+.notfound__code { font-size: clamp(3.5rem, 12vw, 6rem); font-weight: 900; line-height: 1; color: var(--accent); letter-spacing: 0.02em; }
+.notfound__title { margin: var(--space-4) 0 var(--space-3); }
+.notfound__text { color: var(--text); margin-bottom: var(--space-6); }
+.notfound__actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
 
 /* =========================================================================
    ROLE landing page  (role.html)

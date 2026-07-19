@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <!-- Archived 2026-07-18: the original single-page carousel site, replaced by
+         the multi-page redesign. Its CSS/JS were moved into this folder with it
+         so the snapshot still runs; image paths in projects.js were repointed to
+         ../images/. Nothing here is loaded by the live site. -->
+    <link rel="stylesheet" href="newWebStyle.css" />
+    <link rel="stylesheet" href="navbar.css" />
+</head>
+
+<nav class="top-nav">
+    <div class="nav-left" style="display: flex; flex-direction: row; align-items: center; gap: 20px;">
+        <h1 class="site-name">Ben Beary</h1>
+        <p style="color: rgb(255, 187, 0);">Level Designer / Technical Artist / Gameplay Programmer</p>
+    </div>
+
+    <div class="nav-right">
+        <a href="#projects">Projects</a>
+        <a href="#about-section">About</a>
+        <a href="#Catalogue">Catalogue</a>
+    </div>
+
+    <div class="nav-hamburger" id="navHamburger">☰</div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+        <a href="#projects">Projects</a>
+        <a href="#about-section">About</a>
+        <a href="#Catalogue">Catalogue</a>
+</div>
+
+
+<!-- MODAL -->
+<div id="slideModal" class="modal">
+    <span id="modalClose" class="modal-close">×</span>
+
+    <!-- Modal arrows -->
+    <div id="modalPrev" class="modal-arrow modal-arrow-left">❮</div>
+    <div id="modalNext" class="modal-arrow modal-arrow-right">❯</div>
+
+    <div class="modal-content">
+        <div id="modalInner"></div>
+    </div>
+</div>
+
+
+<body>
+
+        <div class="project-nav" id="projects">
+
+            <!-- LEFT ARROW -->
+            <div id="prevProject" class="arrow left">❮</div>
+
+            <!-- MAIN WRAPPER (background changes via JS) -->
+            <div class="wrapper">
+
+                <!-- HEADER (kept your inline style) -->
+                <div class="header">
+                    <div id="prevProjectMobile" class="arrow mobile-arrow left">❮</div>
+
+                    <h1 id="Title">Project Title</h1>
+                    <button id="PlayButton">Click To Play The Game</button>
+
+                    <div id="nextProjectMobile" class="arrow mobile-arrow right">❯</div>
+                </div>
+
+                <!-- CONTENT SECTION -->
+                <div class="content">
+
+                    <!-- LEFT COLUMN (kept your inline style) -->
+                    <div class="col1">
+                        <div class="slideshow">
+
+                            <!-- Main Image -->
+                            <div class="main-image">
+                                <div id="mainSlideContainer"></div>
+                            </div>
+
+                            <!-- Thumbnail Strip -->
+                            <div class="thumb-strip"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (kept your inline style) -->
+                    <div class="col2">
+                        <div class="date" style="display: flex; flex-direction: row; justify-content: space-between;">
+                            <h2>Last Updated </h2>
+                            <h2 id="dateEntry"> May 4, 2024</h2>
+                        </div>
+                        <!-- TAGS -->
+                        <div class="tag-area">
+                            <hr>
+                            <h1>My Contributions to the Project:</h1>
+                            <hr>
+                            <div id="tags"></div>
+                        </div>
+
+                        <!-- BULLETS -->
+                        <div class="bullet-points">
+                            <h1>Key Points:</h1>
+                            <hr>
+                            <ul id="bullets"></ul>
+                        </div>
+
+                        <!-- SUMMARY -->
+                        <div class="summary">
+                            <h1>Summary:</h1>
+                            <hr>
+                            <p id="Summary"></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT ARROW -->
+            <div id="nextProject" class="arrow right">❯</div>
+
+        </div>
+
+        <!-- PROJECT DOTS (always full-width centered) -->
+        <div class="project-dots" id="projectDots"></div>
+
+
+<section id="about-section" class="about-section">
+    <div class="about-container">
+
+        <!-- LEFT: Text -->
+        <div class="about-content">
+            <div class="about-header">
+                <h1>About Me</h1>
+
+                <div class="download-buttons">
+                    <a class="download-btn" target="_blank" href="https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1cnW279u1MPptSw8vy4snEJJ2nMNa9__aCypAur12OlQ/export?format=pdf">
+                        Download Resume ⤓
+                    </a>
+                    <a class="download-btn" target="_blank" href="https://docs.google.com/gview?embedded=1&url=https://docs.google.com/document/d/1GnKzQPBdqFZk4f9FIy36vi-D9S4EB0NL18sh54QDQoQ/export?format=pdf">
+                        Download CV ⤓
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+
+            <p>Hello, my name is <strong>Ben Beary</strong>, and I am an <strong>indie developer</strong>. I have a <strong>BFA in Digital Media Arts</strong> from <strong>San Jose State University</strong>. My journey started in high school, where I learned coding languages like <strong>JavaScript</strong> and <strong>C#</strong>, alongside art programs such as <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Blender</strong>. In college, I continued to expand my knowledge of <strong>Game Design</strong>, honing my skills in gameplay programming, UI/UX design, world building, and creating polished player experiences.</p>
+
+            <p>I have experience in designing levels, scripting mechanics, creating audio, 3D modeling, and managing full production pipelines for multi-scene projects. I enjoy solving problems with <strong>modular, efficient code</strong> and building tools that help improve workflows.</p>
+
+            <hr>
+            <div class="information">
+                <span class="tag">BenjaminBeary@gmail.com</span>
+                <span class="tag">Sonoma County, California</span>
+            </div>
+        </div>
+
+        <!-- RIGHT: Portrait -->
+        <div class="about-photo">
+            <img src="images/SelfImage.jpg" alt="Ben Beary Portrait">
+        </div>
+    </div>
+
+    <!-- Social Media Links -->
+
+    <div class="about-socials-bar">
+        <a href="https://benbeary.itch.io/" target="_blank" class="social-icon">
+            <img src="images/SocialIcons/Itch-io-icon.png">
+        </a>
+
+        <a href="https://www.linkedin.com/in/ben-beary-856b75304/" target="_blank" class="social-icon">
+            <img src="images/SocialIcons/icon-logo-linkedin.png">
+        </a>
+
+        <a href="https://laguna-interactive.carrd.co/" target="_blank" class="social-icon">
+            <img src="images/SocialIcons/laguna_logo_2.png">
+        </a>
+    </div>
+
+</section>
+
+    <section id="Catalogue" class="catalogue-section">
+        <h1 class="catalogue-title">Project Catalogue</h1>
+        <h2 style="align-items: center; justify-content: center; text-align: center;"> Sort By:</h2>
+        <div class="nav-center">
+            <button onclick="sortProjectsByNewest()">Newest</button>
+            <button onclick="sortProjectsBy('programming')">Programming</button>
+            <button onclick="sortProjectsBy('ui_ux')">UI / UX</button>
+            <button onclick="sortProjectsBy('level_design')">Level Design</button>
+            <button onclick="sortProjectsBy('pixel_art')">Pixel Art</button>
+            <button onclick="sortProjectsBy('sound_design')">Sound</button>
+        </div>
+        <div id="catalogueGrid" class="catalogue-grid"></div>
+    </section>
+
+
+    <!-- SCRIPTS -->
+    <script src="projects.js"></script>
+    <script src="newWebMain.js"></script>
+
+</body>
+</html>
