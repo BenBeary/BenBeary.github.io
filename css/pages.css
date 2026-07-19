@@ -455,10 +455,14 @@
 /* =========================================================================
    POST PAGE  (post.html)
    ========================================================================= */
-.post-page { max-width: 860px; }
-.post-header { max-width: 800px; margin: 0 auto var(--space-6); }
+/* Posts run at 50vw, with a floor so they don't get cramped on smaller screens.
+   The header, slideshow and body all stretch to that width rather than staying
+   pinned to the old fixed column. */
+.post-page { max-width: max(50vw, 680px); }
+.post-header { max-width: 100%; margin: 0 auto var(--space-6); }
+.post-page .post-body { max-width: 100%; }
 /* Showcase posts lead with the project's slideshow (see page-post.js). */
-.post-showcase-media { max-width: 800px; margin: 0 auto var(--space-7); }
+.post-showcase-media { max-width: 100%; margin: 0 auto var(--space-7); }
 .post-back { display: inline-block; margin-bottom: var(--space-4); font-weight: 600; }
 .post-title { margin: 0 0 var(--space-2); }
 .post-meta { color: var(--text-muted); }
