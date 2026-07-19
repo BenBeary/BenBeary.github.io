@@ -101,11 +101,93 @@
     var isVid = function (s) { return /\.mp4$/i.test(s || ''); };
     var isGif = function (s) { return /\.gif$/i.test(s || ''); };
 
+    // Auto-advance timing. Stills get a flat dwell; videos advance when they end;
+    // gifs advance after two full loops (see gifDurationMs below).
+    var AUTO_STILL_MS = 5000;
+    var GIF_FALLBACK_MS = 6000;   // used when a gif's frame delays can't be read
+    // Safety valve: a very long gif (e.g. a minutes-long screen capture) would
+    // otherwise park the slideshow for its whole run twice over. Every gif
+    // currently in the content is well under this, so they all get both loops.
+    var MAX_SLIDE_MS = 20000;
+    var REDUCED_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    // Total animation length of a GIF, by summing the frame delays in its
+    // Graphic Control Extension blocks (21 F9 04 <packed> <delay lo> <delay hi>).
+    // Delays are in 1/100s; browsers render 0 and 1 as 100ms, so clamp to match.
+    // Resolves to 0 if the file can't be read or isn't animated.
+    var gifDurationCache = {};
+    function gifDurationMs(url) {
+        if (gifDurationCache[url]) return gifDurationCache[url];
+        gifDurationCache[url] = fetch(url).then(function (r) {
+            if (!r.ok) throw new Error('gif fetch ' + r.status);
+            return r.arrayBuffer();
+        }).then(function (buf) {
+            var b = new Uint8Array(buf), total = 0, i = 0;
+            while (i < b.length - 8) {
+                if (b[i] === 0x21 && b[i + 1] === 0xF9 && b[i + 2] === 0x04) {
+                    var d = b[i + 4] | (b[i + 5] << 8);
+                    total += (d <= 1 ? 10 : d) * 10;
+                    i += 8;
+                } else { i++; }
+            }
+            return total;
+        }).catch(function () { return 0; });
+        return gifDurationCache[url];
+    }
+
     window.makeSlideshow = function (container, items) {
         items = (items || []).filter(function (i) { return i && i.src; });
         if (!items.length) return null;
         var idx = 0;
         var imageItems = items.filter(function (i) { return !isVid(i.src); });
+
+        // Auto-advance state. `gen` invalidates async work (gif measuring, video
+        // events) belonging to a slide that has already been replaced.
+        var gen = 0, timer = null;
+        var onScreen = false, hovering = false, pendingAdvance = false;
+        var stageVideo = null;
+
+        function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
+        function canAuto() { return items.length > 1 && onScreen && !hovering && !REDUCED_MOTION; }
+        function schedule(ms, token) {
+            clearTimer();
+            if (!canAuto()) return;
+            timer = setTimeout(function () { if (token === gen) go(idx + 1); }, ms);
+        }
+
+        // Decide how long the CURRENT slide should stay up. Called on render and
+        // again whenever the show becomes eligible to advance (scrolled into
+        // view, pointer left), so a slide that was measured while off-screen
+        // still gets its timer once it matters.
+        function scheduleForCurrent() {
+            var token = gen;
+            var item = items[idx];
+            clearTimer();
+            if (!canAuto()) return;
+            if (isVid(item.src)) {
+                // Driven by the video's own 'ended' event; if it already ended
+                // while we were paused/off-screen, move on now.
+                if (pendingAdvance) { pendingAdvance = false; go(idx + 1); }
+                return;
+            }
+            if (isGif(item.src)) {
+                gifDurationMs(encodeURI(ROOT + item.src)).then(function (d) {
+                    if (token !== gen) return;
+                    var wait = d > 0 ? d * 2 : GIF_FALLBACK_MS;         // at least two loops
+                    schedule(Math.min(wait, MAX_SLIDE_MS), token);
+                });
+                return;
+            }
+            schedule(AUTO_STILL_MS, token);
+        }
+
+        function playVideo(v) {
+            var p = v.play();
+            if (p && p.catch) {
+                var token = gen;
+                p.catch(function () { if (token === gen) schedule(AUTO_STILL_MS, token); });
+            }
+        }
 
         var root = document.createElement('div');
         root.className = 'pshow';
@@ -119,11 +201,36 @@
         var thumbs = root.querySelector('.pshow__thumbs');
 
         function renderStage() {
+            gen++;
+            var token = gen;
             var item = items[idx];
+            clearTimer();
+            pendingAdvance = false;
+            if (stageVideo) { try { stageVideo.pause(); } catch (_) {} stageVideo = null; }
             stage.innerHTML = '';
+
             if (isVid(item.src)) {
-                // Click-to-play: poster + button, swaps in a real <video>.
-                window.makeVideo(stage, item.src, '');
+                // Muted autoplay (the only kind browsers allow unprompted).
+                // Controls stay on so the clip can be unmuted or scrubbed.
+                var v = document.createElement('video');
+                v.className = 'pshow__video';
+                v.muted = true; v.defaultMuted = true; v.playsInline = true;
+                v.controls = true; v.preload = 'auto'; v.loop = false;
+                v.setAttribute('muted', '');            // Safari needs the attribute too
+                v.setAttribute('playsinline', '');
+                v.poster = window.posterUrl(item.src);
+                var s1 = document.createElement('source'); s1.src = window.optVideoUrl(item.src); s1.type = 'video/mp4';
+                var s2 = document.createElement('source'); s2.src = originalUrl(item.src); s2.type = 'video/mp4';
+                v.appendChild(s1); v.appendChild(s2);
+                // Advance only once the clip has finished playing.
+                v.addEventListener('ended', function () {
+                    if (token !== gen) return;
+                    if (canAuto()) go(idx + 1); else pendingAdvance = true;
+                });
+                v.addEventListener('error', function () { if (token === gen) schedule(AUTO_STILL_MS, token); }, true);
+                stage.appendChild(v);
+                stageVideo = v;
+                if (onScreen) playVideo(v);
             } else {
                 var img = document.createElement('img');
                 img.className = 'pshow__img';
@@ -142,6 +249,7 @@
             Array.prototype.forEach.call(thumbs.children, function (t, i) {
                 t.classList.toggle('is-active', i === idx);
             });
+            scheduleForCurrent();
         }
         function go(i) { idx = (i + items.length) % items.length; renderStage(); }
 
@@ -170,6 +278,38 @@
 
         root.querySelector('.pshow__arrow--prev').addEventListener('click', function () { go(idx - 1); });
         root.querySelector('.pshow__arrow--next').addEventListener('click', function () { go(idx + 1); });
+
+        // Hovering holds the current slide so it can't slide out from under you.
+        // (A playing video keeps playing; it just won't hand over when it ends.)
+        root.addEventListener('mouseenter', function () { hovering = true; clearTimer(); });
+        root.addEventListener('mouseleave', function () { hovering = false; scheduleForCurrent(); });
+
+        // Only run while the show is actually on screen: off-screen shows stop
+        // advancing and pause their video instead of playing to nobody.
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    onScreen = e.isIntersecting;
+                    if (onScreen) {
+                        if (stageVideo && stageVideo.paused) playVideo(stageVideo);
+                        scheduleForCurrent();
+                    } else {
+                        clearTimer();
+                        if (stageVideo) { try { stageVideo.pause(); } catch (_) {} }
+                    }
+                });
+            }, { threshold: 0.35 });
+            io.observe(root);
+        } else {
+            onScreen = true;   // no observer support: behave as if always visible
+        }
+
+        // A backgrounded tab shouldn't burn through slides.
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) { clearTimer(); if (stageVideo) { try { stageVideo.pause(); } catch (_) {} } }
+            else if (onScreen) { if (stageVideo && stageVideo.paused) playVideo(stageVideo); scheduleForCurrent(); }
+        });
+
         renderStage();
         container.appendChild(root);
         return root;

@@ -208,6 +208,7 @@
     display: flex; align-items: center; justify-content: center;
 }
 .pshow__stage .pshow__img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+.pshow__stage .pshow__video { width: 100%; height: 100%; object-fit: contain; background: #000; display: block; }
 .pshow__stage .post-video, .pshow__stage .post-video__play, .pshow__stage .post-video__player { width: 100%; height: 100%; border-radius: 0; }
 /* Arrows sit OUTSIDE the image, in the gutters either side of the stage. */
 .pshow__arrow {
