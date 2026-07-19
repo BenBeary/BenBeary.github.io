@@ -269,12 +269,22 @@
    ========================================================================= */
 /* Two-column card over the blurred background (original-site style):
    info (~1/3) | slideshow + summary (~2/3). A scrim keeps text readable. */
+/* The title card breaks out of the page column to 70vw; the posts list below
+   deliberately stays at the normal content width. */
 .hub-hero {
     position: relative;
+    /* 70vw, but never narrower than the column it sits in: on smaller screens
+       70vw would otherwise make the title card narrower than the posts below. */
+    width: max(70vw, 100%);
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: var(--radius-lg);
     overflow: hidden;
     margin-bottom: var(--space-6);
     min-height: 320px;
+}
+@media (max-width: 900px) {
+    .hub-hero { width: 100%; left: auto; transform: none; }
 }
 .hub-hero__bg {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -336,9 +346,42 @@
 .hub-hero__play { margin-top: var(--space-5); }
 
 .hub-posts__title { margin-bottom: var(--space-5); }
-.post-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-5); }
-.post-card { color: var(--text); }
-.post-card:hover { color: var(--text); }
+
+/* Posts read as a single vertical column of wide, short rows (thumbnail beside
+   the text) rather than a grid of tall cards. */
+.post-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.post-card {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-5);
+    color: var(--text);
+    padding: 0;
+}
+.post-card:hover { color: var(--text); transform: translateX(4px); }
+.post-card .card__media {
+    flex: 0 0 clamp(180px, 26%, 260px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    align-self: stretch;
+    object-fit: cover;
+}
+.post-card .card__body {
+    flex: 1; min-width: 0;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5) var(--space-4) 0;
+}
+.post-card .card__title { font-size: 1.15rem; }
+.post-card .card__text {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    font-size: 0.92rem;
+}
+@media (max-width: 640px) {
+    .post-card { flex-direction: column; }
+    .post-card .card__media { flex: 0 0 auto; width: 100%; }
+    .post-card .card__body { padding: var(--space-4); }
+    .post-card:hover { transform: none; }
+}
 .post-card__badge {
     display: inline-block; align-self: flex-start;
     background: var(--accent-dim); color: var(--accent);
@@ -354,6 +397,8 @@
    ========================================================================= */
 .post-page { max-width: 860px; }
 .post-header { max-width: 800px; margin: 0 auto var(--space-6); }
+/* Showcase posts lead with the project's slideshow (see page-post.js). */
+.post-showcase-media { max-width: 800px; margin: 0 auto var(--space-7); }
 .post-back { display: inline-block; margin-bottom: var(--space-4); font-weight: 600; }
 .post-title { margin: 0 0 var(--space-2); }
 .post-meta { color: var(--text-muted); }

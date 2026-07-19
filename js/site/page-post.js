@@ -48,6 +48,17 @@
 
                 root.appendChild(header);
 
+                // A showcase post is the project's write-up, so it shows the same
+                // slideshow as the hub. It reads project.media[] directly rather
+                // than copying the items into the post, so editing the slideshow
+                // in Manage updates both places and they can't drift apart.
+                if (post.type === 'showcase' && project && project.media && project.media.length) {
+                    var show = document.createElement('section');
+                    show.className = 'post-showcase-media';
+                    window.makeSlideshow(show, project.media);
+                    root.appendChild(show);
+                }
+
                 var body = document.createElement('article');
                 body.className = 'post-body';
                 window.renderBlocks(post.blocks, body);
