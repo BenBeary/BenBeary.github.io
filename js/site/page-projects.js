@@ -48,16 +48,38 @@
 
         var body = document.createElement('div');
         body.className = 'card__body';
-        if (p.kicker) {
-            var k = document.createElement('div');
-            k.className = 'project-card__kicker';
-            k.textContent = p.kicker;
-            body.appendChild(k);
+
+        // Kicker and status share the top line of the row.
+        if (p.kicker || p.status) {
+            var head = document.createElement('div');
+            head.className = 'project-card__head';
+            if (p.kicker) {
+                var k = document.createElement('div');
+                k.className = 'project-card__kicker';
+                k.textContent = p.kicker;
+                head.appendChild(k);
+            }
+            if (p.status) {
+                var st = document.createElement('span');
+                st.className = 'project-card__status';
+                st.textContent = p.status;
+                head.appendChild(st);
+            }
+            body.appendChild(head);
         }
+
         var t = document.createElement('div');
         t.className = 'card__title';
         t.textContent = p.title;
         body.appendChild(t);
+
+        // The wide row has space for the blurb, so show it.
+        if (p.summary) {
+            var s = document.createElement('p');
+            s.className = 'card__text';
+            s.textContent = p.summary;
+            body.appendChild(s);
+        }
 
         if (p.tags && p.tags.length) {
             var tl = document.createElement('div');
