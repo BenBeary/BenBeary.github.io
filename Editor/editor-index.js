@@ -125,7 +125,8 @@
         root.innerHTML = '<div class="ed-landing">' +
             '<div class="ed-toolbar-row"><h1>Content</h1>' +
             '<button class="btn btn-ghost" id="ed-new-toggle">➕ New project</button>' +
-            '<a class="btn btn-ghost" href="manage.html">🎛 Manage projects</a></div>' +
+            '<a class="btn btn-ghost" href="manage.html">🎛 Manage projects</a>' +
+            '<a class="btn btn-ghost" href="order.html" title="Drag projects into Home and skill lists to set their order">↕ Order projects</a></div>' +
             newProjectForm() +
             projects.map(projectBlock).join('') +
             draftsSection() +

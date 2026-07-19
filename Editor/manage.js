@@ -57,11 +57,13 @@
             var on = (p.categories || []).indexOf(c.slug) !== -1;
             return '<label class="ed-check"><input type="checkbox" data-cat="' + esc(c.slug) + '"' + (on ? ' checked' : '') + '> ' + esc(c.label) + '</label>';
         }).join('');
+        // Ordering lives on the drag-and-drop board (order.html); this form shows
+        // it read-only so you can see where the project ranks without editing it here.
         var order = p.order || {};
-        var orderInputs = [{ slug: 'home', label: 'Home' }].concat(data.categories || []).map(function (c) {
-            var v = order[c.slug] != null ? order[c.slug] : '';
-            return '<div class="ed-order-cell"><label>' + esc(c.label) + '</label><input class="ed-input" type="number" data-order="' + esc(c.slug) + '" value="' + esc(v) + '" min="0"></div>';
-        }).join('');
+        var orderKeys = [{ slug: 'home', label: 'Home' }].concat(data.categories || [])
+            .filter(function (c) { return order[c.slug] != null; })
+            .sort(function (a, b) { return order[a.slug] - order[b.slug]; })
+            .map(function (c) { return '<span class="chip">' + esc(c.label) + ' #' + esc(order[c.slug]) + '</span>'; }).join('');
 
         return '<div class="ed-project" data-slug="' + esc(p.slug) + '">' +
             '<div class="ed-project__head"><div class="ed-project__title">' + esc(p.title || p.slug) + (p.hidden ? ' <span class="ed-hidden-badge">Hidden</span>' : '') + '</div>' +
@@ -83,7 +85,9 @@
             '</div>' +
             mediaEditor(p) +
             '<div class="ed-field"><label>Skill categories (these are the project\'s tags)</label><div class="ed-checks">' + catChecks + '</div></div>' +
-            '<div class="ed-field"><label>Order (blank = not featured there; lower shows first)</label><div class="ed-order-grid">' + orderInputs + '</div></div>' +
+            '<div class="ed-field"><label>Listed in</label>' +
+            (orderKeys ? '<div class="chip-list">' + orderKeys + '</div>' : '<p class="ed-empty">Not in any list yet.</p>') +
+            '<p class="mg-media-hint">Set this by dragging on the <a href="order.html">↕ Order projects</a> board.</p></div>' +
             '</div></div>';
     }
 
@@ -319,9 +323,9 @@
             p.categories = Array.prototype.map.call(form.querySelectorAll('[data-cat]:checked'), function (c) { return c.dataset.cat; });
             // Tags ARE the selected skill categories (by label), no separate list.
             p.tags = p.categories.map(function (slug) { var c = (data.categories || []).find(function (x) { return x.slug === slug; }); return c ? c.label : slug; });
-            var ord = {};
-            form.querySelectorAll('[data-order]').forEach(function (inp) { if (inp.value !== '') ord[inp.dataset.order] = Number(inp.value); });
-            p.order = ord;
+            // p.order is NOT read here: ordering is owned by order.html. Rebuilding
+            // it from this form (which no longer has the inputs) would blank every
+            // project's ranking on save.
         });
     }
 

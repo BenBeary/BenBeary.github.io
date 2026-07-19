@@ -393,6 +393,69 @@ textarea.ed-input { resize: vertical; font-family: inherit; }
 /* Project media[] editor rows on the manage page (reuse gallery row styling) */
 .mg-media-hint { font-size: 0.82rem; color: var(--text-muted); margin: var(--space-2) 0; }
 
+/* =========================================================================
+   ORDER BOARD  (order.html / order.js): sidebar of projects + one drop list
+   per ranking key. Position in a list == the project's order[key] value.
+   ========================================================================= */
+.ord-page { max-width: 1400px; margin: 0 auto; padding: var(--space-6) var(--content-pad) var(--space-8); }
+.ord-layout { display: grid; grid-template-columns: 280px 1fr; gap: var(--space-5); align-items: start; }
+
+.ord-sidebar {
+    position: sticky; top: calc(var(--header-h) + var(--space-4));
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: var(--space-4);
+    transition: border-color var(--ease), background var(--ease);
+}
+.ord-sidebar.is-drop-into { border-color: var(--danger); background: rgba(224, 82, 82, 0.08); }
+.ord-sidebar__title { font-size: 0.95rem; margin-bottom: var(--space-3); color: var(--text-strong); }
+.ord-sidebar__hint { font-size: 0.78rem; color: var(--text-muted); margin-top: var(--space-3); }
+.ord-chips { display: flex; flex-direction: column; gap: var(--space-2); max-height: 60vh; overflow-y: auto; }
+.ord-chip {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface-2); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); cursor: grab;
+    transition: border-color var(--ease), opacity var(--ease);
+}
+.ord-chip:hover { border-color: var(--accent); }
+.ord-chip:active { cursor: grabbing; }
+.ord-chip.is-dragging { opacity: 0.45; }
+.ord-chip__title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.ord-chip__meta { font-size: 0.72rem; color: var(--text-muted); }
+
+.ord-cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
+.ord-cat { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-4); }
+.ord-cat__title { font-size: 0.95rem; color: var(--accent); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
+.ord-cat__count { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); background: var(--surface-2); border-radius: var(--radius-pill); padding: 1px 8px; }
+.ord-list { list-style: none; display: flex; flex-direction: column; gap: 4px; min-height: 56px; padding: 2px; border-radius: var(--radius-sm); }
+.ord-list.is-drop-into { background: var(--accent-dim); outline: 1px dashed var(--accent); }
+.ord-empty { color: var(--text-muted); font-style: italic; font-size: 0.82rem; padding: var(--space-3); text-align: center; }
+.ord-row {
+    display: flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-2) var(--space-2) var(--space-2) 0;
+    background: var(--surface-2); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); cursor: grab;
+    transition: border-color var(--ease), opacity var(--ease), box-shadow var(--ease);
+}
+.ord-row:hover { border-color: var(--accent); }
+.ord-row:active { cursor: grabbing; }
+.ord-row.is-dragging { opacity: 0.45; }
+.ord-row.is-drop-before { box-shadow: inset 0 3px 0 0 var(--accent); }
+.ord-row.is-drop-after { box-shadow: inset 0 -3px 0 0 var(--accent); }
+.ord-rank {
+    flex: 0 0 auto; width: 24px; text-align: center;
+    font-size: 0.75rem; font-weight: 800; color: var(--accent);
+}
+.ord-row__title { flex: 1; min-width: 0; font-size: 0.88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ord-remove { flex: 0 0 auto; background: none; border: 0; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; line-height: 1; padding: 2px 4px; }
+.ord-remove:hover { color: var(--danger); }
+
+@media (max-width: 900px) {
+    .ord-layout { grid-template-columns: 1fr; }
+    .ord-sidebar { position: static; }
+    .ord-chips { max-height: none; }
+}
+
 /* Toast */
 .ed-toast {
     position: fixed; bottom: var(--space-5); left: 50%; transform: translateX(-50%);
