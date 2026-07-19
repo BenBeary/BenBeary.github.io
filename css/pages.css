@@ -77,16 +77,22 @@
 .home-collections .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: var(--space-6); }
 
 /* --- Featured: alternating showcase rows over the project's own artwork --- */
+/* Featured breaks out of the 1200px page column to 80vw, so the showcase rows
+   get far more room than the intro card / collections above and below them. */
+.home-featured {
+    position: relative;
+    width: 80vw;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .featured-chips { margin-bottom: var(--space-6); }
-/* The rows are inset 80px from the page column on both sides (the intro card
-   above keeps the full width). The zigzag offset happens inside that inset. */
-.featured-list { display: flex; flex-direction: column; gap: var(--space-6); padding: 0 80px; }
+.featured-list { display: flex; flex-direction: column; gap: var(--space-6); }
 
 /* Each row also shifts to the opposite side of the page, so the list visibly
    zigzags left → right → left as you scroll (the art always hugs the outer edge). */
 .featured-row {
     position: relative;
-    width: 94%;
+    width: 97%;
     margin-right: auto;          /* odd rows sit left */
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -112,13 +118,24 @@
 /* Roughly a third of the viewport, with headroom; sides swap every other row. */
 .featured-row__grid {
     position: relative; z-index: 2;
-    display: flex; align-items: center; gap: var(--space-6);
+    display: flex; align-items: center; gap: var(--space-7);
     padding: var(--space-6);
     min-height: 44vh;
 }
 .featured-row.is-flipped .featured-row__grid { flex-direction: row-reverse; }
-.featured-row__art { flex: 1.15 1 0; min-width: 0; }
-.featured-row__info { flex: 1 1 0; min-width: 0; }
+/* Near-even split with a rule between them, so each row reads as two distinct
+   columns rather than an image with a caption beside it. */
+.featured-row__art { flex: 1.05 1 0; min-width: 0; }
+.featured-row__info {
+    flex: 1 1 0; min-width: 0;
+    padding-left: var(--space-6);
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+.featured-row.is-flipped .featured-row__info {
+    padding-left: 0; border-left: 0;
+    padding-right: var(--space-6);
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
 .featured-row__cover { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-card); }
 
 /* Keep the embedded slideshow inside the row's height budget. */
@@ -138,10 +155,13 @@
 .featured-row__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
 
 @media (max-width: 860px) {
-    .featured-list { padding: 0; }
+    .home-featured { width: 100%; left: auto; transform: none; }
     .featured-row, .featured-row.is-flipped { width: 100%; margin-left: 0; margin-right: 0; }
     .featured-row__grid,
-    .featured-row.is-flipped .featured-row__grid { flex-direction: column; align-items: stretch; min-height: 0; }
+    .featured-row.is-flipped .featured-row__grid { flex-direction: column; align-items: stretch; min-height: 0; gap: var(--space-5); }
+    /* Stacked: the divider would sit across the layout, so drop it. */
+    .featured-row__info,
+    .featured-row.is-flipped .featured-row__info { padding: 0; border: 0; }
     .featured-row .pshow__stage { max-height: none; }
     .featured-row__summary { -webkit-line-clamp: 5; }
 }

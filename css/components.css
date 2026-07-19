@@ -196,8 +196,9 @@
 
 /* Slideshow (Steam-style stage + thumb strip; built by media.js makeSlideshow) */
 .pshow { display: flex; flex-direction: column; gap: var(--space-2); }
-/* [ ❮ ][ image ][ ❯ ] — the arrows are laid out beside the stage, not over it. */
-.pshow__stagewrap { position: relative; display: flex; align-items: center; gap: var(--space-3); }
+/* [❮][ image ][❯] — arrows sit beside the stage, kept narrow so the image keeps
+   as much of the row's width as possible. */
+.pshow__stagewrap { position: relative; display: flex; align-items: center; gap: var(--space-2); }
 .pshow__stage {
     flex: 1; min-width: 0;
     aspect-ratio: 16 / 9;
@@ -211,9 +212,10 @@
 /* Arrows sit OUTSIDE the image, in the gutters either side of the stage. */
 .pshow__arrow {
     flex: 0 0 auto;
+    width: 20px; padding: var(--space-3) 0;
     background: var(--surface-1); border: 1px solid var(--border-strong); color: var(--text);
-    font-size: 1.4rem; font-weight: 900; line-height: 1; cursor: pointer;
-    padding: var(--space-4) var(--space-2); border-radius: var(--radius);
+    font-size: 0.95rem; font-weight: 900; line-height: 1; cursor: pointer;
+    border-radius: var(--radius-sm);
     transition: color var(--ease), background var(--ease), border-color var(--ease), transform var(--ease);
 }
 .pshow__arrow:hover { color: var(--accent); border-color: var(--accent); background: var(--surface-2); transform: scale(1.08); }
