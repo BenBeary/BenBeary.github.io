@@ -38,6 +38,8 @@
 .about-portrait {
     width: 100%;
     max-width: 340px;
+    height: auto;
+    aspect-ratio: 1 / 1;
     justify-self: end;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-pop);
@@ -212,7 +214,9 @@
 
 /* Portrait + social links stack together on the right. */
 .home-intro__aside { justify-self: end; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
-.home-intro__portrait { width: 100%; max-width: 300px; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
+/* height:auto so the img's width/height attributes (there for CLS) can't force
+   the intrinsic 1280px height once CSS has constrained the width. */
+.home-intro__portrait { width: 100%; max-width: 300px; height: auto; aspect-ratio: 1 / 1; border-radius: var(--radius-lg); box-shadow: var(--shadow-pop); object-fit: cover; }
 /* Icons span the portrait's width and space out evenly beneath it. */
 .home-intro__socials {
     width: 100%; max-width: 300px;
@@ -260,11 +264,15 @@
     padding: 0;
 }
 .project-card:hover { color: var(--text); transform: translateX(4px); }
+/* Forced, identical thumbnail on every row: an explicit width plus aspect-ratio,
+   and centred rather than stretched, so a longer summary can't make one row's
+   image taller than its neighbours'. */
 .project-card .card__media {
-    flex: 0 0 clamp(200px, 28%, 300px);
+    flex: 0 0 auto;
+    width: clamp(200px, 26%, 280px);
     aspect-ratio: 16 / 9;
     height: auto;
-    align-self: stretch;
+    align-self: center;
     object-fit: cover;
 }
 .project-card .card__body {
@@ -393,11 +401,13 @@
     padding: 0;
 }
 .post-card:hover { color: var(--text); transform: translateX(4px); }
+/* Same forced sizing as the catalogue rows. */
 .post-card .card__media {
-    flex: 0 0 clamp(180px, 26%, 260px);
+    flex: 0 0 auto;
+    width: clamp(180px, 24%, 260px);
     aspect-ratio: 16 / 9;
     height: auto;
-    align-self: stretch;
+    align-self: center;
     object-fit: cover;
 }
 .post-card .card__body {
