@@ -210,6 +210,19 @@
 .featured-row--compact .featured-row__info { padding-left: var(--space-5); }
 .featured-row--compact.is-flipped .featured-row__info { padding-left: 0; padding-right: var(--space-5); }
 .featured-row--compact .featured-row__title { font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+/* Kicker and date share one line above the title. Scoped to the compact card so
+   the home page's rows keep the date on its own line under the title. */
+.featured-row--compact .featured-row__meta {
+    display: flex; align-items: baseline; flex-wrap: wrap;
+    gap: var(--space-2); margin-bottom: var(--space-2);
+}
+.featured-row--compact .featured-row__meta .featured-row__kicker { margin-bottom: 0; }
+.featured-row--compact .featured-row__meta .featured-row__date {
+    margin-top: 0; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em;
+}
+.featured-row--compact .featured-row__kicker + .featured-row__date::before {
+    content: '·'; margin-right: var(--space-2); opacity: 0.65;
+}
 .featured-row--compact .featured-row__summary { -webkit-line-clamp: 2; font-size: 0.9rem; margin-top: var(--space-2); }
 .featured-row--compact .featured-row__tags { margin-top: var(--space-3); }
 /* Clearance is handled by the grid's padding above, so neither column adds

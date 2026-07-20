@@ -75,8 +75,14 @@
 
         var info = document.createElement('div');
         info.className = 'featured-row__info';
+        // Kicker and date share one line above the title.
         var head = '';
-        if (p.kicker) head += '<div class="featured-row__kicker">' + esc(p.kicker) + '</div>';
+        if (p.kicker || p.date) {
+            head += '<div class="featured-row__meta">';
+            if (p.kicker) head += '<span class="featured-row__kicker">' + esc(p.kicker) + '</span>';
+            if (p.date) head += '<span class="featured-row__date">' + esc(fmtDate(p.date)) + '</span>';
+            head += '</div>';
+        }
         head += '<h2 class="featured-row__title">' + esc(p.title) + '</h2>';
         info.innerHTML = head;
 
@@ -103,6 +109,12 @@
     }
 
     function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // Short form, since it sits inline next to the kicker on a compact card.
+    function fmtDate(iso) {
+        var d = new Date(iso + 'T00:00:00');
+        return isNaN(d) ? (iso || '') : d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
 
     function chip(label, active, onClick) {
         var b = document.createElement('button');
