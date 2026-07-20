@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 17,
+  "contentVersion": 18,
   "categories": [
     {
       "slug": "programming",
@@ -73,7 +73,7 @@
         "programming": 2,
         "ui-ux": 2,
         "level-design": 3,
-        "sound-design": 2,
+        "sound-design": 3,
         "modeling": 3
       },
       "cover": "images/Blog Images/CleanUpCrew/16_9 shot.png",
@@ -276,7 +276,7 @@
         "home": 5,
         "programming": 5,
         "ui-ux": 5,
-        "sound-design": 3,
+        "sound-design": 4,
         "modeling": 5
       },
       "cover": "images/Blog Images/IdolofAshes/IdolOfAshes.png",
@@ -340,7 +340,7 @@
     {
       "slug": "spirit-outbreak",
       "title": "Spirit Outbreak",
-      "kicker": "",
+      "kicker": "Solo Project",
       "date": "2025-04-19",
       "playLink": "https://benbeary.itch.io/spirit-outbreak",
       "summary": "I made this game within a year and developed a map generator system that allowed for quick creation of new maps. Enemies could adapt and change actions based on traps and walls being placed in realtime. The game had over 14 traps and 6 map designs that would all change over time.",
@@ -363,7 +363,6 @@
         "programming": 4,
         "ui-ux": 4,
         "level-design": 4,
-        "modeling": 7,
         "pixel-art": 1
       },
       "cover": "images/Blog Images/SpiritOutbreak/FrontImage.jpg",
@@ -424,7 +423,7 @@
     {
       "slug": "dice-climber",
       "title": "Dice Climbers: Shelf of Chaos",
-      "kicker": "",
+      "kicker": "Solo Project",
       "date": "2025-05-20",
       "playLink": "https://benbeary.itch.io/dice-climber-shelf-of-chaos",
       "summary": "This was my first attempt at creating a platformer. I created all the assets and code that run in the game. I also created a modular design to all the different mechanics like enemy movement, cutscenes, and interactables.",
@@ -450,8 +449,6 @@
         "programming": 6,
         "ui-ux": 8,
         "level-design": 5,
-        "sound-design": 5,
-        "modeling": 6,
         "pixel-art": 2
       },
       "cover": "images/Blog Images/DiceClimber/Title Poster.jpg",
@@ -601,7 +598,7 @@
     {
       "slug": "dodge-kart",
       "title": "Dodge Kart",
-      "kicker": "",
+      "kicker": "School Project",
       "date": "2023-10-27",
       "playLink": "https://benbeary.itch.io/dodge-kart",
       "summary": "This was a class partner assignment where I took on the artist role. I used Unity's shadergraph mechanic to change the car colors to make efficient use of time and reduce the required amount of tilesheets.",
@@ -615,9 +612,8 @@
         "level-design",
         "pixel-art"
       ],
-      "collection": "misc",
+      "collection": "school-projects",
       "order": {
-        "programming": 10,
         "level-design": 9,
         "pixel-art": 5
       },
@@ -660,7 +656,7 @@
     {
       "slug": "devils-acre",
       "title": "Devil's Acre",
-      "kicker": "Team Project",
+      "kicker": "School Project",
       "date": "2022-04-22",
       "playLink": "https://zorzini.itch.io/devils-acre",
       "summary": "This was a class group project in which I focused on environmental art. I also assisted with the back-end code, creating the final boss's AI and attack moves. The overall project time was around 2 months in total.",
@@ -889,7 +885,7 @@
         "programming": 1,
         "ui-ux": 1,
         "level-design": 1,
-        "sound-design": 4,
+        "sound-design": 2,
         "modeling": 1
       },
       "cover": "images/Blog Images/Signal-Link/singla_link_poster.png",
