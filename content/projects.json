@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 16,
+  "contentVersion": 17,
   "categories": [
     {
       "slug": "programming",
@@ -987,58 +987,10 @@
       ],
       "featuredCopy": {
         "programming": {
-          "summary": "Signal-Link is built around linking things together, and I worked on the puzzle mechanics that make that idea play. I helped program the connection systems behind both worlds, then used them to design several of the puzzles myself, which meant tuning the rules until they were readable to a player who had never seen them before. All of it inside a two-week jam.",
-          "media": [
-            {
-              "src": "images/Blog Images/Signal-Link/Game_1.png",
-              "alt": "A Signal-Link puzzle mid-solve"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/Level_1.png",
-              "alt": "The first world laid out with its puzzle chain"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/ExtraImage_1.png",
-              "alt": "Connection mechanic in use"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/ExtraImage_2.png",
-              "alt": "Connection mechanic in use"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/ExtraImage_3.png",
-              "alt": "Puzzle wiring detail"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/ExtraImage_4.png",
-              "alt": "Puzzle wiring detail"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/Level_2.png",
-              "alt": "The second world and its puzzles"
-            }
-          ]
+          "summary": "Signal-Link is built around linking things together, and I worked on the puzzle mechanics that make that idea play. I helped program the connection systems behind both worlds, then used them to design several of the puzzles myself, which meant tuning the rules until they were readable to a player who had never seen them before. All of it inside a two-week jam."
         },
         "ui-ux": {
-          "summary": "I built Signal-Link’s main menu as a place rather than a screen. Instead of buttons over a background, the interface lives inside a real 3D scene the player looks around, so the menu and the world are one space. I modelled that environment, placed the 2D elements into it, and animated the whole thing so it feels alive before the game has even started.",
-          "media": [
-            {
-              "src": "images/Blog Images/Signal-Link/MainMenu_GameView.png",
-              "alt": "The finished main menu in game"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
-              "alt": "The menu scene animating"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/MainMenu_Unity.png",
-              "alt": "The menu scene assembled in Unity"
-            },
-            {
-              "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
-              "alt": "Modelling the menu environment in Blender"
-            }
-          ]
+          "summary": "I built Signal-Link’s main menu as a place rather than a screen. Instead of buttons over a background, the interface lives inside a real 3D scene the player looks around, so the menu and the world are one space. I modelled that environment, placed the 2D elements into it, and animated the whole thing so it feels alive before the game has even started."
         }
       }
     }
