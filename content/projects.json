@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contentVersion": 15,
+  "contentVersion": 16,
   "categories": [
     {
       "slug": "programming",
@@ -157,7 +157,7 @@
       "kicker": "Team Project",
       "date": "2025-10-17",
       "playLink": "https://zorzini.itch.io/dockingbay",
-      "summary": "We created a game similar to “Papers, Please”. We wanted there to be more interaction by having the player swivel in a chair to each different workstation. We wanted to create an atmosphere that was eerie and made the player constantly second-guess their choices.",
+      "summary": "A tense inspection game set on a space station: you sit at a cluttered desk and swivel between workstations, checking paperwork, cameras and radio chatter to decide which ships get cleared to dock. I built the room and exterior scenes, the sound system, the menu and pause UI, and a dialogue system timed to the voice acting, along with the 3D animations and particle effects. It takes its inspiration from “Papers, Please”, pushing that format somewhere more physical and more uneasy, so you spend the whole shift second-guessing your own calls.",
       "tags": [
         "Programming",
         "UI / UX",
@@ -984,7 +984,63 @@
           "src": "images/Blog Images/Signal-Link/Level_2.png",
           "alt": "Signal-Link screenshot 16"
         }
-      ]
+      ],
+      "featuredCopy": {
+        "programming": {
+          "summary": "Signal-Link is built around linking things together, and I worked on the puzzle mechanics that make that idea play. I helped program the connection systems behind both worlds, then used them to design several of the puzzles myself, which meant tuning the rules until they were readable to a player who had never seen them before. All of it inside a two-week jam.",
+          "media": [
+            {
+              "src": "images/Blog Images/Signal-Link/Game_1.png",
+              "alt": "A Signal-Link puzzle mid-solve"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/Level_1.png",
+              "alt": "The first world laid out with its puzzle chain"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/ExtraImage_1.png",
+              "alt": "Connection mechanic in use"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/ExtraImage_2.png",
+              "alt": "Connection mechanic in use"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/ExtraImage_3.png",
+              "alt": "Puzzle wiring detail"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/ExtraImage_4.png",
+              "alt": "Puzzle wiring detail"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/Level_2.png",
+              "alt": "The second world and its puzzles"
+            }
+          ]
+        },
+        "ui-ux": {
+          "summary": "I built Signal-Link’s main menu as a place rather than a screen. Instead of buttons over a background, the interface lives inside a real 3D scene the player looks around, so the menu and the world are one space. I modelled that environment, placed the 2D elements into it, and animated the whole thing so it feels alive before the game has even started.",
+          "media": [
+            {
+              "src": "images/Blog Images/Signal-Link/MainMenu_GameView.png",
+              "alt": "The finished main menu in game"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/Menu Setup.mp4",
+              "alt": "The menu scene animating"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/MainMenu_Unity.png",
+              "alt": "The menu scene assembled in Unity"
+            },
+            {
+              "src": "images/Blog Images/Signal-Link/MainMenu_Blender.png",
+              "alt": "Modelling the menu environment in Blender"
+            }
+          ]
+        }
+      }
     }
   ]
 }

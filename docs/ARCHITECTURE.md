@@ -122,6 +122,9 @@ publishing loop only (no ChangeQueue/staging) · homepage = scroll-snap card she
     "cover": "images/CleanUpCrew/16_9 shot.png", "background": "images/CleanUpCrew/Blurred.jpg",
     "media":   [ { "src": "images/…png|jpg|gif|mp4", "alt": "…" } ],  // hub slideshow (right col of the hero)
     "bullets": [ "role-specific highlight…" ],                       // hub hero left-column list
+    "featuredCopy": {                                                // OPTIONAL, home page only
+      "programming": { "summary": "…", "media": [ { "src": "…", "alt": "…" } ] }
+    },
     "posts": [ { "slug": "showcase", "type": "showcase", "title": "…", "date": "2025-07-29",
                  "excerpt": "…", "cover": "…", "hidden": false } ]   // post "hidden": true = off the hub, direct link works
   }]
@@ -182,6 +185,13 @@ trust stored HTML blindly. `video` has no poster field, the poster is derived by
 their thumb from the derived `.poster.webp`, and both hub media and post slideshows use the one
 `makeSlideshow(container, items)` in media.js. `bullets` is DEPRECATED for authoring (paragraph lists
 replaced it, M5.5) but stays render-supported for migrated content.
+
+**Per-ranking featured copy (M7):** a project shown in several home-page rankings (Featured, Programming,
+UI / UX, …) would otherwise repeat one summary and one set of screenshots in every list. `featuredCopy`
+keys off the ranking slug and overrides `summary` and/or `media` for that list only, so each one can talk
+about the work that list is about. Missing keys (and missing fields within a key) fall back to the
+project's own `summary`/`media`. Read by `page-home.js` `featuredRow(p, index, key)`; the project hub and
+catalogue always use the base copy.
 
 **Project-level media (M5.5):** each project may carry `"media": [ { "src", "alt" } ]` - the hub renders
 it as the top slideshow (original-site style) above summary + posts. Showcase posts are OPTIONAL: they

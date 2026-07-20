@@ -54,7 +54,16 @@
     }
 
     // ---- one showcase row ----------------------------------------------------
-    function featuredRow(p, index) {
+    // `key` is the ranking being shown. A project can override its summary and
+    // media per ranking via `featuredCopy[key]`, so a project that appears in
+    // several lists can talk about the work relevant to each one instead of
+    // repeating the same blurb and screenshots. Anything not overridden falls
+    // back to the project's own summary/media.
+    function featuredRow(p, index, key) {
+        var override = (p.featuredCopy && p.featuredCopy[key]) || null;
+        var summary = (override && override.summary) || p.summary;
+        var media = (override && override.media && override.media.length) ? override.media : p.media;
+
         var row = document.createElement('article');
         row.className = 'featured-row' + (index % 2 ? ' is-flipped' : '');
 
@@ -74,8 +83,8 @@
         // --- art side: the project's slideshow, else its cover ---
         var art = document.createElement('div');
         art.className = 'featured-row__art';
-        if (p.media && p.media.length) {
-            window.makeSlideshow(art, p.media);
+        if (media && media.length) {
+            window.makeSlideshow(art, media);
         } else {
             var img = document.createElement('img');
             img.className = 'featured-row__cover';
@@ -110,10 +119,10 @@
             });
             info.appendChild(tl);
         }
-        if (p.summary) {
+        if (summary) {
             var sum = document.createElement('p');
             sum.className = 'featured-row__summary';
-            sum.textContent = p.summary;
+            sum.textContent = summary;
             info.appendChild(sum);
         }
         if (p.bullets && p.bullets.length) {
@@ -177,7 +186,7 @@
             featList.innerHTML = '<p class="loading-note">Nothing ranked for this skill yet. Set an Order value for it in the editor.</p>';
             return;
         }
-        list.forEach(function (p, i) { featList.appendChild(featuredRow(p, i)); });
+        list.forEach(function (p, i) { featList.appendChild(featuredRow(p, i, key)); });
     }
 
     // ---- collections ---------------------------------------------------------
